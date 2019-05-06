@@ -32,8 +32,8 @@ namespace EasySharpWpf.Sample
             {
                 this.books = new List<Book>()
                 {
-                    new Book() { Title = "Kafka On The Shore", Author = "Haruki Murakami" },
-                    new Book() { Title = "Norwegian Wood", Author = "Haruki Murakami" }
+                    new Book() { Title = "Kafka On The Shore", Author = "Haruki Murakami", Publisher = "Kodansha" },
+                    new Book() { Title = "Norwegian Wood", Author = "Haruki Murakami", Publisher = "Kodansha" }
                 };
             }
 
