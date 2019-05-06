@@ -15,7 +15,7 @@
         
         <Button Content="Save" Click="SaveClicked" HorizontalAlignment="Center"/>
         
-        <Button Content="ShowCustomView" Click="ShowCustomView" HorizontalAlignment="Center"/>
+        <Button Content="Show Custom Edit View Sample" Click="ShowCustomView" HorizontalAlignment="Center"/>
         
     </StackPanel>
 </Window>
