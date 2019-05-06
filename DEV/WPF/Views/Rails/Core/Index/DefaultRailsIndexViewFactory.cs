@@ -124,7 +124,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         }
 
         private static Binding CreateRailsBinding(
-            IViewModelWithModel<T> viewModel,
+            RailsItemViewModel<T> viewModel,
             PropertyInfo property)
         {
             var bindingPath = viewModel.GetBindingPath(property);

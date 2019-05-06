@@ -19,6 +19,11 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Index
 
         public T Model { get; }
 
+        public string GetBindingPath(MemberInfo propertyInfo)
+        {
+            return $"[{propertyInfo.Name}]";
+        }
+
         public void SetProperty(MemberInfo propertyInfo, object value)
         {
             this[propertyInfo.Name] = value;
