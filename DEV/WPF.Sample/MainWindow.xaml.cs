@@ -45,7 +45,7 @@ namespace EasySharpWpf.Sample
             this.books.SerializeAsJson(SaveFilePath);
         }
 
-        private void ShowCustomView(object sender, RoutedEventArgs e)
+        private void ShowCustomEditView(object sender, RoutedEventArgs e)
         {
             var customLayoutWindow = new CustomLayoutWindow();
             customLayoutWindow.Show();
