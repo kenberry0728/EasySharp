@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySharpStandard", "EasySharpStandard\EasySharpStandard.csproj", "{0B7C9A3D-A036-4B85-90EE-CC7E0728DBDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpStandardTest", "EasySharpStandardTest\EasySharpStandardTest.csproj", "{2815D4A7-AF7F-4925-8C59-9703424DB580}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpStandardConsole", "EasySharpStandardConsole\EasySharpStandardConsole.csproj", "{5349FCC5-727C-4C21-8563-755FA4EA64EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B7C9A3D-A036-4B85-90EE-CC7E0728DBDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B7C9A3D-A036-4B85-90EE-CC7E0728DBDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B7C9A3D-A036-4B85-90EE-CC7E0728DBDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B7C9A3D-A036-4B85-90EE-CC7E0728DBDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2815D4A7-AF7F-4925-8C59-9703424DB580}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2815D4A7-AF7F-4925-8C59-9703424DB580}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2815D4A7-AF7F-4925-8C59-9703424DB580}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2815D4A7-AF7F-4925-8C59-9703424DB580}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5349FCC5-727C-4C21-8563-755FA4EA64EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5349FCC5-727C-4C21-8563-755FA4EA64EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5349FCC5-727C-4C21-8563-755FA4EA64EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5349FCC5-727C-4C21-8563-755FA4EA64EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2FEDB548-B302-452E-AC89-B8BD680ABB3A}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://kenberry.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = EasySharpStandard\\EasySharpStandard.csproj
+		SccProjectName1 = EasySharpStandard
+		SccLocalPath1 = EasySharpStandard
+		SccProjectUniqueName2 = EasySharpStandardTest\\EasySharpStandardTest.csproj
+		SccProjectName2 = EasySharpStandardTest
+		SccLocalPath2 = EasySharpStandardTest
+		SccProjectUniqueName3 = EasySharpStandardConsole\\EasySharpStandardConsole.csproj
+		SccProjectName3 = EasySharpStandardConsole
+		SccLocalPath3 = EasySharpStandardConsole
+	EndGlobalSection
+EndGlobal
