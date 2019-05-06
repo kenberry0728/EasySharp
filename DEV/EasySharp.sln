@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySharpStandard", "Standa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySharpStandardConsole", "Standard\EasySharpStandardConsole\EasySharpStandardConsole.csproj", "{DC532004-ACAE-445B-BDB1-C48620840690}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpStandardTest", "Standard\EasySharpStandardTest\EasySharpStandardTest.csproj", "{2815D4A7-AF7F-4925-8C59-9703424DB580}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpWpf", "WPF\EasySharpWpf.csproj", "{753D4463-7735-4478-93FB-34D6C4804486}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpStandardConsoleTest", "Standard\EasySharpStandardConsoleTest\EasySharpStandardConsoleTest.csproj", "{636699A0-51E8-4251-9BB9-9B1A7C445063}"
@@ -31,10 +29,6 @@ Global
 		{DC532004-ACAE-445B-BDB1-C48620840690}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC532004-ACAE-445B-BDB1-C48620840690}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC532004-ACAE-445B-BDB1-C48620840690}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2815D4A7-AF7F-4925-8C59-9703424DB580}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2815D4A7-AF7F-4925-8C59-9703424DB580}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2815D4A7-AF7F-4925-8C59-9703424DB580}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2815D4A7-AF7F-4925-8C59-9703424DB580}.Release|Any CPU.Build.0 = Release|Any CPU
 		{753D4463-7735-4478-93FB-34D6C4804486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{753D4463-7735-4478-93FB-34D6C4804486}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{753D4463-7735-4478-93FB-34D6C4804486}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,32 +51,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C84296E-80D2-4A53-87AD-3D1906544ABB}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://kenberry.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Standard\\EasySharpStandard\\EasySharpStandard.csproj
-		SccProjectName1 = Standard/EasySharpStandard
-		SccLocalPath1 = Standard\\EasySharpStandard
-		SccProjectUniqueName2 = Standard\\EasySharpStandardConsole\\EasySharpStandardConsole.csproj
-		SccProjectName2 = Standard/EasySharpStandardConsole
-		SccLocalPath2 = Standard\\EasySharpStandardConsole
-		SccProjectUniqueName3 = Standard\\EasySharpStandardTest\\EasySharpStandardTest.csproj
-		SccProjectName3 = Standard/EasySharpStandardTest
-		SccLocalPath3 = Standard\\EasySharpStandardTest
-		SccProjectUniqueName4 = WPF\\EasySharpWpf.csproj
-		SccProjectName4 = WPF
-		SccLocalPath4 = WPF
-		SccProjectUniqueName5 = Standard\\EasySharpStandardConsoleTest\\EasySharpStandardConsoleTest.csproj
-		SccProjectName5 = Standard/EasySharpStandardConsoleTest
-		SccLocalPath5 = Standard\\EasySharpStandardConsoleTest
-		SccProjectUniqueName6 = Standard\\EashSharpStandardTestCore\\EashSharpStandardTestCore.csproj
-		SccProjectName6 = Standard/EashSharpStandardTestCore
-		SccLocalPath6 = Standard\\EashSharpStandardTestCore
-		SccProjectUniqueName7 = WPF.Sample\\EasySharpWPF.Sample.csproj
-		SccProjectName7 = WPF.Sample
-		SccLocalPath7 = WPF.Sample
 	EndGlobalSection
 EndGlobal
