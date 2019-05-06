@@ -37,6 +37,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
                 var bindTargetElement = frameworkElement.GetDescendants().OfType<FrameworkElement>()
                       .FirstOrDefault(fe => fe.Name == railsBind.ElementName);
+                Debug.Assert(bindTargetElement != null);
                 BindToElement(viewModel, property, bindTargetElement);
             }
         }
