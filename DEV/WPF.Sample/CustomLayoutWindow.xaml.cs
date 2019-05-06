@@ -23,7 +23,9 @@ namespace EasySharpWpf.Sample
         {
             var editModel = new CustomLayoutBook()
             {
-                Title = "となりのトトロ"
+                Title = "Kafka On The Shore",
+                Author = "Haruki Murakami",
+                Publisher = "Kodansha"
             };
 
             viewBinder.ApplyRailsBinding(this, editModel);
