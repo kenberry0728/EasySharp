@@ -57,11 +57,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                     textBlock.SetBinding(TextBlock.TextProperty, binding);
                     break;
 
-                case CheckBox checkBox:
-                    checkBox.SetBinding(ToggleButton.IsCheckedProperty, binding);
-                    break;
-
-                case ToggleButton toggleButton:
+                case ToggleButton toggleButton: // CheckBox as well.
                     toggleButton.SetBinding(ToggleButton.IsCheckedProperty, binding);
                     break;
             }
