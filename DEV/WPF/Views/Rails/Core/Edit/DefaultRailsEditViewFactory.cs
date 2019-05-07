@@ -31,7 +31,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             this.typeToCreateEditControl
                 = new Dictionary<Type, Func<PropertyInfo, Binding, UIElement>>()
                 {
-                    { typeof(bool),  this.CreateCheckBox},
+                    { typeof(bool),  this.CreateCheckBox },
                     { typeof(string), this.CreateTextBox },
                     { typeof(int), this.CreateTextBox },
                     { typeof(double), this.CreateTextBox },
