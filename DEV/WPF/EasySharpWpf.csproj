@@ -68,7 +68,6 @@
     <Compile Include="ViewModels\Core\IViewModelWithModel.cs" />
     <Compile Include="ViewModels\Core\ObservableModelLinkedCollection.cs" />
     <Compile Include="ViewModels\Rails\Attributes\RailsBindAttribute.cs" />
-    <Compile Include="ViewModels\Rails\Core\Index\RailsItemViewModel.cs" />
     <Compile Include="ViewModels\Rails\Core\Edit\RailsEditViewModel.cs" />
     <Compile Include="ViewModels\Core\ViewModelBase.cs" />
     <Compile Include="ViewModels\Rails\Core\Index\RailsIndexViewModel.cs" />

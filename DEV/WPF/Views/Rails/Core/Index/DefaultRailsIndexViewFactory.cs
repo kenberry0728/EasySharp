@@ -3,6 +3,7 @@ using EasySharpStandard.Reflections.Core;
 using EasySharpWpf.Commands.Core;
 using EasySharpWpf.ViewModels.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
+using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Core.Index;
 using EasySharpWpf.Views.EasyViews.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
@@ -83,7 +84,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             var newModel = new T();
             if (ShowEditWindow(newModel) == true)
             {
-                indexViewModel.ItemsSource.Add(new RailsItemViewModel<T>(newModel));
+                indexViewModel.ItemsSource.Add(new RailsEditViewModel<T>(newModel));
             }
         }
 
@@ -123,7 +124,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         }
 
         private static Binding CreateRailsBinding(
-            RailsItemViewModel<T> viewModel,
+            RailsEditViewModel<T> viewModel,
             PropertyInfo property)
         {
             var bindingPath = viewModel.GetBindingPath(property);
@@ -160,7 +161,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         
         private void Edit(object arg)
         {
-            if (!(arg is RailsItemViewModel<T> viewModel))
+            if (!(arg is RailsEditViewModel<T> viewModel))
             {
                 return;
             }
@@ -183,7 +184,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         private static void Delete(object arg, RailsIndexViewModel<T> indexViewModel)
         {
-            if (!(arg is RailsItemViewModel<T> itemViewModel))
+            if (!(arg is RailsEditViewModel<T> itemViewModel))
             {
                 return;
             }
