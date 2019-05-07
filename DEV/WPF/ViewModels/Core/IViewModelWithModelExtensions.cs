@@ -11,11 +11,11 @@ namespace EasySharpWpf.ViewModels.Core
             return nameof(viewModel.Model) + "." + propertyInfo.Name;
         }
 
-        public static string GetBindingPath<TModel>(
-            this IViewModelWithModel<TModel> viewModel,
-            MemberInfo propertyInfo)
-        {
-            return nameof(viewModel.Model) + "." + propertyInfo.Name;
-        }
+        //public static string GetBindingPath<TModel>(
+        //    this IViewModelWithModel<TModel> viewModel,
+        //    MemberInfo propertyInfo)
+        //{
+        //    return nameof(viewModel.Model) + "." + propertyInfo.Name;
+        //}
     }
 }

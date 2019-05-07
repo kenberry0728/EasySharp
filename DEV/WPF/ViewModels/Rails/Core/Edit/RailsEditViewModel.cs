@@ -19,7 +19,7 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 
         public T Model { get; }
 
-        public string GetBindingPath(MemberInfo propertyInfo)
+        public string GetBindingPath(PropertyInfo propertyInfo)
         {
             return $"[{propertyInfo.Name}]";
         }
