@@ -11,5 +11,14 @@ namespace EasySharpWpf.Views.Extensions
             uiElement.SetValue(Grid.RowProperty, row);
             uiElement.SetValue(Grid.ColumnProperty, column);
         }
+
+        public static void AddColumnDefinition(this Grid grid, GridLength gridLength)
+        {
+            grid.ColumnDefinitions.Add(
+                new ColumnDefinition()
+                {
+                    Width = gridLength
+                });
+        }
     }
 }

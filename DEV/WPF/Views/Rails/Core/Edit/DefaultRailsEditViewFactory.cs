@@ -46,8 +46,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
         {
             var viewModel = new RailsEditViewModel<T>(model);
             var grid = new Grid() { DataContext = viewModel };
-            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
-            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1.0, GridUnitType.Star) });
+            grid.AddColumnDefinition(GridLength.Auto);
+            grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
 
             var gridRow = 0;
             foreach (var property in type.GetProperties()
