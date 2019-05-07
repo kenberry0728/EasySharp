@@ -4,7 +4,6 @@ using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.Views.Extensions;
 using EasySharpWpf.Views.Rails.Implementations;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
