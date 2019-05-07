@@ -19,7 +19,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
     {
         #region Fields
 
-        private readonly IDictionary<Type, Func<PropertyInfo, Binding, UIElement>> typeToCreateEditControl;
         private readonly Type type = typeof(T);
 
         #endregion
@@ -28,14 +27,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         internal protected DefaultRailsEditViewFactory()
         {
-            this.typeToCreateEditControl
-                = new Dictionary<Type, Func<PropertyInfo, Binding, UIElement>>()
-                {
-                    { typeof(bool),  this.CreateCheckBox },
-                    { typeof(string), this.CreateTextBox },
-                    { typeof(int), this.CreateTextBox },
-                    { typeof(double), this.CreateTextBox },
-                };
         }
 
         #endregion
@@ -59,14 +50,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
                 var binding = RailsBindCreator.CreateRailsBinding(viewModel, property);
 
-                if (!this.typeToCreateEditControl.TryGetValue(
-                    property.PropertyType,
-                    out var createEditControl))
-                {
-                    continue;
-                }
+                UIElement uiElement = CreateUiElement(property, binding);
 
-                var uiElement = createEditControl(property, binding);
                 if (uiElement != null)
                 {
                     grid.RowDefinitions.Add(new RowDefinition());
@@ -78,6 +63,24 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             }
 
             return grid;
+        }
+
+        private UIElement CreateUiElement(PropertyInfo property, Binding binding)
+        {
+            UIElement uiElement = null;
+            switch (property.PropertyType)
+            {
+                case Type type when type == typeof(string)
+                                  || type == typeof(int)
+                                  || type == typeof(double):
+                    uiElement = CreateTextBox(property, binding);
+                    break;
+                case Type type when type == typeof(bool):
+                    uiElement = CreateCheckBox(property, binding);
+                    break;
+            }
+
+            return uiElement;
         }
 
         #endregion
