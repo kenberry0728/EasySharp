@@ -49,7 +49,6 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         public FrameworkElement CreateIndexView(List<T> modelList)
         {
-            // TODO: To Grid Layout
             var stackPanel = new StackPanel();
             var viewModel = new RailsIndexViewModel<T>(modelList);
 
