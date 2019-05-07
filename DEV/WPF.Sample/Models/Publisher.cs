@@ -1,8 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using EasySharpStandard.Attributes.Core;
-using EasySharpStandard.Reflections.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
 
 namespace EasySharpWpf.Sample.Models
@@ -17,7 +14,8 @@ namespace EasySharpWpf.Sample.Models
 
         public override string ToString()
         {
-            return this.ToCommaSeparatedString();
+            return this.ToCommaSeparatedString(
+                p => p.GetCustomAttribute<RailsBindAttribute>()?.UserVisible == true);
         }
     }
 }
