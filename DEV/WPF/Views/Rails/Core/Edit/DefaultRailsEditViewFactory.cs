@@ -106,10 +106,5 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
         }
 
         #endregion
-
-        #region Private Methods
-        
-
-        #endregion
     }
 }
