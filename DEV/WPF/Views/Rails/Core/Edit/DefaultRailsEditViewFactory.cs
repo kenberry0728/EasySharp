@@ -39,6 +39,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             var grid = new Grid() { DataContext = viewModel };
             grid.AddColumnDefinition(GridLength.Auto);
             grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
+            grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
 
             var gridRow = 0;
             foreach (var property in type.GetProperties()
@@ -78,6 +79,9 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 case Type type when type == typeof(bool):
                     uiElement = CreateCheckBox(property, binding);
                     break;
+                case Type type when type.IsClass:
+                    uiElement = CreateEditButton(property, binding);
+                    break;
             }
 
             return uiElement;
@@ -99,6 +103,13 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             var textBox = new TextBox();
             textBox.SetBinding(TextBox.TextProperty, valueBinding);
             return textBox;
+        }
+
+        protected virtual UIElement CreateEditButton(PropertyInfo propertyInfo, Binding valueBinding)
+        {
+            var button = new Button();
+            // TODO:Edit Button.
+            return button;
         }
 
         #endregion
