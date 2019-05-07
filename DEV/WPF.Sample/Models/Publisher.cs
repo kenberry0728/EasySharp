@@ -1,5 +1,6 @@
-﻿using System.Linq;
-
+﻿using System;
+using System.Linq;
+using System.Reflection;
 using EasySharpStandard.Attributes.Core;
 using EasySharpStandard.Reflections.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
@@ -16,11 +17,7 @@ namespace EasySharpWpf.Sample.Models
 
         public override string ToString()
         {
-            return string.Join(
-                    ", ", 
-                    this.GetType().GetProperties()
-                    .Where(p => p.HasCustomAttribute<RailsBindAttribute>())
-                    .Select(p => $"{p.GetDisplayName()} : {p.GetValue(this)}"));
+            return this.ToCommaSeparatedString();
         }
     }
 }
