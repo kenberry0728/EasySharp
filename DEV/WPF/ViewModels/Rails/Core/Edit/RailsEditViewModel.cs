@@ -1,9 +1,4 @@
-﻿using EasySharpStandard.Reflections.Core;
-using EasySharpWpf.ViewModels.Core;
-using EasySharpWpf.ViewModels.Rails.Attributes;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using EasySharpWpf.ViewModels.Core;
 
 namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 {
