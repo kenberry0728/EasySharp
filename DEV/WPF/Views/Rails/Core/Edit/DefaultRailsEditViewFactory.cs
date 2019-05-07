@@ -31,10 +31,10 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             this.typeToCreateEditControl
                 = new Dictionary<Type, Func<PropertyInfo, Binding, UIElement>>()
                 {
-                    { typeof(bool),  this.CreateEditControlForBoolean},
-                    { typeof(string), this.CreateEditControlForString },
-                    { typeof(int), this.CreateEditControlForInteger },
-                    // TODO: double
+                    { typeof(bool),  this.CreateCheckBox},
+                    { typeof(string), this.CreateTextBox },
+                    { typeof(int), this.CreateTextBox },
+                    { typeof(double), this.CreateTextBox },
                 };
         }
 
@@ -84,21 +84,14 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Protected Methods
 
-        protected virtual UIElement CreateEditControlForBoolean(PropertyInfo propertyInfo, Binding valueBinding)
+        protected virtual UIElement CreateCheckBox(PropertyInfo propertyInfo, Binding valueBinding)
         {
             var checkBox = new CheckBox() { VerticalAlignment = VerticalAlignment.Center };
             checkBox.SetBinding(ToggleButton.IsCheckedProperty, valueBinding);
             return checkBox;
         }
 
-        protected virtual UIElement CreateEditControlForString(PropertyInfo propertyInfo, Binding valueBinding)
-        {
-            var textBox = new TextBox();
-            textBox.SetBinding(TextBox.TextProperty, valueBinding);
-            return textBox;
-        }
-
-        protected virtual UIElement CreateEditControlForInteger(PropertyInfo proeprtyInfo, Binding valueBinding)
+        protected virtual UIElement CreateTextBox(PropertyInfo propertyInfo, Binding valueBinding)
         {
             var textBox = new TextBox();
             textBox.SetBinding(TextBox.TextProperty, valueBinding);
