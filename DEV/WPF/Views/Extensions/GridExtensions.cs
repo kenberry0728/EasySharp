@@ -20,5 +20,14 @@ namespace EasySharpWpf.Views.Extensions
                     Width = gridLength
                 });
         }
+
+        public static void AddRowDefinition(this Grid grid, GridLength gridLength)
+        {
+            grid.RowDefinitions.Add(
+                new RowDefinition()
+                {
+                    Height = gridLength
+                });
+        }
     }
 }
