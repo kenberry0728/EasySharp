@@ -25,7 +25,7 @@ namespace EasySharpWpf.Sample.Models
 
         [DisplayName("出版社")]
         [RailsBind]
-        public string Publisher { get; set; }
+        public Publisher Publisher { get; set; }
 
         [DisplayName("無料サンプル")]
         [RailsBind]
