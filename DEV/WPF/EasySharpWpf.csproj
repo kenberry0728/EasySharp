@@ -64,7 +64,6 @@
       <DependentUpon>FilePathAndButtonControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Core\IViewModelWithModelExtensions.cs" />
     <Compile Include="ViewModels\Core\IViewModelWithModel.cs" />
     <Compile Include="ViewModels\Core\ObservableModelLinkedCollection.cs" />
     <Compile Include="ViewModels\Rails\Attributes\RailsBindAttribute.cs" />
