@@ -66,6 +66,10 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return grid;
         }
 
+        #endregion
+
+        #region Protected Methods
+
         private UIElement CreateUiElement(PropertyInfo property, Binding binding)
         {
             UIElement uiElement = null;
@@ -86,10 +90,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
             return uiElement;
         }
-
-        #endregion
-
-        #region Protected Methods
 
         protected virtual UIElement CreateCheckBox(PropertyInfo propertyInfo, Binding valueBinding)
         {
