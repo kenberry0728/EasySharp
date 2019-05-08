@@ -21,18 +21,15 @@ using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
-    public class DefaultRailsEditViewFactory<T> : IRailsEditViewFactory<T>
-        where T : class, new()
+    public class DefaultRailsEditViewFactory2
     {
         #region Fields
-
-        private readonly Type type = typeof(T);
 
         #endregion
 
         #region Constructors
 
-        public DefaultRailsEditViewFactory()
+        public DefaultRailsEditViewFactory2()
         {
         }
 
@@ -40,9 +37,11 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Public Methods
 
-        public FrameworkElement CreateEditView(T model)
+        public FrameworkElement CreateEditView(object model, Type type = null)
         {
-            var viewModel = new RailsEditViewModel<T>(model);
+            type = type ?? model.GetType();
+
+            var viewModel = new RailsEditViewModel2(model);
             var grid = new Grid() { DataContext = viewModel };
             grid.AddColumnDefinition(GridLength.Auto);
             grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
@@ -72,11 +71,11 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
             return grid;
         }
-
-        public bool? ShowEditWindow(T model, out T editedModel)
+        
+        private bool? ShowEditWindow(object model, Type type, out object editedModel)
         {
-            editedModel = new T();
-            CopyRailsBindPropertyValues(model, editedModel, typeof(T));
+            editedModel = Activator.CreateInstance(type);
+            CopyRailsBindPropertyValues(model, editedModel, model.GetType());
 
             var windowContent = new StackPanel();
             windowContent.Children.Add(this.CreateEditView(model));
@@ -85,7 +84,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 Content = windowContent,
                 Width = 500,
                 SizeToContent = SizeToContent.Height,
-                Title = "編集：" + this.type.GetDisplayName()
+                Title = "編集：" + type.GetDisplayName()
             };
 
             var button = new Button()
@@ -100,10 +99,9 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return window.ShowDialog();
         }
 
-        internal bool? ShowEditWindowInternal(object model, out object editedModel)
+        internal bool? ShowEditWindowInternal(object model, Type type, out object editedModel)
         {
-            var result = this.ShowEditWindow(model as T, out var editedModelResult);
-            editedModel = editedModelResult as T;
+            var result = this.ShowEditWindow(model, type, out editedModel);
             return result;
         }
 
@@ -162,7 +160,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Private Methods
 
-        private static void CompleteEdit(T model, Window window)
+        private static void CompleteEdit(object model, Window window)
         {
             if (CanCompleteEdit(model))
             {
@@ -170,8 +168,9 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             }
         }
 
-        private static bool CanCompleteEdit(T model)
+        private static bool CanCompleteEdit(object model)
         {
+            var type = model.GetType();
             var validationResults = new List<ValidationResult>();
             var validationContext = new ValidationContext(model, null, null);
 
@@ -204,14 +203,16 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 return;
             }
 
-            var factory = new DefaultRailsEditViewFactory2();
+            var factoryType = typeof(DefaultRailsEditViewFactory<>);
+            var genericType = factoryType.MakeGenericType(editInstanceType);
+            dynamic factory = Activator.CreateInstance(genericType);
 
-            if (factory.ShowEditWindowInternal(arg, editInstanceType, out object editedInstance) != true)
+            if (factory.ShowEditWindowInternal(arg, out object editInstance) != true)
             {
                 return;
             }
 
-            CopyRailsBindPropertyValues(editedInstance, arg, editInstanceType);
+            CopyRailsBindPropertyValues(editInstance, arg, editInstanceType);
 
 
             //foreach (var property in

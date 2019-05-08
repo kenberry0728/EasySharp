@@ -1,19 +1,20 @@
-﻿using EasySharpWpf.ViewModels.Core;
-using EasySharpWpf.Views.Rails.Core;
+﻿using EasySharpWpf.Views.Rails.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
 namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 {
-    public class RailsEditViewModel<T> : ViewModelBase, IViewModelWithModel
+    public class RailsEditViewModel2 : ViewModelBase
     {
         private readonly IEnumerable<PropertyInfo> properties;
 
-        public RailsEditViewModel(T model)
+        public RailsEditViewModel2(object model, Type type = null)
         {
+            type = type ?? model.GetType();
             this.Model = model;
-            this.properties = typeof(T).GetProperties()
+            this.properties = type.GetProperties()
                 .Where(p => p.HasVisibleRailsBindAttribute());
         }
 

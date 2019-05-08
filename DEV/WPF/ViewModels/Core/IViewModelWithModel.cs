@@ -2,9 +2,9 @@
 
 namespace EasySharpWpf.ViewModels.Core
 {
-    public interface IViewModelWithModel<T>
+    public interface IViewModelWithModel
     {
-        T Model { get; }
+        object Model { get; }
 
         string GetBindingPath(PropertyInfo propertyInfo);
     }

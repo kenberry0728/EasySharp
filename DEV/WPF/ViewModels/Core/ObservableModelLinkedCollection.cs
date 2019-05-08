@@ -5,7 +5,8 @@ using System.Collections.ObjectModel;
 namespace EasySharpWpf.ViewModels
 {
     public class ObservableModelLinkedCollection<TViewModel, TModel> : ObservableCollection<TViewModel>
-        where TViewModel : IViewModelWithModel<TModel>
+        where TViewModel : IViewModelWithModel
+        where TModel : class
     {
         private readonly List<TModel> model;
 
@@ -24,7 +25,7 @@ namespace EasySharpWpf.ViewModels
         protected override void InsertItem(int index, TViewModel item)
         {
             base.InsertItem(index, item);
-            this.model.Insert(index, item.Model);
+            this.model.Insert(index, (TModel)item.Model);
         }
 
         protected override void MoveItem(int oldIndex, int newIndex)
@@ -45,7 +46,7 @@ namespace EasySharpWpf.ViewModels
         protected override void SetItem(int index, TViewModel item)
         {
             base.SetItem(index, item);
-            this.model[index] = item.Model;
+            this.model[index] = (TModel)item.Model;
         }
     }
 }

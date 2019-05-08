@@ -167,7 +167,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
                 return;
             }
 
-            var model = viewModel.Model;
+            var model = viewModel.Model as T;
             var editInstance = new T();
             if (this.railsEditViewFactory.ShowEditWindow(model, out editInstance) != true)
             {

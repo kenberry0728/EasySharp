@@ -6,6 +6,7 @@ using System.Linq;
 namespace EasySharpWpf.ViewModels.Rails.Core.Index
 {
     public class RailsIndexViewModel<T> : ViewModelBase
+        where T : class, new()
     {
         public RailsIndexViewModel(List<T> modelList)
         {
