@@ -20,7 +20,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 
-using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
 
 namespace EasySharpWpf.Views.Rails.Core.Index
 {
@@ -84,7 +83,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         private void AddNewItem(RailsIndexViewModel<T> indexViewModel)
         {
             var newModel = new T();
-            if (ShowEditWindow(newModel) == true)
+            if (this.railsEditViewFactory.ShowEditWindow(newModel) == true)
             {
                 indexViewModel.ItemsSource.Add(new RailsEditViewModel<T>(newModel));
             }
@@ -171,7 +170,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             var model = viewModel.Model;
             var editInstance = new T();
             CopyPropertyValues(model, editInstance);
-            if (ShowEditWindow(editInstance) != true)
+            if (this.railsEditViewFactory.ShowEditWindow(editInstance) != true)
             {
                 return;
             }
@@ -209,65 +208,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
                      && p.CanRead
                      && p.CanWrite);
         }
-
-        private bool? ShowEditWindow(T model)
-        {
-            var windowContent = new StackPanel();
-            windowContent.Children.Add(this.railsEditViewFactory.CreateEditView(model));
-            var window = new Window
-            {
-                Content = windowContent,
-                Width = 500,
-                SizeToContent = SizeToContent.Height,
-                Title = "編集：" + this.type.GetDisplayName()
-            };
-
-            var button = new Button()
-            {
-                Content = "OK",
-                IsDefault = true,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                Command = new DelegateCommand(x => CompleteEdit(model, window))
-            };
-
-            windowContent.Children.Add(button);
-
-            return window.ShowDialog();
-        }
-
-        private static void CompleteEdit(T model, Window window)
-        {
-            if (CanCompleteEdit(model))
-            {
-                window.DialogResult = true;
-            }
-        }
-
-        private static bool CanCompleteEdit(T model)
-        {
-            var validationResults = new List<ValidationResult>();
-            var validationContext = new ValidationContext(model, null, null);
-
-            Validator.TryValidateObject(
-                model,
-                validationContext,
-                validationResults,
-                true);
-
-            if (validationResults.Any())
-            {
-                MessageBox.Show(
-                    string.Join(
-                        Environment.NewLine, 
-                        validationResults.Select(r => r.ErrorMessage)));
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
+        
         #endregion
     }
 }

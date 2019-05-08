@@ -1,10 +1,13 @@
 ﻿using EasySharpStandard.Attributes.Core;
+using EasySharpWpf.Commands.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.Views.Extensions;
 using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 using EasySharpWpf.Views.Rails.Implementations;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -13,9 +16,12 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 
+using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
+
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
     public class DefaultRailsEditViewFactory<T> : IRailsEditViewFactory<T>
+        where T : class, new()
     {
         #region Fields
 
@@ -66,6 +72,31 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return grid;
         }
 
+        public bool? ShowEditWindow(T model)
+        {
+            var windowContent = new StackPanel();
+            windowContent.Children.Add(this.CreateEditView(model));
+            var window = new Window
+            {
+                Content = windowContent,
+                Width = 500,
+                SizeToContent = SizeToContent.Height,
+                Title = "編集：" + this.type.GetDisplayName()
+            };
+
+            var button = new Button()
+            {
+                Content = "OK",
+                IsDefault = true,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                Command = new DelegateCommand(x => CompleteEdit(model, window))
+            };
+
+            windowContent.Children.Add(button);
+
+            return window.ShowDialog();
+        }
+
         #endregion
 
         #region Protected Methods
@@ -110,6 +141,43 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             var button = new Button();
             // TODO:Edit Button.
             return button;
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private static void CompleteEdit(T model, Window window)
+        {
+            if (CanCompleteEdit(model))
+            {
+                window.DialogResult = true;
+            }
+        }
+
+        private static bool CanCompleteEdit(T model)
+        {
+            var validationResults = new List<ValidationResult>();
+            var validationContext = new ValidationContext(model, null, null);
+
+            Validator.TryValidateObject(
+                model,
+                validationContext,
+                validationResults,
+                true);
+
+            if (validationResults.Any())
+            {
+                MessageBox.Show(
+                    string.Join(
+                        Environment.NewLine,
+                        validationResults.Select(r => r.ErrorMessage)));
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         #endregion
