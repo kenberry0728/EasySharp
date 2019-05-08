@@ -1,5 +1,6 @@
 ﻿using EasySharpWpf.ViewModels.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
+using EasySharpWpf.Views.Rails.Core;
 using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 using EasySharpWpf.Views.Rails.Implementations;
 using EasySharpWpf.Views.VisualTrees;
@@ -11,12 +12,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace EasySharpWpf.Views.Rails.Core.Edit
+namespace EasySharpWpf.Views.Rails.Implementations
 {
     internal class RailsEditViewBinder<TModel> : IRailsEditViewBinder<TModel>
     {
         private readonly Type type = typeof(TModel);
-        
+
         public void ApplyRailsBinding(FrameworkElement frameworkElement, TModel model)
         {
             var viewModel = new RailsEditViewModel<TModel>(model);
@@ -46,7 +47,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             PropertyInfo property,
             FrameworkElement bindTargetElement)
         {
-            var binding = RailsBindCreator.CreateRailsBinding<TModel>(viewModel, property);
+            var binding = RailsBindCreator.CreateRailsBinding(viewModel, property);
             switch (bindTargetElement)
             {
                 case TextBox textBox:
