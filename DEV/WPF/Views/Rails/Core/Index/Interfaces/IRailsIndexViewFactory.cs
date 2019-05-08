@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 
-namespace EasySharpWpf.Views.Rails.Core.Index
+namespace EasySharpWpf.Views.Rails.Core.Index.Interfaces
 {
     public interface IRailsIndexViewFactory<T>
     {

@@ -80,7 +80,7 @@
     <Compile Include="Views\Rails\Core\Edit\Interfaces\IRailsEditViewFactory.cs" />
     <Compile Include="Views\Rails\Implementations\RailsEditViewBinder.cs" />
     <Compile Include="Views\Rails\Core\Index\DefaultRailsIndexViewFactory.cs" />
-    <Compile Include="Views\Rails\Core\Index\IRailsIndexViewFactory.cs" />
+    <Compile Include="Views\Rails\Core\Index\Interfaces\IRailsIndexViewFactory.cs" />
     <Compile Include="Views\Rails\Core\Index\IRailsIndexViewFactoryExtensions.cs" />
     <Compile Include="Views\ValidationRules\Core\RangeValidationRule.cs" />
     <Compile Include="Views\ValidationRules\Core\RequiredValidationRule.cs" />

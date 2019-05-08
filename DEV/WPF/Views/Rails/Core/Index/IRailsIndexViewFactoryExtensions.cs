@@ -1,4 +1,6 @@
-﻿namespace EasySharpWpf.Views.Rails.Core.Index
+﻿using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
+
+namespace EasySharpWpf.Views.Rails.Core.Index
 {
     public static class IRailsIndexViewFactoryExtensions
     {
