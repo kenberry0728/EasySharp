@@ -125,6 +125,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 case Type type when type.IsClass:
                     uiElement = CreateEditButton(property, binding);
                     break;
+                // TODO: ENum combobox 対応
             }
 
             return uiElement;
