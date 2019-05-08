@@ -1,4 +1,6 @@
-﻿namespace EasySharpWpf.Views.Rails.Core.Edit
+﻿using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
+
+namespace EasySharpWpf.Views.Rails.Core.Edit
 {
     public static class IRailsEditViewBinderExtensions
     {

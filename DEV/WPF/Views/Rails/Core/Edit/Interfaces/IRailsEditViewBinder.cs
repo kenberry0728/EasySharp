@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace EasySharpWpf.Views.Rails.Core.Edit
+namespace EasySharpWpf.Views.Rails.Core.Edit.Interfaces
 {
     public interface IRailsEditViewBinder<TModel>
     {

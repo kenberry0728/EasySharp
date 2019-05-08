@@ -1,5 +1,6 @@
 ﻿using EasySharpWpf.Sample.Models;
 using EasySharpWpf.Views.Rails.Core.Edit;
+using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 using System.Windows;
 
 namespace EasySharpWpf.Sample

@@ -7,6 +7,7 @@ using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Core.Index;
 using EasySharpWpf.Views.EasyViews.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
+using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

@@ -2,6 +2,7 @@
 using EasySharpWpf.ViewModels.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.Views.Extensions;
+using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 using EasySharpWpf.Views.Rails.Implementations;
 using System;
 using System.Diagnostics;

@@ -1,4 +1,5 @@
 ﻿using EasySharpWpf.Views.Rails.Core.Edit;
+using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 
 namespace EasySharpWpf.Views.EasyViews.Core
 {
