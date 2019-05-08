@@ -1,4 +1,5 @@
 ﻿using EasySharpStandard.Attributes.Core;
+using EasySharpStandard.Reflections.Core;
 using EasySharpWpf.Commands.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
@@ -72,8 +73,11 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return grid;
         }
 
-        public bool? ShowEditWindow(T model)
+        public bool? ShowEditWindow(T model, out T editedModel)
         {
+            editedModel = new T();
+            CopyPropertyValues(model, editedModel);
+
             var windowContent = new StackPanel();
             windowContent.Children.Add(this.CreateEditView(model));
             var window = new Window
@@ -138,8 +142,12 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         protected virtual UIElement CreateEditButton(PropertyInfo propertyInfo, Binding valueBinding)
         {
-            var button = new Button();
-            // TODO:Edit Button.
+            var button = new Button()
+            {
+                Command = new DelegateCommand(Edit),
+                CommandParameter = new Binding(),
+            };
+
             return button;
         }
 
@@ -178,6 +186,39 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             {
                 return true;
             }
+        }
+
+        private void Edit(object arg)
+        {
+            if (!(arg is RailsEditViewModel<T> viewModel))
+            {
+                return;
+            }
+
+            var model = viewModel.Model;
+            if (this.ShowEditWindow(model, out var editInstance) != true)
+            {
+                return;
+            }
+
+            foreach (var property in
+                type.GetProperties()
+                    .Where(p => p.HasVisibleRailsBindAttribute()))
+            {
+                viewModel.SetProperty(property, property.GetValue(editInstance));
+            }
+
+        }
+
+        private static void CopyPropertyValues(T from, T to)
+        {
+            var type = typeof(T);
+            type.CopyPropertyValues(
+                from,
+                to,
+                p => p.HasCustomAttribute<RailsBindAttribute>()
+                     && p.CanRead
+                     && p.CanWrite);
         }
 
         #endregion

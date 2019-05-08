@@ -7,6 +7,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit.Interfaces
     {
         FrameworkElement CreateEditView(T model);
 
-        bool? ShowEditWindow(T model);
+        bool? ShowEditWindow(T model, out T editedModel);
     }
 }

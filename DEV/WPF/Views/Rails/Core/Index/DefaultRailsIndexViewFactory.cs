@@ -83,9 +83,9 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         private void AddNewItem(RailsIndexViewModel<T> indexViewModel)
         {
             var newModel = new T();
-            if (this.railsEditViewFactory.ShowEditWindow(newModel) == true)
+            if (this.railsEditViewFactory.ShowEditWindow(newModel, out var editedInstance) == true)
             {
-                indexViewModel.ItemsSource.Add(new RailsEditViewModel<T>(newModel));
+                indexViewModel.ItemsSource.Add(new RailsEditViewModel<T>(editedInstance));
             }
         }
 
@@ -169,8 +169,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
             var model = viewModel.Model;
             var editInstance = new T();
-            CopyPropertyValues(model, editInstance);
-            if (this.railsEditViewFactory.ShowEditWindow(editInstance) != true)
+            if (this.railsEditViewFactory.ShowEditWindow(model, out editInstance) != true)
             {
                 return;
             }
@@ -196,17 +195,6 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             }
 
             indexViewModel.ItemsSource.Remove(itemViewModel);
-        }
-
-        private static void CopyPropertyValues(T from, T to)
-        {
-            var type = typeof(T);
-            type.CopyPropertyValues(
-                from,
-                to,
-                p => p.HasCustomAttribute<RailsBindAttribute>()
-                     && p.CanRead
-                     && p.CanWrite);
         }
         
         #endregion
