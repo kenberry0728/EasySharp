@@ -189,11 +189,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 return;
             }
 
-            var factoryType = typeof(DefaultRailsEditViewFactory<>);
-            var genericType = factoryType.MakeGenericType(editInstanceType);
-            dynamic factory = Activator.CreateInstance(genericType);
-
-            if (factory.ShowEditWindowInternal(arg, out object editInstance) != true)
+            var factory = new DefaultRailsEditViewFactory2();
+            if (factory.ShowEditWindow(arg, editInstanceType, out object editInstance) != true)
             {
                 return;
             }
