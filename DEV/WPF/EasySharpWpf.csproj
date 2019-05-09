@@ -79,7 +79,6 @@
     <Compile Include="Views\Rails\Core\Extensions.cs" />
     <Compile Include="Views\Rails\Implementations\RailsBindCreator.cs" />
     <Compile Include="Views\Rails\Core\Edit\IRailsEditViewFactoryExtensions.cs" />
-    <Compile Include="Views\Rails\Core\Edit\DefaultRailsEditViewFactory.cs" />
     <Compile Include="Views\Rails\Core\Edit\Interfaces\IRailsEditViewFactory.cs" />
     <Compile Include="Views\Rails\Implementations\RailsEditViewBinder.cs" />
     <Compile Include="Views\Rails\Core\Index\DefaultRailsIndexViewFactory.cs" />
