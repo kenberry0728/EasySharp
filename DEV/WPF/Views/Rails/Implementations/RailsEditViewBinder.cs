@@ -20,7 +20,7 @@ namespace EasySharpWpf.Views.Rails.Implementations
 
         public void ApplyRailsBinding(FrameworkElement frameworkElement, TModel model)
         {
-            var viewModel = new RailsEditViewModel<TModel>(model);
+            var viewModel = new RailsEditViewModel2(model);
             frameworkElement.DataContext = viewModel;
 
             var properties = this.type.GetProperties()
@@ -43,7 +43,7 @@ namespace EasySharpWpf.Views.Rails.Implementations
         }
 
         private static void BindToElement(
-            RailsEditViewModel<TModel> viewModel,
+            RailsEditViewModel2 viewModel,
             PropertyInfo property,
             FrameworkElement bindTargetElement)
         {

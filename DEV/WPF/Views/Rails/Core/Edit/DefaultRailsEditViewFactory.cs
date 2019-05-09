@@ -42,7 +42,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         public FrameworkElement CreateEditView(T model)
         {
-            var viewModel = new RailsEditViewModel<T>(model);
+            var viewModel = new RailsEditViewModel2(model);
             var grid = new Grid() { DataContext = viewModel };
             grid.AddColumnDefinition(GridLength.Auto);
             grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
