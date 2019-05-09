@@ -205,8 +205,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             }
 
             var factory = new DefaultRailsEditViewFactory2();
-
-            if (factory.ShowEditWindowInternal(arg, editInstanceType, out object editedInstance) != true)
+            if (factory.ShowEditWindow(arg, editInstanceType, out object editedInstance) != true)
             {
                 return;
             }

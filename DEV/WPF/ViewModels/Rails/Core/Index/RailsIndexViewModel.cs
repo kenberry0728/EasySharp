@@ -10,11 +10,11 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Index
     {
         public RailsIndexViewModel(List<T> modelList)
         {
-            this.ItemsSource = new ObservableModelLinkedCollection<RailsEditViewModel<T>, T>(
-                modelList.Select(m => new RailsEditViewModel<T>(m)), 
+            this.ItemsSource = new ObservableModelLinkedCollection2<RailsEditViewModel2>(
+                modelList.Select(m => new RailsEditViewModel2(m)), 
                 modelList);
         }
 
-        public ObservableCollection<RailsEditViewModel<T>> ItemsSource { get; }
+        public ObservableCollection<RailsEditViewModel2> ItemsSource { get; }
     }
 }

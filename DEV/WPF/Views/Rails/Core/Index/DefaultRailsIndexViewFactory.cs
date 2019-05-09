@@ -29,7 +29,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         #region Fields
 
         private readonly Type type = typeof(T);
-        private readonly IRailsEditViewFactory<T> railsEditViewFactory;
+        private readonly IRailsEditViewFactory2 railsEditViewFactory;
 
         #endregion
 
@@ -40,9 +40,9 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         {
         }
 
-        public DefaultRailsIndexViewFactory(IRailsEditViewFactory<T> railsEditViewFactory)
+        public DefaultRailsIndexViewFactory(IRailsEditViewFactory2 railsEditViewFactory)
         {
-            this.railsEditViewFactory = railsEditViewFactory ?? railsEditViewFactory.Resolve<T>();
+            this.railsEditViewFactory = railsEditViewFactory ?? railsEditViewFactory.Resolve();
         }
 
         #endregion
@@ -83,9 +83,9 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         private void AddNewItem(RailsIndexViewModel<T> indexViewModel)
         {
             var newModel = new T();
-            if (this.railsEditViewFactory.ShowEditWindow(newModel, out var editedInstance) == true)
+            if (this.railsEditViewFactory.ShowEditWindow(newModel, this.type, out var editedInstance) == true)
             {
-                indexViewModel.ItemsSource.Add(new RailsEditViewModel<T>(editedInstance));
+                indexViewModel.ItemsSource.Add(new RailsEditViewModel2(editedInstance));
             }
         }
 
@@ -125,7 +125,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         }
 
         private static Binding CreateRailsBinding(
-            RailsEditViewModel<T> viewModel,
+            RailsEditViewModel2 viewModel,
             PropertyInfo property)
         {
             var bindingPath = viewModel.GetBindingPath(property);
@@ -162,14 +162,13 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         
         private void Edit(object arg)
         {
-            if (!(arg is RailsEditViewModel<T> viewModel))
+            if (!(arg is RailsEditViewModel2 viewModel))
             {
                 return;
             }
 
             var model = viewModel.Model as T;
-            var editInstance = new T();
-            if (this.railsEditViewFactory.ShowEditWindow(model, out editInstance) != true)
+            if (this.railsEditViewFactory.ShowEditWindow(viewModel.Model, this.type, out var editInstance) != true)
             {
                 return;
             }
@@ -184,7 +183,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         private static void Delete(object arg, RailsIndexViewModel<T> indexViewModel)
         {
-            if (!(arg is RailsEditViewModel<T> itemViewModel))
+            if (!(arg is RailsEditViewModel2 itemViewModel))
             {
                 return;
             }

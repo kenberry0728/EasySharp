@@ -5,10 +5,9 @@ namespace EasySharpWpf.Views.EasyViews.Core
 {
     public static class IRailsEditViewFactoryExtensions
     {
-        public static IRailsEditViewFactory<T> Resolve<T>(this IRailsEditViewFactory<T> factory)
-            where T: class, new()
+        public static IRailsEditViewFactory2 Resolve(this IRailsEditViewFactory2 factory)
         {
-            return factory ?? new DefaultRailsEditViewFactory<T>();
+            return factory ?? new DefaultRailsEditViewFactory2();
         }
     }
 }

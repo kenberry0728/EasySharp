@@ -20,17 +20,9 @@ using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
-    public class DefaultRailsEditViewFactory2
+    public class DefaultRailsEditViewFactory2 : IRailsEditViewFactory2
     {
         #region Fields
-
-        #endregion
-
-        #region Constructors
-
-        public DefaultRailsEditViewFactory2()
-        {
-        }
 
         #endregion
 
@@ -70,8 +62,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
             return grid;
         }
-        
-        private bool? ShowEditWindow(object model, Type type, out object editedModel)
+
+        public bool? ShowEditWindow(object model, Type type, out object editedModel)
         {
             editedModel = Activator.CreateInstance(type);
             CopyRailsBindPropertyValues(model, editedModel, model.GetType());
@@ -98,12 +90,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return window.ShowDialog();
         }
 
-        internal bool? ShowEditWindowInternal(object model, Type type, out object editedModel)
-        {
-            var result = this.ShowEditWindow(model, type, out editedModel);
-            return result;
-        }
-
         #endregion
 
         #region Protected Methods
@@ -124,7 +110,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 case Type type when type.IsClass:
                     uiElement = CreateEditButton(property, binding);
                     break;
-                // TODO: ENum combobox 対応
+                    // TODO: ENum combobox 対応
             }
 
             return uiElement;

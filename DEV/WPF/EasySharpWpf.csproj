@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Core\IViewModelWithModel.cs" />
+    <Compile Include="ViewModels\Core\ObservableModelLinkedCollection - Copy.cs" />
     <Compile Include="ViewModels\Core\ObservableModelLinkedCollection.cs" />
     <Compile Include="ViewModels\Rails\Attributes\RailsBindAttribute.cs" />
     <Compile Include="ViewModels\Rails\Core\Edit\RailsEditViewModel - Copy.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="ViewModels\Rails\Core\Index\RailsIndexViewModel.cs" />
     <Compile Include="Views\Extensions\GridExtensions.cs" />
     <Compile Include="Views\Rails\Core\Edit\DefaultRailsEditViewFactory - Copy.cs" />
+    <Compile Include="Views\Rails\Core\Edit\Interfaces\IDefaultRailsEditViewFactory2.cs" />
     <Compile Include="Views\Rails\Core\Edit\Interfaces\IRailsEditViewBinder.cs" />
     <Compile Include="Views\Rails\Core\Edit\IRailsEditViewBinderExtensions.cs" />
     <Compile Include="Views\Rails\Core\Extensions.cs" />

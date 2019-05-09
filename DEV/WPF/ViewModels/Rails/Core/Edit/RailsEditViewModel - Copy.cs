@@ -1,4 +1,5 @@
-﻿using EasySharpWpf.Views.Rails.Core;
+﻿using EasySharpWpf.ViewModels.Core;
+using EasySharpWpf.Views.Rails.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Reflection;
 
 namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 {
-    public class RailsEditViewModel2 : ViewModelBase
+    public class RailsEditViewModel2 : ViewModelBase, IViewModelWithModel
     {
         private readonly IEnumerable<PropertyInfo> properties;
 
