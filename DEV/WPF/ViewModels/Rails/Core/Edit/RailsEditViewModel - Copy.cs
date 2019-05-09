@@ -15,7 +15,7 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
         {
             this.Type = type ?? model.GetType();
             this.Model = model;
-            this.properties = type.GetProperties()
+            this.properties = this.Type.GetProperties()
                 .Where(p => p.HasVisibleRailsBindAttribute());
         }
 
