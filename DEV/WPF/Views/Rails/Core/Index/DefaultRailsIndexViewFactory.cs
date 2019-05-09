@@ -10,6 +10,7 @@ using EasySharpWpf.Views.Rails.Core.Edit;
 using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
@@ -23,12 +24,10 @@ using System.Windows.Input;
 
 namespace EasySharpWpf.Views.Rails.Core.Index
 {
-    public class DefaultRailsIndexViewFactory<T> : IRailsIndexViewFactory<T>
-        where T : class, new()
+    public class DefaultRailsIndexViewFactory : IRailsIndexViewFactory
     {
         #region Fields
 
-        private readonly Type type = typeof(T);
         private readonly IRailsEditViewFactory2 railsEditViewFactory;
 
         #endregion
@@ -49,10 +48,10 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         #region Public Methods
 
-        public FrameworkElement CreateIndexView(List<T> modelList)
+        public FrameworkElement CreateIndexView(IList modelList, Type type)
         {
             var stackPanel = new StackPanel();
-            var viewModel = new RailsIndexViewModel<T>(modelList);
+            var viewModel = new RailsIndexViewModel(modelList, type);
 
             stackPanel.Children.Add(CreateTable(viewModel));
             stackPanel.Children.Add(CreateAddButton(viewModel));
@@ -68,7 +67,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         #region Private Methods
 
-        private UIElement CreateAddButton(RailsIndexViewModel<T> viewModel)
+        private UIElement CreateAddButton(RailsIndexViewModel viewModel)
         {
             var button = new Button()
             {
@@ -80,16 +79,15 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             return button;
         }
 
-        private void AddNewItem(RailsIndexViewModel<T> indexViewModel)
+        private void AddNewItem(RailsIndexViewModel indexViewModel)
         {
-            var newModel = new T();
-            if (this.railsEditViewFactory.ShowEditWindow(newModel, this.type, out var editedInstance) == true)
+            if (this.railsEditViewFactory.ShowEditWindow(indexViewModel.Type, out var editedInstance) == true)
             {
                 indexViewModel.ItemsSource.Add(new RailsEditViewModel2(editedInstance));
             }
         }
 
-        private FrameworkElement CreateTable(RailsIndexViewModel<T> viewModel)
+        private FrameworkElement CreateTable(RailsIndexViewModel viewModel)
         {
             var dataGrid = new DataGrid
             {
@@ -99,7 +97,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
                 ItemsSource = viewModel.ItemsSource
             };
 
-            foreach (var property in this.type.GetProperties()
+            foreach (var property in viewModel.Type.GetProperties()
                                               .Where(p => p.HasVisibleRailsBindAttribute()))
             {
                 Debug.Assert(property.CanRead);
@@ -114,7 +112,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             return dataGrid;
         }
 
-        private static DataGridTextColumn CreateRailsBindColumn(RailsIndexViewModel<T> viewModel, PropertyInfo property)
+        private static DataGridTextColumn CreateRailsBindColumn(RailsIndexViewModel viewModel, PropertyInfo property)
         {
             return new DataGridTextColumn
             {
@@ -142,7 +140,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             return CreateButtonColumn(new DelegateCommand(this.Edit), "編集");
         }
 
-        private static DataGridTemplateColumn CreateDeleteColumn(RailsIndexViewModel<T> viewModel)
+        private static DataGridTemplateColumn CreateDeleteColumn(RailsIndexViewModel viewModel)
         {
             return CreateButtonColumn(new DelegateCommand(x => Delete(x, viewModel)), "削除");
         }
@@ -167,21 +165,20 @@ namespace EasySharpWpf.Views.Rails.Core.Index
                 return;
             }
 
-            var model = viewModel.Model as T;
-            if (this.railsEditViewFactory.ShowEditWindow(viewModel.Model, this.type, out var editInstance) != true)
+            if (this.railsEditViewFactory.ShowEditWindow(viewModel.Model, viewModel.Type, out var editInstance) != true)
             {
                 return;
             }
 
             foreach (var property in
-                type.GetProperties()
+                viewModel.Type.GetProperties()
                     .Where(p => p.HasVisibleRailsBindAttribute()))
             {
                 viewModel.SetProperty(property, property.GetValue(editInstance));
             }
         }
 
-        private static void Delete(object arg, RailsIndexViewModel<T> indexViewModel)
+        private static void Delete(object arg, RailsIndexViewModel indexViewModel)
         {
             if (!(arg is RailsEditViewModel2 itemViewModel))
             {

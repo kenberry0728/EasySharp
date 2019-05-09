@@ -23,7 +23,7 @@ namespace EasySharpWpf.Sample
         }
 
         public MainWindow(
-            IRailsIndexViewFactory<Book> railsIndexViewFactory)
+            IRailsIndexViewFactory railsIndexViewFactory)
         {
             // TODO: Resolve with attribuete
             railsIndexViewFactory = railsIndexViewFactory.Resolve();
@@ -38,7 +38,7 @@ namespace EasySharpWpf.Sample
                 };
             }
 
-            this.IndexGrid.Children.Add(railsIndexViewFactory.CreateIndexView(books));
+            this.IndexGrid.Children.Add(railsIndexViewFactory.CreateIndexView(books, typeof(Book)));
         }
 
         private void SaveClicked(object sender, RoutedEventArgs e)

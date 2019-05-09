@@ -63,13 +63,21 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return grid;
         }
 
-        public bool? ShowEditWindow(object model, Type type, out object editedModel)
+        public bool? ShowEditWindow(Type type, out object editedModel)
         {
-            editedModel = Activator.CreateInstance(type);
-            CopyRailsBindPropertyValues(model, editedModel, model.GetType());
+            return this.ShowEditWindow(null, type, out editedModel);
+        }
+
+        public bool? ShowEditWindow(object initialValueModel, Type type, out object editedModel)
+        {
+            editedModel = type.New();
+            if (initialValueModel != null)
+            {
+                CopyRailsBindPropertyValues(initialValueModel, editedModel, initialValueModel.GetType());
+            }
 
             var windowContent = new StackPanel();
-            windowContent.Children.Add(this.CreateEditView(model));
+            windowContent.Children.Add(this.CreateEditView(initialValueModel));
             var window = new Window
             {
                 Content = windowContent,
@@ -83,12 +91,13 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 Content = "OK",
                 IsDefault = true,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                Command = new DelegateCommand(x => CompleteEdit(model, window))
+                Command = new DelegateCommand(x => CompleteEdit(initialValueModel, window))
             };
 
             windowContent.Children.Add(button);
             return window.ShowDialog();
         }
+
 
         #endregion
 
@@ -189,9 +198,9 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 return;
             }
 
-            dynamic factory = new DefaultRailsEditViewFactory2();
+            var factory = new DefaultRailsEditViewFactory2();
 
-            if (factory.ShowEditWindowInternal(arg, out object editInstance) != true)
+            if (factory.ShowEditWindow(arg, editInstanceType, out object editInstance) != true)
             {
                 return;
             }

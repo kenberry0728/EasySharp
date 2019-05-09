@@ -13,11 +13,13 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 
         public RailsEditViewModel2(object model, Type type = null)
         {
-            type = type ?? model.GetType();
+            this.Type = type ?? model.GetType();
             this.Model = model;
             this.properties = type.GetProperties()
                 .Where(p => p.HasVisibleRailsBindAttribute());
         }
+
+        public Type Type { get; }
 
         public object Model { get; }
 
