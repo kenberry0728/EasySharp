@@ -4,6 +4,7 @@ using EasySharpWpf.Commands.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.Views.Extensions;
+using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 using EasySharpWpf.Views.Rails.Implementations;
 using System;
 using System.Collections.Generic;
@@ -20,19 +21,28 @@ using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
-    public class DefaultRailsEditViewFactory2 : IRailsEditViewFactory2
+    public class DefaultRailsEditViewFactory<T> : IRailsEditViewFactory<T>
+        where T : class, new()
     {
         #region Fields
+
+        private readonly Type type = typeof(T);
+
+        #endregion
+
+        #region Constructors
+
+        public DefaultRailsEditViewFactory()
+        {
+        }
 
         #endregion
 
         #region Public Methods
 
-        public FrameworkElement CreateEditView(object model, Type type = null)
+        public FrameworkElement CreateEditView(T model)
         {
-            type = type ?? model.GetType();
-
-            var viewModel = new RailsEditViewModel2(model);
+            var viewModel = new RailsEditViewModel<T>(model);
             var grid = new Grid() { DataContext = viewModel };
             grid.AddColumnDefinition(GridLength.Auto);
             grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
@@ -63,10 +73,10 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return grid;
         }
 
-        public bool? ShowEditWindow(object model, Type type, out object editedModel)
+        public bool? ShowEditWindow(T model, out T editedModel)
         {
-            editedModel = Activator.CreateInstance(type);
-            CopyRailsBindPropertyValues(model, editedModel, model.GetType());
+            editedModel = new T();
+            CopyRailsBindPropertyValues(model, editedModel, typeof(T));
 
             var windowContent = new StackPanel();
             windowContent.Children.Add(this.CreateEditView(model));
@@ -75,7 +85,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 Content = windowContent,
                 Width = 500,
                 SizeToContent = SizeToContent.Height,
-                Title = "編集：" + type.GetDisplayName()
+                Title = "編集：" + this.type.GetDisplayName()
             };
 
             var button = new Button()
@@ -88,6 +98,13 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
             windowContent.Children.Add(button);
             return window.ShowDialog();
+        }
+
+        internal bool? ShowEditWindowInternal(object model, out object editedModel)
+        {
+            var result = this.ShowEditWindow(model as T, out var editedModelResult);
+            editedModel = editedModelResult as T;
+            return result;
         }
 
         #endregion
@@ -110,7 +127,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 case Type type when type.IsClass:
                     uiElement = CreateEditButton(property, binding);
                     break;
-                    // TODO: ENum combobox 対応
             }
 
             return uiElement;
@@ -146,7 +162,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Private Methods
 
-        private static void CompleteEdit(object model, Window window)
+        private static void CompleteEdit(T model, Window window)
         {
             if (CanCompleteEdit(model))
             {
@@ -154,9 +170,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             }
         }
 
-        private static bool CanCompleteEdit(object model)
+        private static bool CanCompleteEdit(T model)
         {
-            var type = model.GetType();
             var validationResults = new List<ValidationResult>();
             var validationContext = new ValidationContext(model, null, null);
 
@@ -189,16 +204,13 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 return;
             }
 
-            var factoryType = typeof(DefaultRailsEditViewFactory<>);
-            var genericType = factoryType.MakeGenericType(editInstanceType);
-            dynamic factory = Activator.CreateInstance(genericType);
-
-            if (factory.ShowEditWindowInternal(arg, out object editInstance) != true)
+            var factory = new DefaultRailsEditViewFactory2();
+            if (factory.ShowEditWindow(arg, editInstanceType, out object editedInstance) != true)
             {
                 return;
             }
 
-            CopyRailsBindPropertyValues(editInstance, arg, editInstanceType);
+            CopyRailsBindPropertyValues(editedInstance, arg, editInstanceType);
 
 
             //foreach (var property in
