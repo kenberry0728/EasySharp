@@ -136,7 +136,10 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                     uiElement = CreateCheckBox(property, RailsBindCreator.CreateRailsBinding(viewModel, property));
                     break;
                 case Type type when type.IsClass:
-                    uiElement = CreateEditButton(property.GetValue(model));
+                    uiElement = CreateEditClassControl(property.GetValue(model));
+                    break;
+                case Type type when type.IsEnum:
+                    uiElement = CreateEditEnumControl();
                     break;
                     // TODO: Enum combobox 対応
             }
@@ -158,7 +161,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return textBox;
         }
 
-        protected virtual UIElement CreateEditButton(object propertyValue)
+        protected virtual UIElement CreateEditClassControl(object propertyValue)
         {
             var viewModel = new RailsEditViewModel(propertyValue);
             var button = new Button()
@@ -171,6 +174,11 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             button.SetBinding(Button.CommandParameterProperty, new Binding());
 
             return button;
+        }
+
+        private UIElement CreateEditEnumControl()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
