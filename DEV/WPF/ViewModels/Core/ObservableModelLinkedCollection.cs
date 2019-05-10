@@ -8,7 +8,7 @@ namespace EasySharpWpf.ViewModels
     public class ObservableModelLinkedCollection<TViewModel> : ObservableCollection<TViewModel>
         where TViewModel : IViewModelWithModel
     {
-        private IList model;
+        private readonly IList model;
 
         public ObservableModelLinkedCollection(IEnumerable<TViewModel> viewModel, IList model)
             :base(viewModel)
