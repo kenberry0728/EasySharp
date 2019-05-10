@@ -10,13 +10,13 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Index
     {
         public RailsIndexViewModel(IList modelList, Type type)
         {
-            this.ItemsSource = new ObservableModelLinkedCollection<RailsEditViewModel>(
+            this.ItemsSource = new ObservableModelLinkedCollection<IRailsEditViewModel>(
                 modelList.OfType<object>().Select(m => new RailsEditViewModel(m)), 
                 modelList);
             this.Type = type;
         }
 
-        public ObservableCollection<RailsEditViewModel> ItemsSource { get; }
+        public ObservableCollection<IRailsEditViewModel> ItemsSource { get; }
 
         public Type Type { get; }
     }

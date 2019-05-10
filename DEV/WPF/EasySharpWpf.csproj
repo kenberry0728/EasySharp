@@ -68,7 +68,7 @@
     <Compile Include="ViewModels\Core\ObservableModelLinkedCollection.cs" />
     <Compile Include="ViewModels\Rails\Attributes\RailsBindAttribute.cs" />
     <Compile Include="ViewModels\Rails\Core\Edit\IRailsEditViewModel.cs" />
-    <Compile Include="ViewModels\Rails\Core\Edit\RailsEditViewModel.cs" />
+    <Compile Include="ViewModels\Rails\Implementation\Edit\RailsEditViewModel.cs" />
     <Compile Include="ViewModels\Core\ViewModelBase.cs" />
     <Compile Include="ViewModels\Rails\Core\Index\RailsIndexViewModel.cs" />
     <Compile Include="Views\Extensions\GridExtensions.cs" />

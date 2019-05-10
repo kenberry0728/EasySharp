@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 {
-    public class RailsEditViewModel : ViewModelBase, IViewModelWithModel, IRailsEditViewModel
+    internal class RailsEditViewModel : ViewModelBase, IViewModelWithModel, IRailsEditViewModel
     {
         private readonly IEnumerable<PropertyInfo> properties;
 

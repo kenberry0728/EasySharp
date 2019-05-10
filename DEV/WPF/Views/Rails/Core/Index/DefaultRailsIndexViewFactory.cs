@@ -118,7 +118,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         }
 
         private static Binding CreateRailsBinding(
-            RailsEditViewModel viewModel,
+            IRailsEditViewModel viewModel,
             PropertyInfo property)
         {
             var bindingPath = viewModel.GetBindingPath(property);
@@ -155,25 +155,6 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             editDataTemplate.VisualTree = buttonElementFactory;
             templateColumn.CellTemplate = editDataTemplate;
             return templateColumn;
-        }
-        
-        private void Edit(object arg)
-        {
-            if (!(arg is RailsEditViewModel viewModel))
-            {
-                return;
-            }
-
-            if (this.railsEditViewFactory.ShowEditWindow(viewModel.Model, viewModel.Type, out var editInstance) != true)
-            {
-                return;
-            }
-
-            foreach (var property in viewModel.Type.GetProperties()
-                                              .Where(p => p.HasVisibleRailsBindAttribute()))
-            {
-                viewModel.SetProperty(property, property.GetValue(editInstance));
-            }
         }
 
         private static void Delete(object arg, RailsIndexViewModel indexViewModel)
