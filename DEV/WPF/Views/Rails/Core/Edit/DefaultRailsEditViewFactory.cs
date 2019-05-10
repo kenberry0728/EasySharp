@@ -1,7 +1,6 @@
 ﻿using EasySharpStandard.Attributes.Core;
 using EasySharpStandard.Reflections.Core;
 using EasySharpWpf.Commands.Core;
-using EasySharpWpf.ViewModels.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.Views.Extensions;
@@ -101,7 +100,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
         public void Edit(IRailsEditViewModel viewModel)
         {
             var subModel = viewModel.Model;
-            var type = subModel.GetType();
+            var type = viewModel.Type;
             if (!type.IsClass)
             {
                 return;
