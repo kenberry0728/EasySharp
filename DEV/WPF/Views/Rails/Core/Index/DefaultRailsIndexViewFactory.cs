@@ -62,26 +62,6 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         #region Private Methods
 
-        private UIElement CreateAddButton(RailsIndexViewModel viewModel)
-        {
-            var button = new Button()
-            {
-                Content = "+",
-                HorizontalAlignment = HorizontalAlignment.Left
-            };
-            button.Command = new DelegateCommand((x) => AddNewItem(viewModel));
-
-            return button;
-        }
-
-        private void AddNewItem(RailsIndexViewModel indexViewModel)
-        {
-            if (this.railsEditViewFactory.ShowEditWindow(indexViewModel.Type, out var editedInstance) == true)
-            {
-                indexViewModel.ItemsSource.Add(new RailsEditViewModel(editedInstance));
-            }
-        }
-
         private FrameworkElement CreateTable(RailsIndexViewModel viewModel)
         {
             var dataGrid = new DataGrid
@@ -107,41 +87,21 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             return dataGrid;
         }
 
-        private static DataGridTextColumn CreateRailsBindColumn(RailsIndexViewModel viewModel, PropertyInfo property)
+        private static DataGridTextColumn CreateRailsBindColumn(RailsIndexViewModel indexViewModel, PropertyInfo property)
         {
-            return new DataGridTextColumn
-            {
-                Binding = CreateRailsBinding(viewModel.ItemsSource.FirstOrDefault(), property),
-                IsReadOnly = true,
-                Header = property.GetDisplayName()
-            };
-        }
-
-        private static Binding CreateRailsBinding(
-            IRailsEditViewModel viewModel,
-            PropertyInfo property)
-        {
-            var bindingPath = viewModel.GetBindingPath(property);
+            var itemViewModel = indexViewModel.ItemsSource.FirstOrDefault();
+            var bindingPath = itemViewModel.GetBindingPath(property);
             var binding = new Binding(bindingPath)
             {
                 Mode = BindingMode.OneWay,
             };
 
-            return binding;
-        }
-
-        private DataGridTemplateColumn CreateEditColumn()
-        {
-            return CreateButtonColumn(
-                new DelegateCommand(x => this.railsEditViewFactory.Edit(x as RailsEditViewModel)),
-                "編集");
-        }
-
-        private static DataGridTemplateColumn CreateDeleteColumn(RailsIndexViewModel viewModel)
-        {
-            return CreateButtonColumn(
-                new DelegateCommand(x => Delete(x, viewModel)),
-                "削除");
+            return new DataGridTextColumn
+            {
+                Binding = binding,
+                IsReadOnly = true,
+                Header = property.GetDisplayName()
+            };
         }
 
         private static DataGridTemplateColumn CreateButtonColumn(ICommand command, string commandLabel)
@@ -155,6 +115,26 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             editDataTemplate.VisualTree = buttonElementFactory;
             templateColumn.CellTemplate = editDataTemplate;
             return templateColumn;
+        }
+
+        #region Edit
+
+        private DataGridTemplateColumn CreateEditColumn()
+        {
+            return CreateButtonColumn(
+                new DelegateCommand(x => this.railsEditViewFactory.Edit(x as RailsEditViewModel)),
+                "編集");
+        }
+
+        #endregion
+
+        #region Delete
+
+        private static DataGridTemplateColumn CreateDeleteColumn(RailsIndexViewModel viewModel)
+        {
+            return CreateButtonColumn(
+                new DelegateCommand(x => Delete(x, viewModel)),
+                "削除");
         }
 
         private static void Delete(object arg, RailsIndexViewModel indexViewModel)
@@ -171,7 +151,34 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
             indexViewModel.ItemsSource.Remove(itemViewModel);
         }
-        
+
+        #endregion
+
+        #region Add
+
+        private UIElement CreateAddButton(RailsIndexViewModel viewModel)
+        {
+            var button = new Button()
+            {
+                Content = "+",
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
+            button.Command = new DelegateCommand((x) => AddNewItem(viewModel));
+
+            return button;
+        }
+
+        private void AddNewItem(RailsIndexViewModel indexViewModel)
+        {
+            if (this.railsEditViewFactory.ShowEditWindow(indexViewModel.Type, out var editedInstance) == true)
+            {
+                indexViewModel.ItemsSource.Add(new RailsEditViewModel(editedInstance));
+            }
+        }
+
+        #endregion
+
+
         #endregion
     }
 }
