@@ -132,7 +132,11 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         private DataGridTemplateColumn CreateEditColumn()
         {
-            return CreateButtonColumn(new DelegateCommand(this.Edit), "編集");
+            return CreateButtonColumn(
+                new DelegateCommand(
+                    x => 
+                    this.railsEditViewFactory.Edit(x as RailsEditViewModel))
+                    , "編集");
         }
 
         private static DataGridTemplateColumn CreateDeleteColumn(RailsIndexViewModel viewModel)
@@ -165,9 +169,8 @@ namespace EasySharpWpf.Views.Rails.Core.Index
                 return;
             }
 
-            foreach (var property in
-                viewModel.Type.GetProperties()
-                    .Where(p => p.HasVisibleRailsBindAttribute()))
+            foreach (var property in viewModel.Type.GetProperties()
+                                              .Where(p => p.HasVisibleRailsBindAttribute()))
             {
                 viewModel.SetProperty(property, property.GetValue(editInstance));
             }

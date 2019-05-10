@@ -1,4 +1,5 @@
-﻿using EasySharpWpf.ViewModels.Core;
+﻿using EasySharpStandard.Attributes.Core;
+using EasySharpWpf.ViewModels.Core;
 using EasySharpWpf.Views.Rails.Core;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Reflection;
 
 namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 {
-    public class RailsEditViewModel : ViewModelBase, IViewModelWithModel
+    public class RailsEditViewModel : ViewModelBase, IViewModelWithModel, IRailsEditViewModel
     {
         private readonly IEnumerable<PropertyInfo> properties;
 
@@ -23,6 +24,15 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 
         public object Model { get; }
 
+        public string Content
+        {
+            get
+            {
+                var contents = this.properties.Select(p => $"{p.GetDisplayName()}: {p.GetValue(this.Model)}");
+                return string.Join(", ", contents);
+            }
+        }
+
         public string GetBindingPath(PropertyInfo propertyInfo)
         {
             return $"[{propertyInfo.Name}]";
@@ -31,7 +41,7 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
         public void SetProperty(MemberInfo propertyInfo, object value)
         {
             this[propertyInfo.Name] = value;
-            OnPropertyChanged(nameof(this.Model));
+            this.OnPropertyChanged(nameof(this.Content));
         }
 
         public object this[string key]

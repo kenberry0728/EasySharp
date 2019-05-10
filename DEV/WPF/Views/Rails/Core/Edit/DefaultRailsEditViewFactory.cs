@@ -98,6 +98,28 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return window.ShowDialog();
         }
 
+        public void Edit(IRailsEditViewModel viewModel)
+        {
+            var subModel = viewModel.Model;
+            var type = subModel.GetType();
+            if (!type.IsClass)
+            {
+                return;
+            }
+
+            if (this.ShowEditWindow(subModel, type, out object editInstance) != true)
+            {
+                return;
+            }
+
+            foreach (var property in
+                type.GetProperties()
+                    .Where(p => p.HasVisibleRailsBindAttribute()))
+            {
+                viewModel.SetProperty(property, property.GetValue(editInstance));
+            }
+        }
+
         #endregion
 
         #region Protected Methods
@@ -140,20 +162,14 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         protected virtual UIElement CreateEditButton(object propertyValue)
         {
-            // TODO: Edit View Modelをここにかます
             var viewModel = new RailsEditViewModel(propertyValue);
-
             var button = new Button()
             {
-                Command = new DelegateCommand(Edit),
+                Command = new DelegateCommand(x => Edit(x as RailsEditViewModel)),
                 DataContext = viewModel,
             };
-            var modelBinding = new Binding("Model")
-            {
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            };
 
-            button.SetBinding(Button.ContentProperty, modelBinding);
+            button.SetBinding(Button.ContentProperty, new Binding(nameof(viewModel.Content)));
             button.SetBinding(Button.CommandParameterProperty, new Binding());
 
             return button;
@@ -198,31 +214,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             else
             {
                 return true;
-            }
-        }
-
-        private void Edit(object param)
-        {
-            var viewModel = param as RailsEditViewModel;
-            var subModel = viewModel.Model;
-            var type = subModel.GetType();
-            if (!type.IsClass)
-            {
-                return;
-            }
-
-            if (this.ShowEditWindow(subModel, type, out object editInstance) != true)
-            {
-                return;
-            }
-
-            //CopyRailsBindPropertyValues(editInstance, subModel, editInstanceType);
-
-            foreach (var property in
-                type.GetProperties()
-                    .Where(p => p.HasVisibleRailsBindAttribute()))
-            {
-                viewModel.SetProperty(property, property.GetValue(editInstance));
             }
         }
 
