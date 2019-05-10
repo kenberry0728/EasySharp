@@ -2,7 +2,7 @@
 using EasySharpWpf.Commands.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
-using EasySharpWpf.ViewModels.Rails.Core.Index;
+using EasySharpWpf.ViewModels.Rails.Implementation.Index;
 using EasySharpWpf.Views.EasyViews.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
@@ -87,7 +87,9 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             return dataGrid;
         }
 
-        private static DataGridTextColumn CreateRailsBindColumn(RailsIndexViewModel indexViewModel, PropertyInfo property)
+        private static DataGridTextColumn CreateRailsBindColumn(
+            RailsIndexViewModel indexViewModel, 
+            PropertyInfo property)
         {
             var itemViewModel = indexViewModel.ItemsSource.FirstOrDefault();
             var bindingPath = itemViewModel.GetBindingPath(property);
