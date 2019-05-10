@@ -111,9 +111,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 return;
             }
 
-            foreach (var property in
-                type.GetProperties()
-                    .Where(p => p.HasVisibleRailsBindAttribute()))
+            foreach (var property in type.GetProperties()     
+                                         .Where(p => p.HasVisibleRailsBindAttribute()))
             {
                 viewModel.SetProperty(property, property.GetValue(editInstance));
             }
