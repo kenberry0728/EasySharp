@@ -1,4 +1,5 @@
-﻿using EasySharpWpf.ViewModels.Rails.Core.Edit;
+﻿using EasySharpStandard.Collections.Core;
+using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Core.Index;
 using System;
 using System.Collections;
@@ -12,7 +13,7 @@ namespace EasySharpWpf.ViewModels.Rails.Implementation.Index
         public RailsIndexViewModel(IList modelList, Type type)
         {
             this.ItemsSource = new ObservableModelLinkedCollection<IRailsEditViewModel>(
-                modelList.OfType<object>().Select(m => new RailsEditViewModel(m)),
+                modelList.ToEnumerable().Select(m => new RailsEditViewModel(m)),
                 modelList);
             this.Type = type;
         }

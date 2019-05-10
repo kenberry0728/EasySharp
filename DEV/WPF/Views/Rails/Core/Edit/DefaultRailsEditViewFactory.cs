@@ -130,31 +130,30 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 case Type type when type == typeof(string)
                                   || type == typeof(int)
                                   || type == typeof(double):
-                    uiElement = CreateTextBox(property, RailsBindCreator.CreateRailsBinding(viewModel, property));
+                    uiElement = CreateTextBox(RailsBindCreator.CreateRailsBinding(viewModel, property));
                     break;
                 case Type type when type == typeof(bool):
-                    uiElement = CreateCheckBox(property, RailsBindCreator.CreateRailsBinding(viewModel, property));
+                    uiElement = CreateCheckBox(RailsBindCreator.CreateRailsBinding(viewModel, property));
                     break;
                 case Type type when type.IsClass:
                     uiElement = CreateEditClassControl(property.GetValue(model));
                     break;
                 case Type type when type.IsEnum:
-                    uiElement = CreateEditEnumControl();
+                    uiElement = CreateEditEnumControl(type, RailsBindCreator.CreateRailsBinding(viewModel, property));
                     break;
-                    // TODO: Enum combobox 対応
             }
 
             return uiElement;
         }
 
-        protected virtual UIElement CreateCheckBox(PropertyInfo propertyInfo, Binding valueBinding)
+        protected virtual UIElement CreateCheckBox(Binding valueBinding)
         {
             var checkBox = new CheckBox() { VerticalAlignment = VerticalAlignment.Center };
             checkBox.SetBinding(ToggleButton.IsCheckedProperty, valueBinding);
             return checkBox;
         }
 
-        protected virtual UIElement CreateTextBox(PropertyInfo propertyInfo, Binding valueBinding)
+        protected virtual UIElement CreateTextBox(Binding valueBinding)
         {
             var textBox = new TextBox();
             textBox.SetBinding(TextBox.TextProperty, valueBinding);
@@ -176,9 +175,13 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return button;
         }
 
-        private UIElement CreateEditEnumControl()
+        protected virtual UIElement CreateEditEnumControl(Type enumType, Binding valueBinding)
         {
-            throw new NotImplementedException();
+            var comboBox = new ComboBox();
+            var values = Enum.GetValues(enumType).OfType<object>().Select(v  => v);
+            comboBox.ItemsSource = values;
+            comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
+            return comboBox;
         }
 
         #endregion
