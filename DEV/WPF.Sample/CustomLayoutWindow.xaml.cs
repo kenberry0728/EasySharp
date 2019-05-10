@@ -10,9 +10,9 @@ namespace EasySharpWpf.Sample
     /// </summary>
     public partial class CustomLayoutWindow : Window
     {
-        private readonly IRailsEditViewBinder<CustomLayoutBook> viewBinder;
+        private readonly IRailsEditViewBinder viewBinder;
 
-        public CustomLayoutWindow(IRailsEditViewBinder<CustomLayoutBook> viewBinder = null)
+        public CustomLayoutWindow(IRailsEditViewBinder viewBinder = null)
         {
             InitializeComponent();
 
@@ -29,7 +29,7 @@ namespace EasySharpWpf.Sample
                 Publisher = "Kodansha"
             };
 
-            viewBinder.ApplyRailsBinding(this, editModel);
+            viewBinder.ApplyRailsBinding(this, editModel, typeof(CustomLayoutBook));
         }
     }
 }

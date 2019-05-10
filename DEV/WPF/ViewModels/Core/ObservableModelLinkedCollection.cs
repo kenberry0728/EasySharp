@@ -1,16 +1,16 @@
 ﻿using EasySharpWpf.ViewModels.Core;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace EasySharpWpf.ViewModels
 {
-    public class ObservableModelLinkedCollection<TViewModel, TModel> : ObservableCollection<TViewModel>
+    public class ObservableModelLinkedCollection<TViewModel> : ObservableCollection<TViewModel>
         where TViewModel : IViewModelWithModel
-        where TModel : class
     {
-        private readonly List<TModel> model;
+        private IList model;
 
-        public ObservableModelLinkedCollection(IEnumerable<TViewModel> viewModel, List<TModel> model)
+        public ObservableModelLinkedCollection(IEnumerable<TViewModel> viewModel, IList model)
             :base(viewModel)
         {
             this.model = model;
@@ -25,7 +25,7 @@ namespace EasySharpWpf.ViewModels
         protected override void InsertItem(int index, TViewModel item)
         {
             base.InsertItem(index, item);
-            this.model.Insert(index, (TModel)item.Model);
+            this.model.Insert(index, item.Model);
         }
 
         protected override void MoveItem(int oldIndex, int newIndex)
@@ -46,7 +46,7 @@ namespace EasySharpWpf.ViewModels
         protected override void SetItem(int index, TViewModel item)
         {
             base.SetItem(index, item);
-            this.model[index] = (TModel)item.Model;
+            this.model[index] = item.Model;
         }
     }
 }

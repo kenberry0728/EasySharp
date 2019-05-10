@@ -2,7 +2,6 @@
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.Views.Rails.Core;
 using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
-using EasySharpWpf.Views.Rails.Implementations;
 using EasySharpWpf.Views.VisualTrees;
 using System;
 using System.Diagnostics;
@@ -14,16 +13,19 @@ using System.Windows.Controls.Primitives;
 
 namespace EasySharpWpf.Views.Rails.Implementations
 {
-    internal class RailsEditViewBinder<TModel> : IRailsEditViewBinder<TModel>
+    internal class RailsEditViewBinder : IRailsEditViewBinder
     {
-        private readonly Type type = typeof(TModel);
-
-        public void ApplyRailsBinding(FrameworkElement frameworkElement, TModel model)
+        public void ApplyRailsBinding(FrameworkElement rootElement, object model)
         {
-            var viewModel = new RailsEditViewModel2(model);
-            frameworkElement.DataContext = viewModel;
+            this.ApplyRailsBinding(rootElement, model, model.GetType());
+        }
 
-            var properties = this.type.GetProperties()
+        public void ApplyRailsBinding(FrameworkElement rootElement, object model, Type type)
+        {
+            var viewModel = new RailsEditViewModel(model);
+            rootElement.DataContext = viewModel;
+
+            var properties = type.GetProperties()
                 .Where(p => p.HasVisibleRailsBindAttribute());
             foreach (var property in properties)
             {
@@ -35,7 +37,7 @@ namespace EasySharpWpf.Views.Rails.Implementations
 
                 Debug.Assert(railsBind.UserVisible);
 
-                var bindTargetElement = frameworkElement.GetDescendants().OfType<FrameworkElement>()
+                var bindTargetElement = rootElement.GetDescendants().OfType<FrameworkElement>()
                       .FirstOrDefault(fe => fe.Name == railsBind.ElementName);
                 Debug.Assert(bindTargetElement != null);
                 BindToElement(viewModel, property, bindTargetElement);
@@ -43,7 +45,7 @@ namespace EasySharpWpf.Views.Rails.Implementations
         }
 
         private static void BindToElement(
-            RailsEditViewModel2 viewModel,
+            RailsEditViewModel viewModel,
             PropertyInfo property,
             FrameworkElement bindTargetElement)
         {

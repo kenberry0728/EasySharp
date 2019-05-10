@@ -26,7 +26,7 @@ namespace EasySharpWpf.Views.Rails.Implementations
             return binding;
         }
 
-        public static Binding CreateRailsBinding(RailsEditViewModel2 viewModel, PropertyInfo propertyInfo)
+        public static Binding CreateRailsBinding(RailsEditViewModel viewModel, PropertyInfo propertyInfo)
         {
             var bindingPath = viewModel.GetBindingPath(propertyInfo);
             var binding = new Binding(bindingPath)

@@ -7,11 +7,11 @@ using System.Reflection;
 
 namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 {
-    public class RailsEditViewModel2 : ViewModelBase, IViewModelWithModel
+    public class RailsEditViewModel : ViewModelBase, IViewModelWithModel
     {
         private readonly IEnumerable<PropertyInfo> properties;
 
-        public RailsEditViewModel2(object model, Type type = null)
+        public RailsEditViewModel(object model, Type type = null)
         {
             this.Type = type ?? model.GetType();
             this.Model = model;

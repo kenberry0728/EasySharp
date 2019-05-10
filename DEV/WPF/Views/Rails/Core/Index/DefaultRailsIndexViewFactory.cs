@@ -23,7 +23,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
     {
         #region Fields
 
-        private readonly IRailsEditViewFactory2 railsEditViewFactory;
+        private readonly IRailsEditViewFactory railsEditViewFactory;
 
         #endregion
 
@@ -34,7 +34,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         {
         }
 
-        public DefaultRailsIndexViewFactory(IRailsEditViewFactory2 railsEditViewFactory)
+        public DefaultRailsIndexViewFactory(IRailsEditViewFactory railsEditViewFactory)
         {
             this.railsEditViewFactory = railsEditViewFactory ?? railsEditViewFactory.Resolve();
         }
@@ -78,7 +78,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         {
             if (this.railsEditViewFactory.ShowEditWindow(indexViewModel.Type, out var editedInstance) == true)
             {
-                indexViewModel.ItemsSource.Add(new RailsEditViewModel2(editedInstance));
+                indexViewModel.ItemsSource.Add(new RailsEditViewModel(editedInstance));
             }
         }
 
@@ -118,7 +118,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         }
 
         private static Binding CreateRailsBinding(
-            RailsEditViewModel2 viewModel,
+            RailsEditViewModel viewModel,
             PropertyInfo property)
         {
             var bindingPath = viewModel.GetBindingPath(property);
@@ -155,7 +155,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         
         private void Edit(object arg)
         {
-            if (!(arg is RailsEditViewModel2 viewModel))
+            if (!(arg is RailsEditViewModel viewModel))
             {
                 return;
             }
@@ -175,7 +175,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         private static void Delete(object arg, RailsIndexViewModel indexViewModel)
         {
-            if (!(arg is RailsEditViewModel2 itemViewModel))
+            if (!(arg is RailsEditViewModel itemViewModel))
             {
                 return;
             }

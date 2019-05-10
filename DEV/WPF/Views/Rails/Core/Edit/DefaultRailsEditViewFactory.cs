@@ -20,7 +20,7 @@ using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
-    public class DefaultRailsEditViewFactory2 : IRailsEditViewFactory2
+    public class DefaultRailsEditViewFactory : IRailsEditViewFactory
     {
         #region Fields
 
@@ -32,7 +32,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
         {
             type = type ?? model.GetType();
 
-            var viewModel = new RailsEditViewModel2(model);
+            var viewModel = new RailsEditViewModel(model);
             var grid = new Grid() { DataContext = viewModel };
             grid.AddColumnDefinition(GridLength.Auto);
             grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
@@ -198,7 +198,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 return;
             }
 
-            var factory = new DefaultRailsEditViewFactory2();
+            var factory = new DefaultRailsEditViewFactory();
 
             if (factory.ShowEditWindow(arg, editInstanceType, out object editInstance) != true)
             {

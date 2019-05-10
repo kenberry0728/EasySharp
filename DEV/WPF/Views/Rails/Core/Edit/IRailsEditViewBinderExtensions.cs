@@ -5,9 +5,9 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 {
     public static class IRailsEditViewBinderExtensions
     {
-        public static IRailsEditViewBinder<T> Resolve<T>(this IRailsEditViewBinder<T> viewBinder)
+        public static IRailsEditViewBinder Resolve(this IRailsEditViewBinder viewBinder)
         {
-            return viewBinder ?? new RailsEditViewBinder<T>();
+            return viewBinder ?? new RailsEditViewBinder();
         }
     }
 }
