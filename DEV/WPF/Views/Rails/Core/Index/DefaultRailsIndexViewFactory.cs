@@ -133,15 +133,15 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         private DataGridTemplateColumn CreateEditColumn()
         {
             return CreateButtonColumn(
-                new DelegateCommand(
-                    x => 
-                    this.railsEditViewFactory.Edit(x as RailsEditViewModel))
-                    , "編集");
+                new DelegateCommand(x => this.railsEditViewFactory.Edit(x as RailsEditViewModel)),
+                "編集");
         }
 
         private static DataGridTemplateColumn CreateDeleteColumn(RailsIndexViewModel viewModel)
         {
-            return CreateButtonColumn(new DelegateCommand(x => Delete(x, viewModel)), "削除");
+            return CreateButtonColumn(
+                new DelegateCommand(x => Delete(x, viewModel)),
+                "削除");
         }
 
         private static DataGridTemplateColumn CreateButtonColumn(ICommand command, string commandLabel)
