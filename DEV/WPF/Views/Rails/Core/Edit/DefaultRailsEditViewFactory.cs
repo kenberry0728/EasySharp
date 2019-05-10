@@ -73,11 +73,11 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             editedModel = type.New();
             if (initialValueModel != null)
             {
-                CopyRailsBindPropertyValues(initialValueModel, editedModel, initialValueModel.GetType());
+                CopyRailsBindPropertyValues(initialValueModel, editedModel, type);
             }
 
             var windowContent = new StackPanel();
-            windowContent.Children.Add(this.CreateEditView(initialValueModel));
+            windowContent.Children.Add(this.CreateEditView(editedModel));
             var window = new Window
             {
                 Content = windowContent,
@@ -91,13 +91,13 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 Content = "OK",
                 IsDefault = true,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                Command = new DelegateCommand(x => CompleteEdit(initialValueModel, window))
+                CommandParameter = editedModel,
+                Command = new DelegateCommand(x => CompleteEdit(x, window))
             };
 
             windowContent.Children.Add(button);
             return window.ShowDialog();
         }
-
 
         #endregion
 
@@ -155,11 +155,15 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Private Methods
 
-        private static void CompleteEdit(object model, Window window)
+        private static void CompleteEdit(object sender, Window window)
         {
-            if (CanCompleteEdit(model))
+            if (CanCompleteEdit(sender))
             {
                 window.DialogResult = true;
+            }
+            else
+            {
+                // TODO: Error Message
             }
         }
 
@@ -194,7 +198,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             var editInstanceType = arg.GetType();
             if (!editInstanceType.IsClass)
             {
-                // TODO: where句の確認. new()
                 return;
             }
 
