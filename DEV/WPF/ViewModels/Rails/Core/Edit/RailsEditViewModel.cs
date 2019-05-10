@@ -31,6 +31,7 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
         public void SetProperty(MemberInfo propertyInfo, object value)
         {
             this[propertyInfo.Name] = value;
+            OnPropertyChanged(nameof(this.Model));
         }
 
         public object this[string key]

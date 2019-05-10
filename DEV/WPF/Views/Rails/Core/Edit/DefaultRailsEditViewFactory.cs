@@ -1,6 +1,7 @@
 ﻿using EasySharpStandard.Attributes.Core;
 using EasySharpStandard.Reflections.Core;
 using EasySharpWpf.Commands.Core;
+using EasySharpWpf.ViewModels.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.Views.Extensions;
@@ -46,9 +47,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
                 Debug.Assert(property.CanRead && property.CanWrite);
 
-                var binding = RailsBindCreator.CreateRailsBinding(viewModel, property);
-
-                UIElement uiElement = CreateUiElement(property, binding);
+                var uiElement = CreateUiElement(viewModel, model, property);
 
                 if (uiElement != null)
                 {
@@ -103,7 +102,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Protected Methods
 
-        private UIElement CreateUiElement(PropertyInfo property, Binding binding)
+        private UIElement CreateUiElement(RailsEditViewModel viewModel, object model, PropertyInfo property)
         {
             UIElement uiElement = null;
             switch (property.PropertyType)
@@ -111,15 +110,15 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 case Type type when type == typeof(string)
                                   || type == typeof(int)
                                   || type == typeof(double):
-                    uiElement = CreateTextBox(property, binding);
+                    uiElement = CreateTextBox(property, RailsBindCreator.CreateRailsBinding(viewModel, property));
                     break;
                 case Type type when type == typeof(bool):
-                    uiElement = CreateCheckBox(property, binding);
+                    uiElement = CreateCheckBox(property, RailsBindCreator.CreateRailsBinding(viewModel, property));
                     break;
                 case Type type when type.IsClass:
-                    uiElement = CreateEditButton(property, binding);
+                    uiElement = CreateEditButton(property.GetValue(model));
                     break;
-                    // TODO: ENum combobox 対応
+                    // TODO: Enum combobox 対応
             }
 
             return uiElement;
@@ -139,15 +138,23 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return textBox;
         }
 
-        protected virtual UIElement CreateEditButton(PropertyInfo propertyInfo, Binding valueBinding)
+        protected virtual UIElement CreateEditButton(object propertyValue)
         {
             // TODO: Edit View Modelをここにかます
+            var viewModel = new RailsEditViewModel(propertyValue);
+
             var button = new Button()
             {
                 Command = new DelegateCommand(Edit),
+                DataContext = viewModel,
+            };
+            var modelBinding = new Binding("Model")
+            {
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
 
-            button.SetBinding(Button.CommandParameterProperty, valueBinding);
+            button.SetBinding(Button.ContentProperty, modelBinding);
+            button.SetBinding(Button.CommandParameterProperty, new Binding());
 
             return button;
         }
@@ -194,31 +201,29 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             }
         }
 
-        private void Edit(object arg)
+        private void Edit(object param)
         {
-            var editInstanceType = arg.GetType();
-            if (!editInstanceType.IsClass)
+            var viewModel = param as RailsEditViewModel;
+            var subModel = viewModel.Model;
+            var type = subModel.GetType();
+            if (!type.IsClass)
             {
                 return;
             }
 
-            var factory = new DefaultRailsEditViewFactory();
-
-            if (factory.ShowEditWindow(arg, editInstanceType, out object editInstance) != true)
+            if (this.ShowEditWindow(subModel, type, out object editInstance) != true)
             {
                 return;
             }
 
-            CopyRailsBindPropertyValues(editInstance, arg, editInstanceType);
+            //CopyRailsBindPropertyValues(editInstance, subModel, editInstanceType);
 
-
-            //foreach (var property in
-            //    type.GetProperties()
-            //        .Where(p => p.HasVisibleRailsBindAttribute()))
-            //{
-            //    viewModel.SetProperty(property, property.GetValue(editInstance));
-            //}
-
+            foreach (var property in
+                type.GetProperties()
+                    .Where(p => p.HasVisibleRailsBindAttribute()))
+            {
+                viewModel.SetProperty(property, property.GetValue(editInstance));
+            }
         }
 
         private static void CopyRailsBindPropertyValues(object from, object to, Type type)

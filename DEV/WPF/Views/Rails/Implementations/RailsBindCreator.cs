@@ -9,24 +9,7 @@ namespace EasySharpWpf.Views.Rails.Implementations
 {
     internal static class RailsBindCreator
     {
-        public static Binding CreateRailsBinding(IViewModelWithModel viewModel, PropertyInfo propertyInfo)
-        {
-            var bindingPath = viewModel.GetBindingPath(propertyInfo);
-            var binding = new Binding(bindingPath)
-            {
-                Mode = BindingMode.TwoWay,
-            };
-
-            var validationAttributes = propertyInfo.GetCustomAttributes<ValidationAttribute>();
-            foreach (var validationAttribute in validationAttributes)
-            {
-                AddValidationRule(binding, validationAttribute);
-            }
-
-            return binding;
-        }
-
-        public static Binding CreateRailsBinding(RailsEditViewModel viewModel, PropertyInfo propertyInfo)
+        public static Binding CreateRailsBinding(this IViewModelWithModel viewModel, PropertyInfo propertyInfo)
         {
             var bindingPath = viewModel.GetBindingPath(propertyInfo);
             var binding = new Binding(bindingPath)
