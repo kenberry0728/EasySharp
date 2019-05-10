@@ -141,6 +141,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         protected virtual UIElement CreateEditButton(PropertyInfo propertyInfo, Binding valueBinding)
         {
+            // TODO: Edit View Modelをここにかます
             var button = new Button()
             {
                 Command = new DelegateCommand(Edit),
