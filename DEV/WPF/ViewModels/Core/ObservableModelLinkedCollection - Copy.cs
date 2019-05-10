@@ -5,12 +5,12 @@ using System.Collections.ObjectModel;
 
 namespace EasySharpWpf.ViewModels
 {
-    public class ObservableModelLinkedCollection2<TViewModel> : ObservableCollection<TViewModel>
+    public class ObservableModelLinkedCollection<TViewModel> : ObservableCollection<TViewModel>
         where TViewModel : IViewModelWithModel
     {
         private IList model;
 
-        public ObservableModelLinkedCollection2(IEnumerable<TViewModel> viewModel, IList model)
+        public ObservableModelLinkedCollection(IEnumerable<TViewModel> viewModel, IList model)
             :base(viewModel)
         {
             this.model = model;
