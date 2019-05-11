@@ -8,14 +8,14 @@ namespace EasySharpWpf.Views.Rails.Implementations
 {
     internal static class RailsBindCreator
     {
-        public static string GetBindingPath(this PropertyInfo propertyInfo)
+        public static string GetRailsBindingPath(this PropertyInfo propertyInfo)
         {
             return $"[{propertyInfo.Name}]";
         }
 
         public static Binding CreateRailsBinding(this PropertyInfo propertyInfo)
         {
-            var bindingPath = GetBindingPath(propertyInfo);
+            var bindingPath = GetRailsBindingPath(propertyInfo);
             var binding = new Binding(bindingPath)
             {
                 Mode = BindingMode.TwoWay,

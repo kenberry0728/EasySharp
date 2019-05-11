@@ -91,7 +91,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         private static DataGridTextColumn CreateRailsBindColumn(
             PropertyInfo property)
         {
-            var bindingPath = RailsBindCreator.GetBindingPath(property);
+            var bindingPath = property.GetRailsBindingPath();
             var binding = new Binding(bindingPath)
             {
                 Mode = BindingMode.OneWay,
