@@ -15,7 +15,7 @@ namespace EasySharpWpf.Views.Rails.Implementations
 
         public static Binding CreateRailsBinding(this PropertyInfo propertyInfo)
         {
-            var bindingPath = GetRailsBindingPath(propertyInfo);
+            var bindingPath = propertyInfo.GetRailsBindingPath();
             var binding = new Binding(bindingPath)
             {
                 Mode = BindingMode.TwoWay,
