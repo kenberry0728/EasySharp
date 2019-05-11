@@ -1,5 +1,4 @@
-﻿using EasySharpWpf.ViewModels.Core;
-using EasySharpWpf.Views.ValidationRules.Core;
+﻿using EasySharpWpf.Views.ValidationRules.Core;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Windows.Data;
