@@ -1,5 +1,4 @@
 ﻿using EasySharpStandard.Attributes.Core;
-using System.ComponentModel;
 
 namespace EasySharpWpf.Sample.Models
 {

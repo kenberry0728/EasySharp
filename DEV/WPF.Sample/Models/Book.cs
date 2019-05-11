@@ -1,4 +1,5 @@
-﻿using EasySharpWpf.ViewModels.Rails.Attributes;
+﻿using EasySharpWpf.Models.Core;
+using EasySharpWpf.ViewModels.Rails.Attributes;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace EasySharpWpf.Sample.Models
 {
     [DisplayName("本")]
-    public class Book : IValidatableObject
+    public class Book : RailsModel, IValidatableObject
     {
         [DisplayName("題名")]
         [RailsBind]

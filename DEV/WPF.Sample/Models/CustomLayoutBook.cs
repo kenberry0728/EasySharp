@@ -1,10 +1,11 @@
-﻿using EasySharpWpf.ViewModels.Rails.Attributes;
+﻿using EasySharpWpf.Models.Core;
+using EasySharpWpf.ViewModels.Rails.Attributes;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EasySharpWpf.Sample.Models
 {
-    public class CustomLayoutBook : IValidatableObject
+    public class CustomLayoutBook : RailsModel, IValidatableObject
     {
         [RailsBind(ElementName="TitleTextBox")]
         [Required(ErrorMessage = "題名は必要です")]
