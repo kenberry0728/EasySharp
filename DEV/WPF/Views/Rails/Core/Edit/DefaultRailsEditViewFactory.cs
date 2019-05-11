@@ -185,7 +185,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             comboBox.ItemsSource = itemsSource;
             comboBox.SelectedValuePath = "Value";
             comboBox.DisplayMemberPath = "DisplayValue";
-
             comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
             return comboBox;
         }
