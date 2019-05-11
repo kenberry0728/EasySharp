@@ -47,7 +47,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
                 Debug.Assert(property.CanRead && property.CanWrite);
 
-                var uiElement = CreateUiElement(viewModel, model, property);
+                var uiElement = CreateUiElement(model, property);
 
                 if (uiElement != null)
                 {
@@ -123,7 +123,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Protected Methods
 
-        private UIElement CreateUiElement(RailsEditViewModel viewModel, object model, PropertyInfo property)
+        private UIElement CreateUiElement(object model, PropertyInfo property)
         {
             UIElement uiElement = null;
             switch (property.PropertyType)
@@ -131,16 +131,16 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 case Type type when type == typeof(string)
                                   || type == typeof(int)
                                   || type == typeof(double):
-                    uiElement = CreateTextBox(RailsBindCreator.CreateRailsBinding(viewModel, property));
+                    uiElement = CreateTextBox(property.CreateRailsBinding());
                     break;
                 case Type type when type == typeof(bool):
-                    uiElement = CreateCheckBox(RailsBindCreator.CreateRailsBinding(viewModel, property));
+                    uiElement = CreateCheckBox(property.CreateRailsBinding());
                     break;
                 case Type type when type.IsClass:
                     uiElement = CreateEditClassControl(property.GetValue(model));
                     break;
                 case Type type when type.IsEnum:
-                    uiElement = CreateEditEnumControl(type, RailsBindCreator.CreateRailsBinding(viewModel, property));
+                    uiElement = CreateEditEnumControl(type, property.CreateRailsBinding());
                     break;
             }
 

@@ -33,11 +33,6 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
             }
         }
 
-        public string GetBindingPath(PropertyInfo propertyInfo)
-        {
-            return $"[{propertyInfo.Name}]";
-        }
-
         public void SetProperty(MemberInfo propertyInfo, object value)
         {
             this[propertyInfo.Name] = value;

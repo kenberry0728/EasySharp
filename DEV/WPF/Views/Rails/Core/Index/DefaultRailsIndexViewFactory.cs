@@ -6,6 +6,7 @@ using EasySharpWpf.ViewModels.Rails.Implementation.Index;
 using EasySharpWpf.Views.EasyViews.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
+using EasySharpWpf.Views.Rails.Implementations;
 using System;
 using System.Collections;
 using System.Diagnostics;
@@ -78,7 +79,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
                 Debug.Assert(property.CanRead);
 
                 var railsBind = property.GetCustomAttribute<RailsBindAttribute>();
-                dataGrid.Columns.Add(CreateRailsBindColumn(viewModel, property));
+                dataGrid.Columns.Add(CreateRailsBindColumn(property));
             }
 
             dataGrid.Columns.Add(CreateEditColumn());
@@ -88,11 +89,9 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         }
 
         private static DataGridTextColumn CreateRailsBindColumn(
-            RailsIndexViewModel indexViewModel, 
             PropertyInfo property)
         {
-            var itemViewModel = indexViewModel.ItemsSource.FirstOrDefault();
-            var bindingPath = itemViewModel.GetBindingPath(property);
+            var bindingPath = RailsBindCreator.GetBindingPath(property);
             var binding = new Binding(bindingPath)
             {
                 Mode = BindingMode.OneWay,

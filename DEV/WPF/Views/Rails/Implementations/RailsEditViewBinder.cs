@@ -40,16 +40,15 @@ namespace EasySharpWpf.Views.Rails.Implementations
                 var bindTargetElement = rootElement.GetDescendants().OfType<FrameworkElement>()
                       .FirstOrDefault(fe => fe.Name == railsBind.ElementName);
                 Debug.Assert(bindTargetElement != null);
-                BindToElement(viewModel, property, bindTargetElement);
+                BindToElement(property, bindTargetElement);
             }
         }
 
         private static void BindToElement(
-            RailsEditViewModel viewModel,
             PropertyInfo property,
             FrameworkElement bindTargetElement)
         {
-            var binding = RailsBindCreator.CreateRailsBinding(viewModel, property);
+            var binding = RailsBindCreator.CreateRailsBinding(property);
             switch (bindTargetElement)
             {
                 case TextBox textBox:

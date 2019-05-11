@@ -1,5 +1,4 @@
 ﻿using EasySharpWpf.ViewModels.Core;
-using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.Views.ValidationRules.Core;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
@@ -9,9 +8,14 @@ namespace EasySharpWpf.Views.Rails.Implementations
 {
     internal static class RailsBindCreator
     {
-        public static Binding CreateRailsBinding(this IViewModelWithModel viewModel, PropertyInfo propertyInfo)
+        public static string GetBindingPath(this PropertyInfo propertyInfo)
         {
-            var bindingPath = viewModel.GetBindingPath(propertyInfo);
+            return $"[{propertyInfo.Name}]";
+        }
+
+        public static Binding CreateRailsBinding(this PropertyInfo propertyInfo)
+        {
+            var bindingPath = GetBindingPath(propertyInfo);
             var binding = new Binding(bindingPath)
             {
                 Mode = BindingMode.TwoWay,
