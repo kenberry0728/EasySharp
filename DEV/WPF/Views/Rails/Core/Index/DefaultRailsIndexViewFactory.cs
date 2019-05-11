@@ -14,6 +14,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -109,9 +110,9 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             var templateColumn = new DataGridTemplateColumn();
             var editDataTemplate = new DataTemplate();
             var buttonElementFactory = new FrameworkElementFactory(typeof(Button));
-            buttonElementFactory.SetValue(Button.CommandProperty, command);
-            buttonElementFactory.SetValue(Button.CommandParameterProperty, new Binding());
-            buttonElementFactory.SetValue(Button.ContentProperty, commandLabel);
+            buttonElementFactory.SetValue(ButtonBase.CommandProperty, command);
+            buttonElementFactory.SetValue(ButtonBase.CommandParameterProperty, new Binding());
+            buttonElementFactory.SetValue(ContentControl.ContentProperty, commandLabel);
             editDataTemplate.VisualTree = buttonElementFactory;
             templateColumn.CellTemplate = editDataTemplate;
             return templateColumn;
