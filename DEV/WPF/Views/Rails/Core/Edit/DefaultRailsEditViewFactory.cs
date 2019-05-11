@@ -1,4 +1,5 @@
 ﻿using EasySharpStandard.Attributes.Core;
+using EasySharpStandard.Collections.Core;
 using EasySharpStandard.Reflections.Core;
 using EasySharpWpf.Commands.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
@@ -178,8 +179,13 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
         protected virtual UIElement CreateEditEnumControl(Type enumType, Binding valueBinding)
         {
             var comboBox = new ComboBox();
-            var values = Enum.GetValues(enumType).OfType<object>().Select(v  => v);
-            comboBox.ItemsSource = values;
+            var itemsSource = 
+                Enum.GetValues(enumType).ToEnumerable()
+                    .Select(v => new { Value = v, DisplayValue = enumType.GetField(v.ToString()).GetDisplayName() });
+            comboBox.ItemsSource = itemsSource;
+            comboBox.SelectedValuePath = "Value";
+            comboBox.DisplayMemberPath = "DisplayValue";
+
             comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
             return comboBox;
         }

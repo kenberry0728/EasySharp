@@ -10,5 +10,10 @@ namespace EasySharpStandard.Collections.Core
         {
             return array.OfType<object>();
         }
+
+        public static IEnumerable<T> ToEnumerable<T>(this Array array)
+        {
+            return array.OfType<T>();
+        }
     }
 }
