@@ -17,7 +17,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 
-
 namespace EasySharpWpf.Views.Rails.Core.Index
 {
     public class DefaultRailsIndexViewFactory : IRailsIndexViewFactory
