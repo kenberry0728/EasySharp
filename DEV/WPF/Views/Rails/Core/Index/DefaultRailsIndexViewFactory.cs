@@ -178,7 +178,6 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         #endregion
 
-
         #endregion
     }
 }
