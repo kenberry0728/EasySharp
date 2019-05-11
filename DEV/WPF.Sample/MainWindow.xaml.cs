@@ -25,7 +25,6 @@ namespace EasySharpWpf.Sample
         public MainWindow(
             IRailsIndexViewFactory railsIndexViewFactory)
         {
-            // TODO: Resolve with attribuete
             railsIndexViewFactory = railsIndexViewFactory.Resolve();
 
             InitializeComponent();

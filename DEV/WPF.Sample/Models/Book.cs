@@ -12,21 +12,21 @@ namespace EasySharpWpf.Sample.Models
         [DisplayName("題名")]
         [RailsBind]
         [Required(ErrorMessage = "題名は必要です")]
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         [DisplayName("価格")]
         [RailsBind]
         [Range(0, 10000, ErrorMessage = "{0}～{1}円で入力してください。")]
-        public int Price { get; set; }
+        public int Price { get; set; } = 0;
 
         [DisplayName("著者")]
         [RailsBind]
         [Required(ErrorMessage = "著者名は必要です")]
-        public string Author { get; set; }
+        public string Author { get; set; } = string.Empty;
 
         [DisplayName("出版社")]
         [RailsBind]
-        public Publisher Publisher { get; set; }
+        public Publisher Publisher { get; set; } = new Publisher();
 
         [DisplayName("無料サンプル")]
         [RailsBind]
