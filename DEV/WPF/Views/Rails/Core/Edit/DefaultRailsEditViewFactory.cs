@@ -193,9 +193,9 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
         protected virtual UIElement CreateEditEnumControl(Type enumType, Binding valueBinding)
         {
             var comboBox = new ComboBox();
-            var itemsSource = 
+            var itemsSource =
                 Enum.GetValues(enumType).ToEnumerable()
-                    .Select(v => new { Value = v, DisplayValue = enumType.GetField(v.ToString()).GetDisplayName() });
+                    .Select(v => new { Value = v, DisplayValue = enumType.GetEnumDisplayValue(v) });
             comboBox.ItemsSource = itemsSource;
             comboBox.SelectedValuePath = "Value";
             comboBox.DisplayMemberPath = "DisplayValue";

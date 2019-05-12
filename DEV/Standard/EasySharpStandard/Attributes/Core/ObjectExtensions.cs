@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasySharpStandard.Reflections.Core;
+using System;
 using System.Linq;
 using System.Reflection;
 
@@ -20,12 +21,10 @@ namespace EasySharpStandard.Attributes.Core
         {
             if (p.PropertyType.IsEnum)
             {
-                // TODO :ENUM
-                return p.GetValue(instance);
+                return p.PropertyType.GetEnumDisplayValue(p.GetValue(instance));
             }
             else
             {
-                // TODO :ENUM
                 return p.GetValue(instance);
             }
         }
