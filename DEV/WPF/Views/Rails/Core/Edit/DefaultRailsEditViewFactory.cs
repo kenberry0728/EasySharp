@@ -128,13 +128,17 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             UIElement uiElement = null;
             switch (property.PropertyType)
             {
-                case Type type when type == typeof(string)
-                                  || type == typeof(int)
-                                  || type == typeof(double):
-                    uiElement = CreateTextBox(property.CreateRailsBinding());
+                case Type type when type == typeof(string):
+                    uiElement = CreateEditStringControl(property.CreateRailsBinding());
+                    break;
+                case Type type when type == typeof(int):
+                    uiElement = CreateEditIntegerControl(property.CreateRailsBinding());
+                    break;
+                case Type type when type == typeof(double):
+                    uiElement = CreateEditDoubleControl(property.CreateRailsBinding());
                     break;
                 case Type type when type == typeof(bool):
-                    uiElement = CreateCheckBox(property.CreateRailsBinding());
+                    uiElement = CreateEditBooleanControl(property.CreateRailsBinding());
                     break;
                 case Type type when type.IsClass:
                     uiElement = CreateEditClassControl(property.GetValue(model));
@@ -147,14 +151,24 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return uiElement;
         }
 
-        protected virtual UIElement CreateCheckBox(Binding valueBinding)
+        private UIElement CreateEditDoubleControl(Binding valueBinding)
+        {
+            return CreateEditStringControl(valueBinding);
+        }
+
+        protected UIElement CreateEditIntegerControl(Binding valueBinding)
+        {
+            return CreateEditStringControl(valueBinding);
+        }
+
+        protected virtual UIElement CreateEditBooleanControl(Binding valueBinding)
         {
             var checkBox = new CheckBox() { VerticalAlignment = VerticalAlignment.Center };
             checkBox.SetBinding(ToggleButton.IsCheckedProperty, valueBinding);
             return checkBox;
         }
 
-        protected virtual UIElement CreateTextBox(Binding valueBinding)
+        protected virtual UIElement CreateEditStringControl(Binding valueBinding)
         {
             var textBox = new TextBox();
             textBox.SetBinding(TextBox.TextProperty, valueBinding);

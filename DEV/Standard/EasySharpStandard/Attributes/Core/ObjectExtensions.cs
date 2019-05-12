@@ -18,8 +18,16 @@ namespace EasySharpStandard.Attributes.Core
 
         private static object GetDisplayValue(object instance, PropertyInfo p)
         {
-            // TODO :ENUM
-            return p.GetValue(instance);
+            if (p.PropertyType.IsEnum)
+            {
+                // TODO :ENUM
+                return p.GetValue(instance);
+            }
+            else
+            {
+                // TODO :ENUM
+                return p.GetValue(instance);
+            }
         }
     }
 }
