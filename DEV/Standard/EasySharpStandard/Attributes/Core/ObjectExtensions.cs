@@ -13,8 +13,13 @@ namespace EasySharpStandard.Attributes.Core
                     ", ",
                     instance.GetType().GetProperties()
                     .Where(filter)
-                    .Select(p => $"{p.GetDisplayName()} : {p.GetValue(instance)}"));
+                    .Select(p => $"{p.GetDisplayName()} : {GetDisplayValue(instance, p)}"));
         }
 
+        private static object GetDisplayValue(object instance, PropertyInfo p)
+        {
+            // TODO :ENUM
+            return p.GetValue(instance);
+        }
     }
 }
