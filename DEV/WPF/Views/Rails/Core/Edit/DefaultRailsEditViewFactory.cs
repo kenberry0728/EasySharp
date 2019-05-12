@@ -209,6 +209,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
         {
             var type = model.GetType();
             var validationResults = new List<ValidationResult>();
+            // Note: second argument can be used to inject external service.
             var validationContext = new ValidationContext(model, null, null);
 
             Validator.TryValidateObject(
