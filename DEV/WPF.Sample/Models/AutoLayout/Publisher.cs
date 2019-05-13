@@ -2,7 +2,7 @@
 using EasySharpWpf.ViewModels.Rails.Attributes;
 using System.ComponentModel.DataAnnotations;
 
-namespace EasySharpWpf.Sample.Models
+namespace EasySharpWpf.Sample.Models.AutoLayout
 {
     public class Publisher : RailsModel
     {

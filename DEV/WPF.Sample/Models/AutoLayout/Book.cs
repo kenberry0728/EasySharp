@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace EasySharpWpf.Sample.Models
+namespace EasySharpWpf.Sample.Models.AutoLayout
 {
     [DisplayName("本")]
     public class Book : RailsModel, IValidatableObject

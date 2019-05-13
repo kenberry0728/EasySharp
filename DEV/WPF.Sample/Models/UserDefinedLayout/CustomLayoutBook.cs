@@ -3,11 +3,11 @@ using EasySharpWpf.ViewModels.Rails.Attributes;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace EasySharpWpf.Sample.Models
+namespace EasySharpWpf.Sample.Models.UserDefinedLayout
 {
     public class CustomLayoutBook : RailsModel, IValidatableObject
     {
-        [RailsBind(ElementName="TitleTextBox")]
+        [RailsBind(ElementName = "TitleTextBox")]
         [Required(ErrorMessage = "題名は必要です")]
         public string Title { get; set; }
 

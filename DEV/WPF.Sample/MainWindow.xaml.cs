@@ -1,6 +1,6 @@
 ﻿using EasySharpStandard.DiskIO.Serializers;
 using EasySharpStandard.SafeCodes.Core;
-using EasySharpWpf.Sample.Models;
+using EasySharpWpf.Sample.Models.AutoLayout;
 using EasySharpWpf.Views.EasyViews.Core;
 using EasySharpWpf.Views.Rails.Core.Index;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
