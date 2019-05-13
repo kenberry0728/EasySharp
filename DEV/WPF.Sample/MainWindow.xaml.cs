@@ -1,10 +1,10 @@
 ﻿using EasySharpStandard.DiskIO.Serializers;
 using EasySharpStandard.SafeCodes.Core;
+using EasySharpWpf.Models.Core;
 using EasySharpWpf.Sample.Models.AutoLayout;
 using EasySharpWpf.Views.EasyViews.Core;
+using EasySharpWpf.Views.Rails.Core.Edit;
 using EasySharpWpf.Views.Rails.Core.Index;
-using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
-using System.Collections.Generic;
 using System.Windows;
 
 namespace EasySharpWpf.Sample
@@ -15,7 +15,7 @@ namespace EasySharpWpf.Sample
     public partial class MainWindow : Window
     {
         private const string SaveFilePath = "books.json";
-        private readonly List<Book> books;
+        private readonly BookShelf bookShelf;
 
         public MainWindow()
            : this(null)
@@ -23,26 +23,28 @@ namespace EasySharpWpf.Sample
         }
 
         public MainWindow(
-            IRailsIndexViewFactory railsIndexViewFactory)
+            IRailsEditViewFactory railsEditViewFactory)
         {
-            railsIndexViewFactory = railsIndexViewFactory.Resolve();
+            railsEditViewFactory = railsEditViewFactory.Resolve();
 
             InitializeComponent();
-            if (!Try.To(() => SaveFilePath.DeserializeFromJson<List<Book>>(), out this.books))
+
+            if (!Try.To(() => SaveFilePath.DeserializeFromJson<BookShelf>(), out this.bookShelf))
             {
-                this.books = new List<Book>()
+                this.bookShelf = new BookShelf();
+                this.bookShelf.Books = new RailsList<Book>()
                 {
                     new Book() { Title = "Kafka On The Shore", Author = "Haruki Murakami", Publisher = new Publisher(){ Name="Kodansha" } },
                     new Book() { Title = "Norwegian Wood", Author = "Haruki Murakami", Publisher = new Publisher(){ Name="Kodansha" } }
                 };
             }
 
-            this.IndexGrid.Children.Add(railsIndexViewFactory.CreateIndexView(books, typeof(Book)));
+            this.IndexGrid.Children.Add(railsEditViewFactory.CreateEditView(bookShelf, typeof(BookShelf)));
         }
 
         private void SaveClicked(object sender, RoutedEventArgs e)
         {
-            this.books.SerializeAsJson(SaveFilePath);
+            this.bookShelf.SerializeAsJson(SaveFilePath);
         }
 
         private void ShowCustomEditView(object sender, RoutedEventArgs e)

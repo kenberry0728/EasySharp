@@ -69,6 +69,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         public bool? ShowEditWindow(object initialValueModel, Type type, out object editedModel)
         {
+            // TODO: List対応
             editedModel = type.New();
             if (initialValueModel != null)
             {

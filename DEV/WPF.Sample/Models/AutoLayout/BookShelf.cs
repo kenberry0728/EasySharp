@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using EasySharpWpf.Models.Core;
+using EasySharpWpf.ViewModels.Rails.Attributes;
 
 namespace EasySharpWpf.Sample.Models.AutoLayout
 {
-    public class BookShelf
+    public class BookShelf : RailsModel
     {
-        public List<Book> Books { get; set; }
+        [RailsBind]
+        public RailsList<Book> Books { get; set; } = new RailsList<Book>();
     }
 }

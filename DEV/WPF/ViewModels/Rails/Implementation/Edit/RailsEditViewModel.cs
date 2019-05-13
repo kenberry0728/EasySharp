@@ -28,8 +28,7 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
         {
             get
             {
-                var contents = this.properties.Select(p => $"{p.GetDisplayName()}: {p.GetValue(this.Model)}");
-                return string.Join(", ", contents);
+                return this.Model?.ToString() ?? "None";
             }
         }
 
