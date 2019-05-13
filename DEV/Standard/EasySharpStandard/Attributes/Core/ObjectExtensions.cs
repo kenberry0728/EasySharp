@@ -17,7 +17,7 @@ namespace EasySharpStandard.Attributes.Core
                     .Select(p => $"{p.GetDisplayName()} : {GetDisplayValue(instance, p)}"));
         }
 
-        private static object GetDisplayValue(object instance, PropertyInfo p)
+        public static object GetDisplayValue(object instance, PropertyInfo p)
         {
             if (p.PropertyType.IsEnum)
             {
