@@ -2,7 +2,7 @@
 using EasySharpWpf.ViewModels.Rails.Attributes;
 using System.Reflection;
 
-namespace EasySharpWpf.Models.Core
+namespace EasySharpWpf.Models.Rails.Core
 {
     public class RailsModel
     {

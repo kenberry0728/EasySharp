@@ -1,4 +1,4 @@
-﻿using EasySharpWpf.Models.Core;
+﻿using EasySharpWpf.Models.Rails.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
 
 namespace EasySharpWpf.Sample.Models.AutoLayout
