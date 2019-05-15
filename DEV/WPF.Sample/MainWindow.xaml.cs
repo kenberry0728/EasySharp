@@ -32,11 +32,11 @@ namespace EasySharpWpf.Sample
             if (!Try.To(() => SaveFilePath.DeserializeFromJson<BookShelf>(), out this.bookShelf))
             {
                 this.bookShelf = new BookShelf();
-                this.bookShelf.Books = new RailsList<Book>()
-                {
-                    new Book() { Title = "Kafka On The Shore", Author = "Haruki Murakami", Publisher = new Publisher(){ Name="Kodansha" } },
-                    new Book() { Title = "Norwegian Wood", Author = "Haruki Murakami", Publisher = new Publisher(){ Name="Kodansha" } }
-                };
+
+                this.bookShelf.Books.Add(
+                    new Book() { Title = "Kafka On The Shore", Author = "Haruki Murakami", Publisher = new Publisher() { Name = "Kodansha" } });
+                this.bookShelf.Books.Add(
+                    new Book() { Title = "Norwegian Wood", Author = "Haruki Murakami", Publisher = new Publisher() { Name = "Kodansha" } });
             }
 
             this.IndexGrid.Children.Add(railsEditViewFactory.CreateEditView(bookShelf, typeof(BookShelf)));

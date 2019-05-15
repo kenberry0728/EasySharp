@@ -75,6 +75,8 @@
     <Compile Include="ViewModels\Rails\Edit\Implementation\RailsEditViewModel.cs" />
     <Compile Include="ViewModels\Core\ViewModelBase.cs" />
     <Compile Include="ViewModels\Rails\Index\Implementation\RailsIndexViewModel.cs" />
+    <Compile Include="Views\Converters\DoubleToStringConverter.cs" />
+    <Compile Include="Views\Converters\IntToStringConverter.cs" />
     <Compile Include="Views\Extensions\GridExtensions.cs" />
     <Compile Include="Views\Rails\Core\Edit\DefaultRailsEditViewFactory.cs" />
     <Compile Include="Views\Rails\Core\Edit\Interfaces\IRailsEditViewFactory.cs" />
@@ -94,7 +96,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Behaviours\" />
-    <Folder Include="Views\Converters\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Standard\EasySharpStandard\EasySharpStandard.csproj">

@@ -4,6 +4,7 @@ using EasySharpStandard.Reflections.Core;
 using EasySharpWpf.Commands.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
+using EasySharpWpf.Views.Converters;
 using EasySharpWpf.Views.Extensions;
 using EasySharpWpf.Views.Rails.Core.Index;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
@@ -79,7 +80,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         public bool? ShowEditWindow(object initialValueModel, Type type, out object editedModel)
         {
-            // TODO: List対応
             editedModel = type.New();
             if (initialValueModel != null)
             {
@@ -173,14 +173,20 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return uiElement;
         }
 
-        private UIElement CreateEditDoubleControl(Binding valueBinding)
+        protected virtual UIElement CreateEditDoubleControl(Binding valueBinding)
         {
-            return CreateEditStringControl(valueBinding);
+            valueBinding.Converter = new DoubleToStringConverter();
+            var textBox = new TextBox();
+            textBox.SetBinding(TextBox.TextProperty, valueBinding);
+            return textBox;
         }
 
-        protected UIElement CreateEditIntegerControl(Binding valueBinding)
+        protected virtual UIElement CreateEditIntegerControl(Binding valueBinding)
         {
-            return CreateEditStringControl(valueBinding);
+            valueBinding.Converter = new IntToStringConverter();
+            var textBox = new TextBox();
+            textBox.SetBinding(TextBox.TextProperty, valueBinding);
+            return textBox;
         }
 
         protected virtual UIElement CreateEditBooleanControl(Binding valueBinding)
