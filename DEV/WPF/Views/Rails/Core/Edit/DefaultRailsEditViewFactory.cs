@@ -5,8 +5,11 @@ using EasySharpWpf.Commands.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.Views.Extensions;
+using EasySharpWpf.Views.Rails.Core.Index;
+using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
 using EasySharpWpf.Views.Rails.Implementations;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
@@ -25,7 +28,14 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
     {
         #region Fields
 
+        private readonly IRailsIndexViewFactory railsIndexViewFactory;
+
         #endregion
+
+        public DefaultRailsEditViewFactory(IRailsIndexViewFactory railsIndexViewFactory = null)
+        {
+            this.railsIndexViewFactory = railsIndexViewFactory.Resolve(this);
+        }
 
         #region Public Methods
 
@@ -47,7 +57,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
                 Debug.Assert(property.CanRead && property.CanWrite);
 
-                var uiElement = CreateUiElement(model, property);
+                var uiElement = CreateUiElement(model, property, railsBind);
 
                 if (uiElement != null)
                 {
@@ -124,7 +134,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Protected Methods
 
-        private UIElement CreateUiElement(object model, PropertyInfo property)
+        private UIElement CreateUiElement(object model, PropertyInfo property, RailsBindAttribute railsBind)
         {
             UIElement uiElement = null;
             switch (property.PropertyType)
@@ -141,6 +151,17 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 case Type type when type == typeof(bool):
                     uiElement = CreateEditBooleanControl(property.CreateRailsBinding());
                     break;
+                case Type type when type.IsClass:
+                    if (railsBind is RailsListBindAttribute railsListBindAttribute)
+                    {
+                        uiElement = CreateEditListClassControl(property.GetValue(model), railsListBindAttribute);
+                        break;
+                    }
+                    else
+                    {
+                        uiElement = CreateEditClassControl(property.GetValue(model));
+                        break;
+                    }
                 case Type type when type.IsClass:
                     uiElement = CreateEditClassControl(property.GetValue(model));
                     break;
@@ -189,6 +210,11 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             button.SetBinding(Button.CommandParameterProperty, new Binding());
 
             return button;
+        }
+
+        protected virtual UIElement CreateEditListClassControl(object propertyValue, RailsListBindAttribute railsListBindAttribute)
+        {
+            return this.railsIndexViewFactory.CreateIndexView(propertyValue  as IList, railsListBindAttribute.ElementType);
         }
 
         protected virtual UIElement CreateEditEnumControl(Type enumType, Binding valueBinding)

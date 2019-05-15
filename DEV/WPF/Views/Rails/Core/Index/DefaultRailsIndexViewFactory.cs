@@ -37,7 +37,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         public DefaultRailsIndexViewFactory(IRailsEditViewFactory railsEditViewFactory)
         {
-            this.railsEditViewFactory = railsEditViewFactory ?? railsEditViewFactory.Resolve();
+            this.railsEditViewFactory = railsEditViewFactory ?? railsEditViewFactory.Resolve(this);
         }
 
         #endregion
