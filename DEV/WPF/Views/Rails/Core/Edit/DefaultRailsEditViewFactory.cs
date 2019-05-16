@@ -86,15 +86,16 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 CopyRailsBindPropertyValues(initialValueModel, editedModel, type);
             }
 
-            var windowContent = new StackPanel();
-            windowContent.Children.Add(this.CreateEditView(editedModel));
+            var mainGrid = new Grid();
             var window = new Window
             {
-                Content = windowContent,
-                Width = 500,
+                Content = mainGrid,
                 SizeToContent = SizeToContent.Height,
-                Title = "編集：" + type.GetDisplayName()
+                Title = "編集：" + type.GetDisplayName(),
             };
+
+            mainGrid.RowDefinitions.Add(new RowDefinition());
+            mainGrid.AddChild(this.CreateEditView(editedModel), 0, 0, new Thickness(10.0));
 
             var button = new Button()
             {
@@ -105,7 +106,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 Command = new DelegateCommand(x => CompleteEdit(x, window))
             };
 
-            windowContent.Children.Add(button);
+            mainGrid.RowDefinitions.Add(new RowDefinition());
+            mainGrid.AddChild(button, 1, 0, new Thickness(10.0));
             return window.ShowDialog();
         }
 
