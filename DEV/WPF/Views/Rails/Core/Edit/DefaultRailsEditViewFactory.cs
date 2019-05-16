@@ -89,7 +89,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             var window = new Window
             {
                 Content = mainGrid,
-                SizeToContent = SizeToContent.Height,
+                SizeToContent = SizeToContent.WidthAndHeight,
                 Title = "編集：" + type.GetDisplayName(),
             };
 
