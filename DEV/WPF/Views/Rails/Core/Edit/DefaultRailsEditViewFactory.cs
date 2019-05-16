@@ -63,8 +63,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 {
                     grid.RowDefinitions.Add(new RowDefinition());
                     var label = new Label() { Content = property.GetDisplayName() };
-                    grid.AddChild(label, gridRow, 0, 10);
-                    grid.AddChild(uiElement, gridRow, 1, 10);
+                    grid.AddChild(label, gridRow, 0);
+                    grid.AddChild(uiElement, gridRow, 1);
                     gridRow++;
                 }
             }
@@ -94,7 +94,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             };
 
             mainGrid.RowDefinitions.Add(new RowDefinition());
-            mainGrid.AddChild(this.CreateEditView(editedModel), 0, 0, 10.0);
+            mainGrid.AddChild(this.CreateEditView(editedModel), 0, 0);
 
             var button = new Button()
             {
@@ -106,7 +106,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             };
 
             mainGrid.RowDefinitions.Add(new RowDefinition());
-            mainGrid.AddChild(button, 1, 0, 10.0);
+            mainGrid.AddChild(button, 1, 0);
             return window.ShowDialog();
         }
 

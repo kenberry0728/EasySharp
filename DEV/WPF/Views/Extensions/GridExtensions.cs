@@ -10,7 +10,7 @@ namespace EasySharpWpf.Views.Extensions
             UIElement uiElement, 
             int row, 
             int column, 
-            double thickness)
+            double thickness = 10)
         {
             grid.Children.Add(uiElement);
             uiElement.SetValue(Grid.RowProperty, row);
