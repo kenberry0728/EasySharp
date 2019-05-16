@@ -34,9 +34,27 @@ namespace EasySharpWpf.Sample
                 this.bookShelf = new BookShelf();
 
                 this.bookShelf.Books.Add(
-                    new Book() { Title = "Kafka On The Shore", Author = "Haruki Murakami", Publisher = new Publisher() { Name = "Kodansha" } });
+                    new Book()
+                    {
+                        Title = "Kafka On The Shore",
+                        Author = "Haruki Murakami",
+                        Price = 300,
+                        Publisher = new Publisher()
+                        {
+                            Name = "Kodansha"
+                        }
+                    });
                 this.bookShelf.Books.Add(
-                    new Book() { Title = "Norwegian Wood", Author = "Haruki Murakami", Publisher = new Publisher() { Name = "Kodansha" } });
+                    new Book()
+                    {
+                        Title = "Norwegian Wood",
+                        Author = "Haruki Murakami",
+                        Price = 500,
+                        Publisher = new Publisher()
+                        {
+                            Name = "Kodansha"
+                        }
+                    });
             }
 
             this.BookShelfGrid.Children.Add(railsEditViewFactory.CreateEditView(bookShelf, typeof(BookShelf)));

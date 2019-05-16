@@ -48,7 +48,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             var grid = new Grid() { DataContext = viewModel };
             grid.AddColumnDefinition(GridLength.Auto);
             grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
-            grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
 
             var gridRow = 0;
             foreach (var property in type.GetProperties()
@@ -64,8 +63,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 {
                     grid.RowDefinitions.Add(new RowDefinition());
                     var label = new Label() { Content = property.GetDisplayName() };
-                    grid.AddChild(label, gridRow, 0, new Thickness(10));
-                    grid.AddChild(uiElement, gridRow, 1, new Thickness(10));
+                    grid.AddChild(label, gridRow, 0, 10);
+                    grid.AddChild(uiElement, gridRow, 1, 10);
                     gridRow++;
                 }
             }
@@ -95,7 +94,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             };
 
             mainGrid.RowDefinitions.Add(new RowDefinition());
-            mainGrid.AddChild(this.CreateEditView(editedModel), 0, 0, new Thickness(10.0));
+            mainGrid.AddChild(this.CreateEditView(editedModel), 0, 0, 10.0);
 
             var button = new Button()
             {
@@ -107,7 +106,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             };
 
             mainGrid.RowDefinitions.Add(new RowDefinition());
-            mainGrid.AddChild(button, 1, 0, new Thickness(10.0));
+            mainGrid.AddChild(button, 1, 0, 10.0);
             return window.ShowDialog();
         }
 
