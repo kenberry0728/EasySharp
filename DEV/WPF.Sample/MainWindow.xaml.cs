@@ -14,7 +14,7 @@ namespace EasySharpWpf.Sample
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string SaveFilePath = "books.json";
+        private const string SaveFilePath = "bookShelf.json";
         private readonly BookShelf bookShelf;
 
         public MainWindow()
@@ -39,7 +39,7 @@ namespace EasySharpWpf.Sample
                     new Book() { Title = "Norwegian Wood", Author = "Haruki Murakami", Publisher = new Publisher() { Name = "Kodansha" } });
             }
 
-            this.IndexGrid.Children.Add(railsEditViewFactory.CreateEditView(bookShelf, typeof(BookShelf)));
+            this.BookShelfGrid.Children.Add(railsEditViewFactory.CreateEditView(bookShelf, typeof(BookShelf)));
         }
 
         private void SaveClicked(object sender, RoutedEventArgs e)

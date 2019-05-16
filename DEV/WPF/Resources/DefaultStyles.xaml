@@ -5,7 +5,7 @@
     >
 
     <ControlTemplate x:Key="ValidationTemplate">
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Vertical">
             <AdornedElementPlaceholder x:Name="adornedElement" />
             <ItemsControl ItemsSource="{Binding AdornedElement.(Validation.Errors), ElementName=adornedElement}">
                 <ItemsControl.ItemTemplate>

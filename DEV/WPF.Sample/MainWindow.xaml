@@ -8,10 +8,9 @@
         Title="MainWindow" Height="450" Width="800"
         >
     <StackPanel>
-        <GroupBox Header="Modelから自動生成したUI">
-            <Grid Name="IndexGrid"/>
+        <GroupBox Header="Automatically Created UI">
+            <Grid Name="BookShelfGrid"/>
         </GroupBox>
-        
         
         <Button Content="Save" Click="SaveClicked" HorizontalAlignment="Center"/>
         

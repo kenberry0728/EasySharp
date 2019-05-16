@@ -64,8 +64,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 {
                     grid.RowDefinitions.Add(new RowDefinition());
                     var label = new Label() { Content = property.GetDisplayName() };
-                    grid.AddChild(label, gridRow, 0);
-                    grid.AddChild(uiElement, gridRow, 1);
+                    grid.AddChild(label, gridRow, 0, new Thickness(10));
+                    grid.AddChild(uiElement, gridRow, 1, new Thickness(10));
                     gridRow++;
                 }
             }

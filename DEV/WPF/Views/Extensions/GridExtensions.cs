@@ -5,11 +5,12 @@ namespace EasySharpWpf.Views.Extensions
 {
     public static class GridExtensions
     {
-        public static void AddChild(this Grid grid, UIElement uiElement, int row, int column)
+        public static void AddChild(this Grid grid, UIElement uiElement, int row, int column, Thickness thickness)
         {
             grid.Children.Add(uiElement);
             uiElement.SetValue(Grid.RowProperty, row);
             uiElement.SetValue(Grid.ColumnProperty, column);
+            uiElement.SetValue(FrameworkElement.MarginProperty, thickness);
         }
 
         public static void AddColumnDefinition(this Grid grid, GridLength gridLength)
