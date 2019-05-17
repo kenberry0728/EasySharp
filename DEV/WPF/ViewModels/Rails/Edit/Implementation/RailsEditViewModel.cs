@@ -3,12 +3,13 @@ using EasySharpWpf.ViewModels.Core;
 using EasySharpWpf.Views.Rails.Core;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
 namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 {
-    internal class RailsEditViewModel : ViewModelBase, IViewModelWithModel, IRailsEditViewModel
+    internal class RailsEditViewModel : ViewModelBase, IViewModelWithModel, IRailsEditViewModel, IDataErrorInfo
     {
         private readonly IEnumerable<PropertyInfo> properties;
 
@@ -50,6 +51,14 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
                 var property = this.properties.FirstOrDefault(p => p.Name == key);
                 property?.SetValue(this.Model, value);
                 OnPropertyChanged("Item[]");
+            }
+        }
+
+        string IDataErrorInfo.this[string columnName]
+        {
+            get
+            {
+                return null;
             }
         }
     }
