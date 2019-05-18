@@ -22,8 +22,13 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 
         IEnumerable INotifyDataErrorInfo.GetErrors(string propertyPath)
         {
+            if (string.IsNullOrEmpty(propertyPath)) { return null; }
+
             var propertyName = RailsBindCreator.GetRailsPropertyName(propertyPath);
             var property = this.properties.FirstOrDefault(p => p.Name == propertyName);
+
+            if (property == null) { return null; }
+
             return this.Model.ValidateProperty(property).Select(v => v.ErrorMessage);
         }
 
