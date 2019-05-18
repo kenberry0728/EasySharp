@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySharpWpf.Sample"
         mc:Ignorable="d"
-        Title="編集：本" Height="450" Width="800">
+        Title="編集：本" 
+        SizeToContent="WidthAndHeight"
+        >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

@@ -1,6 +1,7 @@
 ﻿using EasySharpStandard.Attributes.Core;
 using EasySharpStandard.Collections.Core;
 using EasySharpStandard.Reflections.Core;
+using EasySharpStandard.Validations;
 using EasySharpWpf.Commands.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
@@ -11,8 +12,6 @@ using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
 using EasySharpWpf.Views.Rails.Implementations;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -20,8 +19,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
-
-using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
@@ -255,17 +252,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         private static bool CanCompleteEdit(object model)
         {
-            var type = model.GetType();
-            var validationResults = new List<ValidationResult>();
-            // Note: second argument can be used to inject external service.
-            var validationContext = new ValidationContext(model, null, null);
-
-            Validator.TryValidateObject(
-                model,
-                validationContext,
-                validationResults,
-                true);
-
+            var validationResults = model.Validate();
             if (validationResults.Any())
             {
                 MessageBox.Show(

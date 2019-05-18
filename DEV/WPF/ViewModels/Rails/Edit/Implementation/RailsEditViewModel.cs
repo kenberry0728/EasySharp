@@ -1,7 +1,9 @@
-﻿using EasySharpStandard.Attributes.Core;
+﻿using EasySharpStandard.Validations;
 using EasySharpWpf.ViewModels.Core;
 using EasySharpWpf.Views.Rails.Core;
+using EasySharpWpf.Views.Rails.Implementations;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -9,8 +11,24 @@ using System.Reflection;
 
 namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 {
-    internal class RailsEditViewModel : ViewModelBase, IViewModelWithModel, IRailsEditViewModel, IDataErrorInfo
+    internal class RailsEditViewModel
+        : ViewModelBase, IViewModelWithModel, IRailsEditViewModel, INotifyDataErrorInfo
     {
+        #region INotifyDataErrorInfo
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+        bool INotifyDataErrorInfo.HasErrors => this.Model.Validate().Any();
+
+        IEnumerable INotifyDataErrorInfo.GetErrors(string propertyPath)
+        {
+            var propertyName = RailsBindCreator.GetRailsPropertyName(propertyPath);
+            var property = this.properties.FirstOrDefault(p => p.Name == propertyName);
+            return this.Model.ValidateProperty(property).Select(v => v.ErrorMessage);
+        }
+
+        #endregion
+
         private readonly IEnumerable<PropertyInfo> properties;
 
         public RailsEditViewModel(object model, Type type = null)
@@ -25,18 +43,11 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 
         public object Model { get; }
 
-        public string Content
-        {
-            get
-            {
-                return this.Model?.ToString() ?? "None";
-            }
-        }
+        public string Content => this.Model?.ToString() ?? "None";
 
         public void SetProperty(MemberInfo propertyInfo, object value)
         {
             this[propertyInfo.Name] = value;
-            this.OnPropertyChanged(nameof(this.Content));
         }
 
         public object this[string key]
@@ -50,16 +61,20 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
             {
                 var property = this.properties.FirstOrDefault(p => p.Name == key);
                 property?.SetValue(this.Model, value);
-                OnPropertyChanged("Item[]");
+
+                this.OnPropertyChanged("Item[]");
+                this.OnPropertyChanged(nameof(this.Content));
+                //this.OnErrorsChanged(RailsBindCreator.GetRailsProperyPath(property));
             }
         }
 
-        string IDataErrorInfo.this[string columnName]
+        #region Private Methods
+
+        private void OnErrorsChanged(string propertyName)
         {
-            get
-            {
-                return null;
-            }
+            this.ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 }

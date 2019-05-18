@@ -7,24 +7,30 @@ namespace EasySharpWpf.Views.Rails.Implementations
 {
     internal static class RailsBindCreator
     {
-        public static string GetRailsBindingPath(this PropertyInfo propertyInfo)
+        public static string GetRailsProperyPath(this PropertyInfo propertyInfo)
         {
             return $"[{propertyInfo.Name}]";
         }
 
+        public static string GetRailsPropertyName(this string bindingPath)
+        {
+            return bindingPath.Trim(new[] { '[', ']' });
+        }
+
         public static Binding CreateRailsBinding(this PropertyInfo propertyInfo)
         {
-            var bindingPath = propertyInfo.GetRailsBindingPath();
+            var bindingPath = propertyInfo.GetRailsProperyPath();
             var binding = new Binding(bindingPath)
             {
                 Mode = BindingMode.TwoWay,
+                ValidatesOnNotifyDataErrors = true
             };
 
-            var validationAttributes = propertyInfo.GetCustomAttributes<ValidationAttribute>();
-            foreach (var validationAttribute in validationAttributes)
-            {
-                AddValidationRule(binding, validationAttribute);
-            }
+            //var validationAttributes = propertyInfo.GetCustomAttributes<ValidationAttribute>();
+            //foreach (var validationAttribute in validationAttributes)
+            //{
+            //    AddValidationRule(binding, validationAttribute);
+            //}
 
             return binding;
         }

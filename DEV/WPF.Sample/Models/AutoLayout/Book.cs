@@ -16,7 +16,7 @@ namespace EasySharpWpf.Sample.Models.AutoLayout
 
         [DisplayName("価格")]
         [RailsBind]
-        [Range(0, 10000, ErrorMessage = "{0}～{1}円で入力してください。")]
+        [Range(0, 10000, ErrorMessage = "{0}は{1}～{2}円で入力してください。")]
         public int Price { get; set; } = 0;
 
         [DisplayName("著者")]

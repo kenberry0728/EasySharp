@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySharpWpf.Sample"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="450"
+        Title="MainWindow"
+        SizeToContent="WidthAndHeight"
         >
     <StackPanel>
         <GroupBox Header="Automatically Created UI">

@@ -41,7 +41,8 @@ namespace EasySharpWpf.Sample
                         Price = 300,
                         Publisher = new Publisher()
                         {
-                            Name = "Kodansha"
+                            Name = "Kodansha",
+                            PublisherType = PublisherType.Company
                         }
                     });
                 this.bookShelf.Books.Add(
@@ -52,7 +53,8 @@ namespace EasySharpWpf.Sample
                         Price = 500,
                         Publisher = new Publisher()
                         {
-                            Name = "Kodansha"
+                            Name = "Kodansha",
+                            PublisherType = PublisherType.Company
                         }
                     });
             }
