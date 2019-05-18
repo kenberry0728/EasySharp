@@ -12,6 +12,7 @@ namespace EasySharpWpf.Sample.Models.AutoLayout
         [DisplayName("題名")]
         [RailsBind]
         [Required(ErrorMessage = "題名は必要です")]
+        [StringLength(20, ErrorMessage = "{0}は{1}文字までにしてください")]
         public string Title { get; set; } = string.Empty;
 
         [DisplayName("価格")]
