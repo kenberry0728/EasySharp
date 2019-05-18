@@ -27,6 +27,7 @@ namespace EasySharpWpf.Sample.Models.AutoLayout
 
         [DisplayName("出版社")]
         [RailsBind]
+        // TODO: Show error in Publisher
         public Publisher Publisher { get; set; } = new Publisher();
 
         [DisplayName("無料サンプル")]
