@@ -69,7 +69,6 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 
                 this.OnPropertyChanged("Item[]");
                 this.OnPropertyChanged(nameof(this.Content));
-                //this.OnErrorsChanged(RailsBindCreator.GetRailsProperyPath(property));
             }
         }
 
