@@ -63,7 +63,15 @@ namespace EasySharpWpf.Sample
 
         private void SaveClicked(object sender, RoutedEventArgs e)
         {
-            this.bookShelf.SerializeAsJson(SaveFilePath);
+            var saveResult = Try.To(() =>
+            {
+                this.bookShelf.SerializeAsJson(SaveFilePath);
+            });
+
+            if (saveResult)
+            {
+                MessageBox.Show("保存しました", "保存", MessageBoxButton.OKCancel);
+            }
         }
 
         private void ShowCustomEditView(object sender, RoutedEventArgs e)
