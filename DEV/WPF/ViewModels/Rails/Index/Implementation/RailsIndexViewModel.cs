@@ -15,11 +15,11 @@ namespace EasySharpWpf.ViewModels.Rails.Implementation.Index
             this.ItemsSource = new ObservableModelLinkedCollection<IRailsEditViewModel>(
                 modelList.ToEnumerable().Select(m => new RailsEditViewModel(m)),
                 modelList);
-            this.Type = type;
+            this.ItemType = type;
         }
 
         public ObservableCollection<IRailsEditViewModel> ItemsSource { get; }
 
-        public Type Type { get; }
+        public Type ItemType { get; }
     }
 }

@@ -7,6 +7,6 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Index
     public interface IRailsIndexViewModel
     {
         ObservableCollection<IRailsEditViewModel> ItemsSource { get; }
-        Type Type { get; }
+        Type ItemType { get; }
     }
 }

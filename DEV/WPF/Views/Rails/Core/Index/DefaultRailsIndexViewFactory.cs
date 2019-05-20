@@ -73,7 +73,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
                 ItemsSource = viewModel.ItemsSource
             };
 
-            foreach (var property in viewModel.Type.GetProperties()
+            foreach (var property in viewModel.ItemType.GetProperties()
                                               .Where(p => p.HasVisibleRailsBindAttribute()))
             {
                 Debug.Assert(property.CanRead);
@@ -171,7 +171,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         private void AddNewItem(RailsIndexViewModel indexViewModel)
         {
-            if (this.railsEditViewFactory.ShowEditWindow(indexViewModel.Type, out var editedInstance) == true)
+            if (this.railsEditViewFactory.ShowEditWindow(indexViewModel.ItemType, out var editedInstance) == true)
             {
                 indexViewModel.ItemsSource.Add(new RailsEditViewModel(editedInstance));
             }
