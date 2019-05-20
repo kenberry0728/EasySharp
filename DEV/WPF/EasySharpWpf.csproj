@@ -72,6 +72,7 @@
     <Compile Include="ViewModels\Rails\Attributes\RailsBindAttribute.cs" />
     <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModel.cs" />
     <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModelFactory.cs" />
+    <Compile Include="ViewModels\Rails\Edit\Implementation\RailsEditViewModelFactory.cs" />
     <Compile Include="ViewModels\Rails\Index\Core\IRailsIndexViewModel.cs" />
     <Compile Include="ViewModels\Rails\Edit\Implementation\RailsEditViewModel.cs" />
     <Compile Include="ViewModels\Core\ViewModelBase.cs" />
