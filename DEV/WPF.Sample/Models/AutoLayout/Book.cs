@@ -1,4 +1,5 @@
-﻿using EasySharpWpf.Models.Rails.Core;
+﻿using EasySharpStandard.Validations.Core.Attributes;
+using EasySharpWpf.Models.Rails.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +28,7 @@ namespace EasySharpWpf.Sample.Models.AutoLayout
 
         [DisplayName("出版社")]
         [RailsBind]
-        // TODO: Show error in Publisher
+        [UserTypeMemberValidation]
         public Publisher Publisher { get; set; } = new Publisher();
 
         [DisplayName("無料サンプル")]

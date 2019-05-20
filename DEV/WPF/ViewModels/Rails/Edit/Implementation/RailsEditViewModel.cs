@@ -1,4 +1,4 @@
-﻿using EasySharpStandard.Validations;
+﻿using EasySharpStandard.Validations.Core;
 using EasySharpWpf.ViewModels.Core;
 using EasySharpWpf.Views.Rails.Core;
 using EasySharpWpf.Views.Rails.Implementations;

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace EasySharpStandard.Validations
+namespace EasySharpStandard.Validations.Core
 {
     public static class ValidateObjectExtensions
     {
