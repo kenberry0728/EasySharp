@@ -1,7 +1,7 @@
 ﻿using EasySharpStandard.Validations.Core;
 using EasySharpWpf.ViewModels.Core;
+using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
 using EasySharpWpf.Views.Rails.Core;
-using EasySharpWpf.Views.Rails.Implementations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Reflection;
 namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 {
     internal class RailsEditViewModel
-        : ViewModelBase, IViewModelWithModel, IRailsEditViewModel, INotifyDataErrorInfo
+        : RailsBindCreator, IViewModelWithModel, IRailsEditViewModel, INotifyDataErrorInfo
     {
         #region INotifyDataErrorInfo
 
@@ -24,7 +24,7 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
         {
             if (string.IsNullOrEmpty(propertyPath)) { return null; }
 
-            var propertyName = RailsBindCreator.GetRailsPropertyName(propertyPath);
+            var propertyName = this.GetRailsPropertyName(propertyPath);
             var property = this.properties.FirstOrDefault(p => p.Name == propertyName);
 
             if (property == null) { return null; }

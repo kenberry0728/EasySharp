@@ -71,7 +71,9 @@
     <Compile Include="ViewModels\Rails\Attributes\RailsListBindAttribute.cs" />
     <Compile Include="ViewModels\Rails\Attributes\RailsBindAttribute.cs" />
     <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModel.cs" />
+    <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModelFactoryExtensions.cs" />
     <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModelFactory.cs" />
+    <Compile Include="ViewModels\Rails\Edit\Core\IRailsBindCreator.cs" />
     <Compile Include="ViewModels\Rails\Edit\Implementation\RailsEditViewModelFactory.cs" />
     <Compile Include="ViewModels\Rails\Index\Core\IRailsIndexViewModel.cs" />
     <Compile Include="ViewModels\Rails\Edit\Implementation\RailsEditViewModel.cs" />
@@ -85,7 +87,7 @@
     <Compile Include="Views\Rails\Core\Edit\Interfaces\IRailsEditViewBinder.cs" />
     <Compile Include="Views\Rails\Core\Edit\IRailsEditViewBinderExtensions.cs" />
     <Compile Include="Views\Rails\Core\Extensions.cs" />
-    <Compile Include="Views\Rails\Implementations\RailsBindCreator.cs" />
+    <Compile Include="ViewModels\Rails\Edit\Implementation\RailsBindCreator.cs" />
     <Compile Include="Views\Rails\Core\Edit\IRailsEditViewFactoryExtensions.cs" />
     <Compile Include="Views\Rails\Implementations\RailsEditViewBinder.cs" />
     <Compile Include="Views\Rails\Core\Index\DefaultRailsIndexViewFactory.cs" />

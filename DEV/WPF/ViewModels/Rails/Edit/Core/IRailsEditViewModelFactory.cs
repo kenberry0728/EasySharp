@@ -5,6 +5,10 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Core
 {
     public interface IRailsEditViewModelFactory
     {
-        IRailsEditViewModel Create(object model, Type type = null);
+        IRailsBindCreator RailsBindCreator { get; }
+
+        IRailsEditViewModel Create(object model);
+
+        IRailsEditViewModel Create(object model, Type type);
     }
 }

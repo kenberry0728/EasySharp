@@ -2,11 +2,11 @@
 using EasySharpWpf.Commands.Core;
 using EasySharpWpf.ViewModels.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
+using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
 using EasySharpWpf.ViewModels.Rails.Implementation.Index;
 using EasySharpWpf.Views.EasyViews.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
-using EasySharpWpf.Views.Rails.Implementations;
 using System;
 using System.Collections;
 using System.Diagnostics;
@@ -88,10 +88,10 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             return dataGrid;
         }
 
-        private static DataGridTextColumn CreateRailsBindColumn(
+        private DataGridTextColumn CreateRailsBindColumn(
             PropertyInfo property)
         {
-            var bindingPath = property.GetRailsProperyPath();
+            var bindingPath = this.railsEditViewFactory.RailsBindCreator.GetRailsProperyPath(property);
             var binding = new Binding(bindingPath)
             {
                 Mode = BindingMode.OneWay,

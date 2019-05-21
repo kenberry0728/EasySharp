@@ -1,5 +1,7 @@
 ﻿using EasySharpWpf.ViewModels.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
+using EasySharpWpf.ViewModels.Rails.Edit.Core;
+using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
 using EasySharpWpf.Views.Rails.Core;
 using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 using EasySharpWpf.Views.VisualTrees;
@@ -15,6 +17,13 @@ namespace EasySharpWpf.Views.Rails.Implementations
 {
     internal class RailsEditViewBinder : IRailsEditViewBinder
     {
+        private readonly IRailsEditViewModelFactory railsEditViewModelFactory;
+
+        public RailsEditViewBinder(IRailsEditViewModelFactory railsEditViewModelFactory = null)
+        {
+            this.railsEditViewModelFactory = railsEditViewModelFactory.Resolve();
+        }
+
         public void ApplyRailsBinding(FrameworkElement rootElement, object model)
         {
             this.ApplyRailsBinding(rootElement, model, model.GetType());
@@ -22,7 +31,7 @@ namespace EasySharpWpf.Views.Rails.Implementations
 
         public void ApplyRailsBinding(FrameworkElement rootElement, object model, Type type)
         {
-            var viewModel = new RailsEditViewModel(model);
+            var viewModel = this.railsEditViewModelFactory.Create(model);
             rootElement.DataContext = viewModel;
 
             var properties = type.GetProperties()
@@ -44,11 +53,11 @@ namespace EasySharpWpf.Views.Rails.Implementations
             }
         }
 
-        private static void BindToElement(
+        private void BindToElement(
             PropertyInfo property,
             FrameworkElement bindTargetElement)
         {
-            var binding = RailsBindCreator.CreateRailsBinding(property);
+            var binding = this.railsEditViewModelFactory.RailsBindCreator.CreateRailsBinding(property);
             switch (bindTargetElement)
             {
                 case TextBox textBox:

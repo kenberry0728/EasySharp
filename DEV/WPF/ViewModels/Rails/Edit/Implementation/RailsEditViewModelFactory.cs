@@ -6,7 +6,14 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
 {
     internal class RailsEditViewModelFactory : IRailsEditViewModelFactory
     {
-        public IRailsEditViewModel Create(object model, Type type = null)
+        public IRailsBindCreator RailsBindCreator { get; } = new RailsBindCreator();
+
+        public IRailsEditViewModel Create(object model)
+        {
+            return this.Create(model, null);
+        }
+
+        public IRailsEditViewModel Create(object model, Type type)
         {
             return new RailsEditViewModel(model, type);
         }

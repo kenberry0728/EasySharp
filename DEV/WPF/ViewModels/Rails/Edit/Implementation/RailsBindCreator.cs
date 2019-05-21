@@ -1,42 +1,38 @@
-﻿using EasySharpWpf.Views.ValidationRules.Core;
+﻿using EasySharpWpf.ViewModels.Rails.Edit.Core;
+using EasySharpWpf.Views.ValidationRules.Core;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Windows.Data;
 
-namespace EasySharpWpf.Views.Rails.Implementations
+namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
 {
-    internal static class RailsBindCreator
+    internal class RailsBindCreator : ViewModelBase, IRailsBindCreator
     {
-        public static string GetRailsProperyPath(this PropertyInfo propertyInfo)
+        public string GetRailsProperyPath(PropertyInfo propertyInfo)
         {
             return $"[{propertyInfo.Name}]";
         }
 
-        public static string GetRailsPropertyName(this string bindingPath)
+        public string GetRailsPropertyName(string bindingPath)
         {
             return bindingPath.Trim(new[] { '[', ']' });
         }
 
-        public static Binding CreateRailsBinding(this PropertyInfo propertyInfo)
+        public Binding CreateRailsBinding(PropertyInfo propertyInfo)
         {
-            var bindingPath = propertyInfo.GetRailsProperyPath();
+            var bindingPath = this.GetRailsProperyPath(propertyInfo);
             var binding = new Binding(bindingPath)
             {
                 Mode = BindingMode.TwoWay,
                 ValidatesOnNotifyDataErrors = true
             };
 
-            //var validationAttributes = propertyInfo.GetCustomAttributes<ValidationAttribute>();
-            //foreach (var validationAttribute in validationAttributes)
-            //{
-            //    AddValidationRule(binding, validationAttribute);
-            //}
-
             return binding;
         }
 
         private static void AddValidationRule(Binding binding, ValidationAttribute validationAttribute)
         {
+            // TODO: support input value validation.
             switch (validationAttribute)
             {
                 case RequiredAttribute required:
