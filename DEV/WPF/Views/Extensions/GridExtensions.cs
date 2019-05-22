@@ -8,8 +8,8 @@ namespace EasySharpWpf.Views.Extensions
         public static void AddChild(
             this Grid grid, 
             UIElement uiElement, 
-            int row, 
-            int column, 
+            int row = 0, 
+            int column = 0, 
             double thickness = 10)
         {
             grid.Children.Add(uiElement);
@@ -18,21 +18,26 @@ namespace EasySharpWpf.Views.Extensions
             uiElement.SetValue(FrameworkElement.MarginProperty, new Thickness(thickness));
         }
 
-        public static void AddColumnDefinition(this Grid grid, GridLength gridLength)
+        public static void AddColumnDefinition(this Grid grid, GridLength width)
         {
             grid.ColumnDefinitions.Add(
                 new ColumnDefinition()
                 {
-                    Width = gridLength
+                    Width = width
                 });
         }
 
-        public static void AddRowDefinition(this Grid grid, GridLength gridLength)
+        public static void AddRowDefinition(this Grid grid)
+        {
+            grid.RowDefinitions.Add(new RowDefinition());
+        }
+
+        public static void AddRowDefinition(this Grid grid, GridLength height)
         {
             grid.RowDefinitions.Add(
                 new RowDefinition()
                 {
-                    Height = gridLength
+                    Height = height
                 });
         }
     }

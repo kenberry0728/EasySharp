@@ -5,6 +5,7 @@ using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
 using EasySharpWpf.ViewModels.Rails.Implementation.Index;
 using EasySharpWpf.Views.EasyViews.Core;
+using EasySharpWpf.Views.Extensions;
 using EasySharpWpf.Views.Rails.Core.Edit;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
 using System;
@@ -46,13 +47,16 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         public FrameworkElement CreateIndexView(IList modelList, Type type)
         {
-            var stackPanel = new StackPanel();
+            var grid = new Grid();
             var viewModel = new RailsIndexViewModel(modelList, type);
 
-            stackPanel.Children.Add(CreateTable(viewModel));
-            stackPanel.Children.Add(CreateAddButton(viewModel));
+            grid.AddRowDefinition();
+            grid.AddChild(CreateTable(viewModel), thickness:0);
 
-            return stackPanel;
+            grid.AddRowDefinition();
+            grid.AddChild(CreateAddButton(viewModel), 1, thickness:0);
+
+            return grid;
         }
 
         #endregion

@@ -70,7 +70,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
                 if (uiElement != null)
                 {
-                    grid.RowDefinitions.Add(new RowDefinition());
+                    grid.AddRowDefinition();
                     var label = new Label() { Content = property.GetDisplayName() };
                     grid.AddChild(label, gridRow, 0);
                     grid.AddChild(uiElement, gridRow, 1);
@@ -102,7 +102,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 Title = "編集：" + type.GetDisplayName(),
             };
 
-            mainGrid.RowDefinitions.Add(new RowDefinition());
+            mainGrid.AddRowDefinition();
             mainGrid.AddChild(this.CreateEditView(editedModel), 0, 0);
 
             var button = new Button()
@@ -114,7 +114,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 Command = new DelegateCommand(x => CompleteEdit(x, window))
             };
 
-            mainGrid.RowDefinitions.Add(new RowDefinition());
+            mainGrid.AddRowDefinition();
             mainGrid.AddChild(button, 1, 0);
             return window.ShowDialog();
         }
