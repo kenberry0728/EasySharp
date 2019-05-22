@@ -105,18 +105,50 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             mainGrid.AddRowDefinition();
             mainGrid.AddChild(this.CreateEditView(editedModel), 0, 0);
 
-            var button = new Button()
-            {
-                Content = "OK",
-                IsDefault = true,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                CommandParameter = editedModel,
-                Command = new DelegateCommand(x => CompleteEdit(x, window))
-            };
+            var button = CreateOKCancelGrid(editedModel, window);
 
             mainGrid.AddRowDefinition();
             mainGrid.AddChild(button, 1, 0);
             return window.ShowDialog();
+        }
+
+        private static Grid CreateOKCancelGrid(object editedModel, Window window)
+        {
+            var okButton = CreateOKButton(editedModel, window);
+            var cancelButton = CreateCancelButton(editedModel, window);
+
+            var grid = new Grid();
+            grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
+            grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
+
+            grid.AddChild(okButton, 0, 0);
+            grid.AddChild(cancelButton, 0, 1);
+
+            return grid;
+        }
+
+        private static Button CreateOKButton(object editedModel, Window window)
+        {
+            return new Button()
+            {
+                Content = "OK",
+                IsDefault = true,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                CommandParameter = editedModel,
+                Command = new DelegateCommand(x => CompleteEdit(x, window))
+            };
+        }
+
+        private static Button CreateCancelButton(object editedModel, Window window)
+        {
+            return new Button()
+            {
+                Content = "Cancel",
+                IsCancel = true,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                CommandParameter = editedModel,
+                Command = new DelegateCommand(x => CancelEdit(window))
+            };
         }
 
         public void Edit(IRailsEditViewModel viewModel)
@@ -251,19 +283,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Private Methods
 
-        private static void CompleteEdit(object sender, Window window)
-        {
-            if (CanCompleteEdit(sender))
-            {
-                window.DialogResult = true;
-            }
-            else
-            {
-                // TODO: Error Message
-            }
-        }
-
-        private static bool CanCompleteEdit(object model)
+        private static void CompleteEdit(object model, Window window)
         {
             var validationResults = model.Validate();
             if (validationResults.Any())
@@ -272,12 +292,16 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                     string.Join(
                         Environment.NewLine,
                         validationResults.Select(r => r.ErrorMessage)));
-                return false;
             }
             else
             {
-                return true;
+                window.DialogResult = true;
             }
+        }
+
+        private static void CancelEdit(Window window)
+        {
+            window.Close();
         }
 
         private static void CopyRailsBindPropertyValues(object from, object to, Type type)
