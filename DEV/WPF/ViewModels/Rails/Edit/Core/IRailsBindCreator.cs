@@ -1,10 +1,11 @@
 ﻿using System.Reflection;
+using System.Windows.Data;
 
 namespace EasySharpWpf.ViewModels.Rails.Edit.Core
 {
     public interface IRailsBindCreator
     {
-        System.Windows.Data.Binding CreateRailsBinding(PropertyInfo propertyInfo);
+        Binding CreateRailsBinding(PropertyInfo propertyInfo);
         string GetRailsPropertyName(string bindingPath);
         string GetRailsProperyPath(PropertyInfo propertyInfo);
     }
