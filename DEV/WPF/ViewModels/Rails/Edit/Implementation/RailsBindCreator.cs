@@ -10,7 +10,7 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
     {
         public string GetRailsProperyPath(PropertyInfo propertyInfo)
         {
-            return $"[{propertyInfo.Name}]";
+            return $"[{this.GetPropertyName(propertyInfo)}]";
         }
 
         public string GetRailsPropertyName(string bindingPath)
@@ -28,6 +28,11 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
             };
 
             return binding;
+        }
+
+        public string GetPropertyName(PropertyInfo propertyInfo)
+        {
+            return propertyInfo.Name;
         }
 
         private static void AddValidationRule(Binding binding, ValidationAttribute validationAttribute)
