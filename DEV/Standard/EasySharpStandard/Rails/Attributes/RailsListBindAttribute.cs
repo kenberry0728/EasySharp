@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasySharpWpf.ViewModels.Rails.Attributes
+namespace EasySharpStandard.Rails.Attributes
 {
     [AttributeUsage(
         AttributeTargets.Property,
@@ -9,19 +9,19 @@ namespace EasySharpWpf.ViewModels.Rails.Attributes
     public class RailsListBindAttribute : RailsBindAttribute
     {
         public RailsListBindAttribute(Type elementType)
-            :base()
+            : base()
         {
             this.ElementType = elementType;
         }
 
         public RailsListBindAttribute(Type elementType, bool userVisible)
-            :base(userVisible)
+            : base(userVisible)
         {
             this.ElementType = elementType;
         }
 
         public RailsListBindAttribute(Type elementType, string elementName)
-            :base(elementName)
+            : base(elementName)
         {
             this.ElementType = elementType;
         }

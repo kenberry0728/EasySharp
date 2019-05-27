@@ -1,9 +1,9 @@
 ﻿using EasySharpStandard.Attributes.Core;
 using EasySharpStandard.Collections.Core;
+using EasySharpStandard.Rails.Attributes;
 using EasySharpStandard.Reflections.Core;
 using EasySharpStandard.Validations.Core;
 using EasySharpWpf.Commands.Core;
-using EasySharpWpf.ViewModels.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Implementation;

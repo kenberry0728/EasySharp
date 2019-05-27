@@ -68,8 +68,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Core\IViewModelWithModel.cs" />
     <Compile Include="ViewModels\Core\ObservableModelLinkedCollection.cs" />
-    <Compile Include="ViewModels\Rails\Attributes\RailsListBindAttribute.cs" />
-    <Compile Include="ViewModels\Rails\Attributes\RailsBindAttribute.cs" />
     <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModel.cs" />
     <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModelFactoryExtensions.cs" />
     <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModelFactory.cs" />

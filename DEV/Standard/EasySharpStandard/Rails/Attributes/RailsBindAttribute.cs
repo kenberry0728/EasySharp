@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasySharpWpf.ViewModels.Rails.Attributes
+namespace EasySharpStandard.Rails.Attributes
 {
     [AttributeUsage(
         AttributeTargets.Property,
@@ -9,7 +9,7 @@ namespace EasySharpWpf.ViewModels.Rails.Attributes
     public class RailsBindAttribute : Attribute
     {
         public RailsBindAttribute()
-            :this(true)
+            : this(true)
         {
         }
 
