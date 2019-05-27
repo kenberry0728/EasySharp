@@ -1,5 +1,5 @@
 ﻿using EasySharpStandard.Attributes.Core;
-using EasySharpStandard.Rails.Attributes;
+using EasySharpStandardMvvm.Rails.Attributes;
 using System.Reflection;
 
 namespace EasySharpWpf.Models.Rails.Core

@@ -1,4 +1,4 @@
-﻿using EasySharpWpf.ViewModels.Core;
+﻿using EasySharpStandardMvvm.ViewModels.Core;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

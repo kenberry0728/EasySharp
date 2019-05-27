@@ -1,4 +1,4 @@
-﻿using EasySharpWpf.ViewModels.Core;
+﻿using EasySharpStandardMvvm.ViewModels.Core;
 using System;
 
 namespace EasySharpWpf.ViewModels.Rails.Core.Edit

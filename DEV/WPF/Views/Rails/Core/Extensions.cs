@@ -1,4 +1,4 @@
-﻿using EasySharpStandard.Rails.Attributes;
+﻿using EasySharpStandardMvvm.Rails.Attributes;
 using System.Reflection;
 
 namespace EasySharpWpf.Views.Rails.Core
