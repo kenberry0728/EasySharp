@@ -1,5 +1,5 @@
-﻿using EasySharpStandard.Rails.Attributes;
-using EasySharpStandard.Validations.Core.Attributes;
+﻿using EasySharpStandard.Validations.Core.Attributes;
+using EasySharpStandardMvvm.Rails.Attributes;
 using EasySharpWpf.Models.Rails.Core;
 using System.Collections.Generic;
 using System.ComponentModel;

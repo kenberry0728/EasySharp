@@ -1,4 +1,4 @@
-﻿using EasySharpStandard.Rails.Attributes;
+﻿using EasySharpStandardMvvm.Rails.Attributes;
 using EasySharpWpf.Models.Rails.Core;
 using System.ComponentModel;
 

@@ -20,4 +20,9 @@
     <Folder Include="Views\Rails\Core\Index\" />
     <Folder Include="Views\Rails\Implementations\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\EasySharpMvvm\EasySharpStandardMvvm.csproj" />
+    <ProjectReference Include="..\..\Standard\EasySharpStandard\EasySharpStandard.csproj" />
+  </ItemGroup>
 </Project>

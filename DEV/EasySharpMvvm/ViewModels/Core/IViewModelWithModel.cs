@@ -1,4 +1,4 @@
-﻿namespace EasySharpWpf.ViewModels.Core
+﻿namespace EasySharpStandardMvvm.ViewModels.Core
 {
     public interface IViewModelWithModel
     {

@@ -112,6 +112,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EasySharpMvvm\EasySharpStandardMvvm.csproj">
+      <Project>{a70f814a-9df4-417f-95f1-4e64bb4dfde4}</Project>
+      <Name>EasySharpStandardMvvm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Standard\EasySharpStandard\EasySharpStandard.csproj">
       <Project>{e4decfa5-912d-4c5a-9c69-afaaba2b0556}</Project>
       <Name>EasySharpStandard</Name>
