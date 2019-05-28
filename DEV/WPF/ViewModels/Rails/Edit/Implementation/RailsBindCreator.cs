@@ -7,18 +7,8 @@ using System.Windows.Data;
 
 namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
 {
-    internal class RailsBindCreator : ViewModelBase, IRailsBindCreator
+    internal class RailsBindCreator : RailsBindPathCreator, IRailsBindCreator
     {
-        public string GetRailsProperyPath(PropertyInfo propertyInfo)
-        {
-            return $"[{this.GetPropertyName(propertyInfo)}]";
-        }
-
-        public string GetRailsPropertyName(string bindingPath)
-        {
-            return bindingPath.Trim(new[] { '[', ']' });
-        }
-
         public Binding CreateRailsBinding(PropertyInfo propertyInfo)
         {
             var bindingPath = this.GetRailsProperyPath(propertyInfo);
@@ -29,11 +19,6 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
             };
 
             return binding;
-        }
-
-        public string GetPropertyName(PropertyInfo propertyInfo)
-        {
-            return propertyInfo.Name;
         }
 
         private static void AddValidationRule(Binding binding, ValidationAttribute validationAttribute)
