@@ -1,4 +1,5 @@
-﻿using EasySharpWpf.ViewModels.Rails.Edit.Core;
+﻿using EasySharpStandardMvvm.ViewModels.Core;
+using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.Views.ValidationRules.Core;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;

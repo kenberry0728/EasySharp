@@ -74,7 +74,6 @@
     <Compile Include="ViewModels\Rails\Edit\Implementation\RailsEditViewModelFactory.cs" />
     <Compile Include="ViewModels\Rails\Index\Core\IRailsIndexViewModel.cs" />
     <Compile Include="ViewModels\Rails\Edit\Implementation\RailsEditViewModel.cs" />
-    <Compile Include="ViewModels\Core\ViewModelBase.cs" />
     <Compile Include="ViewModels\Rails\Index\Implementation\RailsIndexViewModel.cs" />
     <Compile Include="Views\Converters\DoubleToStringConverter.cs" />
     <Compile Include="Views\Converters\IntToStringConverter.cs" />

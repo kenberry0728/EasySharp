@@ -1,4 +1,5 @@
 ﻿using EasySharpStandard.Collections.Core;
+using EasySharpStandardMvvm.ViewModels.Core;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Core.Index;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
