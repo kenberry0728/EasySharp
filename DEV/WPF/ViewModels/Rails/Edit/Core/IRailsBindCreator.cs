@@ -3,11 +3,8 @@ using System.Windows.Data;
 
 namespace EasySharpWpf.ViewModels.Rails.Edit.Core
 {
-    public interface IRailsBindCreator
+    public interface IRailsBindCreator : IRailsBindPathCreator
     {
         Binding CreateRailsBinding(PropertyInfo propertyInfo);
-        string GetPropertyName(PropertyInfo propertyInfo);
-        string GetRailsPropertyName(string bindingPath);
-        string GetRailsProperyPath(PropertyInfo propertyInfo);
     }
 }

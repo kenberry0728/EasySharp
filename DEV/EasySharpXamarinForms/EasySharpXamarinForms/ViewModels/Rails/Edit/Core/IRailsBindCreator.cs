@@ -1,13 +1,11 @@
-﻿using System.Reflection;
+﻿using EasySharpWpf.ViewModels.Rails.Edit.Core;
+using System.Reflection;
 using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.ViewModels.Rails.Edit.Core
 {
-    public interface IRailsBindCreator
+    public interface IRailsBindCreator : IRailsBindPathCreator
     {
         Binding CreateRailsBinding(PropertyInfo propertyInfo);
-        string GetPropertyName(PropertyInfo propertyInfo);
-        string GetRailsPropertyName(string bindingPath);
-        string GetRailsProperyPath(PropertyInfo propertyInfo);
     }
 }
