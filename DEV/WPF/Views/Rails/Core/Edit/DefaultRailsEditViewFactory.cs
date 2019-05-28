@@ -42,7 +42,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Properties
 
-        public IRailsBindCreator RailsBindCreator { get; }
+        public IRailsBindCreator<Binding> RailsBindCreator { get; }
 
         #endregion
 

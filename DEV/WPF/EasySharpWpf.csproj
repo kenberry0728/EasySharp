@@ -69,7 +69,6 @@
     <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModel.cs" />
     <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModelFactoryExtensions.cs" />
     <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModelFactory.cs" />
-    <Compile Include="ViewModels\Rails\Edit\Core\IRailsBindCreator.cs" />
     <Compile Include="ViewModels\Rails\Edit\Implementation\RailsEditViewModelFactory.cs" />
     <Compile Include="ViewModels\Rails\Index\Core\IRailsIndexViewModel.cs" />
     <Compile Include="ViewModels\Rails\Edit\Implementation\RailsEditViewModel.cs" />

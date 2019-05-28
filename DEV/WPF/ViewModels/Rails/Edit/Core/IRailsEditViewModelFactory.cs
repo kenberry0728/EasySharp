@@ -1,11 +1,12 @@
 ﻿using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using System;
+using System.Windows.Data;
 
 namespace EasySharpWpf.ViewModels.Rails.Edit.Core
 {
     public interface IRailsEditViewModelFactory
     {
-        IRailsBindCreator RailsBindCreator { get; }
+        IRailsBindCreator<Binding> RailsBindCreator { get; }
 
         IRailsEditViewModel Create(object model);
 

@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
 {
-    public class RailsBindPathCreator : ViewModelBase, IRailsBindPathCreator
+    public abstract class RailsBindCreatorBase<TBinding> : ViewModelBase, IRailsBindCreator<TBinding>
     {
         public string GetRailsProperyPath(PropertyInfo propertyInfo)
         {
@@ -20,5 +20,7 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
         {
             return propertyInfo.Name;
         }
+
+        public abstract TBinding CreateRailsBinding(PropertyInfo propertyInfo);
     }
 }
