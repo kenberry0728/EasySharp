@@ -1,9 +1,8 @@
-﻿using EasySharpStandardMvvm.ViewModels.Core;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace EasySharpWpf.ViewModels
+namespace EasySharpStandardMvvm.ViewModels.Core
 {
     public class ObservableModelLinkedCollection<TViewModel> : ObservableCollection<TViewModel>
         where TViewModel : IViewModelWithModel
@@ -11,7 +10,7 @@ namespace EasySharpWpf.ViewModels
         private readonly IList model;
 
         public ObservableModelLinkedCollection(IEnumerable<TViewModel> viewModel, IList model)
-            :base(viewModel)
+            : base(viewModel)
         {
             this.model = model;
         }
