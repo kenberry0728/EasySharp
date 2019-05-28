@@ -6,7 +6,6 @@ using EasySharpStandardMvvm.Rails.Attributes;
 using EasySharpWpf.Commands.Core;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
-using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
 using EasySharpWpf.Views.Converters;
 using EasySharpWpf.Views.Extensions;
 using EasySharpWpf.Views.Rails.Core.Index;
@@ -70,7 +69,15 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
                 if (uiElement != null)
                 {
-                    grid.AddRowDefinition();
+                    if (railsBind is RailsListBindAttribute)
+                    {
+                        grid.AddRowDefinition(new GridLength(1.0, GridUnitType.Star));
+                    }
+                    else
+                    {
+                        grid.AddRowDefinition(GridLength.Auto);
+                    }
+
                     var label = new Label() { Content = property.GetDisplayName() };
                     grid.AddChild(label, gridRow, 0);
                     grid.AddChild(uiElement, gridRow, 1);

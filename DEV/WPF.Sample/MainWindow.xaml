@@ -8,14 +8,19 @@
         Title="MainWindow"
         SizeToContent="WidthAndHeight"
         >
-    <StackPanel>
-        <GroupBox Header="Automatically Created UI">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Header="Automatically Created UI">
             <Grid Name="BookShelfGrid"/>
         </GroupBox>
+
+        <Button Grid.Row="1" Content="Save" Click="SaveClicked" HorizontalAlignment="Center"/>
+
+        <Button Grid.Row="2" Content="Show Custom Edit View Sample" Click="ShowCustomEditView" HorizontalAlignment="Center"/>
         
-        <Button Content="Save" Click="SaveClicked" HorizontalAlignment="Center"/>
-        
-        <Button Content="Show Custom Edit View Sample" Click="ShowCustomEditView" HorizontalAlignment="Center"/>
-        
-    </StackPanel>
+    </Grid>
 </Window>
