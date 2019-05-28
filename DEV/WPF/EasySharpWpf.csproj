@@ -59,6 +59,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Core\CommandBase.cs" />
+    <Compile Include="Commands\Core\CloseWindowCommand.cs" />
     <Compile Include="Commands\Core\DelegateCommand.cs" />
     <Compile Include="Controls\FilePathAndButtonControl.xaml.cs">
       <DependentUpon>FilePathAndButtonControl.xaml</DependentUpon>

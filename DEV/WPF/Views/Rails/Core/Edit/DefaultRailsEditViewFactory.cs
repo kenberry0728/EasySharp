@@ -122,7 +122,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
         private static Grid CreateOKCancelGrid(object editedModel, Window window)
         {
             var okButton = CreateOKButton(editedModel, window);
-            var cancelButton = CreateCancelButton(editedModel, window);
+            var cancelButton = CreateCancelButton(window);
 
             var grid = new Grid();
             grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
@@ -146,15 +146,14 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             };
         }
 
-        private static Button CreateCancelButton(object editedModel, Window window)
+        private static Button CreateCancelButton(Window window)
         {
             return new Button()
             {
                 Content = "Cancel",
                 IsCancel = true,
                 HorizontalAlignment = HorizontalAlignment.Stretch,
-                CommandParameter = editedModel,
-                Command = new DelegateCommand(x => CancelEdit(window))
+                Command = new CloseWindowCommand(window)
             };
         }
 
@@ -304,11 +303,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             {
                 window.DialogResult = true;
             }
-        }
-
-        private static void CancelEdit(Window window)
-        {
-            window.Close();
         }
 
         private static void CopyRailsBindPropertyValues(object from, object to, Type type)
