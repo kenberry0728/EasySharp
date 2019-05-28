@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\Rails\Edit\Implementation\" />
     <Folder Include="Views\Rails\Core\Edit\Interfaces\" />
     <Folder Include="Views\Rails\Core\Index\" />
     <Folder Include="Views\Rails\Implementations\" />
@@ -25,5 +24,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Standard\EasySharpStandardMvvm\EasySharpStandardMvvm.csproj" />
     <ProjectReference Include="..\..\Standard\EasySharpStandard\EasySharpStandard.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
