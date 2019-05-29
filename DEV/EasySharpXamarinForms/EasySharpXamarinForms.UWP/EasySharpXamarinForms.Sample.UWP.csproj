@@ -153,9 +153,9 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EasySharpXamarinForms\EasySharpXamarinForms.csproj">
+    <ProjectReference Include="..\EasySharpXamarinForms\EasySharpXamarinForms.Sample.csproj">
       <Project>{5a98e1b5-002a-4953-bf86-31cb244a3945}</Project>
-      <Name>EasySharpXamarinForms</Name>
+      <Name>EasySharpXamarinForms.Sample</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

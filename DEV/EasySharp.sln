@@ -15,15 +15,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EashSharpStandardTestCore",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpWPF.Sample", "WPF.Sample\EasySharpWPF.Sample.csproj", "{4663722C-2972-4D16-81C9-5A5E7FF02F78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpXamarinForms.Android", "EasySharpXamarinForms\EasySharpXamarinForms.Android\EasySharpXamarinForms.Android.csproj", "{F7BB9710-0466-4DC6-A00B-A49B0ADA95F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpXamarinForms.Sample.Android", "EasySharpXamarinForms\EasySharpXamarinForms.Android\EasySharpXamarinForms.Sample.Android.csproj", "{F7BB9710-0466-4DC6-A00B-A49B0ADA95F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpXamarinForms.iOS", "EasySharpXamarinForms\EasySharpXamarinForms.iOS\EasySharpXamarinForms.iOS.csproj", "{831ABC1B-F0A3-4D1B-AEA5-0FB83F080241}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpXamarinForms.Sample.iOS", "EasySharpXamarinForms\EasySharpXamarinForms.iOS\EasySharpXamarinForms.Sample.iOS.csproj", "{831ABC1B-F0A3-4D1B-AEA5-0FB83F080241}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySharpXamarinForms", "EasySharpXamarinForms\EasySharpXamarinForms\EasySharpXamarinForms.csproj", "{5A98E1B5-002A-4953-BF86-31CB244A3945}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySharpXamarinForms.Sample", "EasySharpXamarinForms\EasySharpXamarinForms\EasySharpXamarinForms.Sample.csproj", "{5A98E1B5-002A-4953-BF86-31CB244A3945}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySharpStandardMvvm", "Standard\EasySharpStandardMvvm\EasySharpStandardMvvm.csproj", "{DD2602CA-756B-4205-B866-3268AF4EC71A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpXamarinForms.UWP", "EasySharpXamarinForms\EasySharpXamarinForms.UWP\EasySharpXamarinForms.UWP.csproj", "{3C7DA133-815A-4EF7-BA45-BA6842B9F82D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpXamarinForms.Sample.UWP", "EasySharpXamarinForms\EasySharpXamarinForms.UWP\EasySharpXamarinForms.Sample.UWP.csproj", "{3C7DA133-815A-4EF7-BA45-BA6842B9F82D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
