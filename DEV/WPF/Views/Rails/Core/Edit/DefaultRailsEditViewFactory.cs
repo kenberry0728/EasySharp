@@ -290,22 +290,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Private Methods
 
-        private static void CompleteEdit(object model, Window window)
-        {
-            var validationResults = model.Validate();
-            if (validationResults.Any())
-            {
-                MessageBox.Show(
-                    string.Join(
-                        Environment.NewLine,
-                        validationResults.Select(r => r.ErrorMessage)));
-            }
-            else
-            {
-                window.DialogResult = true;
-            }
-        }
-
         private static void CopyRailsBindPropertyValues(object from, object to, Type type)
         {
             type.CopyPropertyValues(
