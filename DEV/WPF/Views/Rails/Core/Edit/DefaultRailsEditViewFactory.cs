@@ -99,7 +99,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             editedModel = type.New();
             if (initialValueModel != null)
             {
-                CopyRailsBindPropertyValues(initialValueModel, editedModel, type);
+                initialValueModel.CopyRailsBindPropertyValues(editedModel, type);
             }
 
             var mainGrid = new Grid();
@@ -284,20 +284,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             comboBox.DisplayMemberPath = "DisplayValue";
             comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
             return comboBox;
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        private static void CopyRailsBindPropertyValues(object from, object to, Type type)
-        {
-            type.CopyPropertyValues(
-                from,
-                to,
-                p => p.HasCustomAttribute<RailsBindAttribute>()
-                     && p.CanRead
-                     && p.CanWrite);
         }
 
         #endregion
