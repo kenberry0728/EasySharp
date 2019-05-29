@@ -3,7 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 
-namespace EasySharpWpf.Commands.Core
+namespace EasySharpWpf.Commands.Core.Dialogs
 {
     public class CloseWindowCommand : CommandBase, ICommand
     {
@@ -35,7 +35,7 @@ namespace EasySharpWpf.Commands.Core
 
         public void Execute(object parameter)
         {
-            if(this.CanExecute(parameter)
+            if (this.CanExecute(parameter)
                 && this.TryGetCloseWindow(parameter, out var window))
             {
                 window.Close();

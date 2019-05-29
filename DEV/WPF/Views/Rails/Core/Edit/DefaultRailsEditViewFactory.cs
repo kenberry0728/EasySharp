@@ -4,6 +4,7 @@ using EasySharpStandard.Reflections.Core;
 using EasySharpStandard.Validations.Core;
 using EasySharpStandardMvvm.Rails.Attributes;
 using EasySharpWpf.Commands.Core;
+using EasySharpWpf.Commands.Core.Dialogs;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.Views.Converters;
@@ -142,7 +143,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 IsDefault = true,
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 CommandParameter = editedModel,
-                Command = new DelegateCommand(x => CompleteEdit(x, window))
+                Command = new CompleteEditDialogCommand(window)
             };
         }
 
