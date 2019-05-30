@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Rails\Core\Edit\Interfaces\" />
+    <Folder Include="Views\Rails\Core\Index\" />
+    <Folder Include="Views\Rails\Implementations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Standard\EasySharpStandardMvvm\EasySharpStandardMvvm.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\..\..\..\..\..\..\ProgramData\Xamarin\NuGet\xamarin.forms\3.6.0.264807\lib\uap10.0\Xamarin.Forms.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
