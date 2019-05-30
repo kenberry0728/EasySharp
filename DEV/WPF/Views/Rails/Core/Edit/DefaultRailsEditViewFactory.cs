@@ -29,14 +29,14 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
     {
         #region Fields
 
-        private readonly IRailsEditViewModelFactory railsEditViewModelFactory;
+        private readonly IRailsEditViewModelFactory<Binding> railsEditViewModelFactory;
         private readonly IRailsIndexViewFactory railsIndexViewFactory;
 
         #endregion
 
         public DefaultRailsEditViewFactory(
             IRailsIndexViewFactory railsIndexViewFactory = null,
-            IRailsEditViewModelFactory railsEditViewModelFactory = null)
+            IRailsEditViewModelFactory<Binding> railsEditViewModelFactory = null)
         {
             this.railsIndexViewFactory = railsIndexViewFactory.Resolve(this);
             this.railsEditViewModelFactory = railsEditViewModelFactory.Resolve();

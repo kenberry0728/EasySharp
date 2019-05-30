@@ -12,14 +12,15 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 
 namespace EasySharpWpf.Views.Rails.Implementations
 {
     internal class RailsEditViewBinder : IRailsEditViewBinder
     {
-        private readonly IRailsEditViewModelFactory railsEditViewModelFactory;
+        private readonly IRailsEditViewModelFactory<Binding> railsEditViewModelFactory;
 
-        public RailsEditViewBinder(IRailsEditViewModelFactory railsEditViewModelFactory = null)
+        public RailsEditViewBinder(IRailsEditViewModelFactory<Binding> railsEditViewModelFactory = null)
         {
             this.railsEditViewModelFactory = railsEditViewModelFactory.Resolve();
         }

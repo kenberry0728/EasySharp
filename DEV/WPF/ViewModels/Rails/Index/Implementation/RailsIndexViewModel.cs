@@ -7,17 +7,18 @@ using System;
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Data;
 
 namespace EasySharpWpf.ViewModels.Rails.Implementation.Index
 {
     internal class RailsIndexViewModel : ViewModelBase, IRailsIndexViewModel
     {
-        private readonly IRailsEditViewModelFactory railsEditViewModelFactory;
+        private readonly IRailsEditViewModelFactory<Binding> railsEditViewModelFactory;
 
         public RailsIndexViewModel(
             IList modelList,
             Type type,
-            IRailsEditViewModelFactory railsEditViewModelFactory = null)
+            IRailsEditViewModelFactory<Binding> railsEditViewModelFactory = null)
         {
             this.railsEditViewModelFactory = railsEditViewModelFactory.Resolve();
 
