@@ -1,5 +1,6 @@
 ﻿using EasySharpStandard.Validations.Core;
 using EasySharpStandardMvvm.ViewModels.Core;
+using EasySharpStandardMvvm.ViewModels.Rails.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
 using EasySharpWpf.Views.Rails.Core;
 using System;

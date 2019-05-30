@@ -4,7 +4,7 @@ using EasySharpStandard.Reflections.Core;
 using EasySharpStandard.Validations.Core;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpStandardMvvm.Rails.Attributes;
-using EasySharpStandardMvvm.ViewModels.Core;
+using EasySharpStandardMvvm.ViewModels.Rails.Core;
 using EasySharpWpf.Commands.Core;
 using EasySharpWpf.Commands.Core.Dialogs;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;

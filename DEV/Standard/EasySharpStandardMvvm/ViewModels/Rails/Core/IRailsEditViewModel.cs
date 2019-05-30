@@ -1,6 +1,7 @@
-﻿using System;
+﻿using EasySharpStandardMvvm.ViewModels.Core;
+using System;
 
-namespace EasySharpStandardMvvm.ViewModels.Core
+namespace EasySharpStandardMvvm.ViewModels.Rails.Core
 {
     public interface IRailsEditViewModel : IViewModelWithModel
     {

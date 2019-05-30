@@ -1,4 +1,4 @@
-﻿using EasySharpStandardMvvm.ViewModels.Core;
+﻿using EasySharpStandardMvvm.ViewModels.Rails.Core;
 using System;
 using System.Windows.Data;
 
