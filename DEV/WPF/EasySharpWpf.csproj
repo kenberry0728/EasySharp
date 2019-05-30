@@ -66,8 +66,6 @@
     <Compile Include="Controls\FilePathAndButtonControl.xaml.cs">
       <DependentUpon>FilePathAndButtonControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Rails\Core\RailsList.cs" />
-    <Compile Include="Models\Rails\Core\RailsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModelFactoryExtensions.cs" />
     <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModelFactory.cs" />
