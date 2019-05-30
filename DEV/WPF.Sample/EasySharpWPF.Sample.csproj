@@ -81,11 +81,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\AutoLayout\BookShelf.cs" />
-    <Compile Include="Models\AutoLayout\PublisherType.cs" />
-    <Compile Include="Models\UserDefinedLayout\CustomLayoutBook.cs" />
-    <Compile Include="Models\AutoLayout\Book.cs" />
-    <Compile Include="Models\AutoLayout\Publisher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

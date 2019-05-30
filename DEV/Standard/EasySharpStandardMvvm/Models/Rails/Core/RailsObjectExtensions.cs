@@ -1,7 +1,8 @@
 ﻿using EasySharpStandard.Reflections.Core;
+using EasySharpStandardMvvm.Rails.Attributes;
 using System;
 
-namespace EasySharpStandardMvvm.Rails.Attributes
+namespace EasySharpStandardMvvm.Models.Rails.Core
 {
     public static class RailsObjectExtensions
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace EasySharpWpf.Models.Rails.Core
+namespace EasySharpStandardMvvm.Models.Rails.Core
 {
     public class RailsList<T> : List<T>
         where T : class

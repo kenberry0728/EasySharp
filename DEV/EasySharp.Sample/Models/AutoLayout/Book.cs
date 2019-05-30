@@ -1,6 +1,6 @@
 ﻿using EasySharpStandard.Validations.Core.Attributes;
+using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpStandardMvvm.Rails.Attributes;
-using EasySharpWpf.Models.Rails.Core;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;

@@ -2,6 +2,7 @@
 using EasySharpStandard.Collections.Core;
 using EasySharpStandard.Reflections.Core;
 using EasySharpStandard.Validations.Core;
+using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpStandardMvvm.Rails.Attributes;
 using EasySharpStandardMvvm.ViewModels.Core;
 using EasySharpWpf.Commands.Core;

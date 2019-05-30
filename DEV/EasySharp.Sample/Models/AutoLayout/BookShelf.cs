@@ -1,5 +1,5 @@
-﻿using EasySharpStandardMvvm.Rails.Attributes;
-using EasySharpWpf.Models.Rails.Core;
+﻿using EasySharpStandardMvvm.Models.Rails.Core;
+using EasySharpStandardMvvm.Rails.Attributes;
 using System.ComponentModel;
 
 namespace EasySharpWpf.Sample.Models.AutoLayout
