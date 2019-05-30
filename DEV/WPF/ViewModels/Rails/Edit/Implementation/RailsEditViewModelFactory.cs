@@ -1,4 +1,5 @@
-﻿using EasySharpWpf.ViewModels.Rails.Core.Edit;
+﻿using EasySharpStandardMvvm.ViewModels.Core;
+using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using System;
 using System.Windows.Data;

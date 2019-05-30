@@ -1,4 +1,4 @@
-﻿using EasySharpWpf.ViewModels.Rails.Core.Edit;
+﻿using EasySharpStandardMvvm.ViewModels.Core;
 using System;
 using System.Windows.Data;
 
