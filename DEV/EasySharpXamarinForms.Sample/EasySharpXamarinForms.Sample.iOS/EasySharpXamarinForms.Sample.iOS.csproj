@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6D11C0B5-84D3-4248-B079-6C55D047EA11}</ProjectGuid>
+    <ProjectGuid>{7FF7C596-3A75-44C9-91A0-D5B5EEE94769}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{65C0771A-452F-423B-995C-F0AE46E643BA}</TemplateGuid>
     <OutputType>Exe</OutputType>
@@ -133,13 +133,13 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.6.0.264807" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.425677" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\EasySharpXamarinForms.Sample\EasySharpXamarinForms.Sample.csproj">
-      <Project>{C5DD0D21-9E00-44A4-AA53-555882F64046}</Project>
+      <Project>{23B91382-A38E-4C06-AA1C-70C05A3CFCB3}</Project>
       <Name>EasySharpXamarinForms.Sample</Name>
     </ProjectReference>
   </ItemGroup>

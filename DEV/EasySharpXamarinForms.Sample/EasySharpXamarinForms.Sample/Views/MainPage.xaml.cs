@@ -1,16 +1,17 @@
-﻿using EasySharpXamarinForms.Sample.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using EasySharpXamarinForms.Sample.Models;
+
 namespace EasySharpXamarinForms.Sample.Views
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
-    [DesignTimeVisible(true)]
+    [DesignTimeVisible(false)]
     public partial class MainPage : MasterDetailPage
     {
         Dictionary<int, NavigationPage> MenuPages = new Dictionary<int, NavigationPage>();
