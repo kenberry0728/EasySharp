@@ -20,7 +20,7 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
-        bool INotifyDataErrorInfo.HasErrors => this.Model.Valdate().Any();
+        bool INotifyDataErrorInfo.HasErrors => this.Model.Validate().Any();
 
         IEnumerable INotifyDataErrorInfo.GetErrors(string propertyPath)
         {
