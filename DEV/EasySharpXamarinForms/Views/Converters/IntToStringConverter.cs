@@ -1,7 +1,7 @@
 ﻿using EasySharpStandardMvvm.Views.Converters;
-using System.Windows.Data;
+using Xamarin.Forms;
 
-namespace EasySharpWpf.Views.Converters
+namespace EasySharpXamarinForms.Views.Converters
 {
     public class IntToStringConverter : IntToStringConverterBase, IValueConverter
     {

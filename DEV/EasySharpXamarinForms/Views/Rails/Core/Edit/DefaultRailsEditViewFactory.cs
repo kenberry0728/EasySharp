@@ -7,8 +7,8 @@ using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.Views.Rails.Core;
-using EasySharpWpf.Views.Rails.Core.Edit;
 using EasySharpXamarinForms.ViewModels.Rails.Edit.Core;
+using EasySharpXamarinForms.Views.Converters;
 using EasySharpXamarinForms.Views.Extensions;
 using EasySharpXamarinForms.Views.Rails.Core.Edit.Interfaces;
 using EasySharpXamarinForms.Views.Rails.Core.Index;
@@ -224,7 +224,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             return uiElement;
         }
 
-        protected virtual VisualElement CreateEditDoubleControl(Binding valueBinding)
+        protected virtual View CreateEditDoubleControl(Binding valueBinding)
         {
             valueBinding.Converter = new DoubleToStringConverter();
             var textBox = new TextBox();
@@ -232,7 +232,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             return textBox;
         }
 
-        protected virtual VisualElement CreateEditIntegerControl(Binding valueBinding)
+        protected virtual View CreateEditIntegerControl(Binding valueBinding)
         {
             valueBinding.Converter = new IntToStringConverter();
             var textBox = new TextBox();
