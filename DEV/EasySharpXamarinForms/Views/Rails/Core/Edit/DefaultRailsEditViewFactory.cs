@@ -227,16 +227,16 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
         protected virtual View CreateEditDoubleControl(Binding valueBinding)
         {
             valueBinding.Converter = new DoubleToStringConverter();
-            var textBox = new TextBox();
-            textBox.SetBinding(TextBox.TextProperty, valueBinding);
+            var textBox = new Editor();
+            textBox.SetBinding(Editor.TextProperty, valueBinding);
             return textBox;
         }
 
         protected virtual View CreateEditIntegerControl(Binding valueBinding)
         {
             valueBinding.Converter = new IntToStringConverter();
-            var textBox = new TextBox();
-            textBox.SetBinding(TextBox.TextProperty, valueBinding);
+            var textBox = new Editor();
+            textBox.SetBinding(Editor.TextProperty, valueBinding);
             return textBox;
         }
 
@@ -249,8 +249,8 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
         protected virtual View CreateEditStringControl(Binding valueBinding)
         {
-            var textBox = new TextBox();
-            textBox.SetBinding(TextBox.TextProperty, valueBinding);
+            var textBox = new Editor();
+            textBox.SetBinding(Editor.TextProperty, valueBinding);
             return textBox;
         }
 
@@ -263,7 +263,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
                 DataContext = viewModel,
             };
 
-            button.SetBinding(Button.ContentProperty, new Binding(nameof(viewModel.Content)));
+            button.SetBinding(Button.TextProperty, new Binding(nameof(viewModel.Content)));
             button.SetBinding(Button.CommandParameterProperty, new Binding());
 
             return button;
