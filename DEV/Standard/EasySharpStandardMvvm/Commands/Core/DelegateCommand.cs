@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace EasySharpWpf.Commands.Core
+namespace EasySharpStandardMvvm.Commands.Core
 {
     public class DelegateCommand : CommandBase, ICommand
     {
         private readonly Action<object> executeFunc;
 
         public DelegateCommand(Func<object, bool> canExecute, Action<object> execute)
-            :base(canExecute)
+            : base(canExecute)
         {
             this.executeFunc = execute;
         }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasySharpWpf.Commands.Core
+namespace EasySharpStandardMvvm.Commands.Core
 {
     public class CommandBase
     {

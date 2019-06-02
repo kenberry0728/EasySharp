@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Commands\Core\" />
     <Folder Include="Views\Rails\Implementations\" />
   </ItemGroup>
 
