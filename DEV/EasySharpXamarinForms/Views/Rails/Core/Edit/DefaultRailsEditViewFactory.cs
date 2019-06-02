@@ -243,8 +243,8 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
         protected virtual View CreateEditBooleanControl(Binding valueBinding)
         {
-            var checkBox = new CheckBox() { VerticalAlignment = VerticalAlignment.Center };
-            checkBox.SetBinding(ToggleButton.IsCheckedProperty, valueBinding);
+            var checkBox = new Xamarin.Forms.Switch();
+            checkBox.SetBinding(Xamarin.Forms.Switch.IsToggledProperty, valueBinding);
             return checkBox;
         }
 
@@ -277,14 +277,14 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
         protected virtual View CreateEditEnumControl(Type enumType, Binding valueBinding)
         {
-            var comboBox = new ComboBox();
+            var comboBox = new Picker();
             var itemsSource =
                 Enum.GetValues(enumType).ToEnumerable()
-                    .Select(v => new { Value = v, DisplayValue = enumType.GetEnumDisplayValue(v) });
+                    .Select(v => new { Value = v, DisplayValue = enumType.GetEnumDisplayValue(v) }).ToList();
             comboBox.ItemsSource = itemsSource;
-            comboBox.SelectedValuePath = "Value";
-            comboBox.DisplayMemberPath = "DisplayValue";
-            comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
+            //comboBox.Item = "Value";
+            comboBox.ItemDisplayBinding = new Binding("DisplayValue");
+            comboBox.SetBinding(Picker.SelectedItemProperty, valueBinding);
             return comboBox;
         }
         
