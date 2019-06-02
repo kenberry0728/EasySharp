@@ -5,8 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Rails\Core\Edit\Interfaces\" />
-    <Folder Include="Views\Rails\Core\Index\" />
     <Folder Include="Views\Rails\Implementations\" />
   </ItemGroup>
 

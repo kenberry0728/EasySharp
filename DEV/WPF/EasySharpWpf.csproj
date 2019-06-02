@@ -70,6 +70,7 @@
       <DependentUpon>FilePathAndButtonControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModelFactory.cs" />
     <Compile Include="ViewModels\Rails\Edit\Core\IRailsEditViewModelFactoryExtensions.cs" />
     <Compile Include="ViewModels\Rails\Edit\Implementation\RailsEditViewModelFactory.cs" />
     <Compile Include="ViewModels\Rails\Index\Core\IRailsIndexViewModel.cs" />
@@ -79,8 +80,8 @@
     <Compile Include="Views\Converters\IntToStringConverter.cs" />
     <Compile Include="Views\Extensions\GridExtensions.cs" />
     <Compile Include="Views\Rails\Core\Edit\DefaultRailsEditViewFactory.cs" />
-    <Compile Include="Views\Rails\Core\Edit\Interfaces\IRailsEditViewFactory.cs" />
     <Compile Include="Views\Rails\Core\Edit\Interfaces\IRailsEditViewBinder.cs" />
+    <Compile Include="Views\Rails\Core\Edit\Interfaces\IRailsEditViewFactory.cs" />
     <Compile Include="Views\Rails\Core\Edit\IRailsEditViewBinderExtensions.cs" />
     <Compile Include="ViewModels\Rails\Edit\Implementation\RailsBindCreator.cs" />
     <Compile Include="Views\Rails\Core\Edit\IRailsEditViewFactoryExtensions.cs" />

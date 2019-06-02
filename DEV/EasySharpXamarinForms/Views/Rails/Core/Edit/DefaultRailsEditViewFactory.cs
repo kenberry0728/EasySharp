@@ -4,31 +4,29 @@ using EasySharpStandard.Reflections.Core;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpStandardMvvm.Rails.Attributes;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
-using EasySharpWpf.Commands.Core;
-using EasySharpWpf.Commands.Core.Dialogs;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
-using EasySharpWpf.Views.Converters;
-using EasySharpWpf.Views.Extensions;
-using EasySharpWpf.Views.Rails.Core.Index;
-using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
+using EasySharpWpf.Views.Rails.Core;
+using EasySharpWpf.Views.Rails.Core.Edit;
+using EasySharpXamarinForms.ViewModels.Rails.Edit.Core;
+using EasySharpXamarinForms.Views.Extensions;
+using EasySharpXamarinForms.Views.Rails.Core.Edit.Interfaces;
+using EasySharpXamarinForms.Views.Rails.Core.Index;
+using EasySharpXamarinForms.Views.Rails.Core.Index.Interfaces;
 using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
+using Xamarin.Forms;
 
-namespace EasySharpWpf.Views.Rails.Core.Edit
+namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 {
     public class DefaultRailsEditViewFactory : IRailsEditViewFactory
     {
         #region Fields
 
-        private readonly IRailsEditViewModelFactory<Binding> railsEditViewModelFactory;
+        private readonly IRailsEditViewModelFactory railsEditViewModelFactory;
         private readonly IRailsIndexViewFactory railsIndexViewFactory;
 
         #endregion
@@ -37,6 +35,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             IRailsIndexViewFactory railsIndexViewFactory = null,
             IRailsEditViewModelFactory railsEditViewModelFactory = null)
         {
+
             this.railsIndexViewFactory = railsIndexViewFactory.Resolve(this);
             this.railsEditViewModelFactory = railsEditViewModelFactory.Resolve();
             this.RailsBindCreator = this.railsEditViewModelFactory.RailsBindCreator;
@@ -50,12 +49,12 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Public Methods
 
-        public FrameworkElement CreateEditView(object model, Type type = null)
+        public VisualElement CreateEditView(object model, Type type = null)
         {
             type = type ?? model.GetType();
 
             var viewModel = new RailsEditViewModel(model);
-            var grid = new Grid() { DataContext = viewModel };
+            var grid = new Grid() { BindingContext = viewModel };
             grid.AddColumnDefinition(GridLength.Auto);
             grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
 
@@ -80,7 +79,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                         grid.AddRowDefinition(GridLength.Auto);
                     }
 
-                    var label = new Label() { Content = property.GetDisplayName() };
+                    var label = new Label() { Text = property.GetDisplayName() };
                     grid.AddChild(label, gridRow, 0);
                     grid.AddChild(uiElement, gridRow, 1);
                     gridRow++;
@@ -173,7 +172,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 return;
             }
 
-            foreach (var property in type.GetProperties()     
+            foreach (var property in type.GetProperties()
                                          .Where(p => p.HasVisibleRailsBindAttribute()))
             {
                 var propertyName = this.RailsBindCreator.GetPropertyName(property);
@@ -271,7 +270,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         protected virtual UIElement CreateEditListClassControl(object propertyValue, RailsListBindAttribute railsListBindAttribute)
         {
-            return this.railsIndexViewFactory.CreateIndexView(propertyValue  as IList, railsListBindAttribute.ElementType);
+            return this.railsIndexViewFactory.CreateIndexView(propertyValue as IList, railsListBindAttribute.ElementType);
         }
 
         protected virtual UIElement CreateEditEnumControl(Type enumType, Binding valueBinding)
@@ -285,6 +284,11 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             comboBox.DisplayMemberPath = "DisplayValue";
             comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
             return comboBox;
+        }
+
+        VisualElement IRailsEditViewFactory<Binding, VisualElement>.CreateEditView(object model, Type type)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

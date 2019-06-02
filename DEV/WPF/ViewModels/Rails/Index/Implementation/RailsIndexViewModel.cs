@@ -18,7 +18,7 @@ namespace EasySharpWpf.ViewModels.Rails.Implementation.Index
         public RailsIndexViewModel(
             IList modelList,
             Type type,
-            IRailsEditViewModelFactory<Binding> railsEditViewModelFactory = null)
+            IRailsEditViewModelFactory railsEditViewModelFactory = null)
         {
             this.railsEditViewModelFactory = railsEditViewModelFactory.Resolve();
 

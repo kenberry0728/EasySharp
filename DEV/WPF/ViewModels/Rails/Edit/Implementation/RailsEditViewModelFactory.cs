@@ -6,7 +6,7 @@ using System.Windows.Data;
 
 namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
 {
-    internal class RailsEditViewModelFactory : IRailsEditViewModelFactory<Binding>
+    internal class RailsEditViewModelFactory : IRailsEditViewModelFactory
     {
         public IRailsBindCreator<Binding> RailsBindCreator { get; } = new RailsBindCreator();
 

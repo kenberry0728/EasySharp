@@ -1,6 +1,6 @@
-﻿using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
+﻿using EasySharpXamarinForms.ViewModels.Rails.Edit.Implementation;
 
-namespace EasySharpWpf.ViewModels.Rails.Edit.Core
+namespace EasySharpXamarinForms.ViewModels.Rails.Edit.Core
 {
     public static class IRailsEditViewModelFactoryExtensions
     {

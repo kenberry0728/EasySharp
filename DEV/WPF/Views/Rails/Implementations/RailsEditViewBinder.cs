@@ -21,7 +21,7 @@ namespace EasySharpWpf.Views.Rails.Implementations
     {
         private readonly IRailsEditViewModelFactory<Binding> railsEditViewModelFactory;
 
-        public RailsEditViewBinder(IRailsEditViewModelFactory<Binding> railsEditViewModelFactory = null)
+        public RailsEditViewBinder(IRailsEditViewModelFactory railsEditViewModelFactory = null)
         {
             this.railsEditViewModelFactory = railsEditViewModelFactory.Resolve();
         }
