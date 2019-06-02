@@ -23,7 +23,7 @@ namespace EasySharpWpf.ViewModels.Rails.Implementation.Index
             this.railsEditViewModelFactory = railsEditViewModelFactory.Resolve();
 
             this.ItemsSource = new ObservableModelLinkedCollection<IRailsEditViewModel>(
-                modelList.ToEnumerable().Select(this.railsEditViewModelFactory.Create),
+                modelList.ToEnumerable().Select(m => this.railsEditViewModelFactory.Create(m)),
                 modelList);
             this.ItemType = type;
         }

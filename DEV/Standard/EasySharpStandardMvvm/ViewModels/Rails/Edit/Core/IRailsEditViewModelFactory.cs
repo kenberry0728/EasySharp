@@ -7,8 +7,6 @@ namespace EasySharpStandardMvvm.ViewModels.Rails.Edit.Core
     {
         IRailsBindCreator<TBinding> RailsBindCreator { get; }
 
-        IRailsEditViewModel Create(object model);
-
-        IRailsEditViewModel Create(object model, Type type);
+        IRailsEditViewModel Create(object model, Type type = null);
     }
 }
