@@ -49,7 +49,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
         #region Public Methods
 
-        public VisualElement CreateEditView(object model, Type type = null)
+        public View CreateEditView(object model, Type type = null)
         {
             type = type ?? model.GetType();
 
@@ -103,10 +103,10 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             }
 
             var mainGrid = new Grid();
-            var window = new Window
+            var window = new ContentPage
             {
                 Content = mainGrid,
-                SizeToContent = SizeToContent.WidthAndHeight,
+                //SizeToContent = SizeToContent.WidthAndHeight,
                 Title = "編集：" + type.GetDisplayName(),
             };
 
@@ -117,10 +117,11 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
             mainGrid.AddRowDefinition();
             mainGrid.AddChild(button, 1, 0);
-            return window.ShowDialog();
+            // await Navigation.PushAsync(window);?
+            return true;
         }
 
-        private static Grid CreateOKCancelGrid(object editedModel, Window window)
+        private static Grid CreateOKCancelGrid(object editedModel, ContentPage window)
         {
             var okButton = CreateOKButton(editedModel, window);
             var cancelButton = CreateCancelButton(window);
@@ -135,26 +136,26 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             return grid;
         }
 
-        private static Button CreateOKButton(object editedModel, Window window)
+        private static Button CreateOKButton(object editedModel, ContentPage window)
         {
             return new Button()
             {
-                Content = "OK",
-                IsDefault = true,
-                HorizontalAlignment = HorizontalAlignment.Stretch,
+                Text = "OK",
+                //IsDefault = true,
+                //HorizontalAlignment = HorizontalAlignment.Stretch,
                 CommandParameter = editedModel,
-                Command = new CompleteEditDialogCommand(window)
+                //Command = new CompleteEditDialogCommand(window)
             };
         }
 
-        private static Button CreateCancelButton(Window window)
+        private static Button CreateCancelButton(ContentPage window)
         {
             return new Button()
             {
-                Content = "Cancel",
-                IsCancel = true,
-                HorizontalAlignment = HorizontalAlignment.Stretch,
-                Command = new CloseWindowCommand(window)
+                Text = "Cancel",
+                //IsCancel = true,
+                //HorizontalAlignment = HorizontalAlignment.Stretch,
+                //Command = new CloseWindowCommand(window)
             };
         }
 
@@ -184,9 +185,9 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
         #region Protected Methods
 
-        private UIElement CreateUiElement(object model, PropertyInfo property, RailsBindAttribute railsBind)
+        private View CreateUiElement(object model, PropertyInfo property, RailsBindAttribute railsBind)
         {
-            UIElement uiElement = null;
+            View uiElement = null;
             switch (property.PropertyType)
             {
                 case Type type when type == typeof(string):
@@ -223,7 +224,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             return uiElement;
         }
 
-        protected virtual UIElement CreateEditDoubleControl(Binding valueBinding)
+        protected virtual VisualElement CreateEditDoubleControl(Binding valueBinding)
         {
             valueBinding.Converter = new DoubleToStringConverter();
             var textBox = new TextBox();
@@ -231,7 +232,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             return textBox;
         }
 
-        protected virtual UIElement CreateEditIntegerControl(Binding valueBinding)
+        protected virtual VisualElement CreateEditIntegerControl(Binding valueBinding)
         {
             valueBinding.Converter = new IntToStringConverter();
             var textBox = new TextBox();
@@ -239,21 +240,21 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             return textBox;
         }
 
-        protected virtual UIElement CreateEditBooleanControl(Binding valueBinding)
+        protected virtual View CreateEditBooleanControl(Binding valueBinding)
         {
             var checkBox = new CheckBox() { VerticalAlignment = VerticalAlignment.Center };
             checkBox.SetBinding(ToggleButton.IsCheckedProperty, valueBinding);
             return checkBox;
         }
 
-        protected virtual UIElement CreateEditStringControl(Binding valueBinding)
+        protected virtual View CreateEditStringControl(Binding valueBinding)
         {
             var textBox = new TextBox();
             textBox.SetBinding(TextBox.TextProperty, valueBinding);
             return textBox;
         }
 
-        protected virtual UIElement CreateEditClassControl(object propertyValue)
+        protected virtual View CreateEditClassControl(object propertyValue)
         {
             var viewModel = new RailsEditViewModel(propertyValue);
             var button = new Button()
@@ -268,12 +269,12 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             return button;
         }
 
-        protected virtual UIElement CreateEditListClassControl(object propertyValue, RailsListBindAttribute railsListBindAttribute)
+        protected virtual View CreateEditListClassControl(object propertyValue, RailsListBindAttribute railsListBindAttribute)
         {
             return this.railsIndexViewFactory.CreateIndexView(propertyValue as IList, railsListBindAttribute.ElementType);
         }
 
-        protected virtual UIElement CreateEditEnumControl(Type enumType, Binding valueBinding)
+        protected virtual View CreateEditEnumControl(Type enumType, Binding valueBinding)
         {
             var comboBox = new ComboBox();
             var itemsSource =
@@ -285,12 +286,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
             return comboBox;
         }
-
-        VisualElement IRailsEditViewFactory<Binding, VisualElement>.CreateEditView(object model, Type type)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         #endregion
     }
 }
