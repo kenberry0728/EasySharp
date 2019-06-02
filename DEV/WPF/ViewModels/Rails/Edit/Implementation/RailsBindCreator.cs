@@ -6,7 +6,7 @@ using System.Windows.Data;
 
 namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
 {
-    internal class RailsBindCreator : RailsBindCreatorBase<Binding>, IRailsBindCreator<Binding>
+    internal class RailsBindCreator : RailsBindCreatorBase<Binding>, IRailsBindCreator
     {
         public override Binding CreateRailsBinding(PropertyInfo propertyInfo)
         {

@@ -1,11 +1,11 @@
-﻿using EasySharpWpf.ViewModels.Rails.Edit.Core;
-using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
+﻿using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
+using EasySharpXamarinForms.Views.Rails.Core.Edit.Interfaces;
 using System.Reflection;
 using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Sample.ViewModels.Rails.Edit.Implementation
 {
-    internal class RailsBindCreator : RailsBindCreatorBase<Binding>, IRailsBindCreator<Binding>
+    internal class RailsBindCreator : RailsBindCreatorBase<Binding>, IRailsBindCreator
     {
         public override Binding CreateRailsBinding(PropertyInfo propertyInfo)
         {
