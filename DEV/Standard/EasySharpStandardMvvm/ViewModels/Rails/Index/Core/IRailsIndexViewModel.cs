@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 
-namespace EasySharpWpf.ViewModels.Rails.Core.Index
+namespace EasySharpStandardMvvm.ViewModels.Rails.Index.Core
 {
     public interface IRailsIndexViewModel
     {

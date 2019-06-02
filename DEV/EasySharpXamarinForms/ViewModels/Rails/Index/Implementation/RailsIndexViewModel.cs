@@ -2,18 +2,17 @@
 using EasySharpStandardMvvm.ViewModels.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Index.Core;
-using EasySharpWpf.ViewModels.Rails.Edit.Core;
+using EasySharpXamarinForms.ViewModels.Rails.Edit.Core;
 using System;
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Data;
 
 namespace EasySharpWpf.ViewModels.Rails.Implementation.Index
 {
     internal class RailsIndexViewModel : ViewModelBase, IRailsIndexViewModel
     {
-        private readonly IRailsEditViewModelFactory<Binding> railsEditViewModelFactory;
+        private readonly IRailsEditViewModelFactory railsEditViewModelFactory;
 
         public RailsIndexViewModel(
             IList modelList,

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Commands\Core\" />
+    <Folder Include="ViewModels\Rails\Index\Core\" />
     <Folder Include="Views\Rails\Implementations\" />
   </ItemGroup>
 
