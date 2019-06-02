@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace EasySharpWpf.ViewModels.Rails.Implementation.Index
 {
-    internal class RailsIndexViewModel : ViewModelBase, IRailsIndexViewModel
+    internal class RailsIndexViewModel : RailsIndexViewModelBase, IRailsIndexViewModel
     {
         private readonly IRailsEditViewModelFactory railsEditViewModelFactory;
 
@@ -26,9 +26,5 @@ namespace EasySharpWpf.ViewModels.Rails.Implementation.Index
                 modelList);
             this.ItemType = type;
         }
-
-        public ObservableCollection<IRailsEditViewModel> ItemsSource { get; }
-
-        public Type ItemType { get; }
     }
 }
