@@ -260,7 +260,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             var button = new Button()
             {
                 Command = new DelegateCommand(x => Edit(x as RailsEditViewModel)),
-                DataContext = viewModel,
+                BindingContext = viewModel,
             };
 
             button.SetBinding(Button.TextProperty, new Binding(nameof(viewModel.Content)));
