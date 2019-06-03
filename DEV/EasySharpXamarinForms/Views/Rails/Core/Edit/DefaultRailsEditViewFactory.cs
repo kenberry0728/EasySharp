@@ -28,12 +28,16 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
         #endregion
 
+        #region Constructor
+
         public DefaultRailsEditViewFactory(
             IRailsIndexViewFactory railsIndexViewFactory = null,
             IRailsEditViewModelFactory railsEditViewModelFactory = null)
             : base(railsIndexViewFactory.Resolve(), railsEditViewModelFactory.Resolve())
         {
         }
+
+        #endregion
 
         #region Properties
 
