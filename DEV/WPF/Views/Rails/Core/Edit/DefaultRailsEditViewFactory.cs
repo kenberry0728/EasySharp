@@ -117,7 +117,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
             var button = CreateOKCancelGrid(editedModel, window);
 
-            mainGrid.AddRowDefinition();
+            mainGrid.AddRowDefinition(new GridLength(1.0, GridUnitType.Auto));
             mainGrid.AddChild(button, 1, 0);
             return window.ShowDialog();
         }
