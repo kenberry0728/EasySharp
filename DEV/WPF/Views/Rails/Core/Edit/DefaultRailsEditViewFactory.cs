@@ -68,7 +68,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
                 Debug.Assert(property.CanRead && property.CanWrite);
 
-                var uiElement = CreateUiElement(model, property, railsBind);
+                var uiElement = CreatePropertyEditControl(model, property, railsBind);
 
                 if (uiElement != null)
                 {
@@ -186,7 +186,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Protected Methods
 
-        private UIElement CreateUiElement(object model, PropertyInfo property, RailsBindAttribute railsBind)
+        private UIElement CreatePropertyEditControl(object model, PropertyInfo property, RailsBindAttribute railsBind)
         {
             UIElement uiElement = null;
             switch (property.PropertyType)
