@@ -8,7 +8,8 @@ using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.Views.Rails.Core;
 using EasySharpXamarinForms.ViewModels.Rails.Edit.Core;
 using EasySharpXamarinForms.Views.Converters;
-using EasySharpXamarinForms.Views.Extensions;
+using EasySharpXamarinForms.Views.Layouts.Core;
+using EasySharpXamarinForms.Views.Layouts.Implementation;
 using EasySharpXamarinForms.Views.Rails.Core.Edit;
 using EasySharpXamarinForms.Views.Rails.Core.Edit.Interfaces;
 using EasySharpXamarinForms.Views.Rails.Core.Index;
@@ -32,8 +33,12 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
         public DefaultRailsEditViewFactory(
             IRailsIndexViewFactory railsIndexViewFactory = null,
-            IRailsEditViewModelFactory railsEditViewModelFactory = null)
-            : base(railsIndexViewFactory.Resolve(), railsEditViewModelFactory.Resolve())
+            IRailsEditViewModelFactory railsEditViewModelFactory = null,
+            IGridService gridService = null)
+            : base(
+                  railsIndexViewFactory.Resolve(),
+                  railsEditViewModelFactory.Resolve(),
+                  gridService.Resolve())
         {
         }
 
@@ -50,7 +55,8 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             type = type ?? model.GetType();
 
             var viewModel = this.RailsEditViewModelFactory.Create(model);
-            var grid = new Grid() { BindingContext = viewModel };
+            
+            var grid = this. new Grid() { BindingContext = viewModel };
             grid.AddColumnDefinition(GridLength.Auto);
             grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
 

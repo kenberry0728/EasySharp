@@ -8,4 +8,8 @@
     <ProjectReference Include="..\EasySharpStandard\EasySharpStandard.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Layouts\Implementation\" />
+  </ItemGroup>
+
 </Project>

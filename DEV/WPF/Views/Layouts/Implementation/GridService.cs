@@ -1,15 +1,16 @@
-﻿using System.Windows;
+﻿using EasySharpWpf.Views.Layouts.Core;
+using System.Windows;
 using System.Windows.Controls;
 
-namespace EasySharpWpf.Views.Extensions
+namespace EasySharpWpf.Views.Layouts.Implementation
 {
-    public static class GridExtensions
+    public class GridService : IGridService
     {
-        public static void AddChild(
-            this Grid grid, 
-            UIElement uiElement, 
-            int row = 0, 
-            int column = 0, 
+        public void AddChild(
+            Grid grid,
+            UIElement uiElement,
+            int row = 0,
+            int column = 0,
             double thickness = 10)
         {
             grid.Children.Add(uiElement);
@@ -18,27 +19,32 @@ namespace EasySharpWpf.Views.Extensions
             uiElement.SetValue(FrameworkElement.MarginProperty, new Thickness(thickness));
         }
 
-        public static void AddColumnDefinition(this Grid grid, GridLength width)
+        public void AddColumnDefinition(Grid grid, double width)
         {
             grid.ColumnDefinitions.Add(
                 new ColumnDefinition()
                 {
-                    Width = width
+                    Width = new GridLength(width)
                 });
         }
 
-        public static void AddRowDefinition(this Grid grid)
+        public void AddRowDefinition(Grid grid)
         {
             grid.RowDefinitions.Add(new RowDefinition());
         }
 
-        public static void AddRowDefinition(this Grid grid, GridLength height)
+        public void AddRowDefinition(Grid grid, GridLength height)
         {
             grid.RowDefinitions.Add(
                 new RowDefinition()
                 {
                     Height = height
                 });
+        }
+
+        public Grid Create(object viewModel)
+        {
+            return new Grid() { DataContext = viewModel };
         }
     }
 }

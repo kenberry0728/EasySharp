@@ -1,6 +1,7 @@
 ﻿using EasySharpStandardMvvm.Rails.Attributes;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
+using EasySharpStandardMvvm.Views.Layouts.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using System;
 using System.Collections;
@@ -19,7 +20,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         public DefaultRailsEditViewFactoryBase(
             IRailsIndexViewFactory<TViewControl> railsIndexViewFactory,
-            IRailsEditViewModelFactory<TBinding> railsEditViewModelFactory)
+            IRailsEditViewModelFactory<TBinding> railsEditViewModelFactory,
+            IGridService<TGrid, TGridLength, TViewControl>)
         {
             this.RailsIndexViewFactory = railsIndexViewFactory;
             this.RailsEditViewModelFactory = railsEditViewModelFactory;
@@ -65,9 +67,48 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return this.ShowEditView(null, type, out editedModel);
         }
 
-        public abstract TViewControl CreateEditView(object model, Type type = null);
+        public abstract TViewControl CreateEditView(object model, Type type = null)
+        {
+            type = type ?? model.GetType();
+
+            var viewModel = this.RailsEditViewModelFactory.Create(model);
+            var grid = new Grid() { BindingContext = viewModel };
+            grid.AddColumnDefinition(GridLength.Auto);
+            grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
+
+            var gridRow = 0;
+            foreach (var property in type.GetProperties()
+                                         .Where(p => p.HasVisibleRailsBindAttribute()))
+            {
+                var railsBind = property.GetCustomAttribute<RailsBindAttribute>();
+
+                Debug.Assert(property.CanRead && property.CanWrite);
+
+                var uiElement = this.CreatePropertyEditControl(model, property, railsBind);
+
+                if (uiElement != null)
+                {
+                    if (railsBind is RailsListBindAttribute)
+                    {
+                        grid.AddRowDefinition(new GridLength(1.0, GridUnitType.Star));
+                    }
+                    else
+                    {
+                        grid.AddRowDefinition(GridLength.Auto);
+                    }
+
+                    var label = new Label() { Text = property.GetDisplayName() };
+                    grid.AddChild(label, gridRow, 0);
+                    grid.AddChild(uiElement, gridRow, 1);
+                    gridRow++;
+                }
+            }
+
+            return grid;
+        }
 
         public abstract bool? ShowEditView(object initialValueModel, Type type, out object editedModel);
+
 
         #endregion
 
