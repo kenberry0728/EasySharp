@@ -4,6 +4,9 @@ using EasySharpStandardMvvm.Rails.Attributes;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Implementation.Index;
 using EasySharpWpf.Views.Rails.Core;
+using EasySharpWpf.Views.Rails.Core.Edit;
+using EasySharpXamarinForms.Views.Rails.Core.Edit;
+using EasySharpXamarinForms.Views.Rails.Core.Edit.Interfaces;
 using EasySharpXamarinForms.Views.Rails.Core.Index;
 using EasySharpXamarinForms.Views.Rails.Core.Index.Interfaces;
 using System;
@@ -12,6 +15,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Views.Rails.Core.Index
 {
@@ -44,11 +48,11 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Index
             var grid = new Grid();
             var viewModel = new RailsIndexViewModel(modelList, type);
 
-            grid.AddRowDefinition(new GridLength(1.0, GridUnitType.Star));
-            grid.AddChild(CreateTable(viewModel), thickness: 0);
+            //grid.AddRowDefinition(new GridLength(1.0, GridUnitType.Star));
+            //grid.AddChild(CreateTable(viewModel), thickness: 0);
 
-            grid.AddRowDefinition(GridLength.Auto);
-            grid.AddChild(CreateAddButton(viewModel), 1, thickness: 0);
+            //grid.AddRowDefinition(GridLength.Auto);
+            //grid.AddChild(CreateAddButton(viewModel), 1, thickness: 0);
 
             return grid;
         }
@@ -61,121 +65,121 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Index
 
         #region Private Methods
 
-        private FrameworkElement CreateTable(RailsIndexViewModel viewModel)
-        {
-            var dataGrid = new DataGrid
-            {
-                DataContext = viewModel,
-                AutoGenerateColumns = false,
-                CanUserAddRows = false,
-                ItemsSource = viewModel.ItemsSource
-            };
+        //private View CreateTable(RailsIndexViewModel viewModel)
+        //{
+        //    var dataGrid = new DataGrid
+        //    {
+        //        DataContext = viewModel,
+        //        AutoGenerateColumns = false,
+        //        CanUserAddRows = false,
+        //        ItemsSource = viewModel.ItemsSource
+        //    };
 
-            foreach (var property in viewModel.ItemType.GetProperties()
-                                              .Where(p => p.HasVisibleRailsBindAttribute()))
-            {
-                Debug.Assert(property.CanRead);
+        //    foreach (var property in viewModel.ItemType.GetProperties()
+        //                                      .Where(p => p.HasVisibleRailsBindAttribute()))
+        //    {
+        //        Debug.Assert(property.CanRead);
 
-                var railsBind = property.GetCustomAttribute<RailsBindAttribute>();
-                dataGrid.Columns.Add(CreateRailsBindColumn(property));
-            }
+        //        var railsBind = property.GetCustomAttribute<RailsBindAttribute>();
+        //        dataGrid.Columns.Add(CreateRailsBindColumn(property));
+        //    }
 
-            dataGrid.Columns.Add(CreateEditColumn());
-            dataGrid.Columns.Add(CreateDeleteColumn(viewModel));
+        //    dataGrid.Columns.Add(CreateEditColumn());
+        //    dataGrid.Columns.Add(CreateDeleteColumn(viewModel));
 
-            return dataGrid;
-        }
+        //    return dataGrid;
+        //}
 
-        private DataGridTextColumn CreateRailsBindColumn(
-            PropertyInfo property)
-        {
-            var bindingPath = this.railsEditViewFactory.RailsBindCreator.GetRailsProperyPath(property);
-            var binding = new Binding(bindingPath)
-            {
-                Mode = BindingMode.OneWay,
-            };
+        //private DataGridTextColumn CreateRailsBindColumn(
+        //    PropertyInfo property)
+        //{
+        //    var bindingPath = this.railsEditViewFactory.RailsBindCreator.GetRailsProperyPath(property);
+        //    var binding = new Binding(bindingPath)
+        //    {
+        //        Mode = BindingMode.OneWay,
+        //    };
 
-            return new DataGridTextColumn
-            {
-                Binding = binding,
-                IsReadOnly = true,
-                Header = property.GetDisplayName()
-            };
-        }
+        //    return new DataGridTextColumn
+        //    {
+        //        Binding = binding,
+        //        IsReadOnly = true,
+        //        Header = property.GetDisplayName()
+        //    };
+        //}
 
-        private static DataGridTemplateColumn CreateButtonColumn(ICommand command, string commandLabel)
-        {
-            var templateColumn = new DataGridTemplateColumn();
-            var editDataTemplate = new DataTemplate();
-            var buttonElementFactory = new FrameworkElementFactory(typeof(Button));
-            buttonElementFactory.SetValue(ButtonBase.CommandProperty, command);
-            buttonElementFactory.SetValue(ButtonBase.CommandParameterProperty, new Binding());
-            buttonElementFactory.SetValue(ContentControl.ContentProperty, commandLabel);
-            editDataTemplate.VisualTree = buttonElementFactory;
-            templateColumn.CellTemplate = editDataTemplate;
-            return templateColumn;
-        }
+        //private static DataGridTemplateColumn CreateButtonColumn(ICommand command, string commandLabel)
+        //{
+        //    var templateColumn = new DataGridTemplateColumn();
+        //    var editDataTemplate = new DataTemplate();
+        //    var buttonElementFactory = new FrameworkElementFactory(typeof(Button));
+        //    buttonElementFactory.SetValue(ButtonBase.CommandProperty, command);
+        //    buttonElementFactory.SetValue(ButtonBase.CommandParameterProperty, new Binding());
+        //    buttonElementFactory.SetValue(ContentControl.ContentProperty, commandLabel);
+        //    editDataTemplate.VisualTree = buttonElementFactory;
+        //    templateColumn.CellTemplate = editDataTemplate;
+        //    return templateColumn;
+        //}
 
-        #region Edit
+        //#region Edit
 
-        private DataGridTemplateColumn CreateEditColumn()
-        {
-            return CreateButtonColumn(
-                new DelegateCommand(x => this.railsEditViewFactory.Edit(x as RailsEditViewModel)),
-                "編集");
-        }
+        //private DataGridTemplateColumn CreateEditColumn()
+        //{
+        //    return CreateButtonColumn(
+        //        new DelegateCommand(x => this.railsEditViewFactory.Edit(x as RailsEditViewModel)),
+        //        "編集");
+        //}
 
-        #endregion
+        //#endregion
 
-        #region Delete
+        //#region Delete
 
-        private static DataGridTemplateColumn CreateDeleteColumn(RailsIndexViewModel viewModel)
-        {
-            return CreateButtonColumn(
-                new DelegateCommand(x => Delete(x, viewModel)),
-                "削除");
-        }
+        //private static DataGridTemplateColumn CreateDeleteColumn(RailsIndexViewModel viewModel)
+        //{
+        //    return CreateButtonColumn(
+        //        new DelegateCommand(x => Delete(x, viewModel)),
+        //        "削除");
+        //}
 
-        private static void Delete(object arg, RailsIndexViewModel indexViewModel)
-        {
-            if (!(arg is RailsEditViewModel itemViewModel))
-            {
-                return;
-            }
+        //private static void Delete(object arg, RailsIndexViewModel indexViewModel)
+        //{
+        //    if (!(arg is RailsEditViewModel itemViewModel))
+        //    {
+        //        return;
+        //    }
 
-            if (MessageBoxResult.OK != MessageBox.Show("本当に削除しますか？", "削除", MessageBoxButton.OKCancel))
-            {
-                return;
-            }
+        //    if (MessageBoxResult.OK != MessageBox.Show("本当に削除しますか？", "削除", MessageBoxButton.OKCancel))
+        //    {
+        //        return;
+        //    }
 
-            indexViewModel.ItemsSource.Remove(itemViewModel);
-        }
+        //    indexViewModel.ItemsSource.Remove(itemViewModel);
+        //}
 
-        #endregion
+        //#endregion
 
-        #region Add
+        //#region Add
 
-        private UIElement CreateAddButton(RailsIndexViewModel viewModel)
-        {
-            var button = new Button()
-            {
-                Content = "+",
-                HorizontalAlignment = HorizontalAlignment.Left
-            };
-            button.Command = new DelegateCommand((x) => AddNewItem(viewModel));
+        //private View CreateAddButton(RailsIndexViewModel viewModel)
+        //{
+        //    var button = new Button()
+        //    {
+        //        Text = "+",
+        //        //HorizontalAlignment = HorizontalAlignment.Left
+        //    };
+        //    button.Command = new DelegateCommand((x) => AddNewItem(viewModel));
 
-            return button;
-        }
+        //    return button;
+        //}
 
-        private void AddNewItem(RailsIndexViewModel indexViewModel)
-        {
-            if (this.railsEditViewFactory.ShowEditWindow(indexViewModel.ItemType, out var editedInstance) == true)
-            {
-                indexViewModel.ItemsSource.Add(new RailsEditViewModel(editedInstance));
-            }
-        }
+        //private void AddNewItem(RailsIndexViewModel indexViewModel)
+        //{
+        //    if (this.railsEditViewFactory.ShowEditWindow(indexViewModel.ItemType, out var editedInstance) == true)
+        //    {
+        //        indexViewModel.ItemsSource.Add(new RailsEditViewModel(editedInstance));
+        //    }
+        //}
 
-        #endregion
+        //#endregion
 
         #endregion
     }
