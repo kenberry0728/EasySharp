@@ -45,7 +45,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
         {
             type = type ?? model.GetType();
 
-            var viewModel = new RailsEditViewModel(model);
+            var viewModel = this.RailsEditViewModelFactory.Create(model);
             var grid = new Grid() { BindingContext = viewModel };
             grid.AddColumnDefinition(GridLength.Auto);
             grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));

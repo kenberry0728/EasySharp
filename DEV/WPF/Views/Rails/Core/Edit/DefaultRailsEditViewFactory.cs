@@ -22,7 +22,8 @@ using System.Windows.Data;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
-    public class DefaultRailsEditViewFactory : DefaultRailsEditViewFactoryBase, IRailsEditViewFactory
+    public class DefaultRailsEditViewFactory
+        : DefaultRailsEditViewFactoryBase, IRailsEditViewFactory
     {
         #region Fields
 
@@ -45,7 +46,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
         {
             type = type ?? model.GetType();
 
-            var viewModel = new RailsEditViewModel(model);
+            var viewModel = this.RailsEditViewModelFactory.Create(model);
             var grid = new Grid() { DataContext = viewModel };
             grid.AddColumnDefinition(GridLength.Auto);
             grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));

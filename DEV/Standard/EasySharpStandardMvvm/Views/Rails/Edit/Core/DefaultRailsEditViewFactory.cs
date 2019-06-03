@@ -73,7 +73,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Protected Methods
 
-        protected TViewControl CreatePropertyEditControl(object model, PropertyInfo property, RailsBindAttribute railsBind)
+        protected virtual TViewControl CreatePropertyEditControl(object model, PropertyInfo property, RailsBindAttribute railsBind)
         {
             TViewControl uiElement = default;
             switch (property.PropertyType)
