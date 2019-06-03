@@ -1,11 +1,11 @@
-﻿using System;
+﻿using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
+using System;
 using System.Collections;
 using System.Windows;
 
 namespace EasySharpWpf.Views.Rails.Core.Index.Interfaces
 {
-    public interface IRailsIndexViewFactory
+    public interface IRailsIndexViewFactory : IRailsIndexViewFactory<FrameworkElement>
     {
-        FrameworkElement CreateIndexView(IList model, Type type);
     }
 }

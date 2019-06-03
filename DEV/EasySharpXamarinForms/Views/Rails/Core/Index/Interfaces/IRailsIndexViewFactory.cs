@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
 using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Views.Rails.Core.Index.Interfaces
 {
-    public interface IRailsIndexViewFactory
+    public interface IRailsIndexViewFactory : IRailsIndexViewFactory<View>
     {
-        View CreateIndexView(IList model, Type type);
     }
 }
