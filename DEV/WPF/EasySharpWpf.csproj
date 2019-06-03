@@ -78,6 +78,7 @@
     <Compile Include="Views\Converters\IntToStringConverter.cs" />
     <Compile Include="Views\Extensions\GridExtensions.cs" />
     <Compile Include="Views\Rails\Core\Edit\DefaultRailsEditViewFactory.cs" />
+    <Compile Include="Views\Rails\Core\Edit\DefaultRailsEditViewFactoryBase.cs" />
     <Compile Include="Views\Rails\Core\Edit\Interfaces\IRailsEditViewBinder.cs" />
     <Compile Include="Views\Rails\Core\Edit\Interfaces\IRailsEditViewFactory.cs" />
     <Compile Include="Views\Rails\Core\Edit\IRailsEditViewBinderExtensions.cs" />

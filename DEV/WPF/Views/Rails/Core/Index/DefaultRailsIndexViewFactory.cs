@@ -1,6 +1,7 @@
 ﻿using EasySharpStandard.Attributes.Core;
 using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Rails.Attributes;
+using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Implementation.Index;
 using EasySharpWpf.Views.EasyViews.Core;
@@ -44,7 +45,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         #region Public Methods
 
-        public FrameworkElement CreateIndexView(IList modelList, Type type)
+        public UIElement CreateIndexView(IList modelList, Type type)
         {
             var grid = new Grid();
             var viewModel = new RailsIndexViewModel(modelList, type);

@@ -4,7 +4,6 @@ using EasySharpStandard.Reflections.Core;
 using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpStandardMvvm.Rails.Attributes;
-using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.Commands.Core.Dialogs;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
@@ -13,7 +12,6 @@ using EasySharpWpf.Views.Extensions;
 using EasySharpWpf.Views.Rails.Core.Index;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
 using System;
-using System.Collections;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -24,33 +22,26 @@ using System.Windows.Data;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
-    public class DefaultRailsEditViewFactory : IRailsEditViewFactory
+    public class DefaultRailsEditViewFactory : DefaultRailsEditViewFactoryBase, IRailsEditViewFactory
     {
         #region Fields
-
-        private readonly IRailsEditViewModelFactory<Binding> railsEditViewModelFactory;
-        private readonly IRailsIndexViewFactory railsIndexViewFactory;
 
         #endregion
 
         public DefaultRailsEditViewFactory(
             IRailsIndexViewFactory railsIndexViewFactory = null,
             IRailsEditViewModelFactory railsEditViewModelFactory = null)
+            :base(railsIndexViewFactory.Resolve(), railsEditViewModelFactory.Resolve())
         {
-            this.railsIndexViewFactory = railsIndexViewFactory.Resolve(this);
-            this.railsEditViewModelFactory = railsEditViewModelFactory.Resolve();
-            this.RailsBindCreator = this.railsEditViewModelFactory.RailsBindCreator;
         }
 
         #region Properties
-
-        public IRailsBindCreator<Binding> RailsBindCreator { get; }
 
         #endregion
 
         #region Public Methods
 
-        public FrameworkElement CreateEditView(object model, Type type = null)
+        public override UIElement CreateEditView(object model, Type type = null)
         {
             type = type ?? model.GetType();
 
@@ -90,12 +81,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return grid;
         }
 
-        public bool? ShowEditWindow(Type type, out object editedModel)
-        {
-            return this.ShowEditWindow(null, type, out editedModel);
-        }
-
-        public bool? ShowEditWindow(object initialValueModel, Type type, out object editedModel)
+        public override bool? ShowEditWindow(object initialValueModel, Type type, out object editedModel)
         {
             editedModel = type.New();
             if (initialValueModel != null)
@@ -159,72 +145,11 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             };
         }
 
-        public void Edit(IRailsEditViewModel viewModel)
-        {
-            var subModel = viewModel.Model;
-            var type = viewModel.Type;
-            if (!type.IsClass)
-            {
-                return;
-            }
-
-            if (this.ShowEditWindow(subModel, type, out object editInstance) != true)
-            {
-                return;
-            }
-
-            foreach (var property in type.GetProperties()     
-                                         .Where(p => p.HasVisibleRailsBindAttribute()))
-            {
-                var propertyName = this.RailsBindCreator.GetPropertyName(property);
-                viewModel[propertyName] = property.GetValue(editInstance);
-            }
-        }
-
         #endregion
 
         #region Protected Methods
 
-        private UIElement CreatePropertyEditControl(object model, PropertyInfo property, RailsBindAttribute railsBind)
-        {
-            UIElement uiElement = null;
-            switch (property.PropertyType)
-            {
-                case Type type when type == typeof(string):
-                    uiElement = CreateEditStringControl(this.RailsBindCreator.CreateRailsBinding(property));
-                    break;
-                case Type type when type == typeof(int):
-                    uiElement = CreateEditIntegerControl(this.RailsBindCreator.CreateRailsBinding(property));
-                    break;
-                case Type type when type == typeof(double):
-                    uiElement = CreateEditDoubleControl(this.RailsBindCreator.CreateRailsBinding(property));
-                    break;
-                case Type type when type == typeof(bool):
-                    uiElement = CreateEditBooleanControl(this.RailsBindCreator.CreateRailsBinding(property));
-                    break;
-                case Type type when type.IsClass:
-                    if (railsBind is RailsListBindAttribute railsListBindAttribute)
-                    {
-                        uiElement = CreateEditListClassControl(property.GetValue(model), railsListBindAttribute);
-                        break;
-                    }
-                    else
-                    {
-                        uiElement = CreateEditClassControl(property.GetValue(model));
-                        break;
-                    }
-                case Type type when type.IsClass:
-                    uiElement = CreateEditClassControl(property.GetValue(model));
-                    break;
-                case Type type when type.IsEnum:
-                    uiElement = CreateEditEnumControl(type, this.RailsBindCreator.CreateRailsBinding(property));
-                    break;
-            }
-
-            return uiElement;
-        }
-
-        protected virtual UIElement CreateEditDoubleControl(Binding valueBinding)
+        protected override UIElement CreateEditDoubleControl(Binding valueBinding)
         {
             valueBinding.Converter = new DoubleToStringConverter();
             var textBox = new TextBox();
@@ -232,7 +157,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return textBox;
         }
 
-        protected virtual UIElement CreateEditIntegerControl(Binding valueBinding)
+        protected override UIElement CreateEditIntegerControl(Binding valueBinding)
         {
             valueBinding.Converter = new IntToStringConverter();
             var textBox = new TextBox();
@@ -240,21 +165,21 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return textBox;
         }
 
-        protected virtual UIElement CreateEditBooleanControl(Binding valueBinding)
+        protected override UIElement CreateEditBooleanControl(Binding valueBinding)
         {
             var checkBox = new CheckBox() { VerticalAlignment = VerticalAlignment.Center };
             checkBox.SetBinding(ToggleButton.IsCheckedProperty, valueBinding);
             return checkBox;
         }
 
-        protected virtual UIElement CreateEditStringControl(Binding valueBinding)
+        protected override UIElement CreateEditStringControl(Binding valueBinding)
         {
             var textBox = new TextBox();
             textBox.SetBinding(TextBox.TextProperty, valueBinding);
             return textBox;
         }
 
-        protected virtual UIElement CreateEditClassControl(object propertyValue)
+        protected override UIElement CreateEditClassControl(object propertyValue)
         {
             var viewModel = new RailsEditViewModel(propertyValue);
             var button = new Button()
@@ -269,12 +194,12 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return button;
         }
 
-        protected virtual UIElement CreateEditListClassControl(object propertyValue, RailsListBindAttribute railsListBindAttribute)
+        protected override UIElement CreateEditListClassControl(object propertyValue, RailsListBindAttribute railsListBindAttribute)
         {
-            return this.railsIndexViewFactory.CreateIndexView(propertyValue  as IList, railsListBindAttribute.ElementType);
+            return base.CreateEditListClassControl(propertyValue, railsListBindAttribute);
         }
 
-        protected virtual UIElement CreateEditEnumControl(Type enumType, Binding valueBinding)
+        protected override UIElement CreateEditEnumControl(Type enumType, Binding valueBinding)
         {
             var comboBox = new ComboBox();
             var itemsSource =
