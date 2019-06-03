@@ -1,9 +1,7 @@
 ﻿using EasySharpStandard.Attributes.Core;
 using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Rails.Attributes;
-using EasySharpWpf.Commands.Core;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
-using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
 using EasySharpWpf.ViewModels.Rails.Implementation.Index;
 using EasySharpWpf.Views.EasyViews.Core;
 using EasySharpWpf.Views.Extensions;
