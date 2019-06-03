@@ -47,7 +47,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 return;
             }
 
-            if (this.ShowEditWindow(subModel, type, out object editInstance) != true)
+            if (this.ShowEditView(subModel, type, out object editInstance) != true)
             {
                 return;
             }
@@ -62,12 +62,12 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         public virtual bool? ShowEditWindow(Type type, out object editedModel)
         {
-            return this.ShowEditWindow(null, type, out editedModel);
+            return this.ShowEditView(null, type, out editedModel);
         }
 
         public abstract TViewControl CreateEditView(object model, Type type = null);
 
-        public abstract bool? ShowEditWindow(object initialValueModel, Type type, out object editedModel);
+        public abstract bool? ShowEditView(object initialValueModel, Type type, out object editedModel);
 
         #endregion
 

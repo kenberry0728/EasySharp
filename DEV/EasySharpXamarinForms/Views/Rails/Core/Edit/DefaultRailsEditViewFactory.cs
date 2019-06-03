@@ -81,7 +81,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             return grid;
         }
 
-        public override bool? ShowEditWindow(object initialValueModel, Type type, out object editedModel)
+        public override bool? ShowEditView(object initialValueModel, Type type, out object editedModel)
         {
             editedModel = type.New();
             if (initialValueModel != null)

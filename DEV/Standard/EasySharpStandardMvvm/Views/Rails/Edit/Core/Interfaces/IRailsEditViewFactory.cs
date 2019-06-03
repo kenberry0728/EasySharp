@@ -8,7 +8,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
     {
         IRailsBindCreator<TBinding> RailsBindCreator { get; }
         TViewControl CreateEditView(object model, Type type = null);
-        bool? ShowEditWindow(object initialValueModel, Type type, out object editedModel);
+        bool? ShowEditView(object initialValueModel, Type type, out object editedModel);
         bool? ShowEditWindow(Type type, out object editedModel);
         void Edit(IRailsEditViewModel viewModel);
     }
