@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasySharpStandardMvvm.Rails.Attributes
+namespace EasySharpStandardMvvm.Attributes.Rails
 {
     [AttributeUsage(
         AttributeTargets.Property,

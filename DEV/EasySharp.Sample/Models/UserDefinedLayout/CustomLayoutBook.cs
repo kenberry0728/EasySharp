@@ -1,5 +1,5 @@
-﻿using EasySharpStandardMvvm.Models.Rails.Core;
-using EasySharpStandardMvvm.Rails.Attributes;
+﻿using EasySharpStandardMvvm.Attributes.Rails;
+using EasySharpStandardMvvm.Models.Rails.Core;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 

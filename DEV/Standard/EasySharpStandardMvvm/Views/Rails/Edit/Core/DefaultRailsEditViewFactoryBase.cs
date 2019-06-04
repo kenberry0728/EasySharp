@@ -1,5 +1,5 @@
 ﻿using EasySharpStandard.Attributes.Core;
-using EasySharpStandardMvvm.Rails.Attributes;
+using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
 using EasySharpStandardMvvm.Views.Layouts.Core;
