@@ -1,6 +1,7 @@
 ﻿namespace EasySharpStandardMvvm.Views.Layouts.Core
 {
-    public interface IGridService<TGrid, TGridLength, TViewControl>
+    public interface IGridService<TGrid, TViewControl>
+        where TGrid : TViewControl
     {
         void AddChild(
             TGrid grid,
@@ -23,6 +24,6 @@
 
         void AddAutoRowDefinition(TGrid grid);
 
-        TGrid Create(object viewModel);
+        TGrid Create(object viewModel = null);
     }
 }

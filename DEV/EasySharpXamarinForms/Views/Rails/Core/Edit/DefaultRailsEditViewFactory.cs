@@ -26,7 +26,6 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
     {
         #region Fields
 
-
         #endregion
 
         #region Constructor
@@ -50,47 +49,6 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
         #region Public Methods
 
-        public override View CreateEditView(object model, Type type = null)
-        {
-            type = type ?? model.GetType();
-
-            var viewModel = this.RailsEditViewModelFactory.Create(model);
-            
-            var grid = this. new Grid() { BindingContext = viewModel };
-            grid.AddColumnDefinition(GridLength.Auto);
-            grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
-
-            var gridRow = 0;
-            foreach (var property in type.GetProperties()
-                                         .Where(p => p.HasVisibleRailsBindAttribute()))
-            {
-                var railsBind = property.GetCustomAttribute<RailsBindAttribute>();
-
-                Debug.Assert(property.CanRead && property.CanWrite);
-
-                var uiElement = this.CreatePropertyEditControl(model, property, railsBind);
-
-                if (uiElement != null)
-                {
-                    if (railsBind is RailsListBindAttribute)
-                    {
-                        grid.AddRowDefinition(new GridLength(1.0, GridUnitType.Star));
-                    }
-                    else
-                    {
-                        grid.AddRowDefinition(GridLength.Auto);
-                    }
-
-                    var label = new Label() { Text = property.GetDisplayName() };
-                    grid.AddChild(label, gridRow, 0);
-                    grid.AddChild(uiElement, gridRow, 1);
-                    gridRow++;
-                }
-            }
-
-            return grid;
-        }
-
         public override bool? ShowEditView(object initialValueModel, Type type, out object editedModel)
         {
             editedModel = type.New();
@@ -99,7 +57,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
                 initialValueModel.CopyRailsBindPropertyValues(editedModel, type);
             }
 
-            var mainGrid = new Grid();
+            var mainGrid = this.GridService.Create();
             var window = new ContentPage
             {
                 Content = mainGrid,
@@ -107,28 +65,29 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
                 Title = "編集：" + type.GetDisplayName(),
             };
 
-            mainGrid.AddRowDefinition();
-            mainGrid.AddChild(this.CreateEditView(editedModel), 0, 0);
+            this.GridService.AddRowDefinition(mainGrid);
+            this.GridService.AddChild(mainGrid, this.CreateEditView(editedModel), 0, 0);
 
             var button = CreateOKCancelGrid(editedModel, window);
 
-            mainGrid.AddRowDefinition();
-            mainGrid.AddChild(button, 1, 0);
+            this.GridService.AddRowDefinition(mainGrid);
+            this.GridService.AddChild(mainGrid, button, 1, 0);
             // await Navigation.PushAsync(window);?
             return true;
         }
 
-        private static Grid CreateOKCancelGrid(object editedModel, ContentPage window)
+        private Grid CreateOKCancelGrid(object editedModel, ContentPage window)
         {
             var okButton = CreateOKButton(editedModel, window);
             var cancelButton = CreateCancelButton(window);
 
-            var grid = new Grid();
-            grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
-            grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
+            var grid = this.GridService.Create();
 
-            grid.AddChild(okButton, 0, 0);
-            grid.AddChild(cancelButton, 0, 1);
+            this.GridService.AddStarColumnDefinition(grid);
+            this.GridService.AddStarColumnDefinition(grid);
+
+            this.GridService.AddChild(grid, okButton, 0, 0);
+            this.GridService.AddChild(grid, cancelButton, 0, 1);
 
             return grid;
         }
@@ -222,7 +181,12 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             comboBox.SetBinding(Picker.SelectedItemProperty, valueBinding);
             return comboBox;
         }
-        
+
+        protected override View CreateLabelControl(PropertyInfo property)
+        {
+            return new Label() { Text = property.GetDisplayName() };
+        }
+
         #endregion
     }
 }

@@ -1,11 +1,10 @@
 ﻿using EasySharpStandard.Attributes.Core;
 using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Rails.Attributes;
-using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Implementation.Index;
 using EasySharpWpf.Views.EasyViews.Core;
-using EasySharpWpf.Views.Extensions;
+using EasySharpWpf.Views.Layouts.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
 using System;
@@ -26,19 +25,18 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         #region Fields
 
         private readonly IRailsEditViewFactory railsEditViewFactory;
+        private readonly IGridService gridService;
 
         #endregion
 
         #region Constructors
 
-        public DefaultRailsIndexViewFactory()
-            : this(null)
+        public DefaultRailsIndexViewFactory(
+            IRailsEditViewFactory railsEditViewFactory = null,
+            IGridService gridService = null)
         {
-        }
-
-        public DefaultRailsIndexViewFactory(IRailsEditViewFactory railsEditViewFactory)
-        {
-            this.railsEditViewFactory = railsEditViewFactory ?? railsEditViewFactory.Resolve(this);
+            this.railsEditViewFactory = railsEditViewFactory.Resolve(this);
+            this.gridService = gridService.Resolve();
         }
 
         #endregion
@@ -47,14 +45,11 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         public UIElement CreateIndexView(IList modelList, Type type)
         {
-            var grid = new Grid();
+            var grid = this.gridService.Create();
             var viewModel = new RailsIndexViewModel(modelList, type);
 
-            grid.AddRowDefinition(new GridLength(1.0, GridUnitType.Star));
-            grid.AddChild(CreateTable(viewModel), thickness:0);
-
-            grid.AddRowDefinition(GridLength.Auto);
-            grid.AddChild(CreateAddButton(viewModel), 1, thickness:0);
+            this.gridService.AddStarRowDefinition(grid);
+            this.gridService.AddChild(grid, CreateAddButton(viewModel), 1, thickness: 0);
 
             return grid;
         }

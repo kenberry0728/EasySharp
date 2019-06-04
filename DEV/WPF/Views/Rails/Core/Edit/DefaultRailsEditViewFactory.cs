@@ -8,11 +8,10 @@ using EasySharpWpf.Commands.Core.Dialogs;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.Views.Converters;
-using EasySharpWpf.Views.Extensions;
+using EasySharpWpf.Views.Layouts.Core;
 using EasySharpWpf.Views.Rails.Core.Index;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -31,8 +30,12 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         public DefaultRailsEditViewFactory(
             IRailsIndexViewFactory railsIndexViewFactory = null,
-            IRailsEditViewModelFactory railsEditViewModelFactory = null)
-            :base(railsIndexViewFactory.Resolve(), railsEditViewModelFactory.Resolve())
+            IRailsEditViewModelFactory railsEditViewModelFactory = null,
+            IGridService gridService = null)
+            :base(
+                 railsIndexViewFactory.Resolve(),
+                 railsEditViewModelFactory.Resolve(),
+                 gridService.Resolve())
         {
         }
 
@@ -42,46 +45,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Public Methods
 
-        public override UIElement CreateEditView(object model, Type type = null)
-        {
-            type = type ?? model.GetType();
-
-            var viewModel = this.RailsEditViewModelFactory.Create(model);
-            var grid = new Grid() { DataContext = viewModel };
-            grid.AddColumnDefinition(GridLength.Auto);
-            grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
-
-            var gridRow = 0;
-            foreach (var property in type.GetProperties()
-                                         .Where(p => p.HasVisibleRailsBindAttribute()))
-            {
-                var railsBind = property.GetCustomAttribute<RailsBindAttribute>();
-
-                Debug.Assert(property.CanRead && property.CanWrite);
-
-                var uiElement = CreatePropertyEditControl(model, property, railsBind);
-
-                if (uiElement != null)
-                {
-                    if (railsBind is RailsListBindAttribute)
-                    {
-                        grid.AddRowDefinition(new GridLength(1.0, GridUnitType.Star));
-                    }
-                    else
-                    {
-                        grid.AddRowDefinition(GridLength.Auto);
-                    }
-
-                    var label = new Label() { Content = property.GetDisplayName() };
-                    grid.AddChild(label, gridRow, 0);
-                    grid.AddChild(uiElement, gridRow, 1);
-                    gridRow++;
-                }
-            }
-
-            return grid;
-        }
-
         public override bool? ShowEditView(object initialValueModel, Type type, out object editedModel)
         {
             editedModel = type.New();
@@ -90,7 +53,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 initialValueModel.CopyRailsBindPropertyValues(editedModel, type);
             }
 
-            var mainGrid = new Grid();
+            var mainGrid = this.GridService.Create(null);
+
             var window = new Window
             {
                 Content = mainGrid,
@@ -98,27 +62,27 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 Title = "編集：" + type.GetDisplayName(),
             };
 
-            mainGrid.AddRowDefinition();
-            mainGrid.AddChild(this.CreateEditView(editedModel), 0, 0);
+            this.GridService.AddRowDefinition(mainGrid);
+            this.GridService.AddChild(mainGrid, this.CreateEditView(editedModel), 0, 0);
 
             var button = CreateOKCancelGrid(editedModel, window);
 
-            mainGrid.AddRowDefinition(new GridLength(1.0, GridUnitType.Auto));
-            mainGrid.AddChild(button, 1, 0);
+            this.GridService.AddStarRowDefinition(mainGrid);
+            this.GridService.AddChild(mainGrid, button, 1, 0);
             return window.ShowDialog();
         }
 
-        private static Grid CreateOKCancelGrid(object editedModel, Window window)
+        private Grid CreateOKCancelGrid(object editedModel, Window window)
         {
             var okButton = CreateOKButton(editedModel, window);
             var cancelButton = CreateCancelButton(window);
 
-            var grid = new Grid();
-            grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
-            grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
+            var grid = this.GridService.Create(null);
+            this.GridService.AddStarColumnDefinition(grid);
+            this.GridService.AddStarColumnDefinition(grid);
 
-            grid.AddChild(okButton, 0, 0);
-            grid.AddChild(cancelButton, 0, 1);
+            this.GridService.AddChild(grid, okButton, 0, 0);
+            this.GridService.AddChild(grid, cancelButton, 0, 1);
 
             return grid;
         }
@@ -211,6 +175,11 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             comboBox.DisplayMemberPath = "DisplayValue";
             comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
             return comboBox;
+        }
+
+        protected override UIElement CreateLabelControl(PropertyInfo property)
+        {
+            return new Label() { Content = property.GetDisplayName() };
         }
 
         #endregion

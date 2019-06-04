@@ -9,14 +9,14 @@ using Xamarin.Forms;
 namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 {
     public abstract class DefaultRailsEditViewFactoryBase : 
-        DefaultRailsEditViewFactoryBase<Binding, View>,
+        DefaultRailsEditViewFactoryBase<Binding, View, Grid>,
         IRailsEditViewFactory
     {
         public DefaultRailsEditViewFactoryBase(
             IRailsIndexViewFactory railsIndexViewFactory,
             IRailsEditViewModelFactory railsEditViewModelFactory,
             IGridService gridService)
-            : base(railsIndexViewFactory, railsEditViewModelFactory)
+            : base(railsIndexViewFactory, railsEditViewModelFactory, gridService)
         {
         }
     }

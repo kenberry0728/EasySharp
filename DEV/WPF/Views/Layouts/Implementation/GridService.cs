@@ -28,18 +28,34 @@ namespace EasySharpWpf.Views.Layouts.Implementation
                 });
         }
 
+        public void AddAutoColumnDefinition(Grid grid)
+        {
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+        }
+
         public void AddRowDefinition(Grid grid)
         {
             grid.RowDefinitions.Add(new RowDefinition());
         }
 
-        public void AddRowDefinition(Grid grid, GridLength height)
+        public void AddRowDefinition(Grid grid, double height)
         {
-            grid.RowDefinitions.Add(
-                new RowDefinition()
-                {
-                    Height = height
-                });
+            throw new System.NotImplementedException();
+        }
+
+        public void AddAutoRowDefinition(Grid grid)
+        {
+            grid.RowDefinitions.Add(new RowDefinition());
+        }
+
+        public void AddStarColumnDefinition(Grid grid, double ratio = 1)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void AddStarRowDefinition(Grid grid, double ration = 1)
+        {
+            throw new System.NotImplementedException();
         }
 
         public Grid Create(object viewModel)

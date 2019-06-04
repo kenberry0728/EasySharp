@@ -4,7 +4,7 @@ using System.Windows.Controls;
 
 namespace EasySharpWpf.Views.Layouts.Core
 {
-    public interface IGridService : IGridService<Grid, GridLength, UIElement>
+    public interface IGridService : IGridService<Grid, UIElement>
     {
     }
 }

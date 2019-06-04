@@ -76,6 +76,7 @@
     <Compile Include="ViewModels\Rails\Index\Implementation\RailsIndexViewModel.cs" />
     <Compile Include="Views\Converters\DoubleToStringConverter.cs" />
     <Compile Include="Views\Converters\IntToStringConverter.cs" />
+    <Compile Include="Views\Layouts\Core\IGridServiceExtensions.cs" />
     <Compile Include="Views\Layouts\Core\IGridService.cs" />
     <Compile Include="Views\Layouts\Implementation\GridService.cs" />
     <Compile Include="Views\Rails\Core\Edit\DefaultRailsEditViewFactory.cs" />

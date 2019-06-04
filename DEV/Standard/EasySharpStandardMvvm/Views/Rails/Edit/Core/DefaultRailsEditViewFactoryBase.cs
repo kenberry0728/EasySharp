@@ -1,39 +1,41 @@
-﻿using EasySharpStandardMvvm.Rails.Attributes;
+﻿using EasySharpStandard.Attributes.Core;
+using EasySharpStandardMvvm.Rails.Attributes;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
 using EasySharpStandardMvvm.Views.Layouts.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using System;
 using System.Collections;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
-    public abstract class DefaultRailsEditViewFactoryBase<TBinding, TViewControl> 
+    public abstract class DefaultRailsEditViewFactoryBase<TBinding, TViewControl,TGrid> 
         : IRailsEditViewFactory<TBinding, TViewControl>
+        where TGrid : TViewControl
     {
         #region Fields
-
 
         #endregion
 
         public DefaultRailsEditViewFactoryBase(
             IRailsIndexViewFactory<TViewControl> railsIndexViewFactory,
             IRailsEditViewModelFactory<TBinding> railsEditViewModelFactory,
-            IGridService<TGrid, TGridLength, TViewControl>)
+            IGridService<TGrid, TViewControl> gridService)
         {
             this.RailsIndexViewFactory = railsIndexViewFactory;
             this.RailsEditViewModelFactory = railsEditViewModelFactory;
+            this.GridService = gridService;
             this.RailsBindCreator = this.RailsEditViewModelFactory.RailsBindCreator;
         }
 
         #region Properties
 
         public IRailsBindCreator<TBinding> RailsBindCreator { get; }
-
         protected IRailsEditViewModelFactory<TBinding> RailsEditViewModelFactory { get; }
-
+        protected IGridService<TGrid, TViewControl> GridService { get; }
         protected IRailsIndexViewFactory<TViewControl> RailsIndexViewFactory { get; }
 
         #endregion
@@ -67,14 +69,14 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return this.ShowEditView(null, type, out editedModel);
         }
 
-        public abstract TViewControl CreateEditView(object model, Type type = null)
+        public virtual TViewControl CreateEditView(object model, Type type = null)
         {
             type = type ?? model.GetType();
 
             var viewModel = this.RailsEditViewModelFactory.Create(model);
-            var grid = new Grid() { BindingContext = viewModel };
-            grid.AddColumnDefinition(GridLength.Auto);
-            grid.AddColumnDefinition(new GridLength(1.0, GridUnitType.Star));
+            var grid = this.GridService.Create(viewModel);
+            this.GridService.AddAutoColumnDefinition(grid);
+            this.GridService.AddStarColumnDefinition(grid);
 
             var gridRow = 0;
             foreach (var property in type.GetProperties()
@@ -90,16 +92,16 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 {
                     if (railsBind is RailsListBindAttribute)
                     {
-                        grid.AddRowDefinition(new GridLength(1.0, GridUnitType.Star));
+                        this.GridService.AddStarColumnDefinition(grid);
                     }
                     else
                     {
-                        grid.AddRowDefinition(GridLength.Auto);
+                        this.GridService.AddAutoRowDefinition(grid);
                     }
 
-                    var label = new Label() { Text = property.GetDisplayName() };
-                    grid.AddChild(label, gridRow, 0);
-                    grid.AddChild(uiElement, gridRow, 1);
+                    var label = this.CreateLabelControl(property);
+                    this.GridService.AddChild(grid, label, gridRow, 0);
+                    this.GridService.AddChild(grid, uiElement, gridRow, 1);
                     gridRow++;
                 }
             }
@@ -152,6 +154,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
             return uiElement;
         }
+
+        protected abstract TViewControl CreateLabelControl(PropertyInfo property);
 
         protected abstract TViewControl CreateEditDoubleControl(TBinding valueBinding);
 
