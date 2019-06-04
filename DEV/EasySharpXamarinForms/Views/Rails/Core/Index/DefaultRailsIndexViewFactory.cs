@@ -1,20 +1,10 @@
-﻿using EasySharpStandard.Attributes.Core;
-using EasySharpStandardMvvm.Commands.Core;
-using EasySharpStandardMvvm.Rails.Attributes;
-using EasySharpWpf.ViewModels.Rails.Core.Edit;
-using EasySharpWpf.ViewModels.Rails.Implementation.Index;
-using EasySharpWpf.Views.Rails.Core;
-using EasySharpWpf.Views.Rails.Core.Edit;
+﻿using EasySharpWpf.ViewModels.Rails.Implementation.Index;
 using EasySharpXamarinForms.Views.Rails.Core.Edit;
 using EasySharpXamarinForms.Views.Rails.Core.Edit.Interfaces;
 using EasySharpXamarinForms.Views.Rails.Core.Index;
 using EasySharpXamarinForms.Views.Rails.Core.Index.Interfaces;
 using System;
 using System.Collections;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Views.Rails.Core.Index
