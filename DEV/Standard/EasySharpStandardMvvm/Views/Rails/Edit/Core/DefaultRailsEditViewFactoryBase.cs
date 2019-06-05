@@ -174,19 +174,22 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             PropertyInfo property, 
             RailsCandidatesStringAttribute candidatesStringAttribute)
         {
-            var assemblyName = property.DeclaringType.Assembly.GetName().Name;
-            var relativeNamespacePath = property.DeclaringType.FullName;
-            if (relativeNamespacePath.StartsWith(assemblyName))
+            var filePath = candidatesStringAttribute.CandidatesFilePath;
+            if (string.IsNullOrEmpty(candidatesStringAttribute.CandidatesFilePath))
             {
-                relativeNamespacePath = relativeNamespacePath.Substring(assemblyName.Length + 1);
+                var assemblyName = property.DeclaringType.Assembly.GetName().Name;
+                var relativeNamespacePath = property.DeclaringType.FullName;
+                if (relativeNamespacePath.StartsWith(assemblyName))
+                {
+                    relativeNamespacePath = relativeNamespacePath.Substring(assemblyName.Length + 1);
+                }
+
+                var folderpath = string.Join(
+                    @"\",
+                    relativeNamespacePath.Split('.'));
+                filePath = Path.Combine(folderpath, property.Name);
             }
 
-            var folderpath = string.Join(
-                @"\",
-                relativeNamespacePath.Split('.'));
-            var filePath =
-                candidatesStringAttribute.CandidatesFilePath
-                ?? Path.Combine(folderpath, property.Name);
             IList<ValueAndDisplayValue<string>> selectableItems;
             if (Try.To(() => filePath.ReadToEnd(), out var content))
             {
