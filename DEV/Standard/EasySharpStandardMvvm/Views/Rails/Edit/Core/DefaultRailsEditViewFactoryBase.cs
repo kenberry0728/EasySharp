@@ -130,34 +130,9 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 case Type type when type == typeof(string):
                     if (railsBindAttribute is RailsCandidatesStringAttribute candidatesStringAttribute)
                     {
-                        var assemblyName = property.DeclaringType.Assembly.GetName().Name;
-                        var relativeNamespacePath = property.DeclaringType.FullName;
-                        if (relativeNamespacePath.StartsWith(assemblyName))
-                        {
-                            relativeNamespacePath = relativeNamespacePath.Substring(assemblyName.Length + 1);
-                        }
-
-                        var folderpath = string.Join(
-                            @"\",
-                            relativeNamespacePath.Split('.'));
-                        var filePath =
-                            candidatesStringAttribute.CandidatesFilePath
-                            ?? Path.Combine(folderpath, property.Name);
-                        IList<ValueAndDisplayValue<string>> selectableItems;
-                        if (Try.To(() => filePath.ReadToEnd(), out var content))
-                        {
-                            selectableItems = 
-                            content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
-                                   .Distinct()
-                                   .Select(c => new ValueAndDisplayValue<string>(c, c)).ToList();
-                        }
-                        else
-                        {
-                            selectableItems = new List<ValueAndDisplayValue<string>>();
-                        }
-
+                        var selectableItems = GetSelectableItems(property, candidatesStringAttribute);
                         uiElement = CreateSelectFromCandidateControl(
-                            selectableItems, 
+                            selectableItems,
                             this.RailsBindCreator.CreateRailsBinding(property));
                     }
                     else
@@ -194,6 +169,37 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             }
 
             return uiElement;
+        }
+
+        private static IList<ValueAndDisplayValue<string>> GetSelectableItems(PropertyInfo property, RailsCandidatesStringAttribute candidatesStringAttribute)
+        {
+            var assemblyName = property.DeclaringType.Assembly.GetName().Name;
+            var relativeNamespacePath = property.DeclaringType.FullName;
+            if (relativeNamespacePath.StartsWith(assemblyName))
+            {
+                relativeNamespacePath = relativeNamespacePath.Substring(assemblyName.Length + 1);
+            }
+
+            var folderpath = string.Join(
+                @"\",
+                relativeNamespacePath.Split('.'));
+            var filePath =
+                candidatesStringAttribute.CandidatesFilePath
+                ?? Path.Combine(folderpath, property.Name);
+            IList<ValueAndDisplayValue<string>> selectableItems;
+            if (Try.To(() => filePath.ReadToEnd(), out var content))
+            {
+                selectableItems =
+                content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                       .Distinct()
+                       .Select(c => new ValueAndDisplayValue<string>(c, c)).ToList();
+            }
+            else
+            {
+                selectableItems = new List<ValueAndDisplayValue<string>>();
+            }
+
+            return selectableItems;
         }
 
         protected abstract TViewControl CreateLabelControl(PropertyInfo property);
