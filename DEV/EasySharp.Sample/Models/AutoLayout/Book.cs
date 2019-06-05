@@ -39,6 +39,7 @@ namespace EasySharp.Sample.Models.AutoLayout
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             // TODO
+            // RailsCandidatesStringのValidation
             return new ValidationResult[0];
         }
     }
