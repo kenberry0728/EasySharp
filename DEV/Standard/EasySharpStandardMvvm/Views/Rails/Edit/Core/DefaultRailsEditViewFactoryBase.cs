@@ -114,7 +114,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         public abstract bool? ShowEditView(object initialValueModel, Type type, out object editedModel);
 
-
         #endregion
 
         #region Protected Methods
