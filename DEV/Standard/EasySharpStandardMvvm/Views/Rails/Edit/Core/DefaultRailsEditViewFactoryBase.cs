@@ -170,7 +170,9 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return uiElement;
         }
 
-        private static IList<ValueAndDisplayValue<string>> GetSelectableItems(PropertyInfo property, RailsCandidatesStringAttribute candidatesStringAttribute)
+        private static IList<ValueAndDisplayValue<string>> GetSelectableItems(
+            PropertyInfo property, 
+            RailsCandidatesStringAttribute candidatesStringAttribute)
         {
             var assemblyName = property.DeclaringType.Assembly.GetName().Name;
             var relativeNamespacePath = property.DeclaringType.FullName;
