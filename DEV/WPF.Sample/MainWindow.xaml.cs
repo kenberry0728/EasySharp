@@ -1,4 +1,5 @@
-﻿using EasySharpStandard.DiskIO.Serializers;
+﻿using EasySharp.Sample.Models.AutoLayout;
+using EasySharpStandard.DiskIO.Serializers;
 using EasySharpStandard.SafeCodes.Core;
 using EasySharpWpf.Sample.Models.AutoLayout;
 using EasySharpWpf.Views.EasyViews.Core;

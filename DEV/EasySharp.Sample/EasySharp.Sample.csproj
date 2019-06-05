@@ -5,6 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Models\AutoLayout\Book\Author" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Models\AutoLayout\Book\Author">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Standard\EasySharpStandardMvvm\EasySharpStandardMvvm.csproj" />
   </ItemGroup>
 

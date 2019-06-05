@@ -1,11 +1,12 @@
 ﻿using EasySharpStandard.Validations.Core.Attributes;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Models.Rails.Core;
+using EasySharpWpf.Sample.Models.AutoLayout;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace EasySharpWpf.Sample.Models.AutoLayout
+namespace EasySharp.Sample.Models.AutoLayout
 {
     [DisplayName("本")]
     public class Book : RailsModel, IValidatableObject
@@ -22,7 +23,7 @@ namespace EasySharpWpf.Sample.Models.AutoLayout
         public int Price { get; set; } = 0;
 
         [DisplayName("著者")]
-        [RailsBind]
+        [RailsCandidatesString]
         [Required(ErrorMessage = "著者名は必要です")]
         public string Author { get; set; } = string.Empty;
 

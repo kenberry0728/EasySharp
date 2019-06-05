@@ -20,7 +20,7 @@
 
         void AddRowDefinition(TGrid grid, double height);
 
-        void AddStarRowDefinition(TGrid grid, double ration = 1.0);
+        void AddStarRowDefinition(TGrid grid, double ratio = 1.0);
 
         void AddAutoRowDefinition(TGrid grid);
 

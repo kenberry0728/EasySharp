@@ -1,12 +1,16 @@
-﻿using EasySharpStandard.Attributes.Core;
+﻿using EasySharpStandard.DiskIO.Extensions;
+using EasySharpStandard.SafeCodes.Core;
 using EasySharpStandardMvvm.Attributes.Rails;
+using EasySharpStandardMvvm.ViewModels.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
 using EasySharpStandardMvvm.Views.Layouts.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -86,13 +90,12 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
                 Debug.Assert(property.CanRead && property.CanWrite);
 
-                var uiElement = this.CreatePropertyEditControl(model, property, railsBind);
-
-                if (uiElement != null)
+                var editControl = this.CreatePropertyEditControl(model, property, railsBind);
+                if (editControl != null)
                 {
                     if (railsBind is RailsListBindAttribute)
                     {
-                        this.GridService.AddStarColumnDefinition(grid);
+                        this.GridService.AddStarRowDefinition(grid);
                     }
                     else
                     {
@@ -101,7 +104,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
                     var label = this.CreateLabelControl(property);
                     this.GridService.AddChild(grid, label, gridRow, 0);
-                    this.GridService.AddChild(grid, uiElement, gridRow, 1);
+                    this.GridService.AddChild(grid, editControl, gridRow, 1);
                     gridRow++;
                 }
             }
@@ -116,13 +119,51 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Protected Methods
 
-        protected virtual TViewControl CreatePropertyEditControl(object model, PropertyInfo property, RailsBindAttribute railsBind)
+        protected virtual TViewControl CreatePropertyEditControl(
+            object model,
+            PropertyInfo property,
+            RailsBindAttribute railsBindAttribute)
         {
             TViewControl uiElement = default;
             switch (property.PropertyType)
             {
                 case Type type when type == typeof(string):
-                    uiElement = CreateEditStringControl(this.RailsBindCreator.CreateRailsBinding(property));
+                    if (railsBindAttribute is RailsCandidatesStringAttribute candidatesStringAttribute)
+                    {
+                        var assemblyName = property.DeclaringType.Assembly.GetName().Name;
+                        var relativeNamespacePath = property.DeclaringType.FullName;
+                        if (relativeNamespacePath.StartsWith(assemblyName))
+                        {
+                            relativeNamespacePath = relativeNamespacePath.Substring(assemblyName.Length + 1);
+                        }
+
+                        var folderpath = string.Join(
+                            @"\",
+                            relativeNamespacePath.Split('.'));
+                        var filePath =
+                            candidatesStringAttribute.CandidatesFilePath
+                            ?? Path.Combine(folderpath, property.Name);
+                        IList<ValueAndDisplayValue<string>> selectableItems;
+                        if (Try.To(() => filePath.ReadToEnd(), out var content))
+                        {
+                            selectableItems = 
+                            content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                                   .Distinct()
+                                   .Select(c => new ValueAndDisplayValue<string>(c, c)).ToList();
+                        }
+                        else
+                        {
+                            selectableItems = new List<ValueAndDisplayValue<string>>();
+                        }
+
+                        uiElement = CreateSelectFromCandidateControl(
+                            selectableItems, 
+                            this.RailsBindCreator.CreateRailsBinding(property));
+                    }
+                    else
+                    {
+                        uiElement = CreateEditStringControl(this.RailsBindCreator.CreateRailsBinding(property));
+                    }
                     break;
                 case Type type when type == typeof(int):
                     uiElement = CreateEditIntegerControl(this.RailsBindCreator.CreateRailsBinding(property));
@@ -134,7 +175,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                     uiElement = CreateEditBooleanControl(this.RailsBindCreator.CreateRailsBinding(property));
                     break;
                 case Type type when type.IsClass:
-                    if (railsBind is RailsListBindAttribute railsListBindAttribute)
+                    if (railsBindAttribute is RailsListBindAttribute railsListBindAttribute)
                     {
                         uiElement = CreateEditListClassControl(property.GetValue(model), railsListBindAttribute);
                         break;
@@ -168,6 +209,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
         protected abstract TViewControl CreateEditClassControl(object propertyValue);
 
         protected abstract TViewControl CreateEditEnumControl(Type enumType, TBinding valueBinding);
+
+        protected abstract TViewControl CreateSelectFromCandidateControl(IList<ValueAndDisplayValue<string>> selectableItems, TBinding valueBinding);
 
         protected virtual TViewControl CreateEditListClassControl(object propertyValue, RailsListBindAttribute railsListBindAttribute)
         {

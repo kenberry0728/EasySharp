@@ -4,6 +4,7 @@ using EasySharpStandard.Reflections.Core;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Models.Rails.Core;
+using EasySharpStandardMvvm.ViewModels.Core;
 using EasySharpWpf.Commands.Core.Dialogs;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
@@ -12,6 +13,7 @@ using EasySharpWpf.Views.Layouts.Core;
 using EasySharpWpf.Views.Rails.Core.Index;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -166,6 +168,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         protected override UIElement CreateEditEnumControl(Type enumType, Binding valueBinding)
         {
+            // TODO: Creating ComboBoxService.
+            // TODO: Using Value and DisplayValue.
             var comboBox = new ComboBox();
             var itemsSource =
                 Enum.GetValues(enumType).ToEnumerable()
@@ -177,10 +181,21 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return comboBox;
         }
 
+        protected override UIElement CreateSelectFromCandidateControl(IList<ValueAndDisplayValue<string>> selectableItems, Binding valueBinding)
+        {
+            var comboBox = new ComboBox();
+            comboBox.ItemsSource = selectableItems.ToList();
+            comboBox.SelectedValuePath = ValueAndDisplayValue<string>.ValuePath;
+            comboBox.DisplayMemberPath = ValueAndDisplayValue<string>.DisplayValuePath;
+            comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
+            return comboBox;
+        }
+
         protected override UIElement CreateLabelControl(PropertyInfo property)
         {
             return new Label() { Content = property.GetDisplayName() };
         }
+
 
         #endregion
     }

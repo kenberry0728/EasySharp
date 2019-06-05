@@ -4,6 +4,7 @@ using EasySharpStandard.Reflections.Core;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Models.Rails.Core;
+using EasySharpStandardMvvm.ViewModels.Core;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.Views.Rails.Core;
 using EasySharpXamarinForms.ViewModels.Rails.Edit.Core;
@@ -15,6 +16,7 @@ using EasySharpXamarinForms.Views.Rails.Core.Edit.Interfaces;
 using EasySharpXamarinForms.Views.Rails.Core.Index;
 using EasySharpXamarinForms.Views.Rails.Core.Index.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -22,7 +24,8 @@ using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 {
-    public class DefaultRailsEditViewFactory : DefaultRailsEditViewFactoryBase, IRailsEditViewFactory
+    public class DefaultRailsEditViewFactory 
+        : DefaultRailsEditViewFactoryBase, IRailsEditViewFactory
     {
         #region Fields
 
@@ -185,6 +188,17 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
         protected override View CreateLabelControl(PropertyInfo property)
         {
             return new Label() { Text = property.GetDisplayName() };
+        }
+
+        protected override View CreateSelectFromCandidateControl(IList<ValueAndDisplayValue<string>> selectableItems, Binding valueBinding)
+        {
+            var comboBox = new Picker();
+            var itemsSource = selectableItems;
+            comboBox.ItemsSource = itemsSource.ToList();
+            //comboBox.Item = "Value";
+            comboBox.ItemDisplayBinding = new Binding(ValueAndDisplayValue<string>.DisplayValuePath);
+            comboBox.SetBinding(Picker.SelectedItemProperty, valueBinding);
+            return comboBox;
         }
 
         #endregion
