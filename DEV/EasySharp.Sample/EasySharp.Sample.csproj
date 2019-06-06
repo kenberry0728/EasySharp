@@ -6,10 +6,14 @@
 
   <ItemGroup>
     <None Remove="Models\AutoLayout\Book\Author" />
+    <None Remove="Models\AutoLayout\Book\Author - Copy" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Models\AutoLayout\Book\Author">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Models\AutoLayout\Publisher\Name">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

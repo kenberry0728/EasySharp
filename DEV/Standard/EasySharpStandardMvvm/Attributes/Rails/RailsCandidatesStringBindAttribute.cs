@@ -6,21 +6,21 @@ namespace EasySharpStandardMvvm.Attributes.Rails
         AttributeTargets.Property,
         AllowMultiple = false,
         Inherited = false)]
-    public class RailsCandidatesStringAttribute : RailsBindAttribute
+    public class RailsCandidatesStringBindAttribute : RailsBindAttribute
     {
         #region Constructors
 
-        public RailsCandidatesStringAttribute()
+        public RailsCandidatesStringBindAttribute()
         : this(true)
         {
         }
 
-        public RailsCandidatesStringAttribute(bool userVisible)
+        public RailsCandidatesStringBindAttribute(bool userVisible)
             : base(userVisible)
         {
         }
 
-        public RailsCandidatesStringAttribute(string elementName)
+        public RailsCandidatesStringBindAttribute(string elementName)
             : base(elementName)
         {
             this.ElementName = elementName;
@@ -29,5 +29,7 @@ namespace EasySharpStandardMvvm.Attributes.Rails
         #endregion
 
         public string CandidatesFilePath { get; set; }
+
+        public string DependentPropertyName{ get; set; }
     }
 }

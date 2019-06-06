@@ -23,7 +23,7 @@ namespace EasySharp.Sample.Models.AutoLayout
         public int Price { get; set; } = 0;
 
         [DisplayName("著者")]
-        [RailsCandidatesString]
+        [RailsCandidatesStringBind]
         [Required(ErrorMessage = "著者名は必要です")]
         public string Author { get; set; } = string.Empty;
 

@@ -128,7 +128,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             switch (property.PropertyType)
             {
                 case Type type when type == typeof(string):
-                    if (railsBindAttribute is RailsCandidatesStringAttribute candidatesStringAttribute)
+                    if (railsBindAttribute is RailsCandidatesStringBindAttribute candidatesStringAttribute)
                     {
                         var selectableItems = GetSelectableItems(property, candidatesStringAttribute);
                         uiElement = CreateSelectFromCandidateControl(
@@ -173,7 +173,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         private static IList<ValueAndDisplayValue<string>> GetSelectableItems(
             PropertyInfo property, 
-            RailsCandidatesStringAttribute candidatesStringAttribute)
+            RailsCandidatesStringBindAttribute candidatesStringAttribute)
         {
             var filePath = candidatesStringAttribute.CandidatesFilePath;
             if (string.IsNullOrEmpty(candidatesStringAttribute.CandidatesFilePath))
