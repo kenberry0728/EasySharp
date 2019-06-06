@@ -1,4 +1,5 @@
 ﻿using EasySharpStandard.DiskIO.Extensions;
+using EasySharpStandard.Reflections.Core;
 using EasySharpStandard.SafeCodes.Core;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.ViewModels.Core;
@@ -177,26 +178,22 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             var filePath = candidatesStringAttribute.CandidatesFilePath;
             if (string.IsNullOrEmpty(candidatesStringAttribute.CandidatesFilePath))
             {
-                var assemblyName = property.DeclaringType.Assembly.GetName().Name;
-                var relativeNamespacePath = property.DeclaringType.FullName;
-                if (relativeNamespacePath.StartsWith(assemblyName))
-                {
-                    relativeNamespacePath = relativeNamespacePath.Substring(assemblyName.Length + 1);
-                }
-
-                var folderpath = string.Join(
-                    @"\",
-                    relativeNamespacePath.Split('.'));
-                filePath = Path.Combine(folderpath, property.Name);
+                filePath = property.GetRelativePropertyPath();
             }
 
+            var selectableItems = GetSelectableItems(filePath);
+            return selectableItems;
+        }
+
+        private static IList<ValueAndDisplayValue<string>> GetSelectableItems(string filePath)
+        {
             IList<ValueAndDisplayValue<string>> selectableItems;
             if (Try.To(() => filePath.ReadToEnd(), out var content))
             {
                 selectableItems =
-                content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
-                       .Distinct()
-                       .Select(c => new ValueAndDisplayValue<string>(c, c)).ToList();
+                    content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                    .Distinct()
+                    .Select(c => new ValueAndDisplayValue<string>(c, c)).ToList();
             }
             else
             {
