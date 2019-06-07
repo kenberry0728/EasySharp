@@ -181,21 +181,22 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 filePath = property.GetRelativePropertyPath();
             }
 
-            var selectableItems = GetSelectableItems(filePath);
-            return selectableItems;
+            return GetSelectableItems(filePath);
         }
 
         private static IList<ValueAndDisplayValue<string>> GetSelectableItems(string filePath)
         {
-            IList<ValueAndDisplayValue<string>> selectableItems;
-            if (Try.To(() => filePath.ReadToEnd(), out var content))
+            IList<ValueAndDisplayValue<string>> selectableItems = null;
+            var result = Try.To(() =>
             {
+                var content = filePath.ReadToEnd();
                 selectableItems =
                     content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                     .Distinct()
                     .Select(c => new ValueAndDisplayValue<string>(c, c)).ToList();
-            }
-            else
+            });
+
+            if (!result)
             {
                 selectableItems = new List<ValueAndDisplayValue<string>>();
             }
