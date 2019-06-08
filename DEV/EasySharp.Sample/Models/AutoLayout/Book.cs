@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace EasySharp.Sample.Models.AutoLayout
 {
@@ -35,6 +36,7 @@ namespace EasySharp.Sample.Models.AutoLayout
                 typeof(Book).GetLocalResourceValues(nameof(SelectableAuthors)));
 
         [RailsCandidatesStringSourceBind]
+        [IgnoreDataMember]
         public IEnumerable<string> SelectableAuthors => lazySelectableAuthors.Value;
         
         #endregion

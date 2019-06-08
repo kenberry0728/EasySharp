@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 using EasySharpStandard.Reflections.Core.LocalResources;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Models.Rails.Core;
@@ -16,6 +17,7 @@ namespace EasySharp.Sample.Models.AutoLayout
         public string Name { get; set; }
 
         [RailsCandidatesStringSourceBind(DependentPropertyName = nameof(PublisherType))]
+        [IgnoreDataMember]
         public IDictionary<string, List<string>> Names => lazySelectableNames.Value;
 
         private static readonly Lazy<IDictionary<string, List<string>>> lazySelectableNames
