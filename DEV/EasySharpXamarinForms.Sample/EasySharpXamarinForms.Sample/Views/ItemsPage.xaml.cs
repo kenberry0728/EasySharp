@@ -1,8 +1,8 @@
-﻿using System;
+﻿using EasySharpXamarinForms.Sample.Models;
+using EasySharpXamarinForms.Sample.ViewModels;
+using System;
 using System.ComponentModel;
 using Xamarin.Forms;
-using EasySharpXamarinForms.Sample.Models;
-using EasySharpXamarinForms.Sample.ViewModels;
 
 namespace EasySharpXamarinForms.Sample.Views
 {

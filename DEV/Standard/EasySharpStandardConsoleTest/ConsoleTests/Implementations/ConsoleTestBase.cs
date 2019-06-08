@@ -1,7 +1,7 @@
-﻿using System;
+﻿using EasySharpStandardTestCore.Core;
+using System;
 using System.Diagnostics;
 using System.IO;
-using EasySharpStandardTestCore.Core;
 
 namespace EasySharpStandardConsoleTest.ConsoleTests.Implementations
 {
@@ -18,7 +18,7 @@ namespace EasySharpStandardConsoleTest.ConsoleTests.Implementations
         {
             this.originalOut = Console.Out;
             this.originalIn = Console.In;
-                   this.streamWriter = new StreamWriter(outputMemoryStream) { AutoFlush = false };
+            this.streamWriter = new StreamWriter(outputMemoryStream) { AutoFlush = false };
             this.streamReader = new StreamReader(inputMemoryStream);
         }
 

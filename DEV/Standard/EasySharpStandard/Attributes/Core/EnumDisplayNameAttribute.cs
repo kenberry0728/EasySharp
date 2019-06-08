@@ -9,7 +9,7 @@ namespace EasySharpStandard.Attributes.Core
     public class EnumDisplayNameAttribute : DisplayNameAttribute
     {
         public EnumDisplayNameAttribute(string displayName)
-            :base(displayName)
+            : base(displayName)
         {
         }
     }

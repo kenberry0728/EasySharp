@@ -1,8 +1,8 @@
-﻿using System;
+﻿using EasySharpXamarinForms.Sample.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EasySharpXamarinForms.Sample.Models;
 
 namespace EasySharpXamarinForms.Sample.Services
 {

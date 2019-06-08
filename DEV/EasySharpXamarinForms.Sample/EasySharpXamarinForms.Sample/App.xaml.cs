@@ -1,6 +1,6 @@
-﻿using Xamarin.Forms;
-using EasySharpXamarinForms.Sample.Services;
+﻿using EasySharpXamarinForms.Sample.Services;
 using EasySharpXamarinForms.Sample.Views;
+using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Sample
 {

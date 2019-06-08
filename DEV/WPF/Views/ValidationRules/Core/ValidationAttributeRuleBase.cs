@@ -14,8 +14,8 @@ namespace EasySharpWpf.Views.ValidationRules.Core
         }
 
         public string ErrorMessage =>
-            string.IsNullOrEmpty(this.validationAttribute.ErrorMessage) 
-                ? this.DefaultErrorMessage 
+            string.IsNullOrEmpty(this.validationAttribute.ErrorMessage)
+                ? this.DefaultErrorMessage
                 : this.validationAttribute.ErrorMessage;
 
         protected virtual string DefaultErrorMessage => "値が不正です";

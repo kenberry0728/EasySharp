@@ -1,11 +1,11 @@
-﻿using EasySharpStandard.DiskIO.Extensions;
+﻿using EasySharpStandard.Collections.Dictionaries.Core;
+using EasySharpStandard.DataStructures.Trees.Core.Models;
+using EasySharpStandard.DiskIO.Extensions;
 using EasySharpStandard.SafeCodes.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using EasySharpStandard.Collections.Dictionaries.Core;
-using EasySharpStandard.DataStructures.Trees.Core.Models;
 
 namespace EasySharpStandard.Reflections.Core.LocalResources
 {
@@ -26,8 +26,8 @@ namespace EasySharpStandard.Reflections.Core.LocalResources
         private static IDictionary<string, List<string>> GetSelectableDependentItems(string filePath)
         {
             var content = filePath.ReadToEnd();
-            var indentedStrings = 
-                content.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
+            var indentedStrings =
+                content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(s => new IndentedString(s));
             var currentKey = string.Empty;
             var dictionary = new Dictionary<string, List<string>>();
@@ -65,7 +65,7 @@ namespace EasySharpStandard.Reflections.Core.LocalResources
             Try.To(() =>
                 {
                     var content = filePath.ReadToEnd();
-                    return content.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
+                    return content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                 },
                 out var selectableItems);
 

@@ -1,8 +1,8 @@
-using System;
 using EasySharpStandard.ProgressNotifications.Core;
 using EasySharpStandard.ProgressNotifications.Core.Models;
 using EasySharpStandardConsole.ProgressNotifications.Core;
 using EasySharpStandardConsoleTest.ConsoleTests.Implementations;
+using System;
 
 namespace EasySharpStandardConsoleTest.ProgressNotifications
 {

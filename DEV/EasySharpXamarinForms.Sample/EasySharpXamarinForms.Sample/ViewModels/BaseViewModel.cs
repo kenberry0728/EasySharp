@@ -1,12 +1,10 @@
-﻿using System;
+﻿using EasySharpXamarinForms.Sample.Models;
+using EasySharpXamarinForms.Sample.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
 using Xamarin.Forms;
-
-using EasySharpXamarinForms.Sample.Models;
-using EasySharpXamarinForms.Sample.Services;
 
 namespace EasySharpXamarinForms.Sample.ViewModels
 {

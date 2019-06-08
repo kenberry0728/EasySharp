@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using EasySharpXamarinForms.Sample.Models;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using EasySharpXamarinForms.Sample.Models;
 
 namespace EasySharpXamarinForms.Sample.Views
 {

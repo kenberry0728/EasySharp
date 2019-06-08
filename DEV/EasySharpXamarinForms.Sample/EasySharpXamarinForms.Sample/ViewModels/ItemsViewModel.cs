@@ -1,12 +1,10 @@
-﻿using System;
+﻿using EasySharpXamarinForms.Sample.Models;
+using EasySharpXamarinForms.Sample.Views;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
-
-using EasySharpXamarinForms.Sample.Models;
-using EasySharpXamarinForms.Sample.Views;
 
 namespace EasySharpXamarinForms.Sample.ViewModels
 {

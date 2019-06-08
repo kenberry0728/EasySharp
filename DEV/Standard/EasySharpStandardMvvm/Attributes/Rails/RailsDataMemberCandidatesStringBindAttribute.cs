@@ -1,5 +1,5 @@
-﻿using System;
-using EasySharpStandard.Exceptions;
+﻿using EasySharpStandard.Exceptions;
+using System;
 
 namespace EasySharpStandardMvvm.Attributes.Rails
 {

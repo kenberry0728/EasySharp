@@ -151,7 +151,7 @@ namespace EasySharpStandard.DataStructures.Trees.Core
 
         // TODO: GetVerticalTableLayoutとGetVerticalHierarchyTableLayoutはどっちか動いてないのかな？
         public static IDictionary<GridLocation, T> GetVerticalHierarchyTableLayout<T>(
-            this IEnumerable<T> roots, 
+            this IEnumerable<T> roots,
             GridLocation baseLocation = new GridLocation())
          where T : ITreeItem<T>
         {

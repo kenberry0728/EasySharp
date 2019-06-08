@@ -1,5 +1,5 @@
-﻿using System.Reflection;
-using EasySharpStandardMvvm.Attributes.Rails;
+﻿using EasySharpStandardMvvm.Attributes.Rails;
+using System.Reflection;
 
 namespace EasySharpStandardMvvm.Views.Rails.Core
 {

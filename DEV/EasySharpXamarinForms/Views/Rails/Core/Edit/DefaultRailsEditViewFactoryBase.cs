@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 {
-    public abstract class DefaultRailsEditViewFactoryBase : 
+    public abstract class DefaultRailsEditViewFactoryBase :
         DefaultRailsEditViewFactoryBase<Binding, View, Grid>,
         IRailsEditViewFactory
     {

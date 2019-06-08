@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
-using EasySharpStandardMvvm.Attributes.Rails;
+﻿using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Models.Rails.Core;
+using System.ComponentModel;
 
 namespace EasySharp.Sample.Models.AutoLayout
 {

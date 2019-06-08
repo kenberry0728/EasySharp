@@ -1,6 +1,6 @@
-﻿using System;
+﻿using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
+using System;
 using System.Collections.ObjectModel;
-using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 
 namespace EasySharpStandardMvvm.ViewModels.Rails.Index.Core
 {

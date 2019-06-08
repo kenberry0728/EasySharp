@@ -7,7 +7,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
     public static class RailsIndexViewFactoryExtensions
     {
         public static IRailsIndexViewFactory Resolve(
-            this IRailsIndexViewFactory factory, 
+            this IRailsIndexViewFactory factory,
             IRailsEditViewFactory editViewFactory = null,
             IGridService gridService = null)
         {

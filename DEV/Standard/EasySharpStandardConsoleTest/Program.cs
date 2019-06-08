@@ -1,6 +1,6 @@
-﻿using System;
+﻿using EasySharpStandardConsoleTest.ProgressNotifications;
 using EasySharpStandardTestCore.Core;
-using EasySharpStandardConsoleTest.ProgressNotifications;
+using System;
 
 namespace EasySharpStandardConsoleTest
 {

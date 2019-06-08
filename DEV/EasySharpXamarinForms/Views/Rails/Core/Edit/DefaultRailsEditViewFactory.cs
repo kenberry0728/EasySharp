@@ -4,7 +4,9 @@ using EasySharpStandard.Reflections.Core;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Models.Rails.Core;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
 using EasySharpXamarinForms.ViewModels.Rails.Edit.Core;
+using EasySharpXamarinForms.ViewModels.Rails.Edit.Implementation;
 using EasySharpXamarinForms.Views.Converters;
 using EasySharpXamarinForms.Views.Layouts.Core;
 using EasySharpXamarinForms.Views.Rails.Core.Index;
@@ -13,13 +15,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
-using EasySharpXamarinForms.ViewModels.Rails.Edit.Implementation;
 using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 {
-    public class DefaultRailsEditViewFactory 
+    public class DefaultRailsEditViewFactory
         : DefaultRailsEditViewFactoryBase
     {
         #region Fields
@@ -194,7 +194,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
         }
 
         protected override View CreateSelectFromCandidateControl(
-            Binding valueBinding, 
+            Binding valueBinding,
             Binding itemsSourceBinding,
             string valuePath = null,
             string displayMemberPath = null)

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
-using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
 
 namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
 {

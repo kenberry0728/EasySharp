@@ -31,14 +31,14 @@ namespace EasySharp.Sample.Models.AutoLayout
 
         #region SelectableAuthors
 
-        private static readonly Lazy<IEnumerable<string>> lazySelectableAuthors 
-            = new Lazy<IEnumerable<string>>(() => 
+        private static readonly Lazy<IEnumerable<string>> lazySelectableAuthors
+            = new Lazy<IEnumerable<string>>(() =>
                 typeof(Book).GetLocalResourceValues(nameof(SelectableAuthors)));
 
         [RailsCandidatesStringSourceBind]
         [IgnoreDataMember]
         public IEnumerable<string> SelectableAuthors => lazySelectableAuthors.Value;
-        
+
         #endregion
 
         [DisplayName("出版社")]
