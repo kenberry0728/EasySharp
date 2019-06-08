@@ -195,7 +195,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return comboBox;
         }
 
-        protected override UIElement CreateSelectFromCandidateControl(
+        protected virtual UIElement CreateSelectFromCandidateControl(
             object model,
             PropertyInfo dependentPropertyInfo,
             IDictionary<string, List<ValueAndDisplayValue<string>>> selectableItems,

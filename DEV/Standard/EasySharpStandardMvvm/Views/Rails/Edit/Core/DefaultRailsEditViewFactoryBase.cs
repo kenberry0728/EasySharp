@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -8,7 +7,6 @@ using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
 using EasySharpStandardMvvm.Views.Layouts.Core;
-using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
 using EasySharpStandardMvvm.Views.Rails.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
@@ -128,28 +126,17 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
                 case Type type when type == typeof(string):
                     if (railsDataMemberBindAttribute is RailsDataMemberCandidatesStringBindAttribute candidatesStringAttribute)
                     {
-                        if (string.IsNullOrEmpty(candidatesStringAttribute.DependentPropertyName))
-                        {
-                            var dependentProperty = model.GetType().GetProperty(
-                                candidatesStringAttribute.CandidatesPropertyName);
-                            uiElement = CreateSelectFromCandidateControl(
-                                this.RailsBindCreator.CreateRailsBinding(property),
-                                this.RailsBindCreator.CreateRailsBinding(dependentProperty));
-                        }
-                        //else
-                        //{
-                        //    var itemsSourceBinding = candidatesStringAttribute.GetSelectableDependentItems(property);
-                        //    uiElement = CreateSelectFromCandidateControl(
-                        //        model,
-                        //        candidatesStringAttribute.DependentPropertyName,
-                        //        itemsSourceBinding,
-                        //        this.RailsBindCreator.CreateRailsBinding(property));
-                        //}
+                        var dependentProperty = model.GetType().GetProperty(
+                            candidatesStringAttribute.CandidatesPropertyName);
+                        uiElement = CreateSelectFromCandidateControl(
+                            this.RailsBindCreator.CreateRailsBinding(property),
+                            this.RailsBindCreator.CreateRailsBinding(dependentProperty));
                     }
                     else
                     {
                         uiElement = CreateEditStringControl(this.RailsBindCreator.CreateRailsBinding(property));
                     }
+
                     break;
                 case Type type when type == typeof(int):
                     uiElement = CreateEditIntegerControl(this.RailsBindCreator.CreateRailsBinding(property));
@@ -201,12 +188,6 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
             TBinding itemsSourceBinding,
             string valuePath = null,
             string displayMemberPath = null);
-
-        protected abstract TViewControl CreateSelectFromCandidateControl(
-            object model,
-            PropertyInfo dependentPropertyInfo,
-            IDictionary<string, List<ValueAndDisplayValue<string>>> selectableItems, 
-            TBinding valueBinding);
 
         protected virtual TViewControl CreateEditListClassControl(object propertyValue, RailsDataMemberListBindAttribute railsDataMemberListBindAttribute)
         {

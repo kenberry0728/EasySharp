@@ -163,7 +163,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             return button;
         }
 
-        protected override View CreateSelectFromCandidateControl(object model,
+        protected virtual View CreateSelectFromCandidateControl(object model,
             PropertyInfo dependentPropertyInfo,
             IDictionary<string, List<ValueAndDisplayValue<string>>> selectableItems,
             Binding valueBinding)
