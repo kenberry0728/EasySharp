@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using EasySharpStandard.Collections.Core;
-using EasySharpStandard.Reflections.Core;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
