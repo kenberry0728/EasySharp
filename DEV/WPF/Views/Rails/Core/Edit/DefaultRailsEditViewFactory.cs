@@ -182,12 +182,16 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
         }
 
         protected override UIElement CreateSelectFromCandidateControl(
+            Binding valueBinding,
             Binding itemsSourceBinding,
-            Binding valueBinding)
+            string valuePath = null,
+            string displayMemberPath = null)
         {
             var comboBox = new ComboBox();
-            comboBox.SetBinding(ItemsControl.ItemsSourceProperty, itemsSourceBinding);
             comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
+            comboBox.SetBinding(ItemsControl.ItemsSourceProperty, itemsSourceBinding);
+            comboBox.SelectedValuePath = valuePath;
+            comboBox.DisplayMemberPath = displayMemberPath;
             return comboBox;
         }
 

@@ -195,8 +195,10 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
         }
 
         protected override View CreateSelectFromCandidateControl(
-            Binding itemsSourceBinding, 
-            Binding valueBinding)
+            Binding valueBinding, 
+            Binding itemsSourceBinding,
+            string valuePath = null,
+            string displayMemberPath = null)
         {
             var comboBox = new Picker();
             var itemsSource = itemsSourceBinding;

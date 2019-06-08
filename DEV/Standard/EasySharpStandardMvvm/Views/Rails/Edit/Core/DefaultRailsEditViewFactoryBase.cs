@@ -134,9 +134,7 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
                         {
                             var dependentProperty = model.GetType().GetProperty(
                                 candidatesStringAttribute.CandidatesPropertyName);
-                            uiElement = CreateSelectFromCandidateControl(
-                                this.RailsBindCreator.CreateRailsBinding(dependentProperty),
-                                this.RailsBindCreator.CreateRailsBinding(property));
+                            uiElement = CreateSelectFromCandidateControl(this.RailsBindCreator.CreateRailsBinding(property), this.RailsBindCreator.CreateRailsBinding(dependentProperty));
                         }
                         //else
                         //{
@@ -199,8 +197,10 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
         protected abstract TViewControl CreateEditEnumControl(Type enumType, TBinding valueBinding);
 
         protected abstract TViewControl CreateSelectFromCandidateControl(
+            TBinding valueBinding,
             TBinding itemsSourceBinding,
-            TBinding valueBinding);
+            string valuePath = null,
+            string displayMemberPath = null);
 
         protected abstract TViewControl CreateSelectFromCandidateControl(
             object model,
