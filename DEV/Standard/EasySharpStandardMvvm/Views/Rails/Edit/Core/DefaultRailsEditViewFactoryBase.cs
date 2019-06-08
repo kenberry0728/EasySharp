@@ -1,20 +1,21 @@
-﻿using EasySharpStandard.Reflections.Core;
-using EasySharpStandardMvvm.Attributes.Rails;
-using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
-using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
-using EasySharpStandardMvvm.Views.Layouts.Core;
-using EasySharpWpf.ViewModels.Rails.Edit.Core;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using EasySharpStandard.Collections.Core;
+using EasySharpStandard.Reflections.Core;
+using EasySharpStandardMvvm.Attributes.Rails;
+using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
+using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
+using EasySharpStandardMvvm.Views.Layouts.Core;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
 using EasySharpStandardMvvm.Views.Rails.Core;
+using EasySharpWpf.ViewModels.Rails.Edit.Core;
+using EasySharpWpf.Views.Rails.Core.Edit;
 
-namespace EasySharpWpf.Views.Rails.Core.Edit
+namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
 {
     public abstract class DefaultRailsEditViewFactoryBase<TBinding, TViewControl,TGrid> 
         : IRailsEditViewFactory<TBinding, TViewControl>

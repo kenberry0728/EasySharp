@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
+using EasySharpStandardMvvm.Views.Rails.Edit.Core;
 using EasySharpWpf.Views.Layouts.Core;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
