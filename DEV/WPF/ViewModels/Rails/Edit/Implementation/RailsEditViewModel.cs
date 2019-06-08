@@ -25,7 +25,7 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
             if (string.IsNullOrEmpty(propertyPath)) { return null; }
 
             var propertyName = this.GetRailsPropertyName(propertyPath);
-            var property = this.properties.FirstOrDefault(p => p.Name == propertyName);
+            var property = this.valueProperties.FirstOrDefault(p => p.Name == propertyName);
 
             if (property == null) { return null; }
 
@@ -34,15 +34,24 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 
         #endregion
 
-        private readonly IEnumerable<PropertyInfo> properties;
+        #region Fields
+
+        private readonly IEnumerable<PropertyInfo> valueProperties;
+        private readonly IEnumerable<PropertyInfo> sourceProperties;
+
+        #endregion
 
         public RailsEditViewModel(object model, Type type = null)
         {
             this.Type = type ?? model.GetType();
             this.Model = model;
-            this.properties = this.Type.GetProperties()
-                .Where(p => p.HasVisibleRailsBindAttribute() || p.HasRailsSourceBindAttribute());
+            this.valueProperties = this.Type.GetProperties()
+                .Where(p => p.HasVisibleRailsBindAttribute());
+            this.sourceProperties = this.Type.GetProperties()
+                .Where(p => p.HasRailsSourceBindAttribute());
         }
+
+        #region Properties
 
         public Type Type { get; }
 
@@ -52,20 +61,20 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 
         public object this[string key]
         {
-            get
-            {
-                return this.properties.FirstOrDefault(p => p.Name == key)?.GetValue(this.Model);
-            }
+            get => this.valueProperties.Concat(this.sourceProperties)
+                .FirstOrDefault(p => p.Name == key)?.GetValue(this.Model);
 
             set
             {
-                var property = this.properties.FirstOrDefault(p => p.Name == key);
+                var property = this.valueProperties.FirstOrDefault(p => p.Name == key);
                 property?.SetValue(this.Model, value);
 
                 this.OnPropertyChanged("Item[]");
                 this.OnPropertyChanged(nameof(this.Content));
             }
         }
+
+        #endregion
 
         #region Private Methods
 
