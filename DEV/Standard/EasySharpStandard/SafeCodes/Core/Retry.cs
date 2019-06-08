@@ -5,7 +5,7 @@ namespace EasySharpStandard.SafeCodes.Core
 {
     public static class Retry
     {
-        public static void Run(Action action, int maxRetry = 10, int intervalMilliSecond = 200)
+        public static void Run(Action action, int maxRetry = 10, int intervalMillisecond = 200)
         {
             if (Try.To(action))
             {
@@ -14,7 +14,7 @@ namespace EasySharpStandard.SafeCodes.Core
 
             for (int i = 1; i < maxRetry; i++)
             {
-                Thread.Sleep(intervalMilliSecond);
+                Thread.Sleep(intervalMillisecond);
                 if (Try.To(action))
                 {
                     break;
@@ -22,7 +22,7 @@ namespace EasySharpStandard.SafeCodes.Core
             }
         }
 
-        public static T Run<T>(Func<T> func, int maxRetry = 10, int intervalMilliSecond = 200)
+        public static T Run<T>(Func<T> func, int maxRetry = 10, int intervalMillisecond = 200)
         {
             if (Try.To(func, out var returnValue))
             {
@@ -31,7 +31,7 @@ namespace EasySharpStandard.SafeCodes.Core
 
             for (int i = 1; i < maxRetry; i++)
             {
-                Thread.Sleep(intervalMilliSecond);
+                Thread.Sleep(intervalMillisecond);
                 if (Try.To(func, out returnValue))
                 {
                     return returnValue;

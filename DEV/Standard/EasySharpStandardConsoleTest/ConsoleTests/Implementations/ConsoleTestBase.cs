@@ -46,7 +46,7 @@ namespace EasySharpStandardConsoleTest.ConsoleTests.Implementations
             this.inputMemoryStream.Close();
         }
 
-        public string ReadlToEnd()
+        public string ReadToEnd()
         {
             this.streamWriter.Flush();
             this.streamWriter.BaseStream.Seek(0, SeekOrigin.Begin);

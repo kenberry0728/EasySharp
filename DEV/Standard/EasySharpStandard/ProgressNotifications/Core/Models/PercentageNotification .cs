@@ -1,4 +1,4 @@
-﻿namespace EasySharpStandard.ProgreeNotifications.Core.Models
+﻿namespace EasySharpStandard.ProgressNotifications.Core.Models
 {
     public class PercentageNotification : Notification, IPercentageNotification
     {

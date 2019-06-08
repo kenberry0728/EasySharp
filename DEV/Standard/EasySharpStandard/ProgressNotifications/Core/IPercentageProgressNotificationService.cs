@@ -1,7 +1,7 @@
-﻿namespace EasySharpStandard.ProgreeNotifications.Core
+﻿namespace EasySharpStandard.ProgressNotifications.Core
 {
     public interface IPercentageProgressNotificationService
     {
-        void NotifyProgree(IPercentageNotification percentageNotification);
+        void NotifyProgress(IPercentageNotification percentageNotification);
     }
 }

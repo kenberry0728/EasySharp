@@ -1,4 +1,4 @@
-﻿using EasySharpStandard.ProgreeNotifications.Core;
+﻿using EasySharpStandard.ProgressNotifications.Core;
 using EasySharpStandardConsole.ProgressNotifications.Implementations;
 
 namespace EasySharpStandardConsole.ProgressNotifications.Core

@@ -1,6 +1,4 @@
-﻿using EasySharpStandard.ProgressNotifications.Core;
-
-namespace EasySharpStandard.ProgreeNotifications.Core.Models
+﻿namespace EasySharpStandard.ProgressNotifications.Core.Models
 {
     public class Notification : INotification
     {
