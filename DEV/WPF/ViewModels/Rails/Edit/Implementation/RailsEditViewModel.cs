@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using EasySharpStandard.SafeCodes.Core;
 using EasySharpStandard.Validations.Core;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
@@ -28,7 +29,10 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
             var propertyName = this.GetRailsPropertyName(propertyPath);
             var property = this.valueProperties.FirstOrDefault(p => p.Name == propertyName);
 
-            if (property == null) { return null; }
+            if (property == null)
+            {
+                return null;
+            }
 
             return this.Model.ValidateProperty(property).Select(v => v.ErrorMessage);
         }
@@ -64,24 +68,14 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
         {
             get
             {
-                var valueProperty = this.valueProperties.FirstOrDefault(p => p.Name == key);
-                if (valueProperty != null)
+                if (TryGetFromValueProperty(key, out var valueResult))
                 {
-                    return valueProperty.GetValue(this.Model);
+                    return valueResult;
                 }
 
-                var sourceProperty = this.sourceProperties.FirstOrDefault(p => p.Name == key);
-                if (sourceProperty != null)
+                if (TryGetFromSourceProperty(key, out var sourceResult))
                 {
-                    var sourceBindAttribute = sourceProperty.GetCustomAttribute<RailsCandidatesStringSourceBindAttribute>();
-                    if (string.IsNullOrEmpty(sourceBindAttribute?.DependentPropertyName))
-                    {
-                        return sourceProperty.GetValue(this.Model);
-                    }
-
-                    dynamic dictionary = sourceProperty.GetValue(this.Model);
-                    var dependentValue = this[sourceBindAttribute.DependentPropertyName].ToString();
-                    return dictionary[dependentValue];
+                    return sourceResult;
                 }
 
                 return null;
@@ -100,6 +94,42 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
         #endregion
 
         #region Private Methods
+
+        private bool TryGetFromValueProperty(string key, out object item)
+        {
+            var valueProperty = this.valueProperties.FirstOrDefault(p => p.Name == key);
+            if (valueProperty != null)
+            {
+                item = valueProperty.GetValue(this.Model);
+                return true;
+            }
+
+            return Try.Failed(out item);
+        }
+
+        private bool TryGetFromSourceProperty(string key, out object result)
+        {
+            var sourceProperty = this.sourceProperties.FirstOrDefault(p => p.Name == key);
+            if (sourceProperty != null)
+            {
+                var sourceBindAttribute = sourceProperty.GetCustomAttribute<RailsCandidatesStringSourceBindAttribute>();
+                dynamic sourceValue = sourceProperty.GetValue(this.Model);
+                if (string.IsNullOrEmpty(sourceBindAttribute?.DependentPropertyName))
+                {
+                    result = sourceValue;
+                    return true;
+                }
+
+                if (TryGetFromValueProperty(sourceBindAttribute.DependentPropertyName, out var dependentValue)
+                    && sourceValue.ContainsKey(dependentValue.ToString()))
+                {
+                    result = sourceValue[dependentValue.ToString()];
+                    return true;
+                }
+            }
+
+            return Try.Failed(out result);
+        }
 
         private void OnErrorsChanged(string propertyName)
         {
