@@ -7,7 +7,7 @@ namespace EasySharpStandardMvvm.Views.Rails.Core
     {
         public static bool HasVisibleRailsBindAttribute(this MemberInfo element)
         {
-            return element.GetCustomAttribute<RailsBindAttribute>()?.UserVisible == true;
+            return element.GetCustomAttribute<RailsDataMemberBindAttribute>()?.UserVisible == true;
         }
 
         public static bool HasRailsSourceBindAttribute(this MemberInfo element)

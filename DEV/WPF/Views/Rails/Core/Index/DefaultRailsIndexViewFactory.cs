@@ -81,7 +81,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             {
                 Debug.Assert(property.CanRead);
 
-                var railsBind = property.GetCustomAttribute<RailsBindAttribute>();
+                var railsBind = property.GetCustomAttribute<RailsDataMemberBindAttribute>();
                 dataGrid.Columns.Add(CreateRailsBindColumn(property));
             }
 

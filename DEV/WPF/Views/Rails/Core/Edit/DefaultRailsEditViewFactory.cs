@@ -163,9 +163,9 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return button;
         }
 
-        protected override UIElement CreateEditListClassControl(object propertyValue, RailsListBindAttribute railsListBindAttribute)
+        protected override UIElement CreateEditListClassControl(object propertyValue, RailsDataMemberListBindAttribute railsDataMemberListBindAttribute)
         {
-            return base.CreateEditListClassControl(propertyValue, railsListBindAttribute);
+            return base.CreateEditListClassControl(propertyValue, railsDataMemberListBindAttribute);
         }
 
         protected override UIElement CreateEditEnumControl(Type enumType, Binding valueBinding)

@@ -14,18 +14,18 @@ namespace EasySharp.Sample.Models.AutoLayout
     public class Book : RailsModel, IValidatableObject
     {
         [DisplayName("題名")]
-        [RailsBind]
+        [RailsDataMemberBind]
         [Required(ErrorMessage = "題名は必要です")]
         [StringLength(20, ErrorMessage = "{0}は{1}文字までにしてください")]
         public string Title { get; set; } = string.Empty;
 
         [DisplayName("価格")]
-        [RailsBind]
+        [RailsDataMemberBind]
         [Range(0, 10000, ErrorMessage = "{0}は{1}～{2}円で入力してください。")]
         public int Price { get; set; } = 0;
 
         [DisplayName("著者")]
-        [RailsCandidatesStringValueBind(CandidatesPropertyName = nameof(SelectableAuthors))]
+        [RailsDataMemberCandidatesStringValueBind(CandidatesPropertyName = nameof(SelectableAuthors))]
         [Required(ErrorMessage = "著者名は必要です")]
         public string Author { get; set; } = string.Empty;
 
@@ -37,12 +37,12 @@ namespace EasySharp.Sample.Models.AutoLayout
         public IEnumerable<string> SelectableAuthors => lazySelectableAuthors.Value;
 
         [DisplayName("出版社")]
-        [RailsBind]
+        [RailsDataMemberBind]
         [UserTypeMemberValidation]
         public Publisher Publisher { get; set; } = new Publisher();
 
         [DisplayName("無料サンプル")]
-        [RailsBind]
+        [RailsDataMemberBind]
         public bool FreeTrial { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

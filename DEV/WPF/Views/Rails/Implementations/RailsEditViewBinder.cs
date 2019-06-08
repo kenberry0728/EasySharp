@@ -41,7 +41,7 @@ namespace EasySharpWpf.Views.Rails.Implementations
                 .Where(p => p.HasVisibleRailsBindAttribute());
             foreach (var property in properties)
             {
-                var railsBind = property.GetCustomAttribute<RailsBindAttribute>();
+                var railsBind = property.GetCustomAttribute<RailsDataMemberBindAttribute>();
                 if (string.IsNullOrEmpty(railsBind.ElementName))
                 {
                     continue;

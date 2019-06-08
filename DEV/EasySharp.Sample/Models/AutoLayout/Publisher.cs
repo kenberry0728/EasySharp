@@ -9,11 +9,11 @@ namespace EasySharpWpf.Sample.Models.AutoLayout
     {
         [DisplayName("出版社名")]
         [Required(ErrorMessage ="出版社名は必要です")]
-        [RailsCandidatesStringValueBind(DependentPropertyName = nameof(PublisherType))]
+        [RailsDataMemberCandidatesStringValueBind(DependentPropertyName = nameof(PublisherType))]
         public string Name { get; set; }
 
         [DisplayName("個人/企業")]
-        [RailsBind]
+        [RailsDataMemberBind]
         public PublisherType PublisherType { get; set; }
     }
 }

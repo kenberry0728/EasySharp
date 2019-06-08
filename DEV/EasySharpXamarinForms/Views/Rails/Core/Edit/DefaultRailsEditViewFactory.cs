@@ -171,9 +171,9 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             throw new NotImplementedException();
         }
 
-        protected override View CreateEditListClassControl(object propertyValue, RailsListBindAttribute railsListBindAttribute)
+        protected override View CreateEditListClassControl(object propertyValue, RailsDataMemberListBindAttribute railsDataMemberListBindAttribute)
         {
-            return base.CreateEditListClassControl(propertyValue, railsListBindAttribute);
+            return base.CreateEditListClassControl(propertyValue, railsDataMemberListBindAttribute);
         }
 
         protected override View CreateEditEnumControl(Type enumType, Binding valueBinding)

@@ -11,7 +11,7 @@ namespace EasySharpStandardMvvm.Models.Rails.Core
             type.CopyPropertyValues(
                 from,
                 to,
-                p => p.HasCustomAttribute<RailsBindAttribute>()
+                p => p.HasCustomAttribute<RailsDataMemberBindAttribute>()
                      && p.CanRead
                      && p.CanWrite);
         }

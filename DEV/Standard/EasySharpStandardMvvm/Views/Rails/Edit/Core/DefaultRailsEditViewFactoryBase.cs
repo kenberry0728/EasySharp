@@ -87,14 +87,14 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
             foreach (var property in type.GetProperties()
                                          .Where(p => p.HasVisibleRailsBindAttribute()))
             {
-                var railsBind = property.GetCustomAttribute<RailsBindAttribute>();
+                var railsBind = property.GetCustomAttribute<RailsDataMemberBindAttribute>();
 
                 Debug.Assert(property.CanRead && property.CanWrite);
 
                 var editControl = this.CreatePropertyEditControl(model, property, railsBind);
                 if (editControl != null)
                 {
-                    if (railsBind is RailsListBindAttribute)
+                    if (railsBind is RailsDataMemberListBindAttribute)
                     {
                         this.GridService.AddStarRowDefinition(grid);
                     }
@@ -122,13 +122,13 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
         protected virtual TViewControl CreatePropertyEditControl(
             object model,
             PropertyInfo property,
-            RailsBindAttribute railsBindAttribute)
+            RailsDataMemberBindAttribute railsDataMemberBindAttribute)
         {
             TViewControl uiElement = default;
             switch (property.PropertyType)
             {
                 case Type type when type == typeof(string):
-                    if (railsBindAttribute is RailsCandidatesStringValueBindAttribute candidatesStringAttribute)
+                    if (railsDataMemberBindAttribute is RailsDataMemberCandidatesStringValueBindAttribute candidatesStringAttribute)
                     {
                         if (string.IsNullOrEmpty(candidatesStringAttribute.DependentPropertyName))
                         {
@@ -163,7 +163,7 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
                     uiElement = CreateEditBooleanControl(this.RailsBindCreator.CreateRailsBinding(property));
                     break;
                 case Type type when type.IsClass:
-                    if (railsBindAttribute is RailsListBindAttribute railsListBindAttribute)
+                    if (railsDataMemberBindAttribute is RailsDataMemberListBindAttribute railsListBindAttribute)
                     {
                         uiElement = CreateEditListClassControl(property.GetValue(model), railsListBindAttribute);
                         break;
@@ -208,9 +208,9 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
             IDictionary<string, List<ValueAndDisplayValue<string>>> selectableItems, 
             TBinding valueBinding);
 
-        protected virtual TViewControl CreateEditListClassControl(object propertyValue, RailsListBindAttribute railsListBindAttribute)
+        protected virtual TViewControl CreateEditListClassControl(object propertyValue, RailsDataMemberListBindAttribute railsDataMemberListBindAttribute)
         {
-            return this.RailsIndexViewFactory.CreateIndexView(propertyValue as IList, railsListBindAttribute.ElementType);
+            return this.RailsIndexViewFactory.CreateIndexView(propertyValue as IList, railsDataMemberListBindAttribute.ElementType);
         }
         
         #endregion

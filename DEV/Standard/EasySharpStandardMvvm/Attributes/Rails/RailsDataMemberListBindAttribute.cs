@@ -6,21 +6,21 @@ namespace EasySharpStandardMvvm.Attributes.Rails
         AttributeTargets.Property,
         AllowMultiple = false,
         Inherited = false)]
-    public class RailsListBindAttribute : RailsBindAttribute
+    public class RailsDataMemberListBindAttribute : RailsDataMemberBindAttribute
     {
-        public RailsListBindAttribute(Type elementType)
+        public RailsDataMemberListBindAttribute(Type elementType)
             : base()
         {
             this.ElementType = elementType;
         }
 
-        public RailsListBindAttribute(Type elementType, bool userVisible)
+        public RailsDataMemberListBindAttribute(Type elementType, bool userVisible)
             : base(userVisible)
         {
             this.ElementType = elementType;
         }
 
-        public RailsListBindAttribute(Type elementType, string elementName)
+        public RailsDataMemberListBindAttribute(Type elementType, string elementName)
             : base(elementName)
         {
             this.ElementType = elementType;

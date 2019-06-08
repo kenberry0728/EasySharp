@@ -6,19 +6,19 @@ namespace EasySharpStandardMvvm.Attributes.Rails
         AttributeTargets.Property,
         AllowMultiple = false,
         Inherited = false)]
-    public class RailsBindAttribute : Attribute
+    public class RailsDataMemberBindAttribute : Attribute
     {
-        public RailsBindAttribute()
+        public RailsDataMemberBindAttribute()
             : this(true)
         {
         }
 
-        public RailsBindAttribute(bool userVisible)
+        public RailsDataMemberBindAttribute(bool userVisible)
         {
             this.UserVisible = userVisible;
         }
 
-        public RailsBindAttribute(string elementName)
+        public RailsDataMemberBindAttribute(string elementName)
         {
             this.ElementName = elementName;
         }

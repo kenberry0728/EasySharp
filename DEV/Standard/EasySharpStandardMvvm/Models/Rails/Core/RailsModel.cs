@@ -9,7 +9,7 @@ namespace EasySharpStandardMvvm.Models.Rails.Core
         public override string ToString()
         {
             return this.ToCommaSeparatedString(
-                p => p.GetCustomAttribute<RailsBindAttribute>()?.UserVisible == true);
+                p => p.GetCustomAttribute<RailsDataMemberBindAttribute>()?.UserVisible == true);
         }
     }
 }
