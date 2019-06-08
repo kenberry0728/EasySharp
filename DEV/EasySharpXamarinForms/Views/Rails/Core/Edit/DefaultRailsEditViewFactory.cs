@@ -92,7 +92,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
         private static Button CreateOkButton(object editedModel, ContentPage window)
         {
-            return new Button()
+            return new Button
             {
                 Text = "OK",
                 //IsDefault = true,
@@ -104,7 +104,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
         private static Button CreateCancelButton(ContentPage window)
         {
-            return new Button()
+            return new Button
             {
                 Text = "Cancel",
                 //IsCancel = true,
@@ -150,7 +150,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
         protected override View CreateEditClassControl(object propertyValue)
         {
             var viewModel = new RailsEditViewModel(propertyValue);
-            var button = new Button()
+            var button = new Button
             {
                 Command = new DelegateCommand(x => Edit(x as RailsEditViewModel)),
                 BindingContext = viewModel,
@@ -190,7 +190,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
         protected override View CreateLabelControl(PropertyInfo property)
         {
-            return new Label() { Text = property.GetDisplayName() };
+            return new Label { Text = property.GetDisplayName() };
         }
 
         protected override View CreateSelectFromCandidateControl(

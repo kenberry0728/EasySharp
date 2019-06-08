@@ -162,7 +162,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         private UIElement CreateAddButton(RailsIndexViewModel viewModel)
         {
-            var button = new Button()
+            var button = new Button
             {
                 Content = "+",
                 HorizontalAlignment = HorizontalAlignment.Left

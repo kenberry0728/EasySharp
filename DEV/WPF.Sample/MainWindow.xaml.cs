@@ -40,24 +40,24 @@ namespace EasySharpWpf.Sample
             this.bookShelf = new BookShelf();
 
             this.bookShelf.Books.Add(
-                new Book()
+                new Book
                 {
                     Title = "Kafka On The Shore",
                     Author = "Haruki Murakami",
                     Price = 300,
-                    Publisher = new Publisher()
+                    Publisher = new Publisher
                     {
                         Name = "Kodansha",
                         PublisherType = PublisherType.Company
                     }
                 });
             this.bookShelf.Books.Add(
-                new Book()
+                new Book
                 {
                     Title = "Norwegian Wood",
                     Author = "Haruki Murakami",
                     Price = 500,
-                    Publisher = new Publisher()
+                    Publisher = new Publisher
                     {
                         Name = "Kodansha",
                         PublisherType = PublisherType.Company

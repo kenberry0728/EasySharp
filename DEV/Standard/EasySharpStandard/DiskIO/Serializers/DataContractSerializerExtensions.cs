@@ -11,7 +11,7 @@ namespace EasySharpStandard.DiskIO.Serializers
         {
             filePath.EnsureDirectory();
             var serializer = new DataContractSerializer(instance.GetType(), settings);
-            var xmlSettings = new XmlWriterSettings()
+            var xmlSettings = new XmlWriterSettings
             {
                 NewLineHandling = NewLineHandling.Entitize,
                 Indent = true,
@@ -27,7 +27,7 @@ namespace EasySharpStandard.DiskIO.Serializers
 
         public static void SerializeWithDataContract(this object instance, string filePath, params Type[] knownTypes)
         {
-            var settings = new DataContractSerializerSettings()
+            var settings = new DataContractSerializerSettings
             {
                 KnownTypes = knownTypes
             };
@@ -37,7 +37,7 @@ namespace EasySharpStandard.DiskIO.Serializers
 
         public static void SerializeWithDataContract(this object instance, string filePath, bool preserveObjectReferences, params Type[] knownTypes)
         {
-            var settings = new DataContractSerializerSettings()
+            var settings = new DataContractSerializerSettings
             {
                 KnownTypes = knownTypes,
                 PreserveObjectReferences = preserveObjectReferences

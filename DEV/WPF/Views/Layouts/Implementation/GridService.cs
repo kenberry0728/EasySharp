@@ -22,7 +22,7 @@ namespace EasySharpWpf.Views.Layouts.Implementation
         public void AddColumnDefinition(Grid grid, double width)
         {
             grid.ColumnDefinitions.Add(
-                new ColumnDefinition()
+                new ColumnDefinition
                 {
                     Width = new GridLength(width)
                 });
@@ -36,7 +36,7 @@ namespace EasySharpWpf.Views.Layouts.Implementation
         public void AddStarColumnDefinition(Grid grid, double ratio = 1)
         {
             grid.ColumnDefinitions.Add(
-                new ColumnDefinition()
+                new ColumnDefinition
                 {
                     Width = new GridLength(ratio, GridUnitType.Star)
                 });
@@ -60,7 +60,7 @@ namespace EasySharpWpf.Views.Layouts.Implementation
         public void AddStarRowDefinition(Grid grid, double ratio = 1)
         {
             grid.RowDefinitions.Add(
-                new RowDefinition()
+                new RowDefinition
                 {
                     Height = new GridLength(ratio, GridUnitType.Star)
                 });
@@ -68,7 +68,7 @@ namespace EasySharpWpf.Views.Layouts.Implementation
 
         public Grid Create(object viewModel)
         {
-            return new Grid() { DataContext = viewModel };
+            return new Grid { DataContext = viewModel };
         }
     }
 }

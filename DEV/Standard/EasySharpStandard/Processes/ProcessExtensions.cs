@@ -9,7 +9,7 @@ namespace EasySharpStandard.Processes
             Debug.Assert(arguments == "", "TODO : check if it works or not.");
             var process = new Process
             {
-                StartInfo = new ProcessStartInfo()
+                StartInfo = new ProcessStartInfo
                 {
                     FileName = processPath,
                     UseShellExecute = false,

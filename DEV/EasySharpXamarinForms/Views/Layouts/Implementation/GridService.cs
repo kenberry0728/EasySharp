@@ -21,7 +21,7 @@ namespace EasySharpXamarinForms.Views.Layouts.Implementation
         public void AddColumnDefinition(Grid grid, GridLength width)
         {
             grid.ColumnDefinitions.Add(
-                new ColumnDefinition()
+                new ColumnDefinition
                 {
                     Width = width
                 });
@@ -40,7 +40,7 @@ namespace EasySharpXamarinForms.Views.Layouts.Implementation
         public void AddRowDefinition(Grid grid, double height)
         {
             grid.RowDefinitions.Add(
-                new RowDefinition()
+                new RowDefinition
                 {
                     Height = new GridLength(height)
                 });
@@ -57,17 +57,17 @@ namespace EasySharpXamarinForms.Views.Layouts.Implementation
 
         public Grid Create(object viewModel)
         {
-            return new Grid() { BindingContext = viewModel };
+            return new Grid { BindingContext = viewModel };
         }
 
         public void AddAutoColumnDefinition(Grid grid)
         {
-            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
         }
 
         public void AddAutoRowDefinition(Grid grid)
         {
-            grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+            grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         }
     }
 }

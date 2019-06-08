@@ -91,7 +91,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         private static Button CreateOkButton(object editedModel, Window window)
         {
-            return new Button()
+            return new Button
             {
                 Content = "OK",
                 IsDefault = true,
@@ -103,7 +103,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         private static Button CreateCancelButton(Window window)
         {
-            return new Button()
+            return new Button
             {
                 Content = "Cancel",
                 IsCancel = true,
@@ -134,7 +134,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         protected override UIElement CreateEditBooleanControl(Binding valueBinding)
         {
-            var checkBox = new CheckBox() { VerticalAlignment = VerticalAlignment.Center };
+            var checkBox = new CheckBox { VerticalAlignment = VerticalAlignment.Center };
             checkBox.SetBinding(ToggleButton.IsCheckedProperty, valueBinding);
             return checkBox;
         }
@@ -149,7 +149,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
         protected override UIElement CreateEditClassControl(object propertyValue)
         {
             var viewModel = new RailsEditViewModel(propertyValue);
-            var button = new Button()
+            var button = new Button
             {
                 Command = new DelegateCommand(x => Edit(x as RailsEditViewModel)),
                 DataContext = viewModel,
@@ -217,7 +217,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         protected override UIElement CreateLabelControl(PropertyInfo property)
         {
-            return new Label() { Content = property.GetDisplayName() };
+            return new Label { Content = property.GetDisplayName() };
         }
 
 

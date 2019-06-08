@@ -22,7 +22,7 @@ namespace EasySharpWpf.Sample
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            var editModel = new CustomLayoutBook()
+            var editModel = new CustomLayoutBook
             {
                 Title = "Kafka On The Shore",
                 Author = "Haruki Murakami",
