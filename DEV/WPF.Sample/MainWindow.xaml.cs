@@ -13,7 +13,7 @@ namespace EasySharpWpf.Sample
     public partial class MainWindow : Window
     {
         private const string SaveFilePath = "bookShelf.json";
-        private readonly BookShelf bookShelf;
+        private BookShelf bookShelf;
 
         public MainWindow()
            : this(null)
@@ -29,35 +29,40 @@ namespace EasySharpWpf.Sample
 
             if (!Try.To(() => SaveFilePath.DeserializeFromJson<BookShelf>(), out this.bookShelf))
             {
-                this.bookShelf = new BookShelf();
-
-                this.bookShelf.Books.Add(
-                    new Book()
-                    {
-                        Title = "Kafka On The Shore",
-                        Author = "Haruki Murakami",
-                        Price = 300,
-                        Publisher = new Publisher()
-                        {
-                            Name = "Kodansha",
-                            PublisherType = PublisherType.Company
-                        }
-                    });
-                this.bookShelf.Books.Add(
-                    new Book()
-                    {
-                        Title = "Norwegian Wood",
-                        Author = "Haruki Murakami",
-                        Price = 500,
-                        Publisher = new Publisher()
-                        {
-                            Name = "Kodansha",
-                            PublisherType = PublisherType.Company
-                        }
-                    });
+                CreateSampleData();
             }
 
             this.BookShelfGrid.Children.Add(railsEditViewFactory.CreateEditView(bookShelf, typeof(BookShelf)));
+        }
+
+        private void CreateSampleData()
+        {
+            this.bookShelf = new BookShelf();
+
+            this.bookShelf.Books.Add(
+                new Book()
+                {
+                    Title = "Kafka On The Shore",
+                    Author = "Haruki Murakami",
+                    Price = 300,
+                    Publisher = new Publisher()
+                    {
+                        Name = "Kodansha",
+                        PublisherType = PublisherType.Company
+                    }
+                });
+            this.bookShelf.Books.Add(
+                new Book()
+                {
+                    Title = "Norwegian Wood",
+                    Author = "Haruki Murakami",
+                    Price = 500,
+                    Publisher = new Publisher()
+                    {
+                        Name = "Kodansha",
+                        PublisherType = PublisherType.Company
+                    }
+                });
         }
 
         private void SaveClicked(object sender, RoutedEventArgs e)
