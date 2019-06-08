@@ -5,7 +5,7 @@ namespace EasySharpStandard.Logs.CheckLogs.Core.Models
 {
     public class CheckResultLog : TextLog, ICheckLog
     {
-        public CheckResutl CheckResult { get; internal set; }
+        public CheckResult CheckResult { get; internal set; }
 
         public ILocation Location { get; internal set; }
     }

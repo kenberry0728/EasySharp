@@ -8,6 +8,6 @@ namespace EasySharp.Sample.Models.AutoLayout
         Company,
 
         [EnumDisplayName("個人")]
-        Indivisual
+        Individual
     }
 }

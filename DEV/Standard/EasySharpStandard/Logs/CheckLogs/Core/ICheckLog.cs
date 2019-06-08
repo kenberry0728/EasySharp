@@ -6,7 +6,7 @@ namespace EasySharpStandard.Logs.CheckLogs.Core
 {
     public interface ICheckLog : ITextLog
     {
-        CheckResutl CheckResult { get; }
+        CheckResult CheckResult { get; }
 
         ILocation Location { get; }
     }

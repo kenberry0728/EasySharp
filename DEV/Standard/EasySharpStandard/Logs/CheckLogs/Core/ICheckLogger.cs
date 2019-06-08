@@ -5,6 +5,6 @@ namespace EasySharpStandard.Logs.CheckLogs.Core
 {
     public interface ICheckLogger
     {
-        void Write(CheckResultCategories category, CheckResutl code, ILocation location, string message);
+        void Write(CheckResultCategories category, CheckResult code, ILocation location, string message);
     }
 }

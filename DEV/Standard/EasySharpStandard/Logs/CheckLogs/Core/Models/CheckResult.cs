@@ -2,13 +2,13 @@
 
 namespace EasySharpStandard.Logs.CheckLogs.Core.Models
 {
-    [DebuggerDisplay("{Category}\t{Identifacation}{CodeNumber}")]
-    public class CheckResutl
+    [DebuggerDisplay("{Category}\t{CheckerIdentification}{CodeNumber}")]
+    public class CheckResult
     {
-        public CheckResutl(CheckResultCategories category, string identifacation, int resultCode)
+        public CheckResult(CheckResultCategories category, string identification, int resultCode)
         {
             this.Category = category;
-            this.CheckerIdentification = identifacation;
+            this.CheckerIdentification = identification;
             this.CodeNumber = resultCode;
         }
 

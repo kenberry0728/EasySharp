@@ -9,7 +9,7 @@ namespace EasySharpStandardConsole.Logs.CheckLogs.Implementations
     {
         public ConsoleCheckLogger(){}
 
-        public void Write(CheckResultCategories category, CheckResutl code, ILocation location, string message)
+        public void Write(CheckResultCategories category, CheckResult code, ILocation location, string message)
         {
             Console.WriteLine(
                 string.Join("\t", category, code, location.LocationText, message));

@@ -68,9 +68,9 @@ namespace EasySharpStandard.DataStructures.Trees.Core
             yield return item;
             foreach (var child in getChildren(item))
             {
-                foreach (var descentant in child.GetAllItems(getChildren))
+                foreach (var descendant in child.GetAllItems(getChildren))
                 {
-                    yield return descentant;
+                    yield return descendant;
                 }
             }
         }
@@ -80,9 +80,9 @@ namespace EasySharpStandard.DataStructures.Trees.Core
             foreach (var child in getChildren(item))
             {
                 yield return child;
-                foreach (var descentant in child.GetDescendants(getChildren))
+                foreach (var descendant in child.GetDescendants(getChildren))
                 {
-                    yield return descentant;
+                    yield return descendant;
                 }
             }
         }
@@ -93,9 +93,9 @@ namespace EasySharpStandard.DataStructures.Trees.Core
             foreach (var child in getChildren(item))
             {
                 yield return child;
-                foreach (var descentant in child.GetDescendants(getChildren))
+                foreach (var descendant in child.GetDescendants(getChildren))
                 {
-                    yield return descentant;
+                    yield return descendant;
                 }
             }
         }
