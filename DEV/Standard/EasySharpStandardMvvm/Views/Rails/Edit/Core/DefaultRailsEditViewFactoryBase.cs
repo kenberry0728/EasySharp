@@ -128,7 +128,7 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
             switch (property.PropertyType)
             {
                 case Type type when type == typeof(string):
-                    if (railsDataMemberBindAttribute is RailsDataMemberCandidatesStringValueBindAttribute candidatesStringAttribute)
+                    if (railsDataMemberBindAttribute is RailsDataMemberCandidatesStringBindAttribute candidatesStringAttribute)
                     {
                         if (string.IsNullOrEmpty(candidatesStringAttribute.DependentPropertyName))
                         {
