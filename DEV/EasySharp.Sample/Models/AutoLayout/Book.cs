@@ -29,12 +29,16 @@ namespace EasySharp.Sample.Models.AutoLayout
         [Required(ErrorMessage = "著者名は必要です")]
         public string Author { get; set; } = string.Empty;
 
+        #region SelectableAuthors
+
         private static readonly Lazy<IEnumerable<string>> lazySelectableAuthors 
             = new Lazy<IEnumerable<string>>(() => 
                 typeof(Book).GetLocalResourceValues(nameof(SelectableAuthors)));
 
         [RailsCandidatesStringSourceBind]
         public IEnumerable<string> SelectableAuthors => lazySelectableAuthors.Value;
+        
+        #endregion
 
         [DisplayName("出版社")]
         [RailsDataMemberBind]
