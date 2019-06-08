@@ -23,7 +23,7 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
 
         #endregion
 
-        public DefaultRailsEditViewFactoryBase(
+        protected DefaultRailsEditViewFactoryBase(
             IRailsIndexViewFactory<TViewControl> railsIndexViewFactory,
             IRailsEditViewModelFactory<TBinding> railsEditViewModelFactory,
             IGridService<TGrid, TViewControl> gridService)
