@@ -10,6 +10,7 @@ using EasySharpStandardMvvm.Views.Rails.Core;
 
 namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
 {
+    // TODO: Add BaseClass
     internal class RailsEditViewModel
         : RailsBindCreator, IRailsEditViewModel, INotifyDataErrorInfo
     {
@@ -60,8 +61,11 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
 
         public object this[string key]
         {
-            get => this.valueProperties.Concat(this.sourceProperties)
-                .FirstOrDefault(p => p.Name == key)?.GetValue(this.Model);
+            get
+            {
+                return this.valueProperties.Concat(this.sourceProperties)
+                    .FirstOrDefault(p => p.Name == key)?.GetValue(this.Model);
+            }
 
             set
             {

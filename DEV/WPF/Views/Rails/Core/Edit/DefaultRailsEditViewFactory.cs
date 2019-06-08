@@ -181,12 +181,12 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return comboBox;
         }
 
-        protected override UIElement CreateSelectFromCandidateControl(IList<ValueAndDisplayValue<string>> selectableItems, Binding valueBinding)
+        protected override UIElement CreateSelectFromCandidateControl(
+            Binding itemsSourceBinding,
+            Binding valueBinding)
         {
             var comboBox = new ComboBox();
-            comboBox.ItemsSource = selectableItems.ToList();
-            comboBox.SelectedValuePath = ValueAndDisplayValue<string>.ValuePath;
-            comboBox.DisplayMemberPath = ValueAndDisplayValue<string>.DisplayValuePath;
+            comboBox.SetBinding(ItemsControl.ItemsSourceProperty, itemsSourceBinding);
             comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
             return comboBox;
         }
@@ -207,12 +207,9 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             // どっちかといえば、あっち側のプロパティかな
             var comboBox = new ComboBox();
             comboBox.ItemsSource = selectableItems.ToList();
-            comboBox.SelectedValuePath = ValueAndDisplayValue<string>.ValuePath;
-            comboBox.DisplayMemberPath = ValueAndDisplayValue<string>.DisplayValuePath;
             comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
             return comboBox;
         }
-
 
         protected override UIElement CreateLabelControl(PropertyInfo property)
         {

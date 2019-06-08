@@ -10,20 +10,21 @@ namespace EasySharpStandardMvvm.Attributes.Rails
     {
         #region Constructors
 
-        public RailsDataMemberCandidatesStringBindAttribute()
-        : this(true)
+        public RailsDataMemberCandidatesStringBindAttribute(string candidatesPropertyName)
+        : this(true, candidatesPropertyName)
         {
         }
 
-        public RailsDataMemberCandidatesStringBindAttribute(bool userVisible)
+        public RailsDataMemberCandidatesStringBindAttribute(bool userVisible, string candidatesPropertyName)
             : base(userVisible)
         {
+            this.CandidatesPropertyName = candidatesPropertyName;
         }
 
-        public RailsDataMemberCandidatesStringBindAttribute(string elementName)
+        public RailsDataMemberCandidatesStringBindAttribute(string elementName, string candidatesPropertyName)
             : base(elementName)
         {
-            this.ElementName = elementName;
+            this.CandidatesPropertyName = candidatesPropertyName;
         }
 
         #endregion

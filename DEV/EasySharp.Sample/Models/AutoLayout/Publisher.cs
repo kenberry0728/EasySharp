@@ -1,4 +1,5 @@
-﻿using EasySharpStandardMvvm.Attributes.Rails;
+﻿using System.Collections.Generic;
+using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -9,11 +10,13 @@ namespace EasySharpWpf.Sample.Models.AutoLayout
     {
         [DisplayName("出版社名")]
         [Required(ErrorMessage ="出版社名は必要です")]
-        [RailsDataMemberCandidatesStringBind(DependentPropertyName = nameof(PublisherType))]
+        [RailsDataMemberCandidatesStringBind(nameof(Names), DependentPropertyName = nameof(PublisherType))]
         public string Name { get; set; }
 
         [DisplayName("個人/企業")]
         [RailsDataMemberBind]
         public PublisherType PublisherType { get; set; }
+
+        public IEnumerable<string> Names { get; }
     }
 }

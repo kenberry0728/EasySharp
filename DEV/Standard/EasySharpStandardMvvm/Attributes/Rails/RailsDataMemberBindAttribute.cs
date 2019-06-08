@@ -23,7 +23,7 @@ namespace EasySharpStandardMvvm.Attributes.Rails
             this.ElementName = elementName;
         }
 
-        public string ElementName { get; set; }
+        public string ElementName { get; }
 
         public bool UserVisible { get; }
     }

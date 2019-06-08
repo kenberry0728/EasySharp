@@ -7,22 +7,22 @@ namespace EasySharpWpf.Sample.Models.UserDefinedLayout
 {
     public class CustomLayoutBook : RailsModel, IValidatableObject
     {
-        [RailsDataMemberBind(ElementName = "TitleTextBox")]
+        [RailsDataMemberBind("TitleTextBox")]
         [Required(ErrorMessage = "題名は必要です")]
         public string Title { get; set; }
 
-        [RailsDataMemberBind(ElementName = "PriceTextBox")]
+        [RailsDataMemberBind("PriceTextBox")]
         [Range(0, 10000, ErrorMessage = "{0}～{1}円で入力してください。")]
         public int Price { get; set; }
 
-        [RailsDataMemberBind(ElementName = "AuthorTextBox")]
+        [RailsDataMemberBind("AuthorTextBox")]
         [Required(ErrorMessage = "著者名は必要です")]
         public string Author { get; set; }
 
-        [RailsDataMemberBind(ElementName = "PublisherTextBox")]
+        [RailsDataMemberBind("PublisherTextBox")]
         public string Publisher { get; set; }
 
-        [RailsDataMemberBind(ElementName = "FreeTrialCheckBox")]
+        [RailsDataMemberBind("FreeTrialCheckBox")]
         public bool FreeTrial { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

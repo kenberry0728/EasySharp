@@ -132,19 +132,19 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
                     {
                         if (string.IsNullOrEmpty(candidatesStringAttribute.DependentPropertyName))
                         {
-                            var selectableItems = model.GetPropertyValue(
-                                candidatesStringAttribute.CandidatesPropertyName) as IList;
+                            var dependentProperty = model.GetType().GetProperty(
+                                candidatesStringAttribute.CandidatesPropertyName);
                             uiElement = CreateSelectFromCandidateControl(
-                                selectableItems.ToEnumerable().OfType<string>().Select(s => new ValueAndDisplayValue<string>(s, s)).ToList(),
+                                this.RailsBindCreator.CreateRailsBinding(dependentProperty),
                                 this.RailsBindCreator.CreateRailsBinding(property));
                         }
                         //else
                         //{
-                        //    var selectableItems = candidatesStringAttribute.GetSelectableDependentItems(property);
+                        //    var itemsSourceBinding = candidatesStringAttribute.GetSelectableDependentItems(property);
                         //    uiElement = CreateSelectFromCandidateControl(
                         //        model,
                         //        candidatesStringAttribute.DependentPropertyName,
-                        //        selectableItems,
+                        //        itemsSourceBinding,
                         //        this.RailsBindCreator.CreateRailsBinding(property));
                         //}
                     }
@@ -199,7 +199,7 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
         protected abstract TViewControl CreateEditEnumControl(Type enumType, TBinding valueBinding);
 
         protected abstract TViewControl CreateSelectFromCandidateControl(
-            TBinding selectableItems,
+            TBinding itemsSourceBinding,
             TBinding valueBinding);
 
         protected abstract TViewControl CreateSelectFromCandidateControl(

@@ -194,11 +194,13 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             return new Label() { Text = property.GetDisplayName() };
         }
 
-        protected override View CreateSelectFromCandidateControl(IList<ValueAndDisplayValue<string>> selectableItems, Binding valueBinding)
+        protected override View CreateSelectFromCandidateControl(
+            Binding itemsSourceBinding, 
+            Binding valueBinding)
         {
             var comboBox = new Picker();
-            var itemsSource = selectableItems;
-            comboBox.ItemsSource = itemsSource.ToList();
+            var itemsSource = itemsSourceBinding;
+            comboBox.SetBinding(Picker.ItemsSourceProperty, itemsSourceBinding);
             //comboBox.Item = "Value";
             comboBox.ItemDisplayBinding = new Binding(ValueAndDisplayValue<string>.DisplayValuePath);
             comboBox.SetBinding(Picker.SelectedItemProperty, valueBinding);
