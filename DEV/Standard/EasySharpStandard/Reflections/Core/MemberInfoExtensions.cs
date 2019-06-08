@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 
 namespace EasySharpStandard.Reflections.Core
@@ -12,6 +13,10 @@ namespace EasySharpStandard.Reflections.Core
             if (relativeNamespacePath.StartsWith(assemblyName))
             {
                 relativeNamespacePath = relativeNamespacePath.Substring(assemblyName.Length + 1);
+            }
+            else
+            {
+                Debug.Assert(false, "namespace should follow the folder structure.");
             }
 
             var folderPath = string.Join(

@@ -13,7 +13,7 @@
     <Content Include="Models\AutoLayout\Book\SelectableAuthors">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Models\AutoLayout\Publisher\Name">
+    <Content Include="Models\AutoLayout\Publisher\Names">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

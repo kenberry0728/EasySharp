@@ -36,8 +36,6 @@ namespace EasySharpStandardMvvm.Attributes.Rails
 
         public string CandidatesPropertyName { get; set; }
 
-        public string DependentPropertyName{ get; set; }
-
         #endregion
     }
 }

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using EasySharpStandard.Validations.Core;
+using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.Views.Rails.Core;
 
@@ -63,8 +64,27 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
         {
             get
             {
-                return this.valueProperties.Concat(this.sourceProperties)
-                    .FirstOrDefault(p => p.Name == key)?.GetValue(this.Model);
+                var valueProperty = this.valueProperties.FirstOrDefault(p => p.Name == key);
+                if (valueProperty != null)
+                {
+                    return valueProperty.GetValue(this.Model);
+                }
+
+                var sourceProperty = this.sourceProperties.FirstOrDefault(p => p.Name == key);
+                if (sourceProperty != null)
+                {
+                    var sourceBindAttribute = sourceProperty.GetCustomAttribute<RailsCandidatesStringSourceBindAttribute>();
+                    if (string.IsNullOrEmpty(sourceBindAttribute?.DependentPropertyName))
+                    {
+                        return sourceProperty.GetValue(this.Model);
+                    }
+
+                    dynamic dictionary = sourceProperty.GetValue(this.Model);
+                    var dependentValue = this[sourceBindAttribute.DependentPropertyName].ToString();
+                    return dictionary[dependentValue];
+                }
+
+                return null;
             }
 
             set
