@@ -6,21 +6,21 @@ namespace EasySharpStandardMvvm.Attributes.Rails
         AttributeTargets.Property,
         AllowMultiple = false,
         Inherited = false)]
-    public class RailsCandidatesStringBindAttribute : RailsBindAttribute
+    public class RailsCandidatesStringValueBindAttribute : RailsBindAttribute
     {
         #region Constructors
 
-        public RailsCandidatesStringBindAttribute()
+        public RailsCandidatesStringValueBindAttribute()
         : this(true)
         {
         }
 
-        public RailsCandidatesStringBindAttribute(bool userVisible)
+        public RailsCandidatesStringValueBindAttribute(bool userVisible)
             : base(userVisible)
         {
         }
 
-        public RailsCandidatesStringBindAttribute(string elementName)
+        public RailsCandidatesStringValueBindAttribute(string elementName)
             : base(elementName)
         {
             this.ElementName = elementName;

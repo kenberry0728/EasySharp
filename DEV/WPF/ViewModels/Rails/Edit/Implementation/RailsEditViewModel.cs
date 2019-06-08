@@ -1,19 +1,18 @@
 ﻿using EasySharpStandard.Validations.Core;
-using EasySharpStandardMvvm.ViewModels.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
-using EasySharpWpf.Views.Rails.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using EasySharpStandardMvvm.Views.Rails.Core;
 
 namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 {
     internal class RailsEditViewModel
-        : RailsBindCreator, IViewModelWithModel, IRailsEditViewModel, INotifyDataErrorInfo
+        : RailsBindCreator, IRailsEditViewModel, INotifyDataErrorInfo
     {
         #region INotifyDataErrorInfo
 
@@ -42,7 +41,7 @@ namespace EasySharpWpf.ViewModels.Rails.Core.Edit
             this.Type = type ?? model.GetType();
             this.Model = model;
             this.properties = this.Type.GetProperties()
-                .Where(p => p.HasVisibleRailsBindAttribute());
+                .Where(p => p.HasVisibleRailsBindAttribute() || p.HasRailsSourceBindAttribute());
         }
 
         public Type Type { get; }

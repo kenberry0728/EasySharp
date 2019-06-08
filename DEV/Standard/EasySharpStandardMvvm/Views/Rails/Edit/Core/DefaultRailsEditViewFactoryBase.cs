@@ -12,6 +12,7 @@ using System.Linq;
 using System.Reflection;
 using EasySharpStandard.Collections.Core;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
+using EasySharpStandardMvvm.Views.Rails.Core;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
@@ -126,7 +127,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             switch (property.PropertyType)
             {
                 case Type type when type == typeof(string):
-                    if (railsBindAttribute is RailsCandidatesStringBindAttribute candidatesStringAttribute)
+                    if (railsBindAttribute is RailsCandidatesStringValueBindAttribute candidatesStringAttribute)
                     {
                         if (string.IsNullOrEmpty(candidatesStringAttribute.DependentPropertyName))
                         {

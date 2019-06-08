@@ -25,7 +25,7 @@ namespace EasySharp.Sample.Models.AutoLayout
         public int Price { get; set; } = 0;
 
         [DisplayName("著者")]
-        [RailsCandidatesStringBind(CandidatesPropertyName = nameof(SelectableAuthors))]
+        [RailsCandidatesStringValueBind(CandidatesPropertyName = nameof(SelectableAuthors))]
         [Required(ErrorMessage = "著者名は必要です")]
         public string Author { get; set; } = string.Empty;
 
@@ -33,6 +33,7 @@ namespace EasySharp.Sample.Models.AutoLayout
             = new Lazy<IEnumerable<string>>(() => 
                 typeof(Book).GetLocalResourceValues(nameof(SelectableAuthors)));
 
+        [RailsCandidatesStringSourceBind]
         public IEnumerable<string> SelectableAuthors => lazySelectableAuthors.Value;
 
         [DisplayName("出版社")]

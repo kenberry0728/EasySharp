@@ -1,7 +1,7 @@
-﻿using EasySharpStandardMvvm.Attributes.Rails;
-using System.Reflection;
+﻿using System.Reflection;
+using EasySharpStandardMvvm.Attributes.Rails;
 
-namespace EasySharpWpf.Views.Rails.Core
+namespace EasySharpStandardMvvm.Views.Rails.Core
 {
     public static class MemberInfoExtensions
     {
@@ -9,5 +9,11 @@ namespace EasySharpWpf.Views.Rails.Core
         {
             return element.GetCustomAttribute<RailsBindAttribute>()?.UserVisible == true;
         }
+
+        public static bool HasRailsSourceBindAttribute(this MemberInfo element)
+        {
+            return element.GetCustomAttribute<RailsSourceBindAttribute>() != null;
+        }
+
     }
 }
