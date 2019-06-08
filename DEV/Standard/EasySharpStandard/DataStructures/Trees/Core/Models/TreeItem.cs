@@ -27,9 +27,9 @@ namespace EasySharpStandard.DataStructures.Trees.Core.Models
             this.children.Add(child);
         }
 
-        public void AddChildren(IEnumerable<TreeItem<T>> children)
+        public void AddChildren(IEnumerable<TreeItem<T>> childrenToAdd)
         {
-            foreach (var child in children)
+            foreach (var child in childrenToAdd)
             {
                 this.AddChild(child);
             }
