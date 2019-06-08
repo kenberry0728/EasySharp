@@ -9,15 +9,9 @@ namespace EasySharpStandard.Collections.Dictionaries.Core.Models
 
         public TValue this[TKey key]
         {
-            get
-            {
-                return this.keyToValues[key];
-            }
+            get => this.keyToValues[key];
 
-            set
-            {
-                this.Add(key, value);
-            }
+            set => this.Add(key, value);
         }
 
         public TKey GetKey(TValue value)

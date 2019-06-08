@@ -13,15 +13,10 @@ namespace EasySharpWpf.Views.ValidationRules.Core
             this.validationAttribute = validationAttribute;
         }
 
-        public string ErrorMessage
-        {
-            get
-            {
-                return string.IsNullOrEmpty(this.validationAttribute.ErrorMessage) 
-                    ? this.DefaultErrorMessage 
-                    : this.validationAttribute.ErrorMessage;
-            }
-        }
+        public string ErrorMessage =>
+            string.IsNullOrEmpty(this.validationAttribute.ErrorMessage) 
+                ? this.DefaultErrorMessage 
+                : this.validationAttribute.ErrorMessage;
 
         protected virtual string DefaultErrorMessage => "値が不正です";
 
