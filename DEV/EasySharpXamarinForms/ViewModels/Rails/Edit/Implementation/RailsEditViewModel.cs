@@ -13,7 +13,7 @@ using EasySharpStandardMvvm.Views.Rails.Core;
 namespace EasySharpWpf.ViewModels.Rails.Core.Edit
 {
     internal class RailsEditViewModel
-        : RailsBindCreator, IViewModelWithModel, IRailsEditViewModel, INotifyDataErrorInfo
+        : RailsBindCreator, IRailsEditViewModel, INotifyDataErrorInfo
     {
         #region INotifyDataErrorInfo
 
