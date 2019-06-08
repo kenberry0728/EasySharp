@@ -8,6 +8,7 @@ using EasySharpStandardMvvm.ViewModels.Core;
 using EasySharpWpf.Commands.Core.Dialogs;
 using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
+using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
 using EasySharpWpf.Views.Converters;
 using EasySharpWpf.Views.Layouts.Core;
 using EasySharpWpf.Views.Rails.Core.Index;
@@ -20,6 +21,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
@@ -190,6 +192,29 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
             return comboBox;
         }
+
+        protected override UIElement CreateSelectFromCandidateControl(
+            object model,
+            PropertyInfo dependentPropertyInfo,
+            IDictionary<string, List<ValueAndDisplayValue<string>>> selectableItems,
+            Binding valueBinding)
+        {
+            var container = new DependentCandidateContainer(model, dependentPropertyInfo, selectableItems);
+
+            //　考え中： ViewModelにPropertyを足すのか？
+            // Bind用のViewModelを作って、Propertyアクセッサーに渡す。
+            // とりあえず、[PropertyName_SelectableItemContainer].SelectableItems的な。
+            // Getterのclassがでやったほうがいいな
+            // OnPropertyChangedはどうやって受け取ろう。
+            // どっちかといえば、あっち側のプロパティかな
+            var comboBox = new ComboBox();
+            comboBox.ItemsSource = selectableItems.ToList();
+            comboBox.SelectedValuePath = ValueAndDisplayValue<string>.ValuePath;
+            comboBox.DisplayMemberPath = ValueAndDisplayValue<string>.DisplayValuePath;
+            comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
+            return comboBox;
+        }
+
 
         protected override UIElement CreateLabelControl(PropertyInfo property)
         {

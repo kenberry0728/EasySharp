@@ -1,4 +1,4 @@
-﻿namespace EasySharpStandardMvvm.ViewModels.Core
+﻿namespace EasySharpStandardMvvm.Views.Layouts.ViewModels.Core
 {
     public class ValueAndDisplayValue<TValueType>
     {

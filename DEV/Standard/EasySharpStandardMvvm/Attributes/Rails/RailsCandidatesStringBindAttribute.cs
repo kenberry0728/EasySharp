@@ -28,8 +28,12 @@ namespace EasySharpStandardMvvm.Attributes.Rails
 
         #endregion
 
-        public string CandidatesFilePath { get; set; }
+        #region Properties
+
+        public string CandidatesPropertyName { get; set; }
 
         public string DependentPropertyName{ get; set; }
+
+        #endregion
     }
 }

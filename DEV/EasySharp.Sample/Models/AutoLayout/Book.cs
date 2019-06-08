@@ -1,7 +1,9 @@
-﻿using EasySharpStandard.Validations.Core.Attributes;
+﻿using EasySharpStandard.Reflections.Core.LocalResources;
+using EasySharpStandard.Validations.Core.Attributes;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpWpf.Sample.Models.AutoLayout;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -23,9 +25,15 @@ namespace EasySharp.Sample.Models.AutoLayout
         public int Price { get; set; } = 0;
 
         [DisplayName("著者")]
-        [RailsCandidatesStringBind]
+        [RailsCandidatesStringBind(CandidatesPropertyName = nameof(SelectableAuthors))]
         [Required(ErrorMessage = "著者名は必要です")]
         public string Author { get; set; } = string.Empty;
+
+        private static readonly Lazy<IEnumerable<string>> lazySelectableAuthors 
+            = new Lazy<IEnumerable<string>>(() => 
+                typeof(Book).GetLocalResourceValues(nameof(SelectableAuthors)));
+
+        public IEnumerable<string> SelectableAuthors => lazySelectableAuthors.Value;
 
         [DisplayName("出版社")]
         [RailsBind]

@@ -1,8 +1,5 @@
-﻿using EasySharpStandard.DiskIO.Extensions;
-using EasySharpStandard.Reflections.Core;
-using EasySharpStandard.SafeCodes.Core;
+﻿using EasySharpStandard.Reflections.Core;
 using EasySharpStandardMvvm.Attributes.Rails;
-using EasySharpStandardMvvm.ViewModels.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
 using EasySharpStandardMvvm.Views.Layouts.Core;
@@ -11,9 +8,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Reflection;
+using EasySharpStandard.Collections.Core;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
@@ -130,10 +128,23 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 case Type type when type == typeof(string):
                     if (railsBindAttribute is RailsCandidatesStringBindAttribute candidatesStringAttribute)
                     {
-                        var selectableItems = GetSelectableItems(property, candidatesStringAttribute);
-                        uiElement = CreateSelectFromCandidateControl(
-                            selectableItems,
-                            this.RailsBindCreator.CreateRailsBinding(property));
+                        if (string.IsNullOrEmpty(candidatesStringAttribute.DependentPropertyName))
+                        {
+                            var selectableItems = model.GetPropertyValue(
+                                candidatesStringAttribute.CandidatesPropertyName) as IList;
+                            uiElement = CreateSelectFromCandidateControl(
+                                selectableItems.ToEnumerable().OfType<string>().Select(s => new ValueAndDisplayValue<string>(s, s)).ToList(),
+                                this.RailsBindCreator.CreateRailsBinding(property));
+                        }
+                        //else
+                        //{
+                        //    var selectableItems = candidatesStringAttribute.GetSelectableDependentItems(property);
+                        //    uiElement = CreateSelectFromCandidateControl(
+                        //        model,
+                        //        candidatesStringAttribute.DependentPropertyName,
+                        //        selectableItems,
+                        //        this.RailsBindCreator.CreateRailsBinding(property));
+                        //}
                     }
                     else
                     {
@@ -171,39 +182,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return uiElement;
         }
 
-        private static IList<ValueAndDisplayValue<string>> GetSelectableItems(
-            PropertyInfo property, 
-            RailsCandidatesStringBindAttribute candidatesStringAttribute)
-        {
-            var filePath = candidatesStringAttribute.CandidatesFilePath;
-            if (string.IsNullOrEmpty(candidatesStringAttribute.CandidatesFilePath))
-            {
-                filePath = property.GetRelativePropertyPath();
-            }
-
-            return GetSelectableItems(filePath);
-        }
-
-        private static IList<ValueAndDisplayValue<string>> GetSelectableItems(string filePath)
-        {
-            IList<ValueAndDisplayValue<string>> selectableItems = null;
-            var result = Try.To(() =>
-            {
-                var content = filePath.ReadToEnd();
-                selectableItems =
-                    content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
-                    .Distinct()
-                    .Select(c => new ValueAndDisplayValue<string>(c, c)).ToList();
-            });
-
-            if (!result)
-            {
-                selectableItems = new List<ValueAndDisplayValue<string>>();
-            }
-
-            return selectableItems;
-        }
-
         protected abstract TViewControl CreateLabelControl(PropertyInfo property);
 
         protected abstract TViewControl CreateEditDoubleControl(TBinding valueBinding);
@@ -218,7 +196,15 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         protected abstract TViewControl CreateEditEnumControl(Type enumType, TBinding valueBinding);
 
-        protected abstract TViewControl CreateSelectFromCandidateControl(IList<ValueAndDisplayValue<string>> selectableItems, TBinding valueBinding);
+        protected abstract TViewControl CreateSelectFromCandidateControl(
+            IList<ValueAndDisplayValue<string>> selectableItems,
+            TBinding valueBinding);
+
+        protected abstract TViewControl CreateSelectFromCandidateControl(
+            object model,
+            PropertyInfo dependentPropertyInfo,
+            IDictionary<string, List<ValueAndDisplayValue<string>>> selectableItems, 
+            TBinding valueBinding);
 
         protected virtual TViewControl CreateEditListClassControl(object propertyValue, RailsListBindAttribute railsListBindAttribute)
         {
