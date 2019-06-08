@@ -8,6 +8,7 @@ using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Views.Rails.Core.Index
 {
+    // TODO
     public class DefaultRailsIndexViewFactory : IRailsIndexViewFactory
     {
         #region Fields
