@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using EashSharpStandardTestCore.Core;
 using EasySharpStandardTestCore.Core;
 
 namespace EasySharpStandardConsoleTest.ConsoleTests.Implementations

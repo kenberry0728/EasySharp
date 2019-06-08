@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace EasySharpStandard.DataStructures.Trees.Core
 {
-    public static class ITreeItemExtensions
+    public static class TreeInterfaceItemExtensions
     {
         #region Public Methods
 

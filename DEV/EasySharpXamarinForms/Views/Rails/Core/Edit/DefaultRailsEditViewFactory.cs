@@ -66,7 +66,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             this.GridService.AddRowDefinition(mainGrid);
             this.GridService.AddChild(mainGrid, this.CreateEditView(editedModel), 0, 0);
 
-            var button = CreateOKCancelGrid(editedModel, window);
+            var button = CreateOkCancelGrid(editedModel, window);
 
             this.GridService.AddRowDefinition(mainGrid);
             this.GridService.AddChild(mainGrid, button, 1, 0);
@@ -74,9 +74,9 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             return true;
         }
 
-        private Grid CreateOKCancelGrid(object editedModel, ContentPage window)
+        private Grid CreateOkCancelGrid(object editedModel, ContentPage window)
         {
-            var okButton = CreateOKButton(editedModel, window);
+            var okButton = CreateOkButton(editedModel, window);
             var cancelButton = CreateCancelButton(window);
 
             var grid = this.GridService.Create();
@@ -90,7 +90,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             return grid;
         }
 
-        private static Button CreateOKButton(object editedModel, ContentPage window)
+        private static Button CreateOkButton(object editedModel, ContentPage window)
         {
             return new Button()
             {

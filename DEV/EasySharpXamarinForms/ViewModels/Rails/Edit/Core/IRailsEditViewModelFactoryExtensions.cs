@@ -2,7 +2,7 @@
 
 namespace EasySharpXamarinForms.ViewModels.Rails.Edit.Core
 {
-    public static class IRailsEditViewModelFactoryExtensions
+    public static class RailsEditViewModelFactoryExtensions
     {
         public static IRailsEditViewModelFactory Resolve(
             this IRailsEditViewModelFactory railsEditViewModelFactory)

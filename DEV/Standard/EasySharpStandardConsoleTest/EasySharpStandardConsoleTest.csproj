@@ -60,6 +60,10 @@
       <Project>{dc532004-acae-445b-bdb1-c48620840690}</Project>
       <Name>EasySharpStandardConsole</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EasySharpStandardTestCore\EasySharpStandardTestCore.csproj">
+      <Project>{9629ACA1-D179-48B0-A9D5-E2000C1E5248}</Project>
+      <Name>EasySharpStandardTestCore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EasySharpStandard\EasySharpStandard.csproj">
       <Project>{e4decfa5-912d-4c5a-9c69-afaaba2b0556}</Project>
       <Name>EasySharpStandard</Name>

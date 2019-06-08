@@ -4,7 +4,7 @@ using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
 
 namespace EasySharpWpf.Views.Rails.Core.Index
 {
-    public static class IRailsIndexViewFactoryExtensions
+    public static class RailsIndexViewFactoryExtensions
     {
         public static IRailsIndexViewFactory Resolve(
             this IRailsIndexViewFactory factory, 

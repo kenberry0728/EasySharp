@@ -2,7 +2,7 @@
 
 namespace EasySharpXamarinForms.Views.Layouts.Core
 {
-    public static class IGridServiceExtensions
+    public static class GridServiceExtensions
     {
         public static IGridService Resolve(this IGridService gridService)
         {

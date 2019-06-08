@@ -67,16 +67,16 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             this.GridService.AddRowDefinition(mainGrid);
             this.GridService.AddChild(mainGrid, this.CreateEditView(editedModel), 0, 0);
 
-            var button = CreateOKCancelGrid(editedModel, window);
+            var button = CreateOkCancelGrid(editedModel, window);
 
             this.GridService.AddStarRowDefinition(mainGrid);
             this.GridService.AddChild(mainGrid, button, 1, 0);
             return window.ShowDialog();
         }
 
-        private Grid CreateOKCancelGrid(object editedModel, Window window)
+        private Grid CreateOkCancelGrid(object editedModel, Window window)
         {
-            var okButton = CreateOKButton(editedModel, window);
+            var okButton = CreateOkButton(editedModel, window);
             var cancelButton = CreateCancelButton(window);
 
             var grid = this.GridService.Create(null);
@@ -89,7 +89,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return grid;
         }
 
-        private static Button CreateOKButton(object editedModel, Window window)
+        private static Button CreateOkButton(object editedModel, Window window)
         {
             return new Button()
             {

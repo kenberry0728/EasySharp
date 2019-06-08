@@ -3,7 +3,7 @@ using EasySharpWpf.Views.Rails.Implementations;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
-    public static class IRailsEditViewBinderExtensions
+    public static class RailsEditViewBinderExtensions
     {
         public static IRailsEditViewBinder Resolve(this IRailsEditViewBinder viewBinder)
         {
