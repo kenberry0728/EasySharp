@@ -1,16 +1,15 @@
-﻿using EasySharpStandard.Validations.Core;
-using EasySharpStandardMvvm.ViewModels.Core;
-using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
-using EasySharpXamarinForms.Sample.ViewModels.Rails.Edit.Implementation;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using EasySharpStandard.Validations.Core;
+using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.Views.Rails.Core;
+using EasySharpXamarinForms.Sample.ViewModels.Rails.Edit.Implementation;
 
-namespace EasySharpWpf.ViewModels.Rails.Core.Edit
+namespace EasySharpXamarinForms.ViewModels.Rails.Edit.Implementation
 {
     internal class RailsEditViewModel
         : RailsBindCreator, IRailsEditViewModel, INotifyDataErrorInfo
