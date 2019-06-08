@@ -6,14 +6,14 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
 {
     public abstract class RailsBindCreatorBase<TBinding> : ViewModelBase, IRailsBindCreator<TBinding>
     {
-        public string GetRailsProperyPath(PropertyInfo propertyInfo)
+        public string GetRailsPropertyPath(PropertyInfo propertyInfo)
         {
             return $"[{this.GetPropertyName(propertyInfo)}]";
         }
 
         public string GetRailsPropertyName(string bindingPath)
         {
-            return bindingPath.Trim(new[] { '[', ']' });
+            return bindingPath.Trim('[', ']');
         }
 
         public string GetPropertyName(PropertyInfo propertyInfo)

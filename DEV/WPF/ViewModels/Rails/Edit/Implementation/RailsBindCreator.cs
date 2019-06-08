@@ -10,7 +10,7 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
     {
         public override Binding CreateRailsBinding(PropertyInfo propertyInfo)
         {
-            var bindingPath = this.GetRailsProperyPath(propertyInfo);
+            var bindingPath = this.GetRailsPropertyPath(propertyInfo);
             var binding = new Binding(bindingPath)
             {
                 Mode = BindingMode.TwoWay,

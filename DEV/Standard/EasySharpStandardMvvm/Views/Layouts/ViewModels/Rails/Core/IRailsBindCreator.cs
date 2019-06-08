@@ -6,7 +6,7 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Core
     {
         string GetPropertyName(PropertyInfo propertyInfo);
         string GetRailsPropertyName(string bindingPath);
-        string GetRailsProperyPath(PropertyInfo propertyInfo);
+        string GetRailsPropertyPath(PropertyInfo propertyInfo);
         TBinding CreateRailsBinding(PropertyInfo propertyInfo);
     }
 }

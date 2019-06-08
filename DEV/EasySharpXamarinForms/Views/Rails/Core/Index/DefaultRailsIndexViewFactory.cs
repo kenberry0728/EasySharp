@@ -83,7 +83,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Index
         //private DataGridTextColumn CreateRailsBindColumn(
         //    PropertyInfo property)
         //{
-        //    var bindingPath = this.railsEditViewFactory.RailsBindCreator.GetRailsProperyPath(property);
+        //    var bindingPath = this.railsEditViewFactory.RailsBindCreator.GetRailsPropertyPath(property);
         //    var binding = new Binding(bindingPath)
         //    {
         //        Mode = BindingMode.OneWay,

@@ -199,7 +199,7 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
         protected abstract TViewControl CreateEditEnumControl(Type enumType, TBinding valueBinding);
 
         protected abstract TViewControl CreateSelectFromCandidateControl(
-            IList<ValueAndDisplayValue<string>> selectableItems,
+            TBinding selectableItems,
             TBinding valueBinding);
 
         protected abstract TViewControl CreateSelectFromCandidateControl(
