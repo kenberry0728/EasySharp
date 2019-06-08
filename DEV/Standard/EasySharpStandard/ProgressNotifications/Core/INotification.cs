@@ -1,4 +1,4 @@
-﻿namespace EasySharpStandard.ProgreeNotifications.Core
+﻿namespace EasySharpStandard.ProgressNotifications.Core
 {
     public interface INotification
     {
