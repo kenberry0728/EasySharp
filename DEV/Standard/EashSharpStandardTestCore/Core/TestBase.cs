@@ -1,4 +1,4 @@
-﻿namespace EashSharpStandardTestCore.Core
+﻿namespace EasySharpStandardTestCore.Core
 {
     public class Test
     {

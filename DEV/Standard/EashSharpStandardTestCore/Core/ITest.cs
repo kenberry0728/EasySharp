@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EashSharpStandardTestCore.Core
+namespace EasySharpStandardTestCore.Core
 {
     public interface ITest : IDisposable
     {

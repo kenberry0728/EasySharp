@@ -56,9 +56,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EashSharpStandardTestCore\EashSharpStandardTestCore.csproj">
+    <ProjectReference Include="..\EashSharpStandardTestCore\EasySharpStandardTestCore.csproj">
       <Project>{7ad03852-9198-429f-afc0-38aed5e9772d}</Project>
-      <Name>EashSharpStandardTestCore</Name>
+      <Name>EasySharpStandardTestCore</Name>
     </ProjectReference>
     <ProjectReference Include="..\EasySharpStandardConsole\EasySharpStandardConsole.csproj">
       <Project>{dc532004-acae-445b-bdb1-c48620840690}</Project>

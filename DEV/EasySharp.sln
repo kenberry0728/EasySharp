@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpWpf", "WPF\EasySha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpStandardConsoleTest", "Standard\EasySharpStandardConsoleTest\EasySharpStandardConsoleTest.csproj", "{636699A0-51E8-4251-9BB9-9B1A7C445063}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EashSharpStandardTestCore", "Standard\EashSharpStandardTestCore\EashSharpStandardTestCore.csproj", "{7AD03852-9198-429F-AFC0-38AED5E9772D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySharpStandardTestCore", "Standard\EashSharpStandardTestCore\EasySharpStandardTestCore.csproj", "{7AD03852-9198-429F-AFC0-38AED5E9772D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpWPF.Sample", "WPF.Sample\EasySharpWPF.Sample.csproj", "{4663722C-2972-4D16-81C9-5A5E7FF02F78}"
 EndProject
@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpXamarinForms.Sampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpXamarinForms.Sample.iOS", "EasySharpXamarinForms.Sample\EasySharpXamarinForms.Sample.iOS\EasySharpXamarinForms.Sample.iOS.csproj", "{7FF7C596-3A75-44C9-91A0-D5B5EEE94769}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasySharpXamarinForms.Sample", "EasySharpXamarinForms.Sample\EasySharpXamarinForms.Sample\EasySharpXamarinForms.Sample.csproj", "{CC3A9EDB-AA6B-4311-9A1E-C44E7D8457CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasySharpXamarinForms.Sample", "EasySharpXamarinForms.Sample\EasySharpXamarinForms.Sample\EasySharpXamarinForms.Sample.csproj", "{CC3A9EDB-AA6B-4311-9A1E-C44E7D8457CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

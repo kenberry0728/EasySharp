@@ -1,5 +1,5 @@
 ﻿using System;
-using EashSharpStandardTestCore.Core;
+using EasySharpStandardTestCore.Core;
 using EasySharpStandardConsoleTest.ProgressNotifications;
 
 namespace EasySharpStandardConsoleTest
