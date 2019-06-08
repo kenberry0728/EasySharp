@@ -1,6 +1,4 @@
-﻿using System;
-
-using EasySharpXamarinForms.Sample.Models;
+﻿using EasySharpXamarinForms.Sample.Models;
 
 namespace EasySharpXamarinForms.Sample.ViewModels
 {

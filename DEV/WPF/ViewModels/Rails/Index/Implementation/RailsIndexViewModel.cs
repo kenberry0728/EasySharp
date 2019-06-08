@@ -5,7 +5,6 @@ using EasySharpStandardMvvm.ViewModels.Rails.Index.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using System;
 using System.Collections;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Data;
 

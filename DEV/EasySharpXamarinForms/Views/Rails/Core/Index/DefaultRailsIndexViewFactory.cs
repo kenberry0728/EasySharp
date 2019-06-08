@@ -1,7 +1,6 @@
 ﻿using EasySharpWpf.ViewModels.Rails.Implementation.Index;
 using EasySharpXamarinForms.Views.Rails.Core.Edit;
 using EasySharpXamarinForms.Views.Rails.Core.Edit.Interfaces;
-using EasySharpXamarinForms.Views.Rails.Core.Index;
 using EasySharpXamarinForms.Views.Rails.Core.Index.Interfaces;
 using System;
 using System.Collections;

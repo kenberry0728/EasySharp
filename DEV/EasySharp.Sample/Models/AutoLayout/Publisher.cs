@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using EasySharpStandard.Reflections.Core.LocalResources;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Models.Rails.Core;
-using EasySharpWpf.Sample.Models.AutoLayout;
 
 namespace EasySharp.Sample.Models.AutoLayout
 {

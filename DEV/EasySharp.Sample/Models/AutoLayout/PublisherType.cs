@@ -1,6 +1,6 @@
 ﻿using EasySharpStandard.Attributes.Core;
 
-namespace EasySharpWpf.Sample.Models.AutoLayout
+namespace EasySharp.Sample.Models.AutoLayout
 {
     public enum PublisherType
     {

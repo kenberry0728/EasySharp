@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EasySharpXamarinForms.Sample.Models
+﻿namespace EasySharpXamarinForms.Sample.Models
 {
     public class Item
     {

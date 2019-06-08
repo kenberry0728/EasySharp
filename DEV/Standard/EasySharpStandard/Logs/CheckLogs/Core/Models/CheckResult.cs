@@ -1,5 +1,4 @@
-﻿using EasySharpStandard.Logs.CheckLogs.Core.Models;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace EasySharpStandard.Logs.CheckLogs.Core.Models
 {

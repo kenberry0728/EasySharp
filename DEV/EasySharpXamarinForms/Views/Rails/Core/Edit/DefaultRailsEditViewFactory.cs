@@ -7,7 +7,6 @@ using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpXamarinForms.ViewModels.Rails.Edit.Core;
 using EasySharpXamarinForms.Views.Converters;
 using EasySharpXamarinForms.Views.Layouts.Core;
-using EasySharpXamarinForms.Views.Rails.Core.Edit.Interfaces;
 using EasySharpXamarinForms.Views.Rails.Core.Index;
 using EasySharpXamarinForms.Views.Rails.Core.Index.Interfaces;
 using System;

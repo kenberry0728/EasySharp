@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EasySharpXamarinForms.Sample.Models
+﻿namespace EasySharpXamarinForms.Sample.Models
 {
     public enum MenuItemType
     {

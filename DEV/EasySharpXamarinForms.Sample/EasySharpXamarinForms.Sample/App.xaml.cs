@@ -1,6 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 using EasySharpXamarinForms.Sample.Services;
 using EasySharpXamarinForms.Sample.Views;
 

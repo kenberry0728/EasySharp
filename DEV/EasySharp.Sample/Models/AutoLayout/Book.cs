@@ -2,7 +2,6 @@
 using EasySharpStandard.Validations.Core.Attributes;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Models.Rails.Core;
-using EasySharpWpf.Sample.Models.AutoLayout;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

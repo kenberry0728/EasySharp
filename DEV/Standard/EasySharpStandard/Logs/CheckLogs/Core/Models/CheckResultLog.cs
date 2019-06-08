@@ -1,6 +1,4 @@
 ﻿using EasySharpStandard.Locations.Core;
-using EasySharpStandard.Logs.CheckLogs.Core;
-using EasySharpStandard.Logs.CheckLogs.Core.Models;
 using EasySharpStandard.Logs.TextLogs.Core.Models;
 
 namespace EasySharpStandard.Logs.CheckLogs.Core.Models

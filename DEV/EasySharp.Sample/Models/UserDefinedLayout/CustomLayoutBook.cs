@@ -1,9 +1,9 @@
-﻿using EasySharpStandardMvvm.Attributes.Rails;
-using EasySharpStandardMvvm.Models.Rails.Core;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using EasySharpStandardMvvm.Attributes.Rails;
+using EasySharpStandardMvvm.Models.Rails.Core;
 
-namespace EasySharpWpf.Sample.Models.UserDefinedLayout
+namespace EasySharp.Sample.Models.UserDefinedLayout
 {
     public class CustomLayoutBook : RailsModel, IValidatableObject
     {
