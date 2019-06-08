@@ -11,7 +11,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
         DefaultRailsEditViewFactoryBase<Binding, View, Grid>,
         IRailsEditViewFactory
     {
-        public DefaultRailsEditViewFactoryBase(
+        protected DefaultRailsEditViewFactoryBase(
             IRailsIndexViewFactory railsIndexViewFactory,
             IRailsEditViewModelFactory railsEditViewModelFactory,
             IGridService gridService)
