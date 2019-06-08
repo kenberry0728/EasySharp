@@ -27,6 +27,5 @@ namespace EasySharp.Sample.Models.AutoLayout
         [DisplayName("個人/企業")]
         [RailsDataMemberBind]
         public PublisherType PublisherType { get; set; }
-
     }
 }
