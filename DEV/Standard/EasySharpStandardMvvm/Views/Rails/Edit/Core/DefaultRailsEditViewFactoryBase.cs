@@ -134,7 +134,9 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
                         {
                             var dependentProperty = model.GetType().GetProperty(
                                 candidatesStringAttribute.CandidatesPropertyName);
-                            uiElement = CreateSelectFromCandidateControl(this.RailsBindCreator.CreateRailsBinding(property), this.RailsBindCreator.CreateRailsBinding(dependentProperty));
+                            uiElement = CreateSelectFromCandidateControl(
+                                this.RailsBindCreator.CreateRailsBinding(property),
+                                this.RailsBindCreator.CreateRailsBinding(dependentProperty));
                         }
                         //else
                         //{
