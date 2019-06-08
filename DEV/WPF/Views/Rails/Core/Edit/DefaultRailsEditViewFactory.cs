@@ -6,7 +6,6 @@ using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpStandardMvvm.ViewModels.Core;
 using EasySharpWpf.Commands.Core.Dialogs;
-using EasySharpWpf.ViewModels.Rails.Core.Edit;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
 using EasySharpWpf.Views.Converters;
