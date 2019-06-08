@@ -1,7 +1,8 @@
-﻿using EashSharpStandardTestCore.Core;
-using System;
+﻿using System;
+using EashSharpStandardTestCore.Core;
+using EasySharpStandardConsoleTest.ProgressNotifications;
 
-namespace EasySharpConsoleTest
+namespace EasySharpStandardConsoleTest
 {
     public static class Program
     {

@@ -1,11 +1,10 @@
-﻿using EasySharpStandard.DiskIO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 
-namespace EasySharpStandard.Serializers
+namespace EasySharpStandard.DiskIO.Serializers
 {
     public static class LineJsonSerializerExtensions
     {

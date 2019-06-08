@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace EasySharpStandard.Collections.Core
 {
-    public static class IListExtensions
+    public static class ListExtensions
     {
         public static IEnumerable<object> ToEnumerable(this IList list)
         {

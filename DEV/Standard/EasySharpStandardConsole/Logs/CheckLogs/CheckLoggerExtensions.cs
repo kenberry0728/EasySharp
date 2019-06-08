@@ -3,7 +3,7 @@ using EasySharpStandardConsole.Logs.CheckLogs.Implementations;
 
 namespace EasySharpStandardConsole.Logs.CheckLogs
 {
-    public static class ICheckLoggerExtensions
+    public static class CheckLoggerExtensions
     {
         public static ICheckLogger Resolve(this ICheckLogger checkLogger)
         {

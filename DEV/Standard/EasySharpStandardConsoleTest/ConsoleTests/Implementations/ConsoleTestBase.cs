@@ -1,9 +1,9 @@
-﻿using EashSharpStandardTestCore.Core;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
+using EashSharpStandardTestCore.Core;
 
-namespace EasySharpStandardConsoleTest.ConsoleTests
+namespace EasySharpStandardConsoleTest.ConsoleTests.Implementations
 {
     internal abstract class ConsoleTestBase : ITest
     {

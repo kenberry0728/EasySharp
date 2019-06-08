@@ -1,10 +1,10 @@
+using System;
 using EasySharpStandard.ProgreeNotifications.Core;
 using EasySharpStandard.ProgreeNotifications.Core.Models;
 using EasySharpStandardConsole.ProgressNotifications.Core;
-using EasySharpStandardConsoleTest.ConsoleTests;
-using System;
+using EasySharpStandardConsoleTest.ConsoleTests.Implementations;
 
-namespace EasySharpConsoleTest
+namespace EasySharpStandardConsoleTest.ProgressNotifications
 {
     internal class ConsoleProgressNotificationServiceTests : ConsoleTestBase
     {
