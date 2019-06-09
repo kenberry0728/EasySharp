@@ -5,10 +5,6 @@ namespace EasySharpStandardConsole.ProgressNotifications.Implementations
 {
     internal class ConsoleProgressNotificationService : IProgressNotificationService
     {
-        internal ConsoleProgressNotificationService()
-        {
-        }
-
         public void Dispose()
         {
             Console.WriteLine();

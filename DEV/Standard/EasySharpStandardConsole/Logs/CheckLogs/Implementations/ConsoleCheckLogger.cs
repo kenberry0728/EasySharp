@@ -7,8 +7,6 @@ namespace EasySharpStandardConsole.Logs.CheckLogs.Implementations
 {
     internal class ConsoleCheckLogger : ICheckLogger
     {
-        public ConsoleCheckLogger() { }
-
         public void Write(CheckResultCategories category, CheckResult code, ILocation location, string message)
         {
             Console.WriteLine(
