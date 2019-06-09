@@ -31,7 +31,7 @@ namespace EasySharpStandard.DiskIO.Serializers
             var serializer = new DataContractJsonSerializer(typeof(T), knownTypes);
             using (var streamReader = new StreamReader(filePath, Encoding.UTF8))
             {
-                string line = null;
+                string line;
                 while (null != (line = streamReader.ReadLine()))
                 {
                     if (line == string.Empty)

@@ -1,6 +1,5 @@
 ﻿using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
-using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
 using EasySharpStandardMvvm.Views.Layouts.Core;
 using EasySharpStandardMvvm.Views.Rails.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
@@ -10,6 +9,7 @@ using System.Collections;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Index.Core.Interfaces;
 
 namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
 {

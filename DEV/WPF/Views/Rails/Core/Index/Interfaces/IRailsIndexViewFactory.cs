@@ -1,5 +1,5 @@
-﻿using EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces;
-using System.Windows;
+﻿using System.Windows;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Index.Core.Interfaces;
 
 namespace EasySharpWpf.Views.Rails.Core.Index.Interfaces
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace EasySharpStandardMvvm.ViewModels.Rails.Index.Core.Interfaces
+namespace EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Index.Core.Interfaces
 {
     public interface IRailsIndexViewFactory<TViewControl>
     {
