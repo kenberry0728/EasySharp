@@ -7,12 +7,12 @@ namespace EasySharpStandard.Collections.Core
     {
         public static IEnumerable<T> Concat<T>(this T value, IEnumerable<T> values)
         {
-            return new T[] { value }.Concat(values);
+            return new[] { value }.Concat(values);
         }
 
         public static IEnumerable<T> Concat<T>(this IEnumerable<T> values, T value)
         {
-            return values.Concat(new T[] { value });
+            return values.Concat(new[] { value });
         }
     }
 }

@@ -6,7 +6,7 @@ namespace EasySharpStandard.Collections.Core
     {
         public static IEnumerable<T> ToEnumerable<T>(T item)
         {
-            return new T[] { item };
+            return new[] { item };
         }
     }
 }
