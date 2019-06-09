@@ -4,7 +4,7 @@
     {
         public static object GetPropertyValue(this object model, string propertyName)
         {
-            return model.GetType().GetProperty(propertyName).GetValue(model);
+            return model.GetType().GetProperty(propertyName)?.GetValue(model);
         }
     }
 }

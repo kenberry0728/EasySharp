@@ -10,7 +10,7 @@ namespace EasySharpStandard.Reflections.Core
         {
             var assemblyName = memberInfo.DeclaringType.Assembly.GetName().Name;
             var relativeNamespacePath = memberInfo.DeclaringType.FullName;
-            if (relativeNamespacePath.StartsWith(assemblyName))
+            if (relativeNamespacePath != null && relativeNamespacePath.StartsWith(assemblyName))
             {
                 relativeNamespacePath = relativeNamespacePath.Substring(assemblyName.Length + 1);
             }
