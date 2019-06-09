@@ -4,7 +4,6 @@ using EasySharpStandard.Reflections.Core;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Models.Rails.Core;
-using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
 using EasySharpWpf.Commands.Core.Dialogs;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
@@ -13,7 +12,6 @@ using EasySharpWpf.Views.Layouts.Core;
 using EasySharpWpf.Views.Rails.Core.Index;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -188,18 +186,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             comboBox.SetBinding(ItemsControl.ItemsSourceProperty, itemsSourceBinding);
             comboBox.SelectedValuePath = valuePath;
             comboBox.DisplayMemberPath = displayMemberPath;
-            return comboBox;
-        }
-
-        protected virtual UIElement CreateSelectFromCandidateControl(
-            object model,
-            PropertyInfo dependentPropertyInfo,
-            IDictionary<string, List<ValueAndDisplayValue<string>>> selectableItems,
-            Binding valueBinding)
-        {
-            var comboBox = new ComboBox();
-            comboBox.ItemsSource = selectableItems.ToList();
-            comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
             return comboBox;
         }
 
