@@ -20,12 +20,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
-using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
-    public class DefaultRailsEditViewFactory
-        : DefaultRailsEditViewFactoryBase, IRailsEditViewFactory
+    public class DefaultRailsEditViewFactory : DefaultRailsEditViewFactoryBase
     {
         #region Fields
 
@@ -51,10 +49,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
         public override bool? ShowEditView(object initialValueModel, Type type, out object editedModel)
         {
             editedModel = type.New();
-            if (initialValueModel != null)
-            {
-                initialValueModel.CopyRailsBindPropertyValues(editedModel, type);
-            }
+            initialValueModel?.CopyRailsBindPropertyValues(editedModel, type);
 
             var mainGrid = this.GridService.Create(null);
 
@@ -202,14 +197,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             IDictionary<string, List<ValueAndDisplayValue<string>>> selectableItems,
             Binding valueBinding)
         {
-            var container = new DependentCandidateContainer(model, dependentPropertyInfo, selectableItems);
-
-            //　考え中： ViewModelにPropertyを足すのか？
-            // Bind用のViewModelを作って、Propertyアクセッサーに渡す。
-            // とりあえず、[PropertyName_SelectableItemContainer].SelectableItems的な。
-            // Getterのclassがでやったほうがいいな
-            // OnPropertyChangedはどうやって受け取ろう。
-            // どっちかといえば、あっち側のプロパティかな
             var comboBox = new ComboBox();
             comboBox.ItemsSource = selectableItems.ToList();
             comboBox.SetBinding(Selector.SelectedValueProperty, valueBinding);
@@ -220,7 +207,6 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
         {
             return new Label { Content = property.GetDisplayName() };
         }
-
 
         #endregion
     }
