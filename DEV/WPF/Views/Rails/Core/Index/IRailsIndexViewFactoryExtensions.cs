@@ -1,5 +1,6 @@
 ﻿using EasySharpWpf.Views.Layouts.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
+using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
 
 namespace EasySharpWpf.Views.Rails.Core.Index

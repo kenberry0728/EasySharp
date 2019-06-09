@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace EasySharpStandardMvvm.ViewModels.Core
+namespace EasySharpStandardMvvm.Views.Layouts.ViewModels.Core
 {
     public class ObservableModelLinkedCollection<TViewModel> : ObservableCollection<TViewModel>
         where TViewModel : IViewModelWithModel

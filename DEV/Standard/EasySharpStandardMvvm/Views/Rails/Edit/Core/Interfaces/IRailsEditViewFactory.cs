@@ -1,8 +1,8 @@
-﻿using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
-using EasySharpWpf.ViewModels.Rails.Edit.Core;
-using System;
+﻿using System;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Core;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 
-namespace EasySharpWpf.Views.Rails.Core.Edit
+namespace EasySharpStandardMvvm.Views.Rails.Edit.Core.Interfaces
 {
     public interface IRailsEditViewFactory<TBinding, TViewControl>
     {

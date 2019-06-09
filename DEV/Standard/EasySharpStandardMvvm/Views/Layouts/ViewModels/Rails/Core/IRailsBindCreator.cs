@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace EasySharpWpf.ViewModels.Rails.Edit.Core
+namespace EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Core
 {
     public interface IRailsBindCreator<TBinding>
     {

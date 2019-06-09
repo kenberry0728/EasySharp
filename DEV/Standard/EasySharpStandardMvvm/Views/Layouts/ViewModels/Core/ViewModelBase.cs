@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace EasySharpStandardMvvm.ViewModels.Core
+namespace EasySharpStandardMvvm.Views.Layouts.ViewModels.Core
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

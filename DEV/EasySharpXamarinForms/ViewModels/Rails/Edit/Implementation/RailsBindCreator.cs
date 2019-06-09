@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
-using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Core;
+using EasySharpXamarinForms.ViewModels.Rails.Edit.Core;
 using EasySharpXamarinForms.Views.Rails.Core.Edit.Interfaces;
 using Xamarin.Forms;
 

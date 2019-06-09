@@ -1,7 +1,7 @@
-﻿using EasySharpWpf.Views.Rails.Core.Edit;
+﻿using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
 
-namespace EasySharpWpf.Views.EasyViews.Core
+namespace EasySharpWpf.Views.Rails.Core.Edit
 {
     public static class RailsEditViewFactoryExtensions
     {

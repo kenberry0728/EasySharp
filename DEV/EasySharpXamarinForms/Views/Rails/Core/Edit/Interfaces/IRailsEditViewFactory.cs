@@ -1,4 +1,4 @@
-﻿using EasySharpWpf.Views.Rails.Core.Edit;
+﻿using EasySharpStandardMvvm.Views.Rails.Edit.Core.Interfaces;
 using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Views.Rails.Core.Edit.Interfaces

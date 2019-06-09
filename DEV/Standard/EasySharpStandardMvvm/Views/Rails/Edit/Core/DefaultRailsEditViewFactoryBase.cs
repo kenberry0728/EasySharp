@@ -1,15 +1,15 @@
 ﻿using EasySharpStandardMvvm.Attributes.Rails;
-using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.Views.Layouts.Core;
 using EasySharpStandardMvvm.Views.Rails.Core;
-using EasySharpWpf.ViewModels.Rails.Edit.Core;
-using EasySharpWpf.Views.Rails.Core.Edit;
 using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Core;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Index.Core.Interfaces;
+using EasySharpStandardMvvm.Views.Rails.Edit.Core.Interfaces;
 
 namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
 {

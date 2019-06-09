@@ -1,10 +1,9 @@
-﻿using EasySharpStandardMvvm.ViewModels.Core;
-using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
-using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Index.Core;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 
-namespace EasySharpStandardMvvm.ViewModels.Rails.Index.Core
+namespace EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Index.Core
 {
     public class RailsIndexViewModelBase : ViewModelBase, IRailsIndexViewModel
     {

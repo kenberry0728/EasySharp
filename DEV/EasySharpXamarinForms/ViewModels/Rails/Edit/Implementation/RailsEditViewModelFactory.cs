@@ -1,7 +1,7 @@
-﻿using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
-using EasySharpWpf.ViewModels.Rails.Edit.Core;
-using EasySharpXamarinForms.ViewModels.Rails.Edit.Core;
+﻿using EasySharpXamarinForms.ViewModels.Rails.Edit.Core;
 using System;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Core;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.ViewModels.Rails.Edit.Implementation

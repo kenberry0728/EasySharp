@@ -2,9 +2,8 @@
 using System.Collections;
 using System.Linq;
 using EasySharpStandard.Collections.Core;
-using EasySharpStandardMvvm.ViewModels.Core;
-using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
-using EasySharpStandardMvvm.ViewModels.Rails.Index.Core;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Index.Core;
 using EasySharpXamarinForms.ViewModels.Rails.Edit.Core;
 

@@ -3,7 +3,6 @@ using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Views.Rails.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
-using EasySharpWpf.Views.EasyViews.Core;
 using EasySharpWpf.Views.Layouts.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
@@ -18,6 +17,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using EasySharpWpf.ViewModels.Rails.Index.Implementation;
+using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 
 namespace EasySharpWpf.Views.Rails.Core.Index
 {
