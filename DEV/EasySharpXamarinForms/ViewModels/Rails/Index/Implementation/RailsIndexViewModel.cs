@@ -1,13 +1,14 @@
-﻿using EasySharpStandard.Collections.Core;
+﻿using System;
+using System.Collections;
+using System.Linq;
+using EasySharpStandard.Collections.Core;
 using EasySharpStandardMvvm.ViewModels.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Index.Core;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Index.Core;
 using EasySharpXamarinForms.ViewModels.Rails.Edit.Core;
-using System;
-using System.Collections;
-using System.Linq;
 
-namespace EasySharpWpf.ViewModels.Rails.Implementation.Index
+namespace EasySharpXamarinForms.ViewModels.Rails.Index.Implementation
 {
     internal class RailsIndexViewModel : RailsIndexViewModelBase, IRailsIndexViewModel
     {

@@ -1,9 +1,9 @@
-﻿using EasySharpWpf.ViewModels.Rails.Implementation.Index;
-using EasySharpXamarinForms.Views.Rails.Core.Edit;
+﻿using EasySharpXamarinForms.Views.Rails.Core.Edit;
 using EasySharpXamarinForms.Views.Rails.Core.Edit.Interfaces;
 using EasySharpXamarinForms.Views.Rails.Core.Index.Interfaces;
 using System;
 using System.Collections;
+using EasySharpXamarinForms.ViewModels.Rails.Index.Implementation;
 using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Views.Rails.Core.Index

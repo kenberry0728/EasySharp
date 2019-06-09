@@ -1,7 +1,6 @@
 ﻿using EasySharpStandard.Validations.Core;
 using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.Views.Rails.Core;
-using EasySharpXamarinForms.Sample.ViewModels.Rails.Edit.Implementation;
 using System;
 using System.Collections;
 using System.Collections.Generic;
