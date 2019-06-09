@@ -7,8 +7,7 @@ namespace EasySharpStandard.Collections.Dictionaries.Core
     {
         public static void Add<TKey, TValue>(this IDictionary<TKey, HashSet<TValue>> dictionary, TKey key, TValue value)
         {
-            HashSet<TValue> list;
-            if (!dictionary.TryGetValue(key, out list))
+            if (!dictionary.TryGetValue(key, out var list))
             {
                 dictionary[key] = list = new HashSet<TValue>();
             }
@@ -26,8 +25,7 @@ namespace EasySharpStandard.Collections.Dictionaries.Core
 
         public static void Remove<TKey, TValue>(this IDictionary<TKey, HashSet<TValue>> dictionary, TKey key, TValue value)
         {
-            HashSet<TValue> hash;
-            if (dictionary.TryGetValue(key, out hash))
+            if (dictionary.TryGetValue(key, out var hash))
             {
                 hash.Remove(value);
                 if (hash.Count == 0)
@@ -39,8 +37,7 @@ namespace EasySharpStandard.Collections.Dictionaries.Core
 
         public static IEnumerable<TValue> GetValues<TKey, TValue>(this IDictionary<TKey, HashSet<TValue>> dictionary, TKey key)
         {
-            HashSet<TValue> hash;
-            if (dictionary.TryGetValue(key, out hash))
+            if (dictionary.TryGetValue(key, out var hash))
             {
                 return hash;
             }

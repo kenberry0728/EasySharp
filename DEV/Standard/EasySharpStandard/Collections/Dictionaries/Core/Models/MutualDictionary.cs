@@ -49,8 +49,7 @@ namespace EasySharpStandard.Collections.Dictionaries.Core.Models
 
         public bool Remove(TKey key)
         {
-            TValue value;
-            if (!this.keyToValues.TryGetValue(key, out value))
+            if (!this.keyToValues.TryGetValue(key, out var value))
             {
                 return false;
             }

@@ -14,7 +14,7 @@ namespace EasySharpStandardConsoleTest.ConsoleTests.Implementations
         private readonly TextWriter originalOut;
         private readonly TextReader originalIn;
 
-        public ConsoleTestBase()
+        protected ConsoleTestBase()
         {
             this.originalOut = Console.Out;
             this.originalIn = Console.In;

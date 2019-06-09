@@ -7,7 +7,7 @@ namespace EasySharpStandardConsole.UserDialogs
         public static string QuestionAndAnswer(string question)
         {
             Console.WriteLine(question);
-            return Console.ReadLine(); ;
+            return Console.ReadLine();
         }
     }
 }
