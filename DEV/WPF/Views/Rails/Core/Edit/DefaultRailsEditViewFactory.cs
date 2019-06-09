@@ -155,8 +155,8 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 DataContext = viewModel,
             };
 
-            button.SetBinding(Button.ContentProperty, new Binding(nameof(viewModel.Content)));
-            button.SetBinding(Button.CommandParameterProperty, new Binding());
+            button.SetBinding(ContentControl.ContentProperty, new Binding(nameof(viewModel.Content)));
+            button.SetBinding(ButtonBase.CommandParameterProperty, new Binding());
 
             return button;
         }

@@ -135,8 +135,8 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
         protected override View CreateEditBooleanControl(Binding valueBinding)
         {
-            var checkBox = new Xamarin.Forms.Switch();
-            checkBox.SetBinding(Xamarin.Forms.Switch.IsToggledProperty, valueBinding);
+            var checkBox = new Switch();
+            checkBox.SetBinding(Switch.IsToggledProperty, valueBinding);
             return checkBox;
         }
 
