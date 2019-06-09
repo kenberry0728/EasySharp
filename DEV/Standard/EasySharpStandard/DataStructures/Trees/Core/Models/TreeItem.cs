@@ -13,7 +13,7 @@ namespace EasySharpStandard.DataStructures.Trees.Core.Models
             this.Item = item;
         }
 
-        public T Item { get; private set; }
+        public T Item { get; }
 
         public TreeItem<T> Parent { get; private set; }
 
