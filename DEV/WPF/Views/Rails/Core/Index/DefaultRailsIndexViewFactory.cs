@@ -1,8 +1,6 @@
 ﻿using EasySharpStandard.Attributes.Core;
-using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Views.Rails.Core;
-using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
 using EasySharpWpf.Views.Layouts.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
 using EasySharpWpf.Views.Rails.Core.Index.Interfaces;
@@ -16,6 +14,8 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.ViewModels.Rails.Index.Implementation;
 using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
@@ -128,7 +128,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         private DataGridTemplateColumn CreateEditColumn()
         {
             return CreateButtonColumn(
-                new DelegateCommand(x => this.railsEditViewFactory.Edit(x as RailsEditViewModel)),
+                new DelegateCommand(x => this.railsEditViewFactory.Edit(x as IRailsEditViewModel)),
                 "編集");
         }
 

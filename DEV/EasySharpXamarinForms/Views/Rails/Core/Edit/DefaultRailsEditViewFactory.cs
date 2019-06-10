@@ -6,7 +6,6 @@ using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
 using EasySharpXamarinForms.ViewModels.Rails.Edit.Core;
-using EasySharpXamarinForms.ViewModels.Rails.Edit.Implementation;
 using EasySharpXamarinForms.Views.Converters;
 using EasySharpXamarinForms.Views.Layouts.Core;
 using EasySharpXamarinForms.Views.Rails.Core.Index;
@@ -15,6 +14,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Views.Rails.Core.Edit
@@ -149,10 +150,11 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
         protected override View CreateEditClassControl(object propertyValue)
         {
+            // TODO
             var viewModel = new RailsEditViewModel(propertyValue);
             var button = new Button
             {
-                Command = new DelegateCommand(x => Edit(x as RailsEditViewModel)),
+                Command = new DelegateCommand(x => Edit(x as IRailsEditViewModel)),
                 BindingContext = viewModel,
             };
 

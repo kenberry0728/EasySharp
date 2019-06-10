@@ -6,7 +6,6 @@ using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpWpf.Commands.Core.Dialogs;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
-using EasySharpWpf.ViewModels.Rails.Edit.Implementation;
 using EasySharpWpf.Views.Converters;
 using EasySharpWpf.Views.Layouts.Core;
 using EasySharpWpf.Views.Rails.Core.Index;
@@ -18,6 +17,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
@@ -146,7 +146,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             var viewModel = this.RailsEditViewModelFactory.Create(propertyValue);
             var button = new Button
             {
-                Command = new DelegateCommand(x => Edit(x as RailsEditViewModel)),
+                Command = new DelegateCommand(x => Edit(x as IRailsEditViewModel)),
                 DataContext = viewModel,
             };
 
