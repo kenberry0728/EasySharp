@@ -3,7 +3,7 @@ using EasySharpWpf.Views.ValidationRules.Core;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Windows.Data;
-using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Core;
+using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 
 namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
 {

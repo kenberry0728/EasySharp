@@ -1,7 +1,8 @@
 ﻿using System.Reflection;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
+using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Core;
 
-namespace EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Core
+namespace EasySharpStandardMvvm.ViewModels.Rails.Edit.Core
 {
     public abstract class RailsBindCreatorBase<TBinding> : ViewModelBase, IRailsBindCreator<TBinding>
     {
