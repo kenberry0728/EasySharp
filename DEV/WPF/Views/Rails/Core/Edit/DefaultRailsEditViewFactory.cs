@@ -135,6 +135,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         protected override UIElement CreateEditStringControl(Binding valueBinding)
         {
+            valueBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
             var textBox = new TextBox();
             textBox.SetBinding(TextBox.TextProperty, valueBinding);
             return textBox;
