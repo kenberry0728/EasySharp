@@ -143,7 +143,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         protected override UIElement CreateEditClassControl(object propertyValue)
         {
-            var viewModel = new RailsEditViewModel(propertyValue);
+            var viewModel = this.RailsEditViewModelFactory.Create(propertyValue);
             var button = new Button
             {
                 Command = new DelegateCommand(x => Edit(x as RailsEditViewModel)),

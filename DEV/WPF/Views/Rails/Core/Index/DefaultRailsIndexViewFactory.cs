@@ -16,6 +16,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
+using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.ViewModels.Rails.Index.Implementation;
 using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 
@@ -25,6 +26,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
     {
         #region Fields
 
+        private readonly IRailsEditViewModelFactory editViewModelFactory;
         private readonly IRailsEditViewFactory railsEditViewFactory;
         private readonly IGridService gridService;
 
@@ -34,8 +36,10 @@ namespace EasySharpWpf.Views.Rails.Core.Index
 
         public DefaultRailsIndexViewFactory(
             IRailsEditViewFactory railsEditViewFactory = null,
+            IRailsEditViewModelFactory editViewModelFactory = null,
             IGridService gridService = null)
         {
+            this.editViewModelFactory = editViewModelFactory.Resolve();
             this.railsEditViewFactory = railsEditViewFactory.Resolve(this);
             this.gridService = gridService.Resolve();
         }
@@ -80,8 +84,6 @@ namespace EasySharpWpf.Views.Rails.Core.Index
                                               .Where(p => p.HasVisibleRailsBindAttribute()))
             {
                 Debug.Assert(property.CanRead);
-
-                var railsBind = property.GetCustomAttribute<RailsDataMemberBindAttribute>();
                 dataGrid.Columns.Add(CreateRailsBindColumn(property));
             }
 
@@ -176,7 +178,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
         {
             if (this.railsEditViewFactory.ShowEditWindow(indexViewModel.ItemType, out var editedInstance) == true)
             {
-                indexViewModel.ItemsSource.Add(new RailsEditViewModel(editedInstance));
+                indexViewModel.ItemsSource.Add(this.editViewModelFactory.Create(editedInstance));
             }
         }
 
