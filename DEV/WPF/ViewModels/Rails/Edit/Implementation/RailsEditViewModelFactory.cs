@@ -14,7 +14,7 @@ namespace EasySharpWpf.ViewModels.Rails.Edit.Implementation
 
         public IRailsEditViewModel Create(object model, Type type = null)
         {
-            return new RailsEditViewModel(model, this.railsBindCreator, type);
+            return new RailsEditViewModel(model, type);
         }
     }
 }

@@ -1,12 +1,10 @@
 ﻿using System.Reflection;
+using EasySharpStandardMvvm.ViewModels.Rails.Edit.Core;
 
 namespace EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Core
 {
-    public interface IRailsBindCreator<TBinding>
+    public interface IRailsBindCreator<TBinding> : IRailsEditViewModelPathDefinition
     {
-        string GetPropertyName(PropertyInfo propertyInfo);
-        string GetRailsPropertyName(string bindingPath);
-        string GetRailsPropertyPath(PropertyInfo propertyInfo);
         TBinding CreateRailsBinding(PropertyInfo propertyInfo);
     }
 }

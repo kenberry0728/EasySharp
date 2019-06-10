@@ -1,10 +1,9 @@
 ﻿using System.Reflection;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
-using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Core;
 
 namespace EasySharpStandardMvvm.ViewModels.Rails.Edit.Core
 {
-    public abstract class RailsBindCreatorBase<TBinding> : ViewModelBase, IRailsBindCreator<TBinding>
+    public abstract class RailsEditViewModelPathDefinition : ViewModelBase, IRailsEditViewModelPathDefinition
     {
         public string GetRailsPropertyPath(PropertyInfo propertyInfo)
         {
@@ -20,7 +19,5 @@ namespace EasySharpStandardMvvm.ViewModels.Rails.Edit.Core
         {
             return propertyInfo.Name;
         }
-
-        public abstract TBinding CreateRailsBinding(PropertyInfo propertyInfo);
     }
 }

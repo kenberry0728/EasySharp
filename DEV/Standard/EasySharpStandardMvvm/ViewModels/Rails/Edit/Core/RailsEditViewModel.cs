@@ -7,14 +7,12 @@ using System.Reflection;
 using EasySharpStandard.SafeCodes.Core;
 using EasySharpStandard.Validations.Core;
 using EasySharpStandardMvvm.Attributes.Rails;
-using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Core;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.Views.Rails.Core;
 
 namespace EasySharpStandardMvvm.ViewModels.Rails.Edit.Core
 {
-    public abstract class RailsEditViewModelBase<TBinding>
-        : RailsBindCreatorBase<TBinding>, IRailsEditViewModel, INotifyDataErrorInfo
+    public abstract class RailsEditViewModelBase : RailsEditViewModelPathDefinition, IRailsEditViewModel, INotifyDataErrorInfo
     {
         #region INotifyDataErrorInfo
 
