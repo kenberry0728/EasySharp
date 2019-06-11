@@ -11,7 +11,6 @@ using EasySharpXamarinForms.Views.Layouts.Core;
 using EasySharpXamarinForms.Views.Rails.Core.Index;
 using EasySharpXamarinForms.Views.Rails.Core.Index.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
@@ -167,15 +166,6 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             var datePicker = new DatePicker();
             datePicker.SetBinding(DatePicker.DateProperty, valueBinding);
             return datePicker;
-        }
-
-
-        protected virtual View CreateSelectFromCandidateControl(object model,
-            PropertyInfo dependentPropertyInfo,
-            IDictionary<string, List<ValueAndDisplayValue<string>>> selectableItems,
-            Binding valueBinding)
-        {
-            throw new NotImplementedException();
         }
 
         protected override View CreateEditListClassControl(object propertyValue, RailsDataMemberListBindAttribute railsDataMemberListBindAttribute)
