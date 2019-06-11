@@ -189,7 +189,9 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
             string valuePath = null,
             string displayMemberPath = null);
 
-        protected virtual TViewControl CreateEditListClassControl(object propertyValue, RailsDataMemberListBindAttribute railsDataMemberListBindAttribute)
+        protected virtual TViewControl CreateEditListClassControl(
+            object propertyValue,
+            RailsDataMemberListBindAttribute railsDataMemberListBindAttribute)
         {
             return this.RailsIndexViewFactory.CreateIndexView(propertyValue as IList, railsDataMemberListBindAttribute.ElementType);
         }
