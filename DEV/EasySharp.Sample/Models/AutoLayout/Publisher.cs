@@ -22,7 +22,7 @@ namespace EasySharp.Sample.Models.AutoLayout
 
         private static readonly Lazy<IDictionary<string, List<string>>> lazySelectableNames
             = new Lazy<IDictionary<string, List<string>>>(() =>
-                typeof(Publisher).GetLocalResourceDependentValues(nameof(Names)));
+                typeof(Publisher).GetLocalResourceDependentValues(nameof(Names), ".txt"));
 
         [DisplayName("個人/企業")]
         [RailsDataMemberBind]

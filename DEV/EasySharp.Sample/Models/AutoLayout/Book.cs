@@ -33,7 +33,7 @@ namespace EasySharp.Sample.Models.AutoLayout
 
         private static readonly Lazy<IEnumerable<string>> lazySelectableAuthors
             = new Lazy<IEnumerable<string>>(() =>
-                typeof(Book).GetLocalResourceValues(nameof(SelectableAuthors)));
+                typeof(Book).GetLocalResourceValues(nameof(SelectableAuthors), ".txt"));
 
         [RailsCandidatesStringSourceBind]
         [IgnoreDataMember]
