@@ -150,8 +150,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
         protected override View CreateEditClassControl(object propertyValue)
         {
-            // TODO
-            var viewModel = new RailsEditViewModel(propertyValue);
+            var viewModel = this.RailsEditViewModelFactory.Create(propertyValue);
             var button = new Button
             {
                 Command = new DelegateCommand(x => Edit(x as IRailsEditViewModel)),
