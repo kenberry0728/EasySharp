@@ -208,8 +208,8 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             string displayMemberPath = null)
         {
             var comboBox = new Picker();
-            var itemsSource = itemsSourceBinding;
             comboBox.SetBinding(Picker.ItemsSourceProperty, itemsSourceBinding);
+            // TODO
             //comboBox.Item = "Value";
             comboBox.ItemDisplayBinding = new Binding(ValueAndDisplayValue<string>.DisplayValuePath);
             comboBox.SetBinding(Picker.SelectedItemProperty, valueBinding);
