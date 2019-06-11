@@ -69,14 +69,14 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 
             this.GridService.AddRowDefinition(mainGrid);
             this.GridService.AddChild(mainGrid, button, 1, 0);
-            // await Navigation.PushAsync(window);?
+            // await Navigation.PushAsync(contentPage);?
             return true;
         }
 
-        private Grid CreateOkCancelGrid(object editedModel, ContentPage window)
+        private Grid CreateOkCancelGrid(object editedModel, ContentPage contentPage)
         {
-            var okButton = CreateOkButton(editedModel, window);
-            var cancelButton = CreateCancelButton(window);
+            var okButton = CreateOkButton(editedModel, contentPage);
+            var cancelButton = CreateCancelButton(contentPage);
 
             var grid = this.GridService.Create();
 
@@ -89,7 +89,7 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             return grid;
         }
 
-        private static Button CreateOkButton(object editedModel, ContentPage window)
+        private static Button CreateOkButton(object editedModel, ContentPage contentPage)
         {
             return new Button
             {
@@ -97,18 +97,18 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
                 //IsDefault = true,
                 //HorizontalAlignment = HorizontalAlignment.Stretch,
                 CommandParameter = editedModel,
-                //Command = new CompleteEditDialogCommand(window)
+                //Command = new CompleteEditDialogCommand(contentPage)
             };
         }
 
-        private static Button CreateCancelButton(ContentPage window)
+        private static Button CreateCancelButton(ContentPage contentPage)
         {
             return new Button
             {
                 Text = "Cancel",
                 //IsCancel = true,
                 //HorizontalAlignment = HorizontalAlignment.Stretch,
-                //Command = new CloseWindowCommand(window)
+                //Command = new CloseWindowCommand(contentPage)
             };
         }
 
