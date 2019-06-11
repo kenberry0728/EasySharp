@@ -162,6 +162,14 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Edit
             return button;
         }
 
+        protected override View CreateEditDateTimeControl(Type type, Binding valueBinding)
+        {
+            var datePicker = new DatePicker();
+            datePicker.SetBinding(DatePicker.DateProperty, valueBinding);
+            return datePicker;
+        }
+
+
         protected virtual View CreateSelectFromCandidateControl(object model,
             PropertyInfo dependentPropertyInfo,
             IDictionary<string, List<ValueAndDisplayValue<string>>> selectableItems,

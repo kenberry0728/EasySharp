@@ -50,6 +50,10 @@ namespace EasySharp.Sample.Models.AutoLayout
         [RailsDataMemberBind]
         public bool FreeTrial { get; set; }
 
+        [DisplayName("発行日")]
+        [RailsDataMemberBind]
+        public DateTime PublishedDate { get; set; }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             // TODO

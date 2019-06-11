@@ -141,6 +141,13 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return textBox;
         }
 
+        protected override UIElement CreateEditDateTimeControl(Type type, Binding valueBinding)
+        {
+            var datePicker = new DatePicker();
+            datePicker.SetBinding(DatePicker.SelectedDateProperty, valueBinding);
+            return datePicker;
+        }
+
         protected override UIElement CreateEditClassControl(object propertyValue)
         {
             var viewModel = this.RailsEditViewModelFactory.Create(propertyValue);

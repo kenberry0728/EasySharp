@@ -158,6 +158,10 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
                         uiElement = CreateEditClassControl(property.GetValue(model));
                         break;
                     }
+
+                case Type type when type == typeof(DateTime):
+                    uiElement = CreateEditDateTimeControl(type, this.RailsBindCreator.CreateRailsBinding(property));
+                    break;
                 case Type type when type.IsClass:
                     uiElement = CreateEditClassControl(property.GetValue(model));
                     break;
@@ -178,6 +182,8 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
         protected abstract TViewControl CreateEditBooleanControl(TBinding valueBinding);
 
         protected abstract TViewControl CreateEditStringControl(TBinding valueBinding);
+
+        protected abstract TViewControl CreateEditDateTimeControl(Type type, TBinding valueBinding);
 
         protected abstract TViewControl CreateEditClassControl(object propertyValue);
 
