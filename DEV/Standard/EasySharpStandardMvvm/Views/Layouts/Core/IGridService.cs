@@ -6,8 +6,8 @@
         void AddChild(
             TGrid grid,
             TViewControl view,
-            int row = 0,
-            int column = 0,
+            int row,
+            int column,
             double thickness = 10);
 
         void AddColumnDefinition(TGrid grid, double width);

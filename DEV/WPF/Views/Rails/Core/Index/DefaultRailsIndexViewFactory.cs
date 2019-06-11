@@ -54,10 +54,10 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             var viewModel = new RailsIndexViewModel(modelList, type);
 
             this.gridService.AddStarRowDefinition(grid);
-            this.gridService.AddChild(grid, CreateTable(viewModel), thickness: 0);
+            this.gridService.AddChild(grid, CreateTable(viewModel), 0, 0, 0);
 
             this.gridService.AddStarRowDefinition(grid);
-            this.gridService.AddChild(grid, CreateAddButton(viewModel), 1, thickness: 0);
+            this.gridService.AddChild(grid, CreateAddButton(viewModel), 1, 0, 0);
 
             return grid;
         }
