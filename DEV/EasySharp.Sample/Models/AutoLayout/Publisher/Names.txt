@@ -1,6 +1,6 @@
 ﻿Company
 	Kodansha
 	Shueisha
-Indivisual
+Individual
 	Yamada Hanako
 	Sekaino Onabe
