@@ -84,26 +84,26 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
                                          .Where(p => p.HasVisibleRailsBindAttribute()))
             {
                 var railsBind = property.GetCustomAttribute<RailsDataMemberBindAttribute>();
-
                 Debug.Assert(property.CanRead && property.CanWrite);
-
                 var editControl = this.CreatePropertyEditControl(model, property, railsBind);
-                if (editControl != null)
+                if (editControl == null)
                 {
-                    if (railsBind is RailsDataMemberListBindAttribute)
-                    {
-                        this.GridService.AddStarRowDefinition(grid);
-                    }
-                    else
-                    {
-                        this.GridService.AddAutoRowDefinition(grid);
-                    }
-
-                    var label = this.CreateLabelControl(property);
-                    this.GridService.AddChild(grid, label, gridRow, 0);
-                    this.GridService.AddChild(grid, editControl, gridRow, 1);
-                    gridRow++;
+                    continue;
                 }
+
+                if (railsBind is RailsDataMemberListBindAttribute)
+                {
+                    this.GridService.AddStarRowDefinition(grid);
+                }
+                else
+                {
+                    this.GridService.AddAutoRowDefinition(grid);
+                }
+
+                var label = this.CreateLabelControl(property);
+                this.GridService.AddChild(grid, label, gridRow, 0);
+                this.GridService.AddChild(grid, editControl, gridRow, 1);
+                gridRow++;
             }
 
             return grid;
@@ -167,6 +167,9 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
                     break;
                 case Type type when type.IsEnum:
                     uiElement = CreateEditEnumControl(type, this.RailsBindCreator.CreateRailsBinding(property));
+                    break;
+                default:
+                    Debug.Assert(false, "Not supported primitive types.");
                     break;
             }
 
