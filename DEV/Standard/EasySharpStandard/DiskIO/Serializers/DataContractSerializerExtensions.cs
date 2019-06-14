@@ -9,7 +9,7 @@ namespace EasySharpStandard.DiskIO.Serializers
     {
         public static void SerializeWithDataContract(this object instance, string filePath, DataContractSerializerSettings settings)
         {
-            filePath.EnsureDirectory();
+            filePath.EnsureDirectoryForFile();
             var serializer = new DataContractSerializer(instance.GetType(), settings);
             var xmlSettings = new XmlWriterSettings
             {

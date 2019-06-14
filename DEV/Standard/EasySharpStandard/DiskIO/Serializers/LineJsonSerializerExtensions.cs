@@ -11,7 +11,7 @@ namespace EasySharpStandard.DiskIO.Serializers
         public static void SerializeAsLinedJson<T>(this IEnumerable<T> instances, string filePath, params Type[] knownTypes)
         {
             var serializer = new DataContractJsonSerializer(typeof(T), knownTypes);
-            filePath.EnsureDirectory();
+            filePath.EnsureDirectoryForFile();
             using (var streamWriter = new StreamWriter(filePath, false, Encoding.UTF8, 1024))
             {
                 foreach (var instance in instances)
