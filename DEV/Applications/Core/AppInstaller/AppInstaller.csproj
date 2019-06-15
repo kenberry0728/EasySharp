@@ -6,18 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="RunAppInstaller.bat" />
+    <None Remove="AppInstaller_UpdateArg.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="AppInstaller_UpdateArg.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Standard\EasySharpStandardConsole\EasySharpStandardConsole.csproj" />
     <ProjectReference Include="..\..\..\Standard\EasySharpStandard\EasySharpStandard.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="RunAppInstaller.bat">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
 </Project>
