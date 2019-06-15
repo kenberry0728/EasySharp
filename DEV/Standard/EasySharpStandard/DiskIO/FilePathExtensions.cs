@@ -51,6 +51,9 @@ namespace EasySharpStandard.DiskIO
 
         private static DirectoryInfo CreateDirectoryRecursivelyInner(this string directoryPath)
         {
+            directoryPath = string.IsNullOrEmpty(directoryPath)
+                ? Directory.GetCurrentDirectory() 
+                : directoryPath;
             var parentDirectoryInfo = Directory.GetParent(directoryPath);
             if (!Directory.Exists(parentDirectoryInfo.FullName))
             {

@@ -46,7 +46,7 @@ namespace AppInstaller
                 case RunMode.CheckUpdate:
                     return CheckUpdate(argument);
                 case RunMode.Update:
-                    argBackupFilePath.WriteToFile(arg);
+                    arg.WriteToFile(argBackupFilePath);
                     return UpdateDirectory(argument);
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -77,7 +77,7 @@ namespace AppInstaller
             tempPath.CopyDirectory(argument.InstallDir);
 
             Directory.Delete(tempPath, true);
-            return new Result { ResultCode = ResultCode.Success};
+            return new Result { ResultCode = ResultCode.Success, Updated = true };
         }
     }
 }

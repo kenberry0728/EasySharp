@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,8 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="RunAppInstaller.bat" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\Standard\EasySharpStandardConsole\EasySharpStandardConsole.csproj" />
     <ProjectReference Include="..\..\..\Standard\EasySharpStandard\EasySharpStandard.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="RunAppInstaller.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
