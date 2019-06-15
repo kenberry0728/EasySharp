@@ -13,6 +13,11 @@ namespace AppInstaller
     {
         static void Main(string[] args)
         {
+            #region debug
+            var arg = new Argument() {RunMode = RunMode.Update, SourceDir = @"c:\testDir"};
+            var commandLineArg = new ArgumentConverter().ToCommandLineString(arg);
+            #endregion
+
             Result modeResult;
             try
             {
@@ -32,7 +37,7 @@ namespace AppInstaller
 
         private static Result InternalMain(string[] args)
         {
-            const string argBackupFilePath = "_ArgBackup.txt";
+            const string argBackupFilePath = "AppInstaller_UpdateArg.json";
             var arg = args.Any() ? args[0] : argBackupFilePath.ReadToEnd();
 
             var argument = new ArgumentConverter().ToInstance(arg);
@@ -41,7 +46,7 @@ namespace AppInstaller
                 case RunMode.CheckUpdate:
                     return CheckUpdate(argument);
                 case RunMode.Update:
-                    argBackupFilePath.WriteToFile(argBackupFilePath);
+                    argBackupFilePath.WriteToFile(arg);
                     return UpdateDirectory(argument);
                 default:
                     throw new ArgumentOutOfRangeException();
