@@ -5,6 +5,7 @@ using AppInstaller.Core;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using EasySharpStandard.DiskIO;
+using EasySharpStandard.DiskIO.Serializers;
 
 namespace AppInstaller
 {
@@ -31,17 +32,16 @@ namespace AppInstaller
 
         private static Result InternalMain(string[] args)
         {
-            if (!args.Any())
-            {
-                return new Result { ResultCode = ResultCode.InvalidArgument };
-            }
+            const string argBackupFilePath = "_ArgBackup.txt";
+            var arg = args.Any() ? args[0] : argBackupFilePath.ReadToEnd();
 
-            var argument = new ArgumentConverter().ToInstance(args[0]);
+            var argument = new ArgumentConverter().ToInstance(arg);
             switch (argument.RunMode)
             {
                 case RunMode.CheckUpdate:
                     return CheckUpdate(argument);
                 case RunMode.Update:
+                    argBackupFilePath.WriteToFile(argBackupFilePath);
                     return UpdateDirectory(argument);
                 default:
                     throw new ArgumentOutOfRangeException();
