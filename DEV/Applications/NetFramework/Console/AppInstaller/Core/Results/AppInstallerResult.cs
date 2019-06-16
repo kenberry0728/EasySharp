@@ -1,6 +1,6 @@
 ﻿namespace AppInstaller.Core.Results
 {
-    public class Result
+    public class AppInstallerResult
     {
         public ResultCode ResultCode { get; set; }
 

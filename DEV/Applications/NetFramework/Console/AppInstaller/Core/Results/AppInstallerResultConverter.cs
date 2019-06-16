@@ -2,7 +2,7 @@
 
 namespace AppInstaller.Core.Results
 {
-    public class UpdateResultConverter : JsonStringConverter<Result>
+    public class AppInstallerResultConverter : JsonStringConverter<AppInstallerResult>
     {
     }
 }

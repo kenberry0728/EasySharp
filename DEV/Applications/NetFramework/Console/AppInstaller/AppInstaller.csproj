@@ -43,12 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Arguments\Argument.cs" />
-    <Compile Include="Core\Arguments\ArgumentConverter.cs" />
-    <Compile Include="Core\Results\Result.cs" />
+    <Compile Include="Core\AppInstallerConstants.cs" />
+    <Compile Include="Core\Arguments\AppInstallerArgument.cs" />
+    <Compile Include="Core\Arguments\AppInstallerArgumentConverter.cs" />
+    <Compile Include="Core\Results\AppInstallerResult.cs" />
     <Compile Include="Core\Results\ResultCode.cs" />
-    <Compile Include="Core\Results\UpdateResultConverter.cs" />
-    <Compile Include="Core\RunMode.cs" />
+    <Compile Include="Core\Results\AppInstallerResultConverter.cs" />
+    <Compile Include="Core\Arguments\RunMode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -114,8 +114,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Applications\Core\AppInstaller\AppInstaller.csproj">
-      <Project>{f8ee4b8e-1274-4ffa-a1d9-4c28e6e0eee8}</Project>
+    <ProjectReference Include="..\Applications\NetFramework\Console\AppInstaller\AppInstaller.csproj">
+      <Project>{08900573-9B9F-4078-8E9C-9651890D3859}</Project>
       <Name>AppInstaller</Name>
     </ProjectReference>
     <ProjectReference Include="..\EasySharp.Sample\EasySharp.Sample.csproj">

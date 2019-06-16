@@ -6,7 +6,7 @@ namespace EasySharpStandard.Processes
     {
         public static string RunProcessAndGetStandardOutput(this string processPath, string arguments = "")
         {
-            Debug.Assert(arguments == "", "TODO : check if it works or not.");
+            //Debug.Assert(arguments == "", "TODO : check if it works or not.");
             var process = new Process
             {
                 StartInfo = new ProcessStartInfo

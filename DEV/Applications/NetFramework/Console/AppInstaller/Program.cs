@@ -14,33 +14,33 @@ namespace AppInstaller
         static void Main(string[] args)
         {
             #region debug
-            var arg = new Argument() {RunMode = RunMode.Update, SourceDir = @"c:\testDir"};
-            var commandLineArg = new ArgumentConverter().ToCommandLineString(arg);
+            var arg = new AppInstallerArgument() {RunMode = RunMode.Update, SourceDir = @"c:\testDir"};
+            var commandLineArg = new AppInstallerArgumentConverter().ToCommandLineString(arg);
             #endregion
 
-            Result modeResult;
+            AppInstallerResult modeAppInstallerResult;
             try
             {
-                modeResult = InternalMain(args);
+                modeAppInstallerResult = InternalMain(args);
             }
             catch (Exception e)
             {
-                modeResult = new Result
+                modeAppInstallerResult = new AppInstallerResult
                 {
                     ResultCode = ResultCode.InternalError,
                     Message = e.Message
                 };
             }
 
-            Console.WriteLine(new UpdateResultConverter().ToString(modeResult));
+            Console.WriteLine(new AppInstallerResultConverter().ToString(modeAppInstallerResult));
         }
 
-        private static Result InternalMain(string[] args)
+        private static AppInstallerResult InternalMain(string[] args)
         {
             const string argBackupFilePath = "AppInstaller_UpdateArg.json";
             var arg = args.Any() ? args[0] : argBackupFilePath.ReadToEnd();
 
-            var argument = new ArgumentConverter().ToInstance(arg);
+            var argument = new AppInstallerArgumentConverter().ToInstance(arg);
             switch (argument.RunMode)
             {
                 case RunMode.CheckUpdate:
@@ -53,31 +53,31 @@ namespace AppInstaller
             }
         }
 
-        private static Result CheckUpdate(Argument argument)
+        private static AppInstallerResult CheckUpdate(AppInstallerArgument appInstallerArgument)
         {
-            var sourceDirInfo = new DirectoryInfo(argument.SourceDir);
+            var sourceDirInfo = new DirectoryInfo(appInstallerArgument.SourceDir);
             var latestUpdateDate = sourceDirInfo.GetFiles("*", SearchOption.AllDirectories)
                 .Max(f => f.LastWriteTimeUtc);
 
-            var installDirInfo = new DirectoryInfo(argument.InstallDir);
+            var installDirInfo = new DirectoryInfo(appInstallerArgument.InstallDir);
             var currentUpdateDate = installDirInfo.GetFiles("*", SearchOption.AllDirectories)
                 .Max(f => f.LastWriteTimeUtc);
-            return new Result
+            return new AppInstallerResult
             {
                 ResultCode = ResultCode.Success,
                 Updated = latestUpdateDate > currentUpdateDate
             };
         }
 
-        private static Result UpdateDirectory(Argument argument)
+        private static AppInstallerResult UpdateDirectory(AppInstallerArgument appInstallerArgument)
         {
             // TODO: Delete obsolete files. It needs ignore file logic.
-            var tempPath = Path.Combine(argument.InstallDir, "..", Guid.NewGuid().ToString());
-            argument.SourceDir.CopyDirectory(tempPath);
-            tempPath.CopyDirectory(argument.InstallDir);
+            var tempPath = Path.Combine(appInstallerArgument.InstallDir, "..", Guid.NewGuid().ToString());
+            appInstallerArgument.SourceDir.CopyDirectory(tempPath);
+            tempPath.CopyDirectory(appInstallerArgument.InstallDir);
 
             Directory.Delete(tempPath, true);
-            return new Result { ResultCode = ResultCode.Success, Updated = true };
+            return new AppInstallerResult { ResultCode = ResultCode.Success, Updated = true };
         }
     }
 }

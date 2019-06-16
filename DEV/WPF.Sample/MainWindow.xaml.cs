@@ -3,6 +3,10 @@ using EasySharpStandard.DiskIO.Serializers;
 using EasySharpStandard.SafeCodes.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
 using System.Windows;
+using AppInstaller.Core;
+using AppInstaller.Core.Arguments;
+using AppInstaller.Core.Results;
+using EasySharpStandard.Processes;
 using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 
 namespace EasySharpWpf.Sample
@@ -86,7 +90,18 @@ namespace EasySharpWpf.Sample
 
         private void CheckUpdate(object sender, RoutedEventArgs e)
         {
-
+            var arg = new AppInstallerArgument
+            {
+                RunMode = RunMode.CheckUpdate,
+                SourceDir = @"C:\TestLatestRelease\WPF.Sample"
+            };
+            var commandLineString = new AppInstallerArgumentConverter().ToCommandLineString(arg);
+            var resultString = AppInstallerConstants.AppFilePath.RunProcessAndGetStandardOutput(commandLineString);
+            var result = new AppInstallerResultConverter().ToInstance(resultString);
+            if (result.Updated)
+            {
+                MessageBox.Show("Updated!");
+            }
         }
     }
 }
