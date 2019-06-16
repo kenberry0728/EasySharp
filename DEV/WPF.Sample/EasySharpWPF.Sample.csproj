@@ -63,6 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Content Include="LatestReleasePath.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Page Include="CustomLayoutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,6 +114,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Applications\Core\AppInstaller\AppInstaller.csproj">
+      <Project>{f8ee4b8e-1274-4ffa-a1d9-4c28e6e0eee8}</Project>
+      <Name>AppInstaller</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EasySharp.Sample\EasySharp.Sample.csproj">
       <Project>{42e31f7a-7244-40b9-9b36-58504e9a28c0}</Project>
       <Name>EasySharp.Sample</Name>

@@ -83,5 +83,10 @@ namespace EasySharpWpf.Sample
             var customLayoutWindow = new CustomLayoutWindow();
             customLayoutWindow.Show();
         }
+
+        private void CheckUpdate(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
