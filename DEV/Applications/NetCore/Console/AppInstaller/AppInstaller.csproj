@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Standard\EasySharpStandardConsole\EasySharpStandardConsole.csproj" />
-    <ProjectReference Include="..\..\..\Standard\EasySharpStandard\EasySharpStandard.csproj" />
+    <ProjectReference Include="..\..\..\..\Standard\EasySharpStandardConsole\EasySharpStandardConsole.csproj" />
+    <ProjectReference Include="..\..\..\..\Standard\EasySharpStandard\EasySharpStandard.csproj" />
   </ItemGroup>
 
 </Project>
