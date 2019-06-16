@@ -43,11 +43,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Arguments\Argument.cs" />
+    <Compile Include="Core\Arguments\ArgumentConverter.cs" />
+    <Compile Include="Core\Results\Result.cs" />
+    <Compile Include="Core\Results\ResultCode.cs" />
+    <Compile Include="Core\Results\UpdateResultConverter.cs" />
+    <Compile Include="Core\RunMode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="AppInstaller_UpdateArg.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Standard\EasySharpStandardConsole\EasySharpStandardConsole.csproj">
+      <Project>{dc532004-acae-445b-bdb1-c48620840690}</Project>
+      <Name>EasySharpStandardConsole</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Standard\EasySharpStandard\EasySharpStandard.csproj">
+      <Project>{e4decfa5-912d-4c5a-9c69-afaaba2b0556}</Project>
+      <Name>EasySharpStandard</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,5 +7,7 @@
         public string SourceDir { get; set; } = string.Empty;
 
         public string InstallDir { get; set; } = string.Empty;
+
+        public string RebootAppDir { get; set; } = string.Empty;
     }
 }
