@@ -72,6 +72,7 @@ namespace AppInstaller
 
         private static AppInstallerResult CheckUpdate(AppInstallerArgument appInstallerArgument)
         {
+            // TODO: Check updates by definition file
             var sourceDirInfo = new DirectoryInfo(appInstallerArgument.SourceDir);
             var latestUpdateDate = sourceDirInfo.GetFiles("*", SearchOption.AllDirectories)
                 .Max(f => f.LastWriteTimeUtc);
