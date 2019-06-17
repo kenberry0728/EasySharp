@@ -1,6 +1,4 @@
-﻿using AppInstaller.Implementation;
-
-namespace AppInstaller.Core.Arguments
+﻿namespace AppInstaller.Core.Arguments
 {
     public class AppInstallerArgument
     {
