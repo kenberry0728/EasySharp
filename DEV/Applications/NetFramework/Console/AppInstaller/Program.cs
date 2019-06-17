@@ -90,7 +90,7 @@ namespace AppInstaller
 
         private static AppInstallerResult DownloadItemsToTemp(AppInstallerArgument appInstallerArgument)
         {
-            var tempPathForUpdateFiles = Path.Combine(appInstallerArgument.InstallDir, "..", Guid.NewGuid().ToString());
+            var tempPathForUpdateFiles = Path.Combine(appInstallerArgument.InstallDir, "..", "AppInstaller_Temp");
             appInstallerArgument.SourceDir.CopyDirectory(tempPathForUpdateFiles);
 
             var appInstallerForUpdatePath = Path.Combine(tempPathForUpdateFiles, appInstallerAssemblyName);
