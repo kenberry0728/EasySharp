@@ -45,9 +45,7 @@ namespace AppInstaller
 
         private static AppInstallerResult InternalMain(string[] args)
         {
-            const string argBackupFilePath = "AppInstaller_UpdateArg.json";
-            var arg = args.Any() ? args[0] : argBackupFilePath.ReadToEnd();
-
+            var arg = args.Any() ? args[0] : "AppInstaller_UpdateArg.json".ReadToEnd();
             var argument = new AppInstallerArgumentConverter().FromString(arg);
 
 #if DEBUG
