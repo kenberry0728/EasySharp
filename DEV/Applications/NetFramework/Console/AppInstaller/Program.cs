@@ -1,22 +1,28 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using AppInstaller.Core;
+using System.Reflection;
+using System.Threading;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
+using AppInstaller.Implementation;
 using EasySharpStandard.DiskIO;
 using EasySharpStandard.DiskIO.Serializers;
+using EasySharpStandard.Processes;
 
 namespace AppInstaller
 {
     internal class Program
     {
+        private static readonly string appInstallerAssemblyName = Path.GetFileName(Assembly.GetExecutingAssembly().Location);
+
         static void Main(string[] args)
         {
-            #region debug
-            var arg = new AppInstallerArgument() {RunMode = RunMode.Update, SourceDir = @"c:\testDir"};
+            #if DEBUG
+            var arg = new AppInstallerArgument(RunMode.DownloadItemsToTemp) { SourceDir = @"c:\testDir"};
             var commandLineArg = new AppInstallerArgumentConverter().ToCommandLineString(arg);
-            #endregion
+            #endif
 
             AppInstallerResult modeAppInstallerResult;
             try
@@ -30,6 +36,8 @@ namespace AppInstaller
                     ResultCode = ResultCode.InternalError,
                     Message = e.Message
                 };
+
+                e.Message.WriteToFile("Error.log");
             }
 
             Console.WriteLine(new AppInstallerResultConverter().ToString(modeAppInstallerResult));
@@ -40,14 +48,25 @@ namespace AppInstaller
             const string argBackupFilePath = "AppInstaller_UpdateArg.json";
             var arg = args.Any() ? args[0] : argBackupFilePath.ReadToEnd();
 
-            var argument = new AppInstallerArgumentConverter().ToInstance(arg);
+            var argument = new AppInstallerArgumentConverter().FromString(arg);
+
+#if DEBUG
+            if (args.Any() && argument.RunMode != RunMode.CheckUpdate)
+            {
+                args[0].WriteToFile(argument.RunMode + ".txt");
+            }
+#endif
+
             switch (argument.RunMode)
             {
                 case RunMode.CheckUpdate:
                     return CheckUpdate(argument);
-                case RunMode.Update:
-                    arg.WriteToFile(argBackupFilePath);
-                    return UpdateDirectory(argument);
+                case RunMode.DownloadItemsToTemp:
+                    return DownloadItemsToTemp(argument);
+                case RunMode.RunWithNewAppInTemp:
+                    return RunWithNewAppInTemp(argument);
+                case RunMode.CleanupAndRunApp:
+                    return CleanupAndRunApp(argument);
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -69,14 +88,53 @@ namespace AppInstaller
             };
         }
 
-        private static AppInstallerResult UpdateDirectory(AppInstallerArgument appInstallerArgument)
+        private static AppInstallerResult DownloadItemsToTemp(AppInstallerArgument appInstallerArgument)
         {
-            // TODO: Delete obsolete files. It needs ignore file logic.
-            var tempPath = Path.Combine(appInstallerArgument.InstallDir, "..", Guid.NewGuid().ToString());
-            appInstallerArgument.SourceDir.CopyDirectory(tempPath);
-            tempPath.CopyDirectory(appInstallerArgument.InstallDir);
+            var tempPathForUpdateFiles = Path.Combine(appInstallerArgument.InstallDir, "..", Guid.NewGuid().ToString());
+            appInstallerArgument.SourceDir.CopyDirectory(tempPathForUpdateFiles);
 
-            Directory.Delete(tempPath, true);
+            var appInstallerForUpdatePath = Path.Combine(tempPathForUpdateFiles, appInstallerAssemblyName);
+
+            appInstallerArgument.TempFolder = tempPathForUpdateFiles;
+            appInstallerArgument.RunMode = RunMode.RunWithNewAppInTemp;
+
+            appInstallerForUpdatePath.RunProcess(appInstallerArgument.ToCommandLineString());
+            return new AppInstallerResult {ResultCode = ResultCode.Success};
+        }
+
+        private static AppInstallerResult RunWithNewAppInTemp(AppInstallerArgument appInstallerArgument)
+        {
+            WaitForExit(appInstallerArgument);
+
+            appInstallerArgument.SourceDir.CopyDirectory(appInstallerArgument.InstallDir);
+
+            var newInstallerPath = Path.Combine(appInstallerArgument.InstallDir, appInstallerAssemblyName);
+            appInstallerArgument.RunMode = RunMode.CleanupAndRunApp;
+            newInstallerPath.RunProcess(appInstallerArgument.ToCommandLineString());
+
+            return new AppInstallerResult { ResultCode = ResultCode.Success, Updated = true };
+        }
+
+        private static void WaitForExit(AppInstallerArgument appInstallerArgument)
+        {
+            if (!string.IsNullOrEmpty(appInstallerArgument.OriginalAppPath))
+            {
+                var originalApp = Process.GetProcesses().FirstOrDefault(
+                    p => p?.ProcessName == Path.GetFileName(appInstallerArgument.OriginalAppPath));
+                originalApp?.WaitForExit();
+            }
+
+            // TODO: Exe終了判断（プロセス名からできないしどうしよう）。
+            Thread.Sleep(1000);
+        }
+
+        private static AppInstallerResult CleanupAndRunApp(AppInstallerArgument argument)
+        {
+            // TODO: Exe終了判断（プロセス名からできないしどうしよう）。
+            Thread.Sleep(1000);
+
+            Directory.Delete(argument.TempFolder, true);
+            argument.OriginalAppPath?.RunProcess();
             return new AppInstallerResult { ResultCode = ResultCode.Success, Updated = true };
         }
     }

@@ -1,4 +1,6 @@
-﻿using EasySharp.Sample.Models.AutoLayout;
+﻿using System.IO;
+using System.Reflection;
+using EasySharp.Sample.Models.AutoLayout;
 using EasySharpStandard.DiskIO.Serializers;
 using EasySharpStandard.SafeCodes.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
@@ -90,17 +92,33 @@ namespace EasySharpWpf.Sample
 
         private void CheckUpdate(object sender, RoutedEventArgs e)
         {
-            var arg = new AppInstallerArgument
+            var dirInfo = new DirectoryInfo(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)));
+            if (dirInfo.Parent == null)
             {
-                RunMode = RunMode.CheckUpdate,
-                SourceDir = @"C:\TestLatestRelease\WPF.Sample"
+                return;
+            }
+
+            var sourceDir = Path.Combine(dirInfo.Parent.FullName, "Release");
+            var arg = new AppInstallerArgument(RunMode.CheckUpdate)
+            {
+                InstallDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                SourceDir = sourceDir,
+                OriginalAppPath = Assembly.GetExecutingAssembly().Location
             };
-            var commandLineString = new AppInstallerArgumentConverter().ToCommandLineString(arg);
-            var resultString = AppInstallerConstants.AppFilePath.RunProcessAndGetStandardOutput(commandLineString);
-            var result = new AppInstallerResultConverter().ToInstance(resultString);
+
+            var result = AppInstallerConstants
+                .AppFilePath
+                .RunProcessAndGetStandardOutput(arg.ToCommandLineString())
+                .AppInstallerResultFromString();
             if (result.Updated)
             {
-                MessageBox.Show("Updated!");
+                arg.RunMode = RunMode.DownloadItemsToTemp;
+                AppInstallerConstants.AppFilePath.RunProcess(arg.ToCommandLineString());
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("This is the latest.");
             }
         }
     }

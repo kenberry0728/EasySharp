@@ -45,10 +45,12 @@
   <ItemGroup>
     <Compile Include="Core\AppInstallerConstants.cs" />
     <Compile Include="Core\Arguments\AppInstallerArgument.cs" />
-    <Compile Include="Core\Arguments\AppInstallerArgumentConverter.cs" />
+    <Compile Include="Core\Arguments\AppInstallerArgumentExtensions.cs" />
+    <Compile Include="Core\Results\AppInstallerResultExtensions.cs" />
+    <Compile Include="Implementation\AppInstallerArgumentConverter.cs" />
     <Compile Include="Core\Results\AppInstallerResult.cs" />
     <Compile Include="Core\Results\ResultCode.cs" />
-    <Compile Include="Core\Results\AppInstallerResultConverter.cs" />
+    <Compile Include="Implementation\AppInstallerResultConverter.cs" />
     <Compile Include="Core\Arguments\RunMode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,10 +62,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Standard\EasySharpStandardConsole\EasySharpStandardConsole.csproj">
-      <Project>{dc532004-acae-445b-bdb1-c48620840690}</Project>
-      <Name>EasySharpStandardConsole</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Standard\EasySharpStandard\EasySharpStandard.csproj">
       <Project>{e4decfa5-912d-4c5a-9c69-afaaba2b0556}</Project>
       <Name>EasySharpStandard</Name>

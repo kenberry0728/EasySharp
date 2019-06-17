@@ -1,9 +1,10 @@
-﻿using EasySharpStandard.DiskIO.Serializers;
+﻿using AppInstaller.Core.Arguments;
+using EasySharpStandard.DiskIO.Serializers;
 using EasySharpStandard.Processes;
 
-namespace AppInstaller.Core.Arguments
+namespace AppInstaller.Implementation
 {
-    public class AppInstallerArgumentConverter : JsonStringConverter<AppInstallerArgument>
+    internal class AppInstallerArgumentConverter : JsonStringConverter<AppInstallerArgument>
     {
         public string ToCommandLineString(AppInstallerArgument appInstallerArgument)
         {

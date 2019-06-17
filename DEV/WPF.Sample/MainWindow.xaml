@@ -23,6 +23,6 @@
 
         <Button Grid.Row="2" Content="Show Custom Edit View Sample" Click="ShowCustomEditView" HorizontalAlignment="Center"/>
 
-        <Button Grid.Row="3" Content="Check Update" Click="CheckUpdate" HorizontalAlignment="Center"/>
+        <Button Grid.Row="3" Content="AutoUpdate" Click="CheckUpdate" HorizontalAlignment="Center"/>
     </Grid>
 </Window>

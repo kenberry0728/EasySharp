@@ -1,4 +1,6 @@
-﻿namespace AppInstaller.Core.Results
+﻿using AppInstaller.Implementation;
+
+namespace AppInstaller.Core.Results
 {
     public class AppInstallerResult
     {

@@ -3,6 +3,8 @@
     public enum RunMode
     {
         CheckUpdate,
-        Update
+        DownloadItemsToTemp,
+        RunWithNewAppInTemp,
+        CleanupAndRunApp
     }
 }

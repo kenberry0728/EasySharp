@@ -6,7 +6,6 @@ namespace EasySharpStandard.Processes
     {
         public static string RunProcessAndGetStandardOutput(this string processPath, string arguments = "")
         {
-            //Debug.Assert(arguments == "", "TODO : check if it works or not.");
             var process = new Process
             {
                 StartInfo = new ProcessStartInfo
@@ -25,6 +24,24 @@ namespace EasySharpStandard.Processes
             process.WaitForExit();
             process.Close();
             return result;
+        }
+
+        public static void RunProcess(this string processPath, string arguments = "")
+        {
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = processPath,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardInput = false,
+                    CreateNoWindow = true,
+                    Arguments = arguments,
+                }
+            };
+
+            process.Start();
         }
     }
 }

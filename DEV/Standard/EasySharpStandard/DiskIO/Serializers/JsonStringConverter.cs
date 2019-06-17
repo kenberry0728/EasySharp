@@ -2,7 +2,7 @@
 {
     public class JsonStringConverter<T>
     {
-        public virtual T ToInstance(string resultText)
+        public virtual T FromString(string resultText)
         {
             return resultText.DeserializeFromJsonString<T>();
         }
