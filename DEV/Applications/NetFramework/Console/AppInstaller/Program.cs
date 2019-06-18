@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -76,35 +77,42 @@ namespace AppInstaller
             var excludeRegexList = appInstallerArgument.ExcludePathRegex.Select(ex => new Regex(ex)).ToList();
 
             var sourceDirInfo = new DirectoryInfo(appInstallerArgument.SourceDir);
-            var sourceLastUpdateDate = GetLastWriteTimeUtc(sourceDirInfo);
+            var sourceLastUpdateDate = GetLastWriteTimeUtc(sourceDirInfo, excludeRegexList);
 
             var installDirInfo = new DirectoryInfo(appInstallerArgument.InstallDir);
-            var installLastUpdateDate = GetLastWriteTimeUtc(installDirInfo);
+            var installLastUpdateDate = GetLastWriteTimeUtc(installDirInfo, excludeRegexList);
             return new AppInstallerResult
             {
                 ResultCode = ResultCode.Success,
                 Updated = sourceLastUpdateDate > installLastUpdateDate
             };
 
-            DateTime GetLastWriteTimeUtc(DirectoryInfo targetDirectoryInfo)
-            {
-                return targetDirectoryInfo.GetFiles("*", SearchOption.AllDirectories)
-                    .Select(f => new { f.LastWriteTimeUtc, RelativePath = f.FullName.GetRelativePath(sourceDirInfo.FullName) })
-                    .Where(f => !excludeRegexList.All(ex => ex.IsMatch(f.RelativePath)))
-                    .Max(f => f.LastWriteTimeUtc);
-            }
+        }
+
+        private static DateTime GetLastWriteTimeUtc(DirectoryInfo targetDirectoryInfo, IEnumerable<Regex> regex)
+        {
+            return targetDirectoryInfo.GetFiles("*", SearchOption.AllDirectories)
+                .Where(f => IsTargetFile(f, targetDirectoryInfo.FullName, regex))
+                .Max(f => f.LastWriteTimeUtc);
+        }
+
+        private static bool IsTargetFile(FileSystemInfo f, string baseDirectory, IEnumerable<Regex> excludeRegex)
+        {
+            return !excludeRegex.All(ex => ex.IsMatch(f.FullName.GetRelativePath(baseDirectory)));
         }
 
         private static AppInstallerResult DownloadItemsToTemp(AppInstallerArgument appInstallerArgument)
         {
-            var tempPathForUpdateFiles = Path.Combine(appInstallerArgument.InstallDir, "..", "AppInstaller_Temp");
-            appInstallerArgument.SourceDir.CopyDirectory(tempPathForUpdateFiles);
-
-            var appInstallerForUpdatePath = Path.Combine(tempPathForUpdateFiles, appInstallerAssemblyName);
-
-            appInstallerArgument.TempFolder = tempPathForUpdateFiles;
+            var tempDirectoryPath = new DirectoryInfo(Path.Combine(appInstallerArgument.InstallDir, "..", "AppInstaller_Temp")).FullName;
+            var excludeRegexList = appInstallerArgument.ExcludePathRegex.Select(ex => new Regex(ex));
+            appInstallerArgument.SourceDir.CopyDirectory(
+                tempDirectoryPath, 
+                true, 
+                true,
+                f => IsTargetFile(f, tempDirectoryPath, excludeRegexList));
+            var appInstallerForUpdatePath = Path.Combine(tempDirectoryPath, appInstallerAssemblyName);
+            appInstallerArgument.TempFolder = tempDirectoryPath;
             appInstallerArgument.RunMode = RunMode.RunWithNewAppInTemp;
-
             appInstallerForUpdatePath.RunProcess(appInstallerArgument.ToCommandLineString());
             return new AppInstallerResult {ResultCode = ResultCode.Success};
         }
@@ -112,8 +120,12 @@ namespace AppInstaller
         private static AppInstallerResult RunWithNewAppInTemp(AppInstallerArgument appInstallerArgument)
         {
             WaitForExit(appInstallerArgument);
-
-            appInstallerArgument.SourceDir.CopyDirectory(appInstallerArgument.InstallDir);
+            var regex = appInstallerArgument.ExcludePathRegex.Select(reg => new Regex(reg)).ToList();
+            appInstallerArgument.SourceDir.CopyDirectory(
+                appInstallerArgument.InstallDir,
+                true,
+                true,
+                f => IsTargetFile(f, appInstallerArgument.SourceDir, regex));
 
             var newInstallerPath = Path.Combine(appInstallerArgument.InstallDir, appInstallerAssemblyName);
             appInstallerArgument.RunMode = RunMode.CleanupAndRunApp;
