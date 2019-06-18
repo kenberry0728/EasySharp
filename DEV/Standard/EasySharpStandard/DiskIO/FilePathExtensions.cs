@@ -7,6 +7,17 @@ namespace EasySharpStandard.DiskIO
     {
         #region Public Methods
 
+        public static string GetRelativePath(this string fullPath, string relativeDirectoryPath)
+        {
+            var relativeDirectoryUri = new Uri(relativeDirectoryPath);
+            var fullUri = new Uri(fullPath);
+
+            //â‘ÎUri‚©‚ç‘Š‘ÎUri‚ğæ“¾‚·‚é
+            var relativeUri = relativeDirectoryUri.MakeRelativeUri(fullUri);
+            //•¶š—ñ‚É•ÏŠ·‚·‚é
+            return relativeUri.ToString();
+        }
+
         public static void EnsureDirectoryForFile(this string filePath)
         {
             var directoryPath = Path.GetDirectoryName(filePath);

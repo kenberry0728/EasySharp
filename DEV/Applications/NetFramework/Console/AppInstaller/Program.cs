@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
@@ -72,19 +73,26 @@ namespace AppInstaller
 
         private static AppInstallerResult CheckUpdate(AppInstallerArgument appInstallerArgument)
         {
-            // TODO: Check updates by definition file
+            var excludeRegexList = appInstallerArgument.ExcludePathRegex.Select(ex => new Regex(ex)).ToList();
+
             var sourceDirInfo = new DirectoryInfo(appInstallerArgument.SourceDir);
-            var latestUpdateDate = sourceDirInfo.GetFiles("*", SearchOption.AllDirectories)
-                .Max(f => f.LastWriteTimeUtc);
+            var sourceLastUpdateDate = GetLastWriteTimeUtc(sourceDirInfo);
 
             var installDirInfo = new DirectoryInfo(appInstallerArgument.InstallDir);
-            var currentUpdateDate = installDirInfo.GetFiles("*", SearchOption.AllDirectories)
-                .Max(f => f.LastWriteTimeUtc);
+            var installLastUpdateDate = GetLastWriteTimeUtc(installDirInfo);
             return new AppInstallerResult
             {
                 ResultCode = ResultCode.Success,
-                Updated = latestUpdateDate > currentUpdateDate
+                Updated = sourceLastUpdateDate > installLastUpdateDate
             };
+
+            DateTime GetLastWriteTimeUtc(DirectoryInfo targetDirectoryInfo)
+            {
+                return targetDirectoryInfo.GetFiles("*", SearchOption.AllDirectories)
+                    .Select(f => new { f.LastWriteTimeUtc, RelativePath = f.FullName.GetRelativePath(sourceDirInfo.FullName) })
+                    .Where(f => !excludeRegexList.All(ex => ex.IsMatch(f.RelativePath)))
+                    .Max(f => f.LastWriteTimeUtc);
+            }
         }
 
         private static AppInstallerResult DownloadItemsToTemp(AppInstallerArgument appInstallerArgument)
