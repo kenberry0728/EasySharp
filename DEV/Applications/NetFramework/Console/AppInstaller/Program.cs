@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Threading;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using AppInstaller.Implementation;
@@ -119,7 +118,7 @@ namespace AppInstaller
 
         private static AppInstallerResult RunWithNewAppInTemp(AppInstallerArgument appInstallerArgument)
         {
-            WaitForExit(appInstallerArgument);
+            WaitForExitInInstallDir(appInstallerArgument);
             var regex = appInstallerArgument.ExcludePathRegex.Select(reg => new Regex(reg)).ToList();
             appInstallerArgument.SourceDir.CopyDirectory(
                 appInstallerArgument.InstallDir,
@@ -134,23 +133,45 @@ namespace AppInstaller
             return new AppInstallerResult { ResultCode = ResultCode.Success, Updated = true };
         }
 
-        private static void WaitForExit(AppInstallerArgument appInstallerArgument)
+        private static void WaitForExitInInstallDir(AppInstallerArgument appInstallerArgument)
         {
             if (!string.IsNullOrEmpty(appInstallerArgument.OriginalAppPath))
             {
-                var originalApp = Process.GetProcesses().FirstOrDefault(
-                    p => p?.ProcessName == Path.GetFileName(appInstallerArgument.OriginalAppPath));
+                var originalApp = GetProcessByFileName(appInstallerArgument.OriginalAppPath);
                 originalApp?.WaitForExit();
             }
 
-            // TODO: Exe終了判断（プロセス名からできないしどうしよう）。
-            Thread.Sleep(1000);
+            var appInstallerPathInInstallDir = Path.Combine(appInstallerArgument.InstallDir, appInstallerAssemblyName);
+            var appInstallerInInstallDir = GetProcessByFileName(appInstallerPathInInstallDir);
+            appInstallerInInstallDir?.WaitForExit(10000);
+        }
+
+        public static Process GetProcessByFileName(string filePath)
+        {
+            // TODO: Can be standard?
+            foreach (var proc in Process.GetProcesses())
+            {
+                try
+                {
+                    if (string.Equals(proc.MainModule.FileName, filePath, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return proc;
+                    }
+                }
+                catch
+                {
+                    // ignored
+                }
+            }
+
+            return null;
         }
 
         private static AppInstallerResult CleanupAndRunApp(AppInstallerArgument argument)
         {
-            // TODO: Exe終了判断（プロセス名からできないしどうしよう）。
-            Thread.Sleep(1000);
+            var appInstallerPathInInstallDir = Path.Combine(argument.TempFolder, appInstallerAssemblyName);
+            var appInstallerInInstallDir = GetProcessByFileName(appInstallerPathInInstallDir);
+            appInstallerInInstallDir?.WaitForExit(10000);
 
             Directory.Delete(argument.TempFolder, true);
             argument.OriginalAppPath?.RunProcess();
