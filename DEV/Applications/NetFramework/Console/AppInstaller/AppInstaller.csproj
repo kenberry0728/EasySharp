@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CleanupAndRunApp.cs" />
     <Compile Include="Core\AppInstallerConstants.cs" />
     <Compile Include="Core\Arguments\AppInstallerArgument.cs" />
     <Compile Include="Core\Arguments\AppInstallerArgumentExtensions.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Core\Results\ResultCode.cs" />
     <Compile Include="Implementation\AppInstallerResultConverter.cs" />
     <Compile Include="Core\Arguments\RunMode.cs" />
+    <Compile Include="ProcessExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

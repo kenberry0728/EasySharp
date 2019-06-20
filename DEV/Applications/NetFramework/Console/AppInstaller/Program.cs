@@ -65,7 +65,7 @@ namespace AppInstaller
                 case RunMode.RunWithNewAppInTemp:
                     return RunWithNewAppInTemp(argument);
                 case RunMode.CleanupAndRunApp:
-                    return CleanupAndRunApp(argument);
+                    return new CleanupAndRunApp(appInstallerAssemblyName).Run(argument);
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -137,45 +137,15 @@ namespace AppInstaller
         {
             if (!string.IsNullOrEmpty(appInstallerArgument.OriginalAppPath))
             {
-                var originalApp = GetProcessByFileName(appInstallerArgument.OriginalAppPath);
+                var originalApp = appInstallerArgument.OriginalAppPath.GetProcessByFileName();
                 originalApp?.WaitForExit();
             }
 
             var appInstallerPathInInstallDir = Path.Combine(appInstallerArgument.InstallDir, appInstallerAssemblyName);
-            var appInstallerInInstallDir = GetProcessByFileName(appInstallerPathInInstallDir);
+            var appInstallerInInstallDir = appInstallerPathInInstallDir.GetProcessByFileName();
             appInstallerInInstallDir?.WaitForExit(10000);
         }
 
-        public static Process GetProcessByFileName(string filePath)
-        {
-            // TODO: Can be standard?
-            foreach (var proc in Process.GetProcesses())
-            {
-                try
-                {
-                    if (string.Equals(proc.MainModule.FileName, filePath, StringComparison.OrdinalIgnoreCase))
-                    {
-                        return proc;
-                    }
-                }
-                catch
-                {
-                    // ignored
-                }
-            }
-
-            return null;
-        }
-
-        private static AppInstallerResult CleanupAndRunApp(AppInstallerArgument argument)
-        {
-            var appInstallerPathInInstallDir = Path.Combine(argument.TempFolder, appInstallerAssemblyName);
-            var appInstallerInInstallDir = GetProcessByFileName(appInstallerPathInInstallDir);
-            appInstallerInInstallDir?.WaitForExit(10000);
-
-            Directory.Delete(argument.TempFolder, true);
-            argument.OriginalAppPath?.RunProcess();
-            return new AppInstallerResult { ResultCode = ResultCode.Success, Updated = true };
-        }
+      
     }
 }
