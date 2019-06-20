@@ -48,6 +48,7 @@
     <Compile Include="Core\Arguments\AppInstallerArgument.cs" />
     <Compile Include="Core\Arguments\AppInstallerArgumentExtensions.cs" />
     <Compile Include="Core\Results\AppInstallerResultExtensions.cs" />
+    <Compile Include="FileInfoExtensions.cs" />
     <Compile Include="Implementation\AppInstallerArgumentConverter.cs" />
     <Compile Include="Core\Results\AppInstallerResult.cs" />
     <Compile Include="Core\Results\ResultCode.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="ProcessExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RunWithNewAppInTemp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
