@@ -65,6 +65,5 @@ namespace AppInstaller
                     throw new ArgumentOutOfRangeException();
             }
         }
-
     }
 }
