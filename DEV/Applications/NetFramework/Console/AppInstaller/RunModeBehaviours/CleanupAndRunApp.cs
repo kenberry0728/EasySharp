@@ -3,11 +3,11 @@ using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using EasySharpStandard.Processes;
 
-namespace AppInstaller
+namespace AppInstaller.RunModeBehaviours
 {
     public class CleanupAndRunApp
     {
-        private string appInstallerAssemblyName;
+        private readonly string appInstallerAssemblyName;
 
         public CleanupAndRunApp(string appInstallerAssemblyName)
         {

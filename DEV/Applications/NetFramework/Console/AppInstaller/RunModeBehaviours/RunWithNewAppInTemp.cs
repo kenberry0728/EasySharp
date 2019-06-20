@@ -6,7 +6,7 @@ using AppInstaller.Core.Results;
 using EasySharpStandard.DiskIO;
 using EasySharpStandard.Processes;
 
-namespace AppInstaller
+namespace AppInstaller.RunModeBehaviours
 {
     public class RunWithNewAppInTemp
     {
