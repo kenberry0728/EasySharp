@@ -60,7 +60,7 @@ namespace AppInstaller
                 case RunMode.CheckUpdate:
                     return CheckUpdate(argument);
                 case RunMode.DownloadItemsToTemp:
-                    return DownloadItemsToTemp(argument);
+                    return new DownloadItemsToTemp(appInstallerAssemblyName).Run(argument);
                 case RunMode.RunWithNewAppInTemp:
                     return new RunWithNewAppInTemp(appInstallerAssemblyName).Run(argument);
                 case RunMode.CleanupAndRunApp:
@@ -92,22 +92,6 @@ namespace AppInstaller
             return targetDirectoryInfo.GetFiles("*", SearchOption.AllDirectories)
                 .Where(f => f.IsTargetFile(targetDirectoryInfo.FullName, regex))
                 .Max(f => f.LastWriteTimeUtc);
-        }
-
-        private static AppInstallerResult DownloadItemsToTemp(AppInstallerArgument appInstallerArgument)
-        {
-            var tempDirectoryPath = new DirectoryInfo(Path.Combine(appInstallerArgument.InstallDir, "..", "AppInstaller_Temp")).FullName;
-            var excludeRegexList = appInstallerArgument.ExcludePathRegex.Select(ex => new Regex(ex));
-            appInstallerArgument.SourceDir.CopyDirectory(
-                tempDirectoryPath, 
-                true, 
-                true,
-                f => f.IsTargetFile(tempDirectoryPath, excludeRegexList));
-            var appInstallerForUpdatePath = Path.Combine(tempDirectoryPath, appInstallerAssemblyName);
-            appInstallerArgument.TempFolder = tempDirectoryPath;
-            appInstallerArgument.RunMode = RunMode.RunWithNewAppInTemp;
-            appInstallerForUpdatePath.RunProcess(appInstallerArgument.ToCommandLineString());
-            return new AppInstallerResult {ResultCode = ResultCode.Success};
         }
     }
 }
