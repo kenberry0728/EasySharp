@@ -7,9 +7,7 @@ using System.Text.RegularExpressions;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using AppInstaller.Implementation;
-using EasySharpStandard.DiskIO;
 using EasySharpStandard.DiskIO.Serializers;
-using EasySharpStandard.Processes;
 
 namespace AppInstaller
 {
