@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckUpdate.cs" />
     <Compile Include="CleanupAndRunApp.cs" />
     <Compile Include="Core\AppInstallerConstants.cs" />
     <Compile Include="Core\Arguments\AppInstallerArgument.cs" />
