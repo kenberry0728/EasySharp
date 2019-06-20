@@ -145,7 +145,5 @@ namespace AppInstaller
             var appInstallerInInstallDir = appInstallerPathInInstallDir.GetProcessByFileName();
             appInstallerInInstallDir?.WaitForExit(10000);
         }
-
-      
     }
 }
