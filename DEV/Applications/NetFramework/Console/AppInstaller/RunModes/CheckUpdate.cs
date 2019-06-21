@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 
-namespace AppInstaller.RunModeBehaviours
+namespace AppInstaller.RunModes
 {
     public class CheckUpdate
     {

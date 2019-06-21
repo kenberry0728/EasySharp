@@ -5,7 +5,7 @@ using System.Reflection;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using AppInstaller.Implementation;
-using AppInstaller.RunModeBehaviours;
+using AppInstaller.RunModes;
 using EasySharpStandard.DiskIO.Serializers;
 
 namespace AppInstaller

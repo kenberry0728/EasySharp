@@ -3,7 +3,7 @@ using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using EasySharpStandard.Processes;
 
-namespace AppInstaller.RunModeBehaviours
+namespace AppInstaller.RunModes
 {
     public class CleanupAndRunApp
     {

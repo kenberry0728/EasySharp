@@ -6,7 +6,7 @@ using AppInstaller.Core.Results;
 using EasySharpStandard.DiskIO;
 using EasySharpStandard.Processes;
 
-namespace AppInstaller.RunModeBehaviours
+namespace AppInstaller.RunModes
 {
     public class DownloadItemsToTemp
     {
