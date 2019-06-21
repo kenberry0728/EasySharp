@@ -26,7 +26,7 @@ namespace EasySharpStandard.Processes
             return result;
         }
 
-        public static void RunProcess(this string processPath, string arguments = "")
+        public static Process RunProcess(this string processPath, string arguments = "")
         {
             var process = new Process
             {
@@ -42,6 +42,7 @@ namespace EasySharpStandard.Processes
             };
 
             process.Start();
+            return process;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using AppInstaller.Core.Arguments;
@@ -16,22 +17,36 @@ namespace AppInstaller.RunModes
         {
             this.appInstallerAssemblyName = appInstallerAssemblyName;
         }
-
-        public AppInstallerResult Run(AppInstallerArgument appInstallerArgument)
+        
+        public AppInstallerResult Run(
+            string sourceDir, 
+            string installDir, 
+            string originalAppPath,
+            List<string> excludeRegex)
         {
-            var tempDirectoryPath = new DirectoryInfo(Path.Combine(appInstallerArgument.InstallDir, "..", "AppInstaller_Temp")).FullName;
-            var excludeRegexList = appInstallerArgument.ExcludePathRegex.Select(ex => new Regex(ex));
-            appInstallerArgument.SourceDir.CopyDirectory(
+            var tempDirectoryPath = new DirectoryInfo(Path.Combine(installDir, "..", "AppInstaller_Temp")).FullName;
+            var excludeRegexList = excludeRegex.Select(ex => new Regex(ex));
+            sourceDir.CopyDirectory(
                 tempDirectoryPath,
                 true,
                 true,
                 f => f.IsTargetFile(tempDirectoryPath, excludeRegexList));
             var appInstallerForUpdatePath = Path.Combine(tempDirectoryPath, appInstallerAssemblyName);
-            appInstallerArgument.TempFolder = tempDirectoryPath;
-            appInstallerArgument.RunMode = RunMode.RunWithNewAppInTemp;
-            appInstallerForUpdatePath.RunProcess(appInstallerArgument.ToCommandLineString());
-            return new AppInstallerResult { ResultCode = ResultCode.Success };
-        }
+            var argument = new AppInstallerArgument(
+                RunMode.RunWithNewAppInTemp)
+            {
+                ExcludePathRegex = excludeRegex,
+                InstallDir = installDir,
+                OriginalAppPath = originalAppPath,
+                SourceDir = sourceDir,
+                TempFolder = tempDirectoryPath
+            };
 
+            var process = appInstallerForUpdatePath.RunProcess(argument.ToCommandLineString());
+            var result = process.WaitForExit(10000);
+            return result
+                ? new AppInstallerResult { ResultCode = ResultCode.Success } 
+                : new AppInstallerResult { ResultCode = ResultCode.Fail };
+        }
     }
 }
