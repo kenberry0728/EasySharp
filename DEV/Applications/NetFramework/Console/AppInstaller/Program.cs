@@ -55,7 +55,10 @@ namespace AppInstaller
             switch (argument.RunMode)
             {
                 case RunMode.CheckUpdate:
-                    return new CheckUpdate().Run(argument);
+                    return new CheckUpdate().Run(
+                        argument.SourceDir,
+                        argument.InstallDir,
+                        argument.ExcludePathRegex);
                 case RunMode.DownloadItemsToTemp:
                     return new DownloadItemsToTemp(appInstallerAssemblyName).Run(argument);
                 case RunMode.RunWithNewAppInTemp:
