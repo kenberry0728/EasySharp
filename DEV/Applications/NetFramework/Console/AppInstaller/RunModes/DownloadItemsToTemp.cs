@@ -30,7 +30,7 @@ namespace AppInstaller.RunModes
                 tempDirectoryPath,
                 true,
                 true,
-                f => f.IsTargetFile(tempDirectoryPath, excludeRegexList));
+                f => f.FullName.IsTargetFile(tempDirectoryPath, excludeRegexList));
             var appInstallerForUpdatePath = Path.Combine(tempDirectoryPath, appInstallerAssemblyName);
             var argument = new AppInstallerArgument(
                 RunMode.RunWithNewAppInTemp)

@@ -25,7 +25,7 @@ namespace AppInstaller.RunModes
                 appInstallerArgument.InstallDir,
                 true,
                 true,
-                f => f.IsTargetFile(appInstallerArgument.SourceDir, regex));
+                f => f.FullName.IsTargetFile(appInstallerArgument.SourceDir, regex));
 
             var newInstallerPath = Path.Combine(appInstallerArgument.InstallDir, appInstallerAssemblyName);
             appInstallerArgument.RunMode = RunMode.CleanupAndRunApp;
