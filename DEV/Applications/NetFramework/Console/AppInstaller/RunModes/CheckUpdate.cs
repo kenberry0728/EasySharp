@@ -4,11 +4,22 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using AppInstaller.Core.Results;
+using EasySharpStandard.DiskIO.Directories.Core;
+using EasySharpStandard.DiskIO.Files.Core;
 
 namespace AppInstaller.RunModes
 {
     public class CheckUpdate
     {
+        private readonly IDirectoryService directoryService;
+        private readonly IFileService fileService;
+
+        public CheckUpdate(IDirectoryService directoryService, IFileService fileService)
+        {
+            this.directoryService = directoryService;
+            this.fileService = fileService;
+        }
+
         public AppInstallerResult Run(string sourceDir, string installDir, List<string> excludeRegex)
         {
             var excludeRegexList = excludeRegex.Select(ex => new Regex(ex)).ToList();
