@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace AppInstaller.Core.Arguments
 {
@@ -24,5 +25,17 @@ namespace AppInstaller.Core.Arguments
         public string TempFolder { get; set; } = null;
 
         public List<string> ExcludePathRegex { get; set; } = new List<string>();
+
+        public AppInstallerArgument Clone()
+        {
+            return new AppInstallerArgument(this.RunMode)
+            {
+                ExcludePathRegex = this.ExcludePathRegex.ToList(),
+                InstallDir = this.InstallDir,
+                OriginalAppPath =  this.OriginalAppPath,
+                SourceDir = this.SourceDir,
+                TempFolder =  this.TempFolder
+            };
+        }
     }
 }
