@@ -4,28 +4,42 @@ using System.Text.RegularExpressions;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using EasySharpStandard.DiskIO;
+using EasySharpStandard.DiskIO.Directories.Core;
+using EasySharpStandard.DiskIO.Directories.Implementation;
 using EasySharpStandard.Processes;
+using EasySharpStandard.RegularExpressions.Core;
 
 namespace AppInstaller.RunModes
 {
     public class RunWithNewAppInTemp
     {
         private readonly string appInstallerAssemblyName;
+        private readonly IDirectoryService directoryService;
 
-        public RunWithNewAppInTemp(string appInstallerAssemblyName)
+        public RunWithNewAppInTemp(
+            string appInstallerAssemblyName,
+            IDirectoryService directoryService = null)
         {
             this.appInstallerAssemblyName = appInstallerAssemblyName;
+            this.directoryService = directoryService.Resolve();
         }
 
         public AppInstallerResult Run(AppInstallerArgument appInstallerArgument)
         {
             WaitForExitInInstallDir(appInstallerArgument);
-            var regex = appInstallerArgument.ExcludePathRegex.Select(reg => new Regex(reg)).ToList();
+
+            var excludeRegexList = appInstallerArgument.ExcludePathRegex.Select(reg => new Regex(reg)).ToList();
+            var allFiles = this.directoryService.GetFiles(appInstallerArgument.SourceDir, "*", SearchOption.AllDirectories);
+            var excludeRelativePaths = allFiles.Where(
+                f => 
+                    !excludeRegexList.AnyIsMatch(f.GetRelativePath(appInstallerArgument.SourceDir)))
+                .ToHashSet();
+
             appInstallerArgument.SourceDir.CopyDirectory(
                 appInstallerArgument.InstallDir,
                 true,
-                true,
-                f => f.FullName.IsTargetFile(appInstallerArgument.SourceDir, regex));
+                true, 
+                excludeRelativePaths);
 
             var newInstallerPath = Path.Combine(appInstallerArgument.InstallDir, appInstallerAssemblyName);
             appInstallerArgument.RunMode = RunMode.CleanupAndRunApp;

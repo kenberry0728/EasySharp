@@ -4,10 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using AppInstaller.Core.Results;
+using EasySharpStandard.DiskIO;
 using EasySharpStandard.DiskIO.Directories.Core;
 using EasySharpStandard.DiskIO.Directories.Implementation;
 using EasySharpStandard.DiskIO.Files.Core;
 using EasySharpStandard.DiskIO.Files.Implementation;
+using EasySharpStandard.RegularExpressions.Core;
 
 namespace AppInstaller.RunModes
 {
@@ -38,10 +40,10 @@ namespace AppInstaller.RunModes
             };
         }
 
-        private DateTime GetLastWriteTimeUtc(string targetDirectoryPath, IEnumerable<Regex> regex)
+        private DateTime GetLastWriteTimeUtc(string targetDirectoryPath, IEnumerable<Regex> regularExpressions)
         {
             return this.directoryService.GetFiles(targetDirectoryPath, "*", SearchOption.AllDirectories)
-                .Where(f => f.IsTargetFile(targetDirectoryPath, regex))
+                .Where(f => !regularExpressions.AnyIsMatch(f.GetRelativePath(targetDirectoryPath)))
                 .Max(f => this.fileService.GetLastWriteTimeUtc(f));
         }
     }

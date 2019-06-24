@@ -50,7 +50,6 @@
     <Compile Include="Core\Arguments\AppInstallerArgumentExtensions.cs" />
     <Compile Include="Core\Results\AppInstallerResultExtensions.cs" />
     <Compile Include="RunModes\DownloadItemsToTemp.cs" />
-    <Compile Include="FileInfoExtensions.cs" />
     <Compile Include="Implementation\AppInstallerArgumentConverter.cs" />
     <Compile Include="Core\Results\AppInstallerResult.cs" />
     <Compile Include="Core\Results\ResultCode.cs" />

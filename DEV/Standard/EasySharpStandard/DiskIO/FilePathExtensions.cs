@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 namespace EasySharpStandard.DiskIO
@@ -33,11 +35,11 @@ namespace EasySharpStandard.DiskIO
         }
 
         public static void CopyDirectory(
-            this string sourceDirName, 
-            string destDirName, 
+            this string sourceDirName,
+            string destDirName,
             bool overwrite = true,
             bool copySubDirs = true,
-            Func<FileInfo, bool> isExcludedFile = null)
+            ICollection<string> excludeFileRelativePaths = null)
         {
             var dir = new DirectoryInfo(sourceDirName);
             var dirs = dir.GetDirectories();
@@ -45,7 +47,7 @@ namespace EasySharpStandard.DiskIO
 
             foreach (var file in dir.GetFiles())
             {
-                if (isExcludedFile != null && isExcludedFile(file))
+                if (excludeFileRelativePaths?.Contains(file.FullName) == true)
                 {
                     continue;
                 }
@@ -58,7 +60,7 @@ namespace EasySharpStandard.DiskIO
                 foreach (var subDirectory in dirs)
                 {
                     var tempPath = Path.Combine(destDirName, subDirectory.Name);
-                    CopyDirectory(subDirectory.FullName, tempPath, overwrite, true, isExcludedFile);
+                    CopyDirectory(subDirectory.FullName, tempPath, overwrite, true, excludeFileRelativePaths);
                 }
             }
         }
