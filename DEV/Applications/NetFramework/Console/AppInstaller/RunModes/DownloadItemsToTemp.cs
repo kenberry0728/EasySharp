@@ -25,12 +25,12 @@ namespace AppInstaller.RunModes
             this.directoryService = directoryService.Resolve();
         }
         
-        public AppInstallerResult Run(
-            string sourceDir, 
-            string installDir, 
-            string originalAppPath,
-            List<string> excludeRegex)
+        public AppInstallerResult Run(AppInstallerArgument argument)
         {
+            var installDir = argument.InstallDir;
+            var excludeRegex = argument.ExcludePathRegex;
+            var sourceDir = argument.SourceDir;
+
             var tempDirectoryPath = new DirectoryInfo(Path.Combine(installDir, "..", "AppInstaller_Temp")).FullName;
             var excludeRegexList = excludeRegex.Select(ex => new Regex(ex));
 
@@ -44,15 +44,8 @@ namespace AppInstaller.RunModes
                 excludeRelativePaths);
 
             var appInstallerForUpdatePath = Path.Combine(tempDirectoryPath, appInstallerAssemblyName);
-            var argument = new AppInstallerArgument(
-                RunMode.RunWithNewAppInTemp)
-            {
-                ExcludePathRegex = excludeRegex,
-                InstallDir = installDir,
-                OriginalAppPath = originalAppPath,
-                SourceDir = sourceDir,
-                TempFolder = tempDirectoryPath
-            };
+            var newArgument = argument.Clone();
+            newArgument.RunMode = RunMode.RunWithNewAppInTemp;
 
             var process = appInstallerForUpdatePath.RunProcess(argument.ToCommandLineString());
             var result = process.WaitForExit(10000);
