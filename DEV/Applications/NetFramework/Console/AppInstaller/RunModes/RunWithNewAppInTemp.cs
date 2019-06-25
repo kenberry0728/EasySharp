@@ -42,8 +42,9 @@ namespace AppInstaller.RunModes
                 excludeRelativePaths);
 
             var newInstallerPath = Path.Combine(appInstallerArgument.InstallDir, appInstallerAssemblyName);
-            appInstallerArgument.RunMode = RunMode.CleanupAndRunApp;
-            newInstallerPath.RunProcess(appInstallerArgument.ToCommandLineString());
+            var newArgument = appInstallerArgument.Clone();
+            newArgument.RunMode = RunMode.CleanupAndRunApp;
+            newInstallerPath.RunProcess(newArgument.ToCommandLineString());
 
             return new AppInstallerResult { ResultCode = ResultCode.Success, Updated = true };
         }
