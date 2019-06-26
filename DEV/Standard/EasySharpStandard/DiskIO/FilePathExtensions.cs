@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
@@ -69,7 +68,7 @@ namespace EasySharpStandard.DiskIO
 
         #region Private Methods
 
-        private static DirectoryInfo CreateDirectoryRecursivelyInner(this string directoryPath)
+        private static void CreateDirectoryRecursivelyInner(this string directoryPath)
         {
             directoryPath = string.IsNullOrEmpty(directoryPath)
                 ? Directory.GetCurrentDirectory() 
@@ -80,7 +79,7 @@ namespace EasySharpStandard.DiskIO
                 parentDirectoryInfo.FullName.CreateDirectoryRecursively();
             }
 
-            return Directory.CreateDirectory(directoryPath);
+            Directory.CreateDirectory(directoryPath);
         }
 
         #endregion
