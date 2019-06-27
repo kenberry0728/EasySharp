@@ -49,16 +49,34 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RunModes\CheckUpdateTests.cs" />
+    <Compile Include="RunModes\CheckUpdateTests\CheckUpdateTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <Content Include="RunModes\CheckUpdateTestsResources\SameItems\InstallDir\c.bin">
+    <Content Include="RunModes\CheckUpdateTests\Updated\InstallDir\a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="RunModes\CheckUpdateTestsResources\SameItems\SourceDir\c.bin">
+    <Content Include="RunModes\CheckUpdateTests\Updated\InstallDir\b.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RunModes\CheckUpdateTests\Updated\SourceDir\a.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RunModes\CheckUpdateTests\Updated\SourceDir\b.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <Content Include="RunModes\CheckUpdateTests\SameItems\InstallDir\c.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RunModes\CheckUpdateTests\Updated\InstallDir\c.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="RunModes\CheckUpdateTests\Updated\SourceDir\c.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="RunModes\CheckUpdateTests\SameItems\SourceDir\c.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -74,16 +92,16 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="RunModes\CheckUpdateTestsResources\SameItems\InstallDir\a.txt">
+    <Content Include="RunModes\CheckUpdateTests\SameItems\InstallDir\a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTestsResources\SameItems\InstallDir\b.txt">
+    <Content Include="RunModes\CheckUpdateTests\SameItems\InstallDir\b.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTestsResources\SameItems\SourceDir\a.txt">
+    <Content Include="RunModes\CheckUpdateTests\SameItems\SourceDir\a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTestsResources\SameItems\SourceDir\b.txt">
+    <Content Include="RunModes\CheckUpdateTests\SameItems\SourceDir\b.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
