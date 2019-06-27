@@ -13,6 +13,7 @@ namespace AppInstaller.Test.RunModes
         [TestMethod]
         public void SameItems()
         {
+            // TODO: Gitだと更新日付保証されないだろうな…
             var relativeTypePath = typeof(CheckUpdateTests).GetRelativeTypePath();
             var sourceDir = Path.Combine(relativeTypePath, @"SameItems\SourceDir");
             var installDir = Path.Combine(relativeTypePath, @"SameItems\InstallDir");
@@ -27,6 +28,7 @@ namespace AppInstaller.Test.RunModes
         [TestMethod]
         public void Updated()
         {
+            // TODO: Gitだと更新日付保証されないだろうな…
             var relativeTypePath = typeof(CheckUpdateTests).GetRelativeTypePath();
             var sourceDir = Path.Combine(relativeTypePath, @"Updated\SourceDir");
             var installDir = Path.Combine(relativeTypePath, @"Updated\InstallDir");
