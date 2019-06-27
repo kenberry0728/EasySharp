@@ -35,7 +35,8 @@ namespace AppInstaller.RunModes
             var excludeRegexList = excludeRegex.Select(ex => new Regex(ex));
 
             var excludeRelativePaths = this.directoryService.GetFiles(sourceDir, "*", SearchOption.AllDirectories)
-                .Where(f => !excludeRegexList.AnyIsMatch(f.GetRelativePath(sourceDir))).ToHashSet();
+                .Where(f => !excludeRegexList.AnyIsMatch(f.GetRelativePath(sourceDir)))
+                .ToHashSet();
 
             sourceDir.CopyDirectory(
                 tempDirectoryPath,

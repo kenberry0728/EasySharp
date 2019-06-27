@@ -46,7 +46,7 @@ namespace EasySharpStandard.DiskIO
 
             foreach (var file in dir.GetFiles())
             {
-                if (excludeFileRelativePaths?.Contains(file.FullName) == true)
+                if (excludeFileRelativePaths?.Contains(file.FullName.GetRelativePath(dir.FullName)) == true)
                 {
                     continue;
                 }
