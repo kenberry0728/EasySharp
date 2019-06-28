@@ -39,5 +39,20 @@ namespace AppInstaller.Test.RunModes
             Assert.AreEqual(ResultCode.Success, result.ResultCode);
             Assert.IsTrue(result.Updated);
         }
+
+        [TestMethod]
+        public void Updated_Excluded()
+        {
+            // TODO: Gitだと更新日付保証されないだろうな…
+            var relativeTypePath = typeof(CheckUpdateTests).GetRelativeTypePath();
+            var sourceDir = Path.Combine(relativeTypePath, @"Updated\SourceDir");
+            var installDir = Path.Combine(relativeTypePath, @"Updated\InstallDir");
+
+            var target = new CheckUpdate();
+            var result = target.Run(sourceDir, installDir, new List<string> {@"a\.txt"});
+
+            Assert.AreEqual(ResultCode.Success, result.ResultCode);
+            Assert.IsFalse(result.Updated);
+        }
     }
 }
