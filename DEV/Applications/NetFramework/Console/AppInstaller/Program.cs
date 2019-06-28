@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -7,6 +8,7 @@ using AppInstaller.Core.Results;
 using AppInstaller.Implementation;
 using AppInstaller.RunModes;
 using EasySharpStandard.DiskIO.Serializers;
+using EasySharpStandard.SafeCodes.Core;
 
 namespace AppInstaller
 {
@@ -16,15 +18,15 @@ namespace AppInstaller
 
         static void Main(string[] args)
         {
-            #if DEBUG
-            var arg = new AppInstallerArgument(RunMode.DownloadItemsToTemp) { SourceDir = @"c:\testDir"};
-            var commandLineArg = new AppInstallerArgumentConverter().ToCommandLineString(arg);
-            #endif
+            if (args.Length != 1)
+            {
+                return;
+            }
 
             AppInstallerResult modeAppInstallerResult;
             try
             {
-                modeAppInstallerResult = InternalMain(args);
+                modeAppInstallerResult = InternalMain(args[0]);
             }
             catch (Exception e)
             {
@@ -40,17 +42,13 @@ namespace AppInstaller
             Console.WriteLine(new AppInstallerResultConverter().ToString(modeAppInstallerResult));
         }
 
-        private static AppInstallerResult InternalMain(string[] args)
+        private static AppInstallerResult InternalMain(string arg)
         {
-            var arg = args.Any() ? args[0] : "AppInstaller_UpdateArg.json".ReadToEnd();
-            var argument = new AppInstallerArgumentConverter().FromString(arg);
-
-#if DEBUG
-            if (args.Any() && argument.RunMode != RunMode.CheckUpdate)
+            var result = Try.To(() => new AppInstallerArgumentConverter().FromString(arg), out var argument);
+            if (!result)
             {
-                args[0].WriteToFile(argument.RunMode + ".txt");
+                throw new InvalidEnumArgumentException();
             }
-#endif
 
             switch (argument.RunMode)
             {

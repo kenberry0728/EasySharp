@@ -103,7 +103,7 @@ namespace EasySharpWpf.Sample
             {
                 InstallDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
                 SourceDir = sourceDir,
-                OriginalAppPath = Assembly.GetExecutingAssembly().Location
+                OriginalAppPath = Assembly.GetExecutingAssembly().Location,
             };
 
             var result = AppInstallerConstants
