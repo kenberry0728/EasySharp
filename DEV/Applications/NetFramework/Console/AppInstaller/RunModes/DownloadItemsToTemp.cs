@@ -2,8 +2,7 @@
 using System.IO;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
-using EasySharpStandard.DiskIO.Directories.Core;
-using EasySharpStandard.DiskIO.Directories.Implementation;
+using EasySharpStandard.DiskIO;
 using EasySharpStandard.DiskIO.Serializers;
 using EasySharpStandard.Processes;
 
@@ -12,14 +11,11 @@ namespace AppInstaller.RunModes
     public class DownloadItemsToTemp
     {
         private readonly string appInstallerAssemblyName;
-        private readonly IDirectoryService directoryService;
 
         public DownloadItemsToTemp(
-            string appInstallerAssemblyName,
-            IDirectoryService directoryService = null)
+            string appInstallerAssemblyName)
         {
             this.appInstallerAssemblyName = appInstallerAssemblyName;
-            this.directoryService = directoryService.Resolve();
         }
         
         public AppInstallerResult Run(AppInstallerArgument argument)
@@ -28,13 +24,9 @@ namespace AppInstaller.RunModes
             var sourceDir = argument.SourceDir;
 
             var tempDirectoryPath = new DirectoryInfo(Path.Combine(installDir, "..", "AppInstaller_Temp")).FullName;
-            const string appFilesTxt = "AppFiles.txt";
+            tempDirectoryPath.EnsureDirectoryForFile();
 
-            var sourceFileName = Path.Combine(sourceDir, appFilesTxt);
-            var destFileName = Path.Combine(tempDirectoryPath, appFilesTxt);
-            File.Copy(sourceFileName, destFileName, true);
-
-            CopyAppInstallerFiles(destFileName, sourceDir, tempDirectoryPath);
+            CopyAppInstallerFiles(sourceDir, tempDirectoryPath);
 
             var appInstallerForUpdatePath = Path.Combine(tempDirectoryPath, appInstallerAssemblyName);
             var newArgument = argument.Clone();
@@ -47,8 +39,12 @@ namespace AppInstaller.RunModes
                 : new AppInstallerResult { ResultCode = ResultCode.Fail };
         }
 
-        private static void CopyAppInstallerFiles(string destFileName, string sourceDir, string tempDirectoryPath)
+        private static void CopyAppInstallerFiles(string sourceDir, string tempDirectoryPath)
         {
+            const string appFilesTxt = "AppFiles.txt";
+            var sourceFileName = Path.Combine(sourceDir, appFilesTxt);
+            var destFileName = Path.Combine(tempDirectoryPath, appFilesTxt);
+            File.Copy(sourceFileName, destFileName, true);
             var fileNames = destFileName.ReadLines(StringSplitOptions.RemoveEmptyEntries);
             foreach (var fileName in fileNames)
             {
