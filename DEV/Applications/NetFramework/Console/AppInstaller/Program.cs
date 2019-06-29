@@ -58,8 +58,8 @@ namespace AppInstaller
                         argument.ExcludePathRegex);
                 case RunMode.DownloadAppInstallerToTemp:
                     return new DownloadAppInstallerToTemp(appInstallerAssemblyName).Run(argument);
-                case RunMode.RunWithNewAppInTemp:
-                    return new RunWithNewAppInTemp(appInstallerAssemblyName).Run(argument);
+                case RunMode.RunAppInstallerInTemp:
+                    return new RunAppInstallerInTemp(appInstallerAssemblyName).Run(argument);
                 case RunMode.CleanupAndRunApp:
                     return new CleanupAndRunApp(appInstallerAssemblyName).Run(argument);
                 default:

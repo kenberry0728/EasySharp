@@ -30,7 +30,7 @@ namespace AppInstaller.RunModes
 
             var appInstallerForUpdatePath = Path.Combine(tempDirectoryPath, appInstallerAssemblyName);
             var newArgument = argument.Clone();
-            newArgument.RunMode = RunMode.RunWithNewAppInTemp;
+            newArgument.RunMode = RunMode.RunAppInstallerInTemp;
 
             var process = appInstallerForUpdatePath.RunProcess(argument.ToCommandLineString());
             var result = process.WaitForExit(10000);

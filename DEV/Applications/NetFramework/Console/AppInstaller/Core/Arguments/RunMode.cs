@@ -4,7 +4,7 @@
     {
         CheckUpdate,
         DownloadAppInstallerToTemp,
-        RunWithNewAppInTemp,
+        RunAppInstallerInTemp,
         CleanupAndRunApp
     }
 }
