@@ -8,11 +8,11 @@ using EasySharpStandard.Processes;
 
 namespace AppInstaller.RunModes
 {
-    public class DownloadItemsToTemp
+    public class DownloadAppInstallerToTemp
     {
         private readonly string appInstallerAssemblyName;
 
-        public DownloadItemsToTemp(
+        public DownloadAppInstallerToTemp(
             string appInstallerAssemblyName)
         {
             this.appInstallerAssemblyName = appInstallerAssemblyName;
