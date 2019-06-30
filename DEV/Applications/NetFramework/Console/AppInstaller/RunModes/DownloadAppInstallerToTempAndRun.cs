@@ -50,7 +50,6 @@ namespace AppInstaller.RunModes
 
         private static void CopyAppInstallerFiles(string sourceDir, string tempDirectoryPath)
         {
-
             const string appFilesTxt = "AppFiles.txt";
             var sourceFileName = Path.Combine(sourceDir, appFilesTxt);
             var destFileName = Path.Combine(tempDirectoryPath, appFilesTxt);
