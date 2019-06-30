@@ -52,7 +52,7 @@
     <Compile Include="Core\Arguments\AppInstallerArgument.cs" />
     <Compile Include="Core\Arguments\AppInstallerArgumentExtensions.cs" />
     <Compile Include="Core\Results\AppInstallerResultExtensions.cs" />
-    <Compile Include="RunModes\DownloadAppInstallerToTemp.cs" />
+    <Compile Include="RunModes\DownloadAppInstallerToTempAndRun.cs" />
     <Compile Include="Implementation\AppInstallerArgumentConverter.cs" />
     <Compile Include="Core\Results\AppInstallerResult.cs" />
     <Compile Include="Core\Results\ResultCode.cs" />

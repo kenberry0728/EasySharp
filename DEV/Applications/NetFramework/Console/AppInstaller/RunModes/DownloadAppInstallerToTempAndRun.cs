@@ -8,11 +8,11 @@ using EasySharpStandard.Processes;
 
 namespace AppInstaller.RunModes
 {
-    public class DownloadAppInstallerToTemp
+    public class DownloadAppInstallerToTempAndRun
     {
         private readonly string appInstallerAssemblyName;
 
-        public DownloadAppInstallerToTemp(
+        public DownloadAppInstallerToTempAndRun(
             string appInstallerAssemblyName)
         {
             this.appInstallerAssemblyName = appInstallerAssemblyName;
@@ -29,14 +29,13 @@ namespace AppInstaller.RunModes
             CopyAppInstallerFiles(sourceDir, tempDirectoryPath);
 
             var appInstallerForUpdatePath = Path.Combine(tempDirectoryPath, appInstallerAssemblyName);
+
             var newArgument = argument.Clone();
             newArgument.RunMode = RunMode.RunAppInstallerInTemp;
+            newArgument.TempFolder = tempDirectoryPath;
 
-            var process = appInstallerForUpdatePath.RunProcess(argument.ToCommandLineString());
-            var result = process.WaitForExit(10000);
-            return result
-                ? new AppInstallerResult { ResultCode = ResultCode.Success } 
-                : new AppInstallerResult { ResultCode = ResultCode.Fail };
+            appInstallerForUpdatePath.RunProcess(argument.ToCommandLineString());
+            return new AppInstallerResult {ResultCode = ResultCode.Success};
         }
 
         private static void CopyAppInstallerFiles(string sourceDir, string tempDirectoryPath)
