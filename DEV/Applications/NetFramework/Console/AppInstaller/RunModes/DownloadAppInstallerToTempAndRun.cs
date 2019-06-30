@@ -33,6 +33,9 @@ namespace AppInstaller.RunModes
             var newArgument = argument.Clone();
             newArgument.RunMode = RunMode.RunAppInstallerInTemp;
             newArgument.TempFolder = tempDirectoryPath;
+            newArgument.InstallDir = new DirectoryInfo(installDir).FullName;
+            newArgument.OriginalAppPath = new FileInfo(argument.OriginalAppPath).FullName;
+            newArgument.SourceDir = new DirectoryInfo(sourceDir).FullName;
 
             appInstallerForUpdatePath.RunProcess(argument.ToCommandLineString());
             return new AppInstallerResult {ResultCode = ResultCode.Success};
