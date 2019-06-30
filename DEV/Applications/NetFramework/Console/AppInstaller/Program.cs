@@ -55,7 +55,7 @@ namespace AppInstaller
                     return new CheckUpdate().Run(
                         argument.SourceDir,
                         argument.InstallDir,
-                        argument.ExcludePathRegex);
+                        argument.ExcludeRelativePathRegex);
 
                 case RunMode.RunExistingAppInstallerInAppFolder:
                     return new DownloadAppInstallerToTempAndRun(appInstallerAssemblyName).Run(argument);

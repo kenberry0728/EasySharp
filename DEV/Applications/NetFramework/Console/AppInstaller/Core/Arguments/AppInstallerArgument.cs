@@ -24,13 +24,13 @@ namespace AppInstaller.Core.Arguments
 
         public string TempFolder { get; set; }
 
-        public List<string> ExcludePathRegex { get; set; } = new List<string>();
+        public List<string> ExcludeRelativePathRegex { get; set; } = new List<string>();
 
         public AppInstallerArgument Clone()
         {
             return new AppInstallerArgument(this.RunMode)
             {
-                ExcludePathRegex = this.ExcludePathRegex.ToList(),
+                ExcludeRelativePathRegex = this.ExcludeRelativePathRegex.ToList(),
                 InstallDir = this.InstallDir,
                 OriginalAppPath =  this.OriginalAppPath,
                 SourceDir = this.SourceDir,

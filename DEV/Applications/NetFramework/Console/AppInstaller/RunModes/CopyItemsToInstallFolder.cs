@@ -28,11 +28,13 @@ namespace AppInstaller.RunModes
         {
             WaitForExitInInstallDir(appInstallerArgument);
 
-            var excludeRegexList = appInstallerArgument.ExcludePathRegex.Select(reg => new Regex(reg)).ToList();
-            var allFiles = this.directoryService.GetFiles(appInstallerArgument.SourceDir, "*", SearchOption.AllDirectories);
+            var excludeRelativePathRegex = appInstallerArgument.ExcludeRelativePathRegex.Select(reg => new Regex(reg)).ToList();
+            var allFiles = this.directoryService.GetFiles(
+                appInstallerArgument.SourceDir,
+                "*",
+                SearchOption.AllDirectories);
             var excludeRelativePaths = allFiles.Where(
-                f => 
-                    !excludeRegexList.AnyIsMatch(f.GetRelativePath(appInstallerArgument.SourceDir)))
+                f => !excludeRelativePathRegex.AnyIsMatch(f.GetRelativePath(appInstallerArgument.SourceDir)))
                 .ToHashSet();
 
             appInstallerArgument.SourceDir.CopyDirectory(
