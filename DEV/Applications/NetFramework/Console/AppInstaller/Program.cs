@@ -57,11 +57,11 @@ namespace AppInstaller
                         argument.InstallDir,
                         argument.ExcludePathRegex);
 
-                case RunMode.DownloadAppInstallerToTemp:
+                case RunMode.RunExistingAppInstallerInAppFolder:
                     return new DownloadAppInstallerToTempAndRun(appInstallerAssemblyName).Run(argument);
-                case RunMode.RunAppInstallerInTemp:
+                case RunMode.RunNewAppInstallerInTempFolder:
                     return new CopyItemsToInstallFolder(appInstallerAssemblyName).Run(argument);
-                case RunMode.CleanupAndRunApp:
+                case RunMode.RunNewAppInstallerInAppFolder:
                     return new CleanupAndRunApp(appInstallerAssemblyName).Run(argument);
                 default:
                     throw new ArgumentOutOfRangeException();

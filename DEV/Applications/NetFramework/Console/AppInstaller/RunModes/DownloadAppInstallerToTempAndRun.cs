@@ -38,7 +38,7 @@ namespace AppInstaller.RunModes
             string tempDirectoryPath)
         {
             var newArgument = argument.Clone();
-            newArgument.RunMode = RunMode.RunAppInstallerInTemp;
+            newArgument.RunMode = RunMode.RunNewAppInstallerInTempFolder;
             newArgument.TempFolder = tempDirectoryPath;
             newArgument.InstallDir = new DirectoryInfo(argument.InstallDir).FullName;
             newArgument.OriginalAppPath = new FileInfo(argument.OriginalAppPath).FullName;

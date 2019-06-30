@@ -112,7 +112,7 @@ namespace EasySharpWpf.Sample
                 .AppInstallerResultFromString();
             if (result.Updated)
             {
-                arg.RunMode = RunMode.DownloadAppInstallerToTemp;
+                arg.RunMode = RunMode.RunExistingAppInstallerInAppFolder;
                 AppInstallerConstants.AppFilePath.RunProcess(arg.ToCommandLineString());
                 this.Close();
             }
