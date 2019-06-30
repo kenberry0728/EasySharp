@@ -30,15 +30,24 @@ namespace AppInstaller.RunModes
 
             var appInstallerForUpdatePath = Path.Combine(tempDirectoryPath, appInstallerAssemblyName);
 
+            var newArgument = CreateNextArgument(argument, tempDirectoryPath, installDir, sourceDir);
+
+            appInstallerForUpdatePath.RunProcess(newArgument.ToCommandLineString());
+            return new AppInstallerResult {ResultCode = ResultCode.Success};
+        }
+
+        private static AppInstallerArgument CreateNextArgument(AppInstallerArgument argument,
+            string tempDirectoryPath,
+            string installDir,
+            string sourceDir)
+        {
             var newArgument = argument.Clone();
             newArgument.RunMode = RunMode.RunAppInstallerInTemp;
             newArgument.TempFolder = tempDirectoryPath;
             newArgument.InstallDir = new DirectoryInfo(installDir).FullName;
             newArgument.OriginalAppPath = new FileInfo(argument.OriginalAppPath).FullName;
             newArgument.SourceDir = new DirectoryInfo(sourceDir).FullName;
-
-            appInstallerForUpdatePath.RunProcess(argument.ToCommandLineString());
-            return new AppInstallerResult {ResultCode = ResultCode.Success};
+            return newArgument;
         }
 
         private static void CopyAppInstallerFiles(string sourceDir, string tempDirectoryPath)
