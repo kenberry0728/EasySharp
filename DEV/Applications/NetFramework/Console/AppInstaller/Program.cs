@@ -56,6 +56,7 @@ namespace AppInstaller
                         argument.SourceDir,
                         argument.InstallDir,
                         argument.ExcludePathRegex);
+
                 case RunMode.DownloadAppInstallerToTemp:
                     return new DownloadAppInstallerToTempAndRun(appInstallerAssemblyName).Run(argument);
                 case RunMode.RunAppInstallerInTemp:

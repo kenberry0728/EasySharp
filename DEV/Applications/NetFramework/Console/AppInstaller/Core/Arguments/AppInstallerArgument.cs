@@ -22,7 +22,7 @@ namespace AppInstaller.Core.Arguments
 
         public string OriginalAppPath { get; set; } = string.Empty;
 
-        public string TempFolder { get; set; } = null;
+        public string TempFolder { get; set; }
 
         public List<string> ExcludePathRegex { get; set; } = new List<string>();
 
