@@ -22,16 +22,14 @@ namespace AppInstaller.RunModes
         {
             var installDir = argument.InstallDir;
             var sourceDir = argument.SourceDir;
-
             var tempDirectoryPath = new DirectoryInfo(Path.Combine(installDir, "..", "AppInstaller_Temp")).FullName;
 
             CopyAppInstallerFiles(sourceDir, tempDirectoryPath);
 
             var appInstallerForUpdatePath = Path.Combine(tempDirectoryPath, appInstallerAssemblyName);
-
             var runAppInstallerInTempArg = CreateRunAppInstallerInTempArgument(argument, tempDirectoryPath);
-
             appInstallerForUpdatePath.RunProcess(runAppInstallerInTempArg.ToCommandLineString());
+
             return new AppInstallerResult {ResultCode = ResultCode.Success};
         }
 
