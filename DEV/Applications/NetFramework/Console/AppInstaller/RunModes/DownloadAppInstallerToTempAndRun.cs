@@ -30,13 +30,13 @@ namespace AppInstaller.RunModes
 
             var appInstallerForUpdatePath = Path.Combine(tempDirectoryPath, appInstallerAssemblyName);
 
-            var newArgument = CreateNextArgument(argument, tempDirectoryPath);
+            var runAppInstallerInTempArg = CreateRunAppInstallerInTempArgument(argument, tempDirectoryPath);
 
-            appInstallerForUpdatePath.RunProcess(newArgument.ToCommandLineString());
+            appInstallerForUpdatePath.RunProcess(runAppInstallerInTempArg.ToCommandLineString());
             return new AppInstallerResult {ResultCode = ResultCode.Success};
         }
 
-        private static AppInstallerArgument CreateNextArgument(
+        private static AppInstallerArgument CreateRunAppInstallerInTempArgument(
             AppInstallerArgument argument,
             string tempDirectoryPath)
         {
