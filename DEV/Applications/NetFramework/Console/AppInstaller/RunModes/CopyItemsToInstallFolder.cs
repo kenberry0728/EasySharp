@@ -11,12 +11,12 @@ using EasySharpStandard.RegularExpressions.Core;
 
 namespace AppInstaller.RunModes
 {
-    public class RunAppInstallerInTemp
+    public class CopyItemsToInstallFolder
     {
         private readonly string appInstallerAssemblyName;
         private readonly IDirectoryService directoryService;
 
-        public RunAppInstallerInTemp(
+        public CopyItemsToInstallFolder(
             string appInstallerAssemblyName,
             IDirectoryService directoryService = null)
         {

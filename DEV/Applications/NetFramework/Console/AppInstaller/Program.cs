@@ -59,7 +59,7 @@ namespace AppInstaller
                 case RunMode.DownloadAppInstallerToTemp:
                     return new DownloadAppInstallerToTemp(appInstallerAssemblyName).Run(argument);
                 case RunMode.RunAppInstallerInTemp:
-                    return new RunAppInstallerInTemp(appInstallerAssemblyName).Run(argument);
+                    return new CopyItemsToInstallFolder(appInstallerAssemblyName).Run(argument);
                 case RunMode.CleanupAndRunApp:
                     return new CleanupAndRunApp(appInstallerAssemblyName).Run(argument);
                 default:
