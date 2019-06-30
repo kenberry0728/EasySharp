@@ -54,12 +54,12 @@ namespace AppInstaller.RunModes
             if (!string.IsNullOrEmpty(appInstallerArgument.OriginalAppPath))
             {
                 var originalApp = appInstallerArgument.OriginalAppPath.GetProcessByFileName();
-                originalApp?.WaitForExit();
+                originalApp?.WaitForExit(100000);
             }
 
             var appInstallerPathInInstallDir = Path.Combine(appInstallerArgument.InstallDir, appInstallerAssemblyName);
             var appInstallerInInstallDir = appInstallerPathInInstallDir.GetProcessByFileName();
-            appInstallerInInstallDir?.WaitForExit(10000);
+            appInstallerInInstallDir?.WaitForExit(100000);
         }
     }
 }
