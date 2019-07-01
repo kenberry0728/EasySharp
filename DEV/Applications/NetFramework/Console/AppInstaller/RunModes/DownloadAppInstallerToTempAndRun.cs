@@ -28,7 +28,7 @@ namespace AppInstaller.RunModes
 
             var appInstallerForUpdatePath = Path.Combine(tempDirectoryPath, appInstallerAssemblyName);
             var runAppInstallerInTempArg = CreateRunAppInstallerInTempArgument(argument, tempDirectoryPath);
-            appInstallerForUpdatePath.RunProcess(runAppInstallerInTempArg.ToCommandLineString());
+            appInstallerForUpdatePath.RunProcess(runAppInstallerInTempArg.ToCommandLineString(), true);
 
             return new AppInstallerResult {ResultCode = ResultCode.Success};
         }
