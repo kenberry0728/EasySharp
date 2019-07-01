@@ -11,12 +11,12 @@ using EasySharpStandard.RegularExpressions.Core;
 
 namespace AppInstaller.RunModes
 {
-    public class CopyItemsToInstallFolder
+    public class CopyItemsToInstallFolderAndRun
     {
         private readonly string appInstallerAssemblyName;
         private readonly IDirectoryService directoryService;
 
-        public CopyItemsToInstallFolder(
+        public CopyItemsToInstallFolderAndRun(
             string appInstallerAssemblyName,
             IDirectoryService directoryService = null)
         {
@@ -47,11 +47,17 @@ namespace AppInstaller.RunModes
                 excludeRelativePaths);
 
             var newInstallerPath = Path.Combine(appInstallerArgument.InstallDir, appInstallerAssemblyName);
-            var newArgument = appInstallerArgument.Clone();
-            newArgument.RunMode = RunMode.RunNewAppInstallerInAppFolder;
+            var newArgument = CreateRunNewAppInstallerInAppFolderArgument(appInstallerArgument);
             newInstallerPath.RunProcess(newArgument.ToCommandLineString());
 
             return new AppInstallerResult { ResultCode = ResultCode.Success, Updated = true };
+        }
+
+        private static AppInstallerArgument CreateRunNewAppInstallerInAppFolderArgument(AppInstallerArgument appInstallerArgument)
+        {
+            var newArgument = appInstallerArgument.Clone();
+            newArgument.RunMode = RunMode.RunNewAppInstallerInAppFolder;
+            return newArgument;
         }
 
         private void WaitForExitInInstallDir(AppInstallerArgument appInstallerArgument)

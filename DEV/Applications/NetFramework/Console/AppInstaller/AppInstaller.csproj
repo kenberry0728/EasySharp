@@ -61,7 +61,7 @@
     <Compile Include="ProcessExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RunModes\CopyItemsToInstallFolder.cs" />
+    <Compile Include="RunModes\CopyItemsToInstallFolderAndRun.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
