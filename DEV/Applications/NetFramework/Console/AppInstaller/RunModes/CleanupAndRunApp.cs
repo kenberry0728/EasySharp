@@ -24,6 +24,5 @@ namespace AppInstaller.RunModes
             argument.OriginalAppPath?.RunProcess();
             return new AppInstallerResult { ResultCode = ResultCode.Success, Updated = true };
         }
-
     }
 }
