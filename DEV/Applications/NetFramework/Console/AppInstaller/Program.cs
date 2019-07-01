@@ -19,6 +19,15 @@ namespace AppInstaller
         {
             if (args.Length != 1)
             {
+                var appArg = new AppInstallerArgument(RunMode.RunExistingAppInstallerInAppFolder)
+                {
+                    SourceDir = @"..\New",
+                    InstallDir = @"",
+                    OriginalAppPath = @"Updated.txt"
+                };
+
+                (appInstallerAssemblyName + " " + appArg.ToCommandLineString())
+                    .WriteToFile("TestFile.bat");
                 return;
             }
 
