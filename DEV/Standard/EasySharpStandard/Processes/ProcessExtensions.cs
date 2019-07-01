@@ -26,17 +26,15 @@ namespace EasySharpStandard.Processes
             return result;
         }
 
-        public static Process RunProcess(this string processPath, string arguments = "")
+        public static Process RunProcess(
+            this string processPath,
+            string arguments = "")
         {
             var process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = processPath,
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    RedirectStandardInput = false,
-                    CreateNoWindow = true,
                     Arguments = arguments,
                 }
             };
