@@ -62,7 +62,7 @@ namespace AppInstaller
                 case RunMode.RunNewAppInstallerInTempFolder:
                     return new CopyItemsToInstallFolderAndRun(appInstallerAssemblyName).Run(argument);
                 case RunMode.RunNewAppInstallerInAppFolder:
-                    return new CleanupAndRunApp(appInstallerAssemblyName).Run(argument);
+                    return new CleanupTempDirAndRunOriginalApp(appInstallerAssemblyName).Run(argument);
                 default:
                     throw new ArgumentOutOfRangeException();
             }

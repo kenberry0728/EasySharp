@@ -47,7 +47,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="RunModes\CheckUpdate.cs" />
-    <Compile Include="RunModes\CleanupAndRunApp.cs" />
+    <Compile Include="RunModes\CleanupTempDirAndRunOriginalApp.cs" />
     <Compile Include="Core\AppInstallerConstants.cs" />
     <Compile Include="Core\Arguments\AppInstallerArgument.cs" />
     <Compile Include="Core\Arguments\AppInstallerArgumentExtensions.cs" />

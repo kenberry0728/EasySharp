@@ -5,11 +5,11 @@ using EasySharpStandard.Processes;
 
 namespace AppInstaller.RunModes
 {
-    public class CleanupAndRunApp
+    public class CleanupTempDirAndRunOriginalApp
     {
         private readonly string appInstallerAssemblyName;
 
-        public CleanupAndRunApp(string appInstallerAssemblyName)
+        public CleanupTempDirAndRunOriginalApp(string appInstallerAssemblyName)
         {
             this.appInstallerAssemblyName = appInstallerAssemblyName;
         }
