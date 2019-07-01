@@ -2,6 +2,7 @@
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using EasySharpStandard.Processes;
+using EasySharpStandard.SafeCodes.Core;
 
 namespace AppInstaller.RunModes
 {
@@ -20,7 +21,7 @@ namespace AppInstaller.RunModes
             var appInstallerInInstallDir = appInstallerPathInInstallDir.GetProcessByFileName();
             appInstallerInInstallDir?.WaitForExit(5000);
 
-            Directory.Delete(argument.TempFolder, true);
+            Try.To(() => Directory.Delete(argument.TempFolder, true));
             argument.OriginalAppPath?.RunProcess();
             return new AppInstallerResult { ResultCode = ResultCode.Success, Updated = true };
         }
