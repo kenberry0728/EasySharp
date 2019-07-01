@@ -28,7 +28,8 @@ namespace EasySharpStandard.Processes
 
         public static Process RunProcess(
             this string processPath,
-            string arguments = "")
+            string arguments = "",
+            bool createNoWindow = false)
         {
             var process = new Process
             {
@@ -36,6 +37,7 @@ namespace EasySharpStandard.Processes
                 {
                     FileName = processPath,
                     Arguments = arguments,
+                    CreateNoWindow = createNoWindow
                 }
             };
 
