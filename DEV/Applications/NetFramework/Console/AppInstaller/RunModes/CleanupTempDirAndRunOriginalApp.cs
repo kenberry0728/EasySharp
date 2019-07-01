@@ -18,7 +18,7 @@ namespace AppInstaller.RunModes
         {
             var appInstallerPathInInstallDir = Path.Combine(argument.TempFolder, appInstallerAssemblyName);
             var appInstallerInInstallDir = appInstallerPathInInstallDir.GetProcessByFileName();
-            appInstallerInInstallDir?.WaitForExit(10000);
+            appInstallerInInstallDir?.WaitForExit(5000);
 
             Directory.Delete(argument.TempFolder, true);
             argument.OriginalAppPath?.RunProcess();
