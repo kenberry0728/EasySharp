@@ -12,11 +12,5 @@ namespace EasySharpStandard.DiskIO.Directories.Implementation
             var directoryInfo = new DirectoryInfo(directoryPath);
             return directoryInfo.GetFiles(searchPattern, searchOption).Select(f => f.FullName);
         }
-
-        public string GetFullName(string directoryPath)
-        {
-            var directoryInfo = new DirectoryInfo(directoryPath);
-            return directoryInfo.FullName;
-        }
     }
 }

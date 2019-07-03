@@ -19,6 +19,16 @@ namespace EasySharpStandard.DiskIO
             return relativeUri.ToString();
         }
 
+        public static string ToFullDirectoryName(this string directoryPath)
+        {
+            return string.IsNullOrEmpty(directoryPath) ? Directory.GetCurrentDirectory() : new DirectoryInfo(directoryPath).FullName;
+        }
+
+        public static string ToFullFileName(this string filePath)
+        {
+            return new FileInfo(filePath).FullName;
+        }
+
         public static void EnsureDirectoryForFile(this string filePath)
         {
             var directoryPath = Path.GetDirectoryName(filePath);

@@ -20,9 +20,9 @@ namespace AppInstaller.RunModes
         
         public AppInstallerResult Run(AppInstallerArgument argument)
         {
-            var installDir = argument.InstallDir;
-            var sourceDir = argument.SourceDir;
-            var tempDirectoryPath = new DirectoryInfo(Path.Combine(installDir, "..", "AppInstaller_Temp")).FullName;
+            var installDir = argument.InstallDir.ToFullDirectoryName();
+            var sourceDir = new DirectoryInfo(argument.SourceDir).FullName;
+            var tempDirectoryPath = Path.Combine(installDir, "..", "AppInstaller_Temp").ToFullDirectoryName();
 
             CopyAppInstallerFiles(sourceDir, tempDirectoryPath);
 
@@ -40,9 +40,6 @@ namespace AppInstaller.RunModes
             var newArgument = argument.Clone();
             newArgument.RunMode = RunMode.RunNewAppInstallerInTempFolder;
             newArgument.TempFolder = tempDirectoryPath;
-            newArgument.InstallDir = new DirectoryInfo(argument.InstallDir).FullName;
-            newArgument.OriginalAppPath = new FileInfo(argument.OriginalAppPath).FullName;
-            newArgument.SourceDir = new DirectoryInfo(argument.SourceDir).FullName;
             return newArgument;
         }
 
@@ -51,9 +48,9 @@ namespace AppInstaller.RunModes
             const string appFilesTxt = "AppInstallerFiles.txt";
             var sourceFileName = Path.Combine(sourceDir, appFilesTxt);
             var destFileName = Path.Combine(tempDirectoryPath, appFilesTxt);
+            destFileName.EnsureDirectoryForFile();
             File.Copy(sourceFileName, destFileName, true);
             var fileNames = destFileName.ReadLines(StringSplitOptions.RemoveEmptyEntries);
-            tempDirectoryPath.EnsureDirectoryForFile();
             foreach (var fileName in fileNames)
             {
                 var sourceFile = Path.Combine(sourceDir, fileName);

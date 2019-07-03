@@ -6,6 +6,7 @@ using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using AppInstaller.Implementation;
 using AppInstaller.RunModes;
+using EasySharpStandard.DiskIO;
 using EasySharpStandard.DiskIO.Serializers;
 using EasySharpStandard.SafeCodes.Core;
 
@@ -19,16 +20,19 @@ namespace AppInstaller
         {
             if (args.Length != 1)
             {
-                var appArg = new AppInstallerArgument(RunMode.RunExistingAppInstallerInAppFolder)
+#if DEBUG
+                var appArg = new AppInstallerArgument(RunMode.RunNewAppInstallerInTempFolder)
                 {
                     SourceDir = @"..\New",
-                    InstallDir = @"",
-                    OriginalAppPath = @"Updated.txt"
+                    InstallDir = @"..\Old",
+                    OriginalAppPath = @"Updated.txt",
+                    TempFolder = @"..\AppInstaller_Temp"
                 };
 
-                (appInstallerAssemblyName + " " + appArg.ToCommandLineString())
-                    .WriteToFile("TestFile.bat");
+                args = new[] { appArg.ToCommandLineString(false) };
+#else
                 return;
+#endif
             }
 
             AppInstallerResult modeAppInstallerResult;
@@ -57,6 +61,11 @@ namespace AppInstaller
             {
                 throw new InvalidEnumArgumentException();
             }
+
+            argument.TempFolder = argument.TempFolder.ToFullDirectoryName();
+            argument.SourceDir = argument.SourceDir.ToFullDirectoryName();
+            argument.InstallDir = argument.InstallDir.ToFullDirectoryName();
+            argument.OriginalAppPath = argument.OriginalAppPath.ToFullFileName();
 
             switch (argument.RunMode)
             {
