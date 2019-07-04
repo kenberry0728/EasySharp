@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
@@ -26,7 +27,8 @@ namespace AppInstaller
                     SourceDir = @"..\New",
                     InstallDir = @"..\Old",
                     OriginalAppPath = @"Updated.txt",
-                    TempFolder = @"..\AppInstaller_Temp"
+                    TempFolder = @"..\AppInstaller_Temp",
+                    ExcludeRelativePathRegex = new List<string> { @".*\.log" }
                 };
 
                 args = new[] { appArg.ToCommandLineString(false) };
