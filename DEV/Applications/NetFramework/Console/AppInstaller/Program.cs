@@ -78,10 +78,13 @@ namespace AppInstaller
                         argument.ExcludeRelativePathRegex);
 
                 case RunMode.RunExistingAppInstallerInAppFolder:
+                    Console.WriteLine("Downloading app installer to the temp folder.");
                     return new DownloadAppInstallerToTempAndRun(appInstallerAssemblyName).Run(argument);
                 case RunMode.RunNewAppInstallerInTempFolder:
+                    Console.WriteLine("Updating app folder.");
                     return new CopyItemsToInstallFolderAndRun(appInstallerAssemblyName).Run(argument);
                 case RunMode.RunNewAppInstallerInAppFolder:
+                    Console.WriteLine("Cleaning up the temp folder.");
                     return new CleanupTempDirAndRunOriginalApp(appInstallerAssemblyName).Run(argument);
                 default:
                     throw new ArgumentOutOfRangeException();
