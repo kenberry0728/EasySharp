@@ -21,7 +21,7 @@ namespace AppInstaller
             if (args.Length != 1)
             {
 #if DEBUG
-                var appArg = new AppInstallerArgument(RunMode.RunNewAppInstallerInTempFolder)
+                var appArg = new AppInstallerArgument(RunMode.RunExistingAppInstallerInAppFolder)
                 {
                     SourceDir = @"..\New",
                     InstallDir = @"..\Old",
@@ -48,7 +48,9 @@ namespace AppInstaller
                     Message = e.Message
                 };
 
-                e.Message.WriteToFile("Error.log");
+                string.Join(Environment.NewLine,
+                    e.Message,
+                    args[0]).WriteToFile("Error.log");
             }
 
             Console.WriteLine(new AppInstallerResultConverter().ToString(modeAppInstallerResult));
