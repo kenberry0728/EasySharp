@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using AppInstaller.Core.Arguments;
@@ -39,7 +40,7 @@ namespace AppInstaller.RunModes
             var excludeRelativePaths = allFiles
                 .Select(f => f.GetRelativePath(appInstallerArgument.SourceDir))
                 .Where(f => excludeRelativePathRegex.AnyIsMatch(f))
-                .ToHashSet();
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
             appInstallerArgument.SourceDir.CopyDirectory(
                 appInstallerArgument.InstallDir,
