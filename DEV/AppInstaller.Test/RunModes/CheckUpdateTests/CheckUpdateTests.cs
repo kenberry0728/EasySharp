@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using AppInstaller.Core.Results;
 using AppInstaller.RunModes;
+using EasySharpStandard.DiskIO;
 using EasySharpStandard.Reflections.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,14 +15,21 @@ namespace AppInstaller.Test.RunModes
         [TestMethod]
         public void SameItems()
         {
-            // TODO: Gitだと更新日付保証されないだろうな…
+            // Arrange
             var relativeTypePath = typeof(CheckUpdateTests).GetRelativeTypePath();
             var sourceDir = Path.Combine(relativeTypePath, @"SameItems\SourceDir");
             var installDir = Path.Combine(relativeTypePath, @"SameItems\InstallDir");
-            
+
+            var lastWriteTimeToSet = DateTime.Now;
+            sourceDir.SetLastTimeToAllFiles(lastWriteTimeToSet);
+            installDir.SetLastTimeToAllFiles(lastWriteTimeToSet);
+
             var target = new CheckUpdate();
+
+            // Act
             var result = target.Run(sourceDir, installDir, new List<string>());
 
+            // Assert
             Assert.AreEqual(ResultCode.Success, result.ResultCode);
             Assert.IsFalse(result.Updated);
         }
