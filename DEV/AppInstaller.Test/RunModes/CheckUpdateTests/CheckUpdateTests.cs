@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using AppInstaller.Core.Results;
 using AppInstaller.RunModes;
 using EasySharpStandard.DiskIO;
@@ -37,14 +38,21 @@ namespace AppInstaller.Test.RunModes
         [TestMethod]
         public void Updated()
         {
-            // TODO: Gitだと更新日付保証されないだろうな…
+            // Arrange
             var relativeTypePath = typeof(CheckUpdateTests).GetRelativeTypePath();
             var sourceDir = Path.Combine(relativeTypePath, @"Updated\SourceDir");
             var installDir = Path.Combine(relativeTypePath, @"Updated\InstallDir");
 
+            installDir.SetLastTimeToAllFiles(DateTime.Now);
+            Thread.Sleep(1);
+            sourceDir.SetLastTimeToAllFiles(DateTime.Now);
+
             var target = new CheckUpdate();
+
+            // Act
             var result = target.Run(sourceDir, installDir, new List<string>());
 
+            // Assert
             Assert.AreEqual(ResultCode.Success, result.ResultCode);
             Assert.IsTrue(result.Updated);
         }
