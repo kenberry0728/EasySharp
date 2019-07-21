@@ -13,15 +13,17 @@ namespace AppInstaller.Test.RunModes
     public class CheckUpdateTests
     {
         private const string TestRootDir = "TestRoot";
-        private readonly string SourceDirPath = Path.Combine(typeof(CheckUpdateTests).GetRelativeTypePath(), TestRootDir, "SourceDir");
-        private readonly string InstallDirPath = Path.Combine(typeof(CheckUpdateTests).GetRelativeTypePath(), TestRootDir, "InstallDir");
+        private static readonly string SourceDirPath = Path.Combine(typeof(CheckUpdateTests).GetRelativeTypePath(), TestRootDir, "SourceDir");
+        private static readonly string InstallDirPath = Path.Combine(typeof(CheckUpdateTests).GetRelativeTypePath(), TestRootDir, "InstallDir");
+        private static readonly DateTime StandardDateTime = DateTime.Now;
+        private static readonly DateTime UpdateDateTime = StandardDateTime + TimeSpan.FromDays(1);
 
         [TestInitialize]
         public void TestInitialize()
         {
-            var lastWriteTimeToSet = DateTime.Now;
-            SourceDirPath.SetLastWriteTimeToAllFiles(lastWriteTimeToSet);
-            InstallDirPath.SetLastWriteTimeToAllFiles(lastWriteTimeToSet);
+            var lastWriteTimeToSet = DateTime.Now - TimeSpan.FromDays(1);
+            SourceDirPath.SetLastWriteTimeToAllFiles(StandardDateTime);
+            InstallDirPath.SetLastWriteTimeToAllFiles(StandardDateTime);
         }
 
         [TestMethod]
@@ -42,7 +44,7 @@ namespace AppInstaller.Test.RunModes
         public void AllFilesAreDifferentLastWriteTime()
         {
             // Arrange
-            SourceDirPath.SetLastWriteTimeToAllFiles(DateTime.Now);
+            SourceDirPath.SetLastWriteTimeToAllFiles(UpdateDateTime);
             var target = new CheckUpdate();
 
             // Act
@@ -58,7 +60,7 @@ namespace AppInstaller.Test.RunModes
         {
             // Arrange
             var updatedFilePath = Path.Combine(SourceDirPath, "a.txt");
-            File.SetLastWriteTime(updatedFilePath, DateTime.Now);
+            File.SetLastWriteTime(updatedFilePath, UpdateDateTime);
 
             var target = new CheckUpdate();
 
