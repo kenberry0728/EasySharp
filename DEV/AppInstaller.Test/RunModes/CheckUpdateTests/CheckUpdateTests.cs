@@ -18,12 +18,12 @@ namespace AppInstaller.Test.RunModes
         private const string UserDataDirFolderName = "UserDataDir";
         private static readonly string TestClassRootFolder = typeof(CheckUpdateTests).GetRelativeTypePath();
 
-
         private static readonly string SourceDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDirTemp");
         private static readonly string InstallDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDirTemp");
 
         private static readonly DateTime StandardDateTime = DateTime.Now;
-        private static readonly DateTime UpdateDateTime = StandardDateTime + TimeSpan.FromDays(1);
+        private static readonly DateTime UpdateDateTime1 = StandardDateTime + TimeSpan.FromDays(1);
+        private static readonly DateTime UpdateDateTime2 = StandardDateTime + TimeSpan.FromDays(2);
 
         #endregion
 
@@ -68,7 +68,7 @@ namespace AppInstaller.Test.RunModes
         public void AllFilesAreDifferentLastWriteTime()
         {
             // Arrange
-            SourceDirPath.SetLastWriteTimeToAllFiles(UpdateDateTime);
+            SourceDirPath.SetLastWriteTimeToAllFiles(UpdateDateTime2);
             var target = new CheckUpdate();
 
             // Act
@@ -84,7 +84,7 @@ namespace AppInstaller.Test.RunModes
         {
             // Arrange
             var updatedFilePath = Path.Combine(SourceDirPath, "a.txt");
-            File.SetLastWriteTime(updatedFilePath, UpdateDateTime);
+            File.SetLastWriteTime(updatedFilePath, UpdateDateTime2);
 
             var target = new CheckUpdate();
 
@@ -101,7 +101,7 @@ namespace AppInstaller.Test.RunModes
         {
             // Arrange
             var updatedFilePath = Path.Combine(SourceDirPath, "a.txt");
-            File.SetLastWriteTime(updatedFilePath, UpdateDateTime);
+            File.SetLastWriteTime(updatedFilePath, UpdateDateTime2);
 
             var target = new CheckUpdate();
 
@@ -121,7 +121,7 @@ namespace AppInstaller.Test.RunModes
         {
             // Arrange
             var userDataFilePath = Path.Combine(InstallDirPath, UserDataDirFolderName, "u_a.txt");
-            File.SetLastWriteTime(userDataFilePath, UpdateDateTime);
+            File.SetLastWriteTime(userDataFilePath, UpdateDateTime2);
 
             var target = new CheckUpdate();
 
@@ -137,11 +137,13 @@ namespace AppInstaller.Test.RunModes
         }
 
         [TestMethod]
-        public void SystemFilesAreUpdate()
+        public void UserFileAndSystemFileAreUpdated()
         {
             // Arrange
+            var updatedSystemFilePath = Path.Combine(SourceDirPath, "a.txt");
+            File.SetLastWriteTime(updatedSystemFilePath, UpdateDateTime1);
             var userDataFilePath = Path.Combine(InstallDirPath, UserDataDirFolderName, "u_a.txt");
-            File.SetLastWriteTime(userDataFilePath, UpdateDateTime);
+            File.SetLastWriteTime(userDataFilePath, UpdateDateTime2);
 
             var target = new CheckUpdate();
 
@@ -153,7 +155,7 @@ namespace AppInstaller.Test.RunModes
 
             // Assert
             Assert.AreEqual(ResultCode.Success, result.ResultCode);
-            Assert.IsFalse(result.Updated);
+            Assert.IsTrue(result.Updated);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace EasySharpStandard.DiskIO
             //â‘ÎUri‚©‚ç‘Š‘ÎUri‚ğæ“¾‚·‚é
             var relativeUri = relativeDirectoryUri.MakeRelativeUri(fullUri);
             //•¶š—ñ‚É•ÏŠ·‚·‚é
-            return relativeUri.ToString();
+            return relativeUri.ToString().Replace(@"/", @"\");
         }
 
         public static string ToFullFileName(this string filePath)

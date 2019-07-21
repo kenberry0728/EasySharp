@@ -42,9 +42,11 @@ namespace AppInstaller.RunModes
 
         private DateTime GetLastWriteTimeUtc(string targetDirectoryPath, IEnumerable<Regex> regularExpressions)
         {
-            return this.directoryService.GetFiles(targetDirectoryPath, "*", SearchOption.AllDirectories)
-                .Where(f => !regularExpressions.AnyIsMatch(f.GetRelativePath(targetDirectoryPath)))
-                .Max(f => this.fileService.GetLastWriteTimeUtc(f));
+            var files = this.directoryService.GetFiles(targetDirectoryPath, "*", SearchOption.AllDirectories).ToList();
+            var fileAndRelativePaths = files.Select(f => new { f, Relativepath = f.GetRelativePath(targetDirectoryPath) }).ToList();
+            var filteredFileAndRelativepaths = fileAndRelativePaths.Where(f => !regularExpressions.AnyIsMatch(f.Relativepath)).ToList();
+            var result = filteredFileAndRelativepaths.Max(f => this.fileService.GetLastWriteTimeUtc(f.f));
+            return result;
         }
     }
 }
