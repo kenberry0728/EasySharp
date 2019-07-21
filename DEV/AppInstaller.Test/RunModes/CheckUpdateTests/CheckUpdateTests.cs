@@ -13,15 +13,15 @@ namespace AppInstaller.Test.RunModes
     public class CheckUpdateTests
     {
         private const string TestRootDir = "TestRoot";
-        private static readonly string SourceDirPath = Path.Combine(typeof(CheckUpdateTests).GetRelativeTypePath(), TestRootDir, "SourceDir");
-        private static readonly string InstallDirPath = Path.Combine(typeof(CheckUpdateTests).GetRelativeTypePath(), TestRootDir, "InstallDir");
+        private static readonly string TestClassRootFolder = typeof(CheckUpdateTests).GetRelativeTypePath();
+        private static readonly string SourceDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDir");
+        private static readonly string InstallDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDir");
         private static readonly DateTime StandardDateTime = DateTime.Now;
         private static readonly DateTime UpdateDateTime = StandardDateTime + TimeSpan.FromDays(1);
 
         [TestInitialize]
         public void TestInitialize()
         {
-            var lastWriteTimeToSet = DateTime.Now - TimeSpan.FromDays(1);
             SourceDirPath.SetLastWriteTimeToAllFiles(StandardDateTime);
             InstallDirPath.SetLastWriteTimeToAllFiles(StandardDateTime);
         }
