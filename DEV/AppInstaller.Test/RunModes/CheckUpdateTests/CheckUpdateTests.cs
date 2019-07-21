@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading;
 using AppInstaller.Core.Results;
 using AppInstaller.RunModes;
 using EasySharpStandard.DiskIO;
@@ -44,7 +43,6 @@ namespace AppInstaller.Test.RunModes
         {
             // Arrange
             SourceDirPath.SetLastWriteTimeToAllFiles(DateTime.Now);
-
             var target = new CheckUpdate();
 
             // Act
@@ -60,7 +58,6 @@ namespace AppInstaller.Test.RunModes
         {
             // Arrange
             var updatedFilePath = Path.Combine(SourceDirPath, "a.txt");
-            Thread.Sleep(1);
             File.SetLastWriteTime(updatedFilePath, DateTime.Now);
 
             var target = new CheckUpdate();
