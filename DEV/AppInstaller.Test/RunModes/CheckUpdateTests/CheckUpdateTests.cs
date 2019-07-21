@@ -12,12 +12,16 @@ namespace AppInstaller.Test.RunModes
     [TestClass]
     public class CheckUpdateTests
     {
+        #region Fields
+
         private const string TestRootDir = "TestRoot";
         private static readonly string TestClassRootFolder = typeof(CheckUpdateTests).GetRelativeTypePath();
         private static readonly string SourceDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDir");
         private static readonly string InstallDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDir");
         private static readonly DateTime StandardDateTime = DateTime.Now;
         private static readonly DateTime UpdateDateTime = StandardDateTime + TimeSpan.FromDays(1);
+
+        #endregion
 
         [TestInitialize]
         public void TestInitialize()
