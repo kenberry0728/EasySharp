@@ -16,8 +16,13 @@ namespace AppInstaller.Test.RunModes
 
         private const string TestRootDir = "TestRoot";
         private static readonly string TestClassRootFolder = typeof(CheckUpdateTests).GetRelativeTypePath();
-        private static readonly string SourceDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDir");
-        private static readonly string InstallDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDir");
+
+        private static readonly string SourceInitialDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDir");
+        private static readonly string InstallInitialDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDir");
+
+        private static readonly string SourceDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDirTemp");
+        private static readonly string InstallDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDirTemp");
+
         private static readonly DateTime StandardDateTime = DateTime.Now;
         private static readonly DateTime UpdateDateTime = StandardDateTime + TimeSpan.FromDays(1);
 
@@ -26,8 +31,21 @@ namespace AppInstaller.Test.RunModes
         [TestInitialize]
         public void TestInitialize()
         {
+            SourceDirPath.DeleteDirectoryRecursively();
+            InstallDirPath.DeleteDirectoryRecursively();
+
+            SourceInitialDirPath.CopyDirectory(SourceDirPath);
+            InstallInitialDirPath.CopyDirectory(InstallDirPath);
+
             SourceDirPath.SetLastWriteTimeToAllFiles(StandardDateTime);
             InstallDirPath.SetLastWriteTimeToAllFiles(StandardDateTime);
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            SourceDirPath.DeleteDirectoryRecursively();
+            InstallDirPath.DeleteDirectoryRecursively();
         }
 
         [TestMethod]

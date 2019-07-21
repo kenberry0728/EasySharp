@@ -18,6 +18,14 @@ namespace EasySharpStandard.DiskIO
             directoryPath.CreateDirectoryRecursivelyInner();
         }
 
+        public static void DeleteDirectoryRecursively(this string directoryPath)
+        {
+            if (Directory.Exists(directoryPath))
+            {
+                Directory.Delete(directoryPath, true);
+            }
+        }
+
         public static void CopyDirectory(
             this string sourceDirectoryPath,
             string destDirectoryPath,
