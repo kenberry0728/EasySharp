@@ -97,7 +97,7 @@ namespace AppInstaller.Test.RunModes
         }
 
         [TestMethod]
-        public void OneOfTheFileIsTheDifferentButThatIsExcluded()
+        public void OneOfTheFileIsTheUpdatedButThatIsExcluded()
         {
             // Arrange
             var updatedFilePath = Path.Combine(SourceDirPath, "a.txt");
@@ -106,7 +106,10 @@ namespace AppInstaller.Test.RunModes
             var target = new CheckUpdate();
 
             // Act
-            var result = target.Run(SourceDirPath, InstallDirPath, new List<string> {@"a\.txt"});
+            var result = target.Run(
+                SourceDirPath,
+                InstallDirPath,
+                new List<string> {@"a\.txt"});
 
             // Assert
             Assert.AreEqual(ResultCode.Success, result.ResultCode);
@@ -126,6 +129,26 @@ namespace AppInstaller.Test.RunModes
             var result = target.Run(
                 SourceDirPath, 
                 InstallDirPath, 
+                new List<string> { UserDataDirFolderName + @"\\" + @".*" });
+
+            // Assert
+            Assert.AreEqual(ResultCode.Success, result.ResultCode);
+            Assert.IsFalse(result.Updated);
+        }
+
+        [TestMethod]
+        public void SystemFilesAreUpdate()
+        {
+            // Arrange
+            var userDataFilePath = Path.Combine(InstallDirPath, UserDataDirFolderName, "u_a.txt");
+            File.SetLastWriteTime(userDataFilePath, UpdateDateTime);
+
+            var target = new CheckUpdate();
+
+            // Act
+            var result = target.Run(
+                SourceDirPath,
+                InstallDirPath,
                 new List<string> { UserDataDirFolderName + @"\\" + @".*" });
 
             // Assert
