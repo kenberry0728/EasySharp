@@ -78,6 +78,23 @@ namespace AppInstaller.Test.RunModes
         }
 
         [TestMethod]
+        public void OneOfTheFileIsTheUpdated()
+        {
+            // Arrange
+            var updatedFilePath = Path.Combine(SourceDirPath, "a.txt");
+            File.SetLastWriteTime(updatedFilePath, UpdateDateTime);
+
+            var target = new CheckUpdate();
+
+            // Act
+            var result = target.Run(SourceDirPath, InstallDirPath, new List<string>());
+
+            // Assert
+            Assert.AreEqual(ResultCode.Success, result.ResultCode);
+            Assert.IsTrue(result.Updated);
+        }
+
+        [TestMethod]
         public void OneOfTheFileIsTheDifferentButThatIsExcluded()
         {
             // Arrange
