@@ -49,7 +49,7 @@ namespace EasySharpStandard.DiskIO
             }
         }
 
-        public static void SetLastTimeToAllFiles(this string directoryPath, DateTime lastWriteTimeToSet)
+        public static void SetLastWriteTimeToAllFiles(this string directoryPath, DateTime lastWriteTimeToSet)
         {
             var allfiles = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
             foreach (var file in allfiles)

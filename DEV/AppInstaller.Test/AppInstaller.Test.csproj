@@ -53,29 +53,23 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RunModes\CheckUpdateTests\Updated\InstallDir\a.txt">
+    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTests\Updated\InstallDir\b.txt">
+    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\b.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTests\Updated\SourceDir\a.txt">
+    <Content Include="RunModes\CheckUpdateTests\TestRoot\SourceDir\a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTests\Updated\SourceDir\b.txt">
+    <Content Include="RunModes\CheckUpdateTests\TestRoot\SourceDir\b.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
-    <Content Include="RunModes\CheckUpdateTests\SameItems\InstallDir\c.bin">
+    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\c.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTests\Updated\InstallDir\c.bin">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="RunModes\CheckUpdateTests\Updated\SourceDir\c.bin">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="RunModes\CheckUpdateTests\SameItems\SourceDir\c.bin">
+    <None Include="RunModes\CheckUpdateTests\TestRoot\SourceDir\c.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -90,20 +84,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Content Include="RunModes\CheckUpdateTests\SameItems\InstallDir\a.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="RunModes\CheckUpdateTests\SameItems\InstallDir\b.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="RunModes\CheckUpdateTests\SameItems\SourceDir\a.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="RunModes\CheckUpdateTests\SameItems\SourceDir\b.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

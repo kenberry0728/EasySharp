@@ -13,22 +13,26 @@ namespace AppInstaller.Test.RunModes
     [TestClass]
     public class CheckUpdateTests
     {
+        private const string TestRootDir = "TestRoot";
+        private readonly string SourceDirPath = Path.Combine(TestRootDir, "SourceDir");
+        private readonly string InstallDirPath = Path.Combine(TestRootDir, "InstallDir");
+
         [TestMethod]
-        public void SameItems()
+        public void AllFilesAreTheSameLastWriteTime()
         {
             // Arrange
             var relativeTypePath = typeof(CheckUpdateTests).GetRelativeTypePath();
-            var sourceDir = Path.Combine(relativeTypePath, @"SameItems\SourceDir");
-            var installDir = Path.Combine(relativeTypePath, @"SameItems\InstallDir");
+            var sourceDirPath = Path.Combine(relativeTypePath, SourceDirPath);
+            var installDirPath = Path.Combine(relativeTypePath, InstallDirPath);
 
             var lastWriteTimeToSet = DateTime.Now;
-            sourceDir.SetLastTimeToAllFiles(lastWriteTimeToSet);
-            installDir.SetLastTimeToAllFiles(lastWriteTimeToSet);
+            sourceDirPath.SetLastWriteTimeToAllFiles(lastWriteTimeToSet);
+            installDirPath.SetLastWriteTimeToAllFiles(lastWriteTimeToSet);
 
             var target = new CheckUpdate();
 
             // Act
-            var result = target.Run(sourceDir, installDir, new List<string>());
+            var result = target.Run(sourceDirPath, installDirPath, new List<string>());
 
             // Assert
             Assert.AreEqual(ResultCode.Success, result.ResultCode);
@@ -36,21 +40,21 @@ namespace AppInstaller.Test.RunModes
         }
 
         [TestMethod]
-        public void Updated()
+        public void AllFilesAreDifferentLastWriteTime()
         {
             // Arrange
             var relativeTypePath = typeof(CheckUpdateTests).GetRelativeTypePath();
-            var sourceDir = Path.Combine(relativeTypePath, @"Updated\SourceDir");
-            var installDir = Path.Combine(relativeTypePath, @"Updated\InstallDir");
+            var sourceDirPath = Path.Combine(relativeTypePath, SourceDirPath);
+            var installDirPath = Path.Combine(relativeTypePath, InstallDirPath);
 
-            installDir.SetLastTimeToAllFiles(DateTime.Now);
+            installDirPath.SetLastWriteTimeToAllFiles(DateTime.Now);
             Thread.Sleep(1);
-            sourceDir.SetLastTimeToAllFiles(DateTime.Now);
+            sourceDirPath.SetLastWriteTimeToAllFiles(DateTime.Now);
 
             var target = new CheckUpdate();
 
             // Act
-            var result = target.Run(sourceDir, installDir, new List<string>());
+            var result = target.Run(sourceDirPath, installDirPath, new List<string>());
 
             // Assert
             Assert.AreEqual(ResultCode.Success, result.ResultCode);
@@ -58,16 +62,26 @@ namespace AppInstaller.Test.RunModes
         }
 
         [TestMethod]
-        public void Updated_Excluded()
+        public void OneOfTheFileIsTheDifferentButThatIsExcluded()
         {
-            // TODO: Gitだと更新日付保証されないだろうな…
+            // Arrange
             var relativeTypePath = typeof(CheckUpdateTests).GetRelativeTypePath();
-            var sourceDir = Path.Combine(relativeTypePath, @"Updated\SourceDir");
-            var installDir = Path.Combine(relativeTypePath, @"Updated\InstallDir");
+            var sourceDirPath = Path.Combine(relativeTypePath, SourceDirPath);
+            var installDirPath = Path.Combine(relativeTypePath, InstallDirPath);
+            var updatedFilePath = Path.Combine(sourceDirPath, "a.txt");
+
+            var lastWriteTimeToSet = DateTime.Now;
+            sourceDirPath.SetLastWriteTimeToAllFiles(lastWriteTimeToSet);
+            installDirPath.SetLastWriteTimeToAllFiles(lastWriteTimeToSet);
+            Thread.Sleep(1);
+            File.SetLastWriteTime(updatedFilePath, DateTime.Now);
 
             var target = new CheckUpdate();
-            var result = target.Run(sourceDir, installDir, new List<string> {@"a\.txt"});
 
+            // Act
+            var result = target.Run(sourceDirPath, installDirPath, new List<string> {@"a\.txt"});
+
+            // Assert
             Assert.AreEqual(ResultCode.Success, result.ResultCode);
             Assert.IsFalse(result.Updated);
         }
