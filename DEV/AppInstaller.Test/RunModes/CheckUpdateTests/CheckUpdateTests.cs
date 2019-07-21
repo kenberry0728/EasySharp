@@ -15,10 +15,9 @@ namespace AppInstaller.Test.RunModes
         #region Fields
 
         private const string TestRootDir = "TestRoot";
+        private const string UserDataDirFolderName = "UserDataDir";
         private static readonly string TestClassRootFolder = typeof(CheckUpdateTests).GetRelativeTypePath();
 
-        private static readonly string SourceInitialDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDir");
-        private static readonly string InstallInitialDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDir");
 
         private static readonly string SourceDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDirTemp");
         private static readonly string InstallDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDirTemp");
@@ -34,8 +33,11 @@ namespace AppInstaller.Test.RunModes
             SourceDirPath.DeleteDirectoryRecursively();
             InstallDirPath.DeleteDirectoryRecursively();
 
-            SourceInitialDirPath.CopyDirectory(SourceDirPath);
-            InstallInitialDirPath.CopyDirectory(InstallDirPath);
+            var sourceInitialDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDir");
+            var installInitialDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDir");
+
+            sourceInitialDirPath.CopyDirectory(SourceDirPath);
+            installInitialDirPath.CopyDirectory(InstallDirPath);
 
             SourceDirPath.SetLastWriteTimeToAllFiles(StandardDateTime);
             InstallDirPath.SetLastWriteTimeToAllFiles(StandardDateTime);
@@ -105,6 +107,26 @@ namespace AppInstaller.Test.RunModes
 
             // Act
             var result = target.Run(SourceDirPath, InstallDirPath, new List<string> {@"a\.txt"});
+
+            // Assert
+            Assert.AreEqual(ResultCode.Success, result.ResultCode);
+            Assert.IsFalse(result.Updated);
+        }
+
+        [TestMethod]
+        public void UserDataFilesAreUpdate()
+        {
+            // Arrange
+            var userDataFilePath = Path.Combine(InstallDirPath, UserDataDirFolderName, "u_a.txt");
+            File.SetLastWriteTime(userDataFilePath, UpdateDateTime);
+
+            var target = new CheckUpdate();
+
+            // Act
+            var result = target.Run(
+                SourceDirPath, 
+                InstallDirPath, 
+                new List<string> { UserDataDirFolderName + @"\\" + @".*" });
 
             // Assert
             Assert.AreEqual(ResultCode.Success, result.ResultCode);

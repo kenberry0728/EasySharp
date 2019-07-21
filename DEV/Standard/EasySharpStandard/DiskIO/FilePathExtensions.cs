@@ -10,6 +10,11 @@ namespace EasySharpStandard.DiskIO
 
         public static string GetRelativePath(this string fullPath, string relativeDirectoryPath)
         {
+            if (!relativeDirectoryPath.EndsWith(@"\"))
+            {
+                relativeDirectoryPath += @"\";
+            }
+
             var relativeDirectoryUri = new Uri(relativeDirectoryPath);
             var fullUri = new Uri(fullPath);
 

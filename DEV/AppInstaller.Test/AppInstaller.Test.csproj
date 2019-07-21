@@ -51,8 +51,12 @@
   <ItemGroup>
     <Compile Include="RunModes\CheckUpdateTests\CheckUpdateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\DeletedDir\d_a.txt" />
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\UserDataDir\u_a.txt" />
+    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\DeletedDir\d_a.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\UserDataDir\u_a.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\a.txt">
@@ -61,15 +65,21 @@
     <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\b.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\ExistingDir\e_a.txt" />
+    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\ExistingDir\e_a.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="RunModes\CheckUpdateTests\TestRoot\SourceDir\a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\SourceDir\AddedDir\a_a.txt" />
+    <Content Include="RunModes\CheckUpdateTests\TestRoot\SourceDir\AddedDir\a_a.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="RunModes\CheckUpdateTests\TestRoot\SourceDir\b.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\SourceDir\ExistingDir\e_a.txt" />
+    <Content Include="RunModes\CheckUpdateTests\TestRoot\SourceDir\ExistingDir\e_a.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\c.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
