@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="RunModes\CheckUpdateTests\CheckUpdateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\UserDataDir\u_a.txt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\a.txt">
