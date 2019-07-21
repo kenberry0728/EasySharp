@@ -14,25 +14,25 @@ namespace AppInstaller.Test.RunModes
     public class CheckUpdateTests
     {
         private const string TestRootDir = "TestRoot";
-        private readonly string SourceDirPath = Path.Combine(TestRootDir, "SourceDir");
-        private readonly string InstallDirPath = Path.Combine(TestRootDir, "InstallDir");
+        private readonly string SourceDirPath = Path.Combine(typeof(CheckUpdateTests).GetRelativeTypePath(), TestRootDir, "SourceDir");
+        private readonly string InstallDirPath = Path.Combine(typeof(CheckUpdateTests).GetRelativeTypePath(), TestRootDir, "InstallDir");
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            var lastWriteTimeToSet = DateTime.Now;
+            SourceDirPath.SetLastWriteTimeToAllFiles(lastWriteTimeToSet);
+            InstallDirPath.SetLastWriteTimeToAllFiles(lastWriteTimeToSet);
+        }
 
         [TestMethod]
         public void AllFilesAreTheSameLastWriteTime()
         {
             // Arrange
-            var relativeTypePath = typeof(CheckUpdateTests).GetRelativeTypePath();
-            var sourceDirPath = Path.Combine(relativeTypePath, SourceDirPath);
-            var installDirPath = Path.Combine(relativeTypePath, InstallDirPath);
-
-            var lastWriteTimeToSet = DateTime.Now;
-            sourceDirPath.SetLastWriteTimeToAllFiles(lastWriteTimeToSet);
-            installDirPath.SetLastWriteTimeToAllFiles(lastWriteTimeToSet);
-
             var target = new CheckUpdate();
 
             // Act
-            var result = target.Run(sourceDirPath, installDirPath, new List<string>());
+            var result = target.Run(SourceDirPath, InstallDirPath, new List<string>());
 
             // Assert
             Assert.AreEqual(ResultCode.Success, result.ResultCode);
@@ -43,18 +43,12 @@ namespace AppInstaller.Test.RunModes
         public void AllFilesAreDifferentLastWriteTime()
         {
             // Arrange
-            var relativeTypePath = typeof(CheckUpdateTests).GetRelativeTypePath();
-            var sourceDirPath = Path.Combine(relativeTypePath, SourceDirPath);
-            var installDirPath = Path.Combine(relativeTypePath, InstallDirPath);
-
-            installDirPath.SetLastWriteTimeToAllFiles(DateTime.Now);
-            Thread.Sleep(1);
-            sourceDirPath.SetLastWriteTimeToAllFiles(DateTime.Now);
+            SourceDirPath.SetLastWriteTimeToAllFiles(DateTime.Now);
 
             var target = new CheckUpdate();
 
             // Act
-            var result = target.Run(sourceDirPath, installDirPath, new List<string>());
+            var result = target.Run(SourceDirPath, InstallDirPath, new List<string>());
 
             // Assert
             Assert.AreEqual(ResultCode.Success, result.ResultCode);
@@ -65,21 +59,14 @@ namespace AppInstaller.Test.RunModes
         public void OneOfTheFileIsTheDifferentButThatIsExcluded()
         {
             // Arrange
-            var relativeTypePath = typeof(CheckUpdateTests).GetRelativeTypePath();
-            var sourceDirPath = Path.Combine(relativeTypePath, SourceDirPath);
-            var installDirPath = Path.Combine(relativeTypePath, InstallDirPath);
-            var updatedFilePath = Path.Combine(sourceDirPath, "a.txt");
-
-            var lastWriteTimeToSet = DateTime.Now;
-            sourceDirPath.SetLastWriteTimeToAllFiles(lastWriteTimeToSet);
-            installDirPath.SetLastWriteTimeToAllFiles(lastWriteTimeToSet);
+            var updatedFilePath = Path.Combine(SourceDirPath, "a.txt");
             Thread.Sleep(1);
             File.SetLastWriteTime(updatedFilePath, DateTime.Now);
 
             var target = new CheckUpdate();
 
             // Act
-            var result = target.Run(sourceDirPath, installDirPath, new List<string> {@"a\.txt"});
+            var result = target.Run(SourceDirPath, InstallDirPath, new List<string> {@"a\.txt"});
 
             // Assert
             Assert.AreEqual(ResultCode.Success, result.ResultCode);
