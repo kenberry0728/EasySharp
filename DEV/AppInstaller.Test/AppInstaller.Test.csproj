@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="RunModes\CheckUpdateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RunModes\CleanupTempDirAndRunOriginalAppTests.cs" />
+    <Compile Include="RunModes\RunModeTestsBase.cs" />
     <Content Include="RunModes\TestFilesRoot\InstallDir\DeletedDir\d_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -98,9 +100,7 @@
       <Name>EasySharpStandard</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="RunModes\CleanupTempDirAndRunOriginalAppTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

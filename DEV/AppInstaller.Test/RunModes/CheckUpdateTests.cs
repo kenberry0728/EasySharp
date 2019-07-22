@@ -10,20 +10,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AppInstaller.Test.RunModes
 {
     [TestClass]
-    public class CheckUpdateTests
+    public class CheckUpdateTests : RunModeTestsBase
     {
         #region Fields
-
-        private const string TestRootDir = "TestFilesRoot";
-        private const string UserDataDirFolderName = "UserDataDir";
-        private static readonly string TestClassRootFolder = new DirectoryInfo(typeof(CheckUpdateTests).GetRelativeTypePath()).Parent.FullName;
-
-        private static readonly string SourceDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDirTemp");
-        private static readonly string InstallDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDirTemp");
-
-        private static readonly DateTime StandardDateTime = DateTime.Now;
-        private static readonly DateTime UpdateDateTime1 = StandardDateTime + TimeSpan.FromDays(1);
-        private static readonly DateTime UpdateDateTime2 = StandardDateTime + TimeSpan.FromDays(2);
 
         #endregion
 
@@ -32,24 +21,13 @@ namespace AppInstaller.Test.RunModes
         [TestInitialize]
         public void TestInitialize()
         {
-            SourceDirPath.DeleteDirectoryRecursively();
-            InstallDirPath.DeleteDirectoryRecursively();
-
-            var sourceInitialDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDir");
-            var installInitialDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDir");
-
-            sourceInitialDirPath.CopyDirectory(SourceDirPath);
-            installInitialDirPath.CopyDirectory(InstallDirPath);
-
-            SourceDirPath.SetLastWriteTimeToAllFiles(StandardDateTime);
-            InstallDirPath.SetLastWriteTimeToAllFiles(StandardDateTime);
+            base.TestInitializeBase();
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
-            SourceDirPath.DeleteDirectoryRecursively();
-            InstallDirPath.DeleteDirectoryRecursively();
+            base.TestCleanupBase();
         }
 
         #endregion
