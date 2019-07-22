@@ -49,7 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RunModes\CheckUpdateTests\CheckUpdateTests.cs" />
+    <Compile Include="RunModes\CheckUpdateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="RunModes\TestFilesRoot\InstallDir\DeletedDir\d_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
