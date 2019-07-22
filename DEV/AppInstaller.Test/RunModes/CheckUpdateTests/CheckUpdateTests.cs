@@ -14,9 +14,9 @@ namespace AppInstaller.Test.RunModes
     {
         #region Fields
 
-        private const string TestRootDir = "TestRoot";
+        private const string TestRootDir = "TestFilesRoot";
         private const string UserDataDirFolderName = "UserDataDir";
-        private static readonly string TestClassRootFolder = typeof(CheckUpdateTests).GetRelativeTypePath();
+        private static readonly string TestClassRootFolder = new DirectoryInfo(typeof(CheckUpdateTests).GetRelativeTypePath()).Parent.FullName;
 
         private static readonly string SourceDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDirTemp");
         private static readonly string InstallDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDirTemp");
@@ -26,6 +26,8 @@ namespace AppInstaller.Test.RunModes
         private static readonly DateTime UpdateDateTime2 = StandardDateTime + TimeSpan.FromDays(2);
 
         #endregion
+
+        #region Common
 
         [TestInitialize]
         public void TestInitialize()
@@ -49,6 +51,8 @@ namespace AppInstaller.Test.RunModes
             SourceDirPath.DeleteDirectoryRecursively();
             InstallDirPath.DeleteDirectoryRecursively();
         }
+
+        #endregion
 
         [TestMethod]
         public void AllFilesAreTheSameLastWriteTime()
@@ -80,7 +84,7 @@ namespace AppInstaller.Test.RunModes
         }
 
         [TestMethod]
-        public void OneOfTheFileIsTheUpdated()
+        public void OneOfTheFileIsUpdated()
         {
             // Arrange
             var updatedFilePath = Path.Combine(SourceDirPath, "a.txt");
@@ -97,7 +101,7 @@ namespace AppInstaller.Test.RunModes
         }
 
         [TestMethod]
-        public void OneOfTheFileIsTheUpdatedButThatIsExcluded()
+        public void OneOfTheFileIsUpdatedButThatIsExcluded()
         {
             // Arrange
             var updatedFilePath = Path.Combine(SourceDirPath, "a.txt");
@@ -117,7 +121,7 @@ namespace AppInstaller.Test.RunModes
         }
 
         [TestMethod]
-        public void UserDataFilesAreUpdate()
+        public void UserFilesAreUpdate()
         {
             // Arrange
             var userDataFilePath = Path.Combine(InstallDirPath, UserDataDirFolderName, "u_a.txt");

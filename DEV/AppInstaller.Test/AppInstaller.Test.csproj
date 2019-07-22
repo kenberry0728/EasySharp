@@ -51,40 +51,40 @@
   <ItemGroup>
     <Compile Include="RunModes\CheckUpdateTests\CheckUpdateTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\DeletedDir\d_a.txt">
+    <Content Include="RunModes\TestFilesRoot\InstallDir\DeletedDir\d_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\UserDataDir\u_a.txt">
+    <Content Include="RunModes\TestFilesRoot\InstallDir\UserDataDir\u_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\a.txt">
+    <Content Include="RunModes\TestFilesRoot\InstallDir\a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\b.txt">
+    <Content Include="RunModes\TestFilesRoot\InstallDir\b.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\ExistingDir\e_a.txt">
+    <Content Include="RunModes\TestFilesRoot\InstallDir\ExistingDir\e_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\SourceDir\a.txt">
+    <Content Include="RunModes\TestFilesRoot\SourceDir\a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\SourceDir\AddedDir\a_a.txt">
+    <Content Include="RunModes\TestFilesRoot\SourceDir\AddedDir\a_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\SourceDir\b.txt">
+    <Content Include="RunModes\TestFilesRoot\SourceDir\b.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\SourceDir\ExistingDir\e_a.txt">
+    <Content Include="RunModes\TestFilesRoot\SourceDir\ExistingDir\e_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
-    <Content Include="RunModes\CheckUpdateTests\TestRoot\InstallDir\c.bin">
+    <Content Include="RunModes\TestFilesRoot\InstallDir\c.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="RunModes\CheckUpdateTests\TestRoot\SourceDir\c.bin">
+    <None Include="RunModes\TestFilesRoot\SourceDir\c.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -98,7 +98,9 @@
       <Name>EasySharpStandard</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="RunModes\CleanupTempDirAndRunOriginalAppTests\" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
