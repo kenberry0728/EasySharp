@@ -50,7 +50,7 @@ namespace EasySharpStandard.DataStructures.Trees.Core
             var parent = getParent(item);
             if (parent == null)
             {
-                return default;
+                return default(T);
             }
 
             if (isTarget(parent))

@@ -38,7 +38,7 @@ namespace EasySharpStandard.SafeCodes.Core
                 }
             }
 
-            return default;
+            return default(T);
         }
     }
 }

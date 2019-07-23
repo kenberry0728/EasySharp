@@ -10,12 +10,14 @@ namespace AppInstaller.Test.RunModes
         protected const string TestRootDir = "TestFilesRoot";
         protected const string UserDataDirFolderName = "UserDataDir";
         protected static readonly string TestClassRootFolder = new DirectoryInfo(typeof(RunModeTestsBase).GetRelativeTypePath()).Parent.FullName;
+        protected const string AppInstallerAssemblyName = "AppInstaller.ext";
 
         protected static readonly string SourceDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDirTemp");
         protected static readonly string InstallDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDirTemp");
         protected static readonly DateTime StandardDateTime = DateTime.Now;
         protected static readonly DateTime UpdateDateTime1 = StandardDateTime + TimeSpan.FromDays(1);
         protected static readonly DateTime UpdateDateTime2 = StandardDateTime + TimeSpan.FromDays(2);
+
 
         protected void TestInitializeBase()
         {

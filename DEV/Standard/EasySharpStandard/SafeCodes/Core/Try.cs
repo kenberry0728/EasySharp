@@ -8,14 +8,14 @@ namespace EasySharpStandard.SafeCodes.Core
 
         public static bool Failed<T>(out T a)
         {
-            a = default;
+            a = default(T);
             return false;
         }
 
         public static bool Failed<T1, T2>(out T1 a, out T2 b)
         {
-            a = default;
-            b = default;
+            a = default(T1);
+            b = default(T2);
             return false;
         }
 

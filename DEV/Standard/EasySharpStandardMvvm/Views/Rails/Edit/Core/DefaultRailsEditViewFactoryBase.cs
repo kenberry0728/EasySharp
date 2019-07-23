@@ -120,7 +120,7 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
             PropertyInfo property,
             RailsDataMemberBindAttribute railsDataMemberBindAttribute)
         {
-            TViewControl uiElement = default;
+            TViewControl uiElement = default(TViewControl);
             switch (property.PropertyType)
             {
                 case Type type when type == typeof(string):

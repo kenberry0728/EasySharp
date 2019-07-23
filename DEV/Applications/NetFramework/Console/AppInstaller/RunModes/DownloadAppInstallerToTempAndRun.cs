@@ -50,7 +50,7 @@ namespace AppInstaller.RunModes
             var destFileName = Path.Combine(tempDirectoryPath, appFilesTxt);
             destFileName.EnsureDirectoryForFile();
             File.Copy(sourceFileName, destFileName, true);
-            var fileNames = destFileName.ReadLines(StringSplitOptions.RemoveEmptyEntries);
+            var fileNames = destFileName.ReadLines(true);
             foreach (var fileName in fileNames)
             {
                 var sourceFile = Path.Combine(sourceDir, fileName);
