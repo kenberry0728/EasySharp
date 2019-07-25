@@ -38,6 +38,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.3.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
@@ -53,6 +54,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RunModes\DownloadAppInstallerToTempAndRunTests.cs" />
     <Compile Include="RunModes\RunModeTestsBase.cs" />
+    <Content Include="RunModes\TestFilesRoot\InstallDir\AppInstaller.exe.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RunModes\TestFilesRoot\InstallDir\EasySharpStandard.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="RunModes\TestFilesRoot\InstallDir\AppInstaller.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="RunModes\TestFilesRoot\InstallDir\AppInstallerFiles.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="RunModes\TestFilesRoot\InstallDir\DeletedDir\d_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -76,7 +89,13 @@
     <Content Include="RunModes\TestFilesRoot\SourceDir\AddedDir\a_a.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="RunModes\TestFilesRoot\SourceDir\AppInstallerFiles.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="RunModes\TestFilesRoot\SourceDir\b.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="RunModes\TestFilesRoot\SourceDir\EasySharpStandard.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="RunModes\TestFilesRoot\SourceDir\ExistingDir\e_a.txt">
@@ -86,6 +105,12 @@
     <Content Include="RunModes\TestFilesRoot\InstallDir\c.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="RunModes\TestFilesRoot\SourceDir\AppInstaller.exe.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="RunModes\TestFilesRoot\SourceDir\AppInstaller.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="RunModes\TestFilesRoot\SourceDir\c.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

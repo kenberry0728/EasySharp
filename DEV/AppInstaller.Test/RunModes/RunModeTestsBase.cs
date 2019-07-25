@@ -10,7 +10,7 @@ namespace AppInstaller.Test.RunModes
         protected const string TestRootDir = "TestFilesRoot";
         protected const string UserDataDirFolderName = "UserDataDir";
         protected static readonly string TestClassRootFolder = new DirectoryInfo(typeof(RunModeTestsBase).GetRelativeTypePath()).Parent.FullName;
-        protected const string AppInstallerAssemblyName = "AppInstaller.ext";
+        protected const string AppInstallerAssemblyName = "AppInstaller.bat";
 
         protected static readonly string SourceDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDirTemp");
         protected static readonly string InstallDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDirTemp");

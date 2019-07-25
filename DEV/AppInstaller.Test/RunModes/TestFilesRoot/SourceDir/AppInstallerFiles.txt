@@ -1,0 +1,3 @@
+﻿AppInstaller.bat
+AppInstaller.exe.config
+EasySharpStandard.dll

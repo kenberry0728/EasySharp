@@ -26,7 +26,7 @@ namespace AppInstaller.Test.RunModes
         }
 
         [TestMethod]
-        public void AAA()
+        public void Run()
         {
             // Arrange
             var target = this.CreateTarget();
@@ -37,9 +37,10 @@ namespace AppInstaller.Test.RunModes
             };
 
             // Act
-            target.Run(argument);
-            
+            var result = target.Run(argument);
+
             // Assert
+            Assert.AreEqual(ResultCode.Success, result.ResultCode);
         }
 
         #endregion
