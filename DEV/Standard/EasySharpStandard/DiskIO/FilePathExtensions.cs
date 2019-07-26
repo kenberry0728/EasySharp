@@ -38,6 +38,16 @@ namespace EasySharpStandard.DiskIO
             }
         }
 
+        public static void CopyFile(this string filePath, string targetFilePath, bool overwrite = true, bool ensureDirectoryForFile = true)
+        {
+            if (ensureDirectoryForFile)
+            {
+                targetFilePath.EnsureDirectoryForFile();
+            }
+
+            File.Copy(filePath, targetFilePath, overwrite);
+        }
+
         #endregion
 
     }

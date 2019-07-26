@@ -48,14 +48,13 @@ namespace AppInstaller.RunModes
             const string appFilesTxt = "AppInstallerFiles.txt";
             var sourceFileName = Path.Combine(sourceDir, appFilesTxt);
             var destFileName = Path.Combine(tempDirectoryPath, appFilesTxt);
-            destFileName.EnsureDirectoryForFile();
-            File.Copy(sourceFileName, destFileName, true);
+            sourceFileName.CopyFile(destFileName);
             var fileNames = destFileName.ReadLines(true);
             foreach (var fileName in fileNames)
             {
                 var sourceFile = Path.Combine(sourceDir, fileName);
                 var destFile = Path.Combine(tempDirectoryPath, fileName);
-                File.Copy(sourceFile, destFile, true);
+                sourceFile.CopyFile(destFile);
             }
         }
     }
