@@ -30,7 +30,7 @@ namespace EasySharpWpf.Views.Layouts.Implementation
 
         public void AddAutoColumnDefinition(Grid grid)
         {
-            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
         }
 
         public void AddStarColumnDefinition(Grid grid, double ratio = 1)
