@@ -122,8 +122,6 @@
     <Compile Include="Wrappers\Core\IFileInfo.cs" />
     <Compile Include="Wrappers\Core\IFileSystemInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="RegularExpressions\Implementation\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
