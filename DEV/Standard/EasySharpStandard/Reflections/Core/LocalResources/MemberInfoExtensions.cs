@@ -25,7 +25,7 @@ namespace EasySharpStandard.Reflections.Core.LocalResources
             this MemberInfo memberInfo,
             string fileExtension = "")
         {
-            return GetSelectableDependentItems(memberInfo.GetRelativeMemberPath() + fileExtension);
+            return GetDependentItems(memberInfo.GetRelativeMemberPath() + fileExtension);
         }
 
         #endregion
@@ -54,7 +54,7 @@ namespace EasySharpStandard.Reflections.Core.LocalResources
             return selectableItems ?? new string[0];
         }
 
-        private static IDictionary<string, List<string>> GetSelectableDependentItems(string filePath)
+        private static IDictionary<string, List<string>> GetDependentItems(string filePath)
         {
             Try.To(() =>
             {
