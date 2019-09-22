@@ -61,10 +61,10 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             this.GridService.AddRowDefinition(mainGrid);
             this.GridService.AddChild(mainGrid, this.CreateEditView(editedModel), 0, 0);
 
-            var button = CreateOkCancelGrid(editedModel, window);
+            var okCancelGrid = CreateOkCancelGrid(editedModel, window);
 
             this.GridService.AddStarRowDefinition(mainGrid);
-            this.GridService.AddChild(mainGrid, button, 1, 0);
+            this.GridService.AddChild(mainGrid, okCancelGrid, 1, 0);
             return window.ShowDialog();
         }
 
