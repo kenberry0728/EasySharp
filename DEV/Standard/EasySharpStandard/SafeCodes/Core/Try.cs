@@ -25,13 +25,20 @@ namespace EasySharpStandard.SafeCodes.Core
 
         public static bool To(Action action)
         {
+            return To(action, out var exception);
+        }
+
+        public static bool To(Action action, out Exception exception)
+        {
             try
             {
                 action();
+                exception = default(Exception);
                 return true;
             }
-            catch
+            catch(Exception e)
             {
+                exception = e;
                 return false;
             }
         }

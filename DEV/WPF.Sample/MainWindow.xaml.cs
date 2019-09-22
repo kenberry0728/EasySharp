@@ -76,11 +76,16 @@ namespace EasySharpWpf.Sample
             var saveResult = Try.To(() =>
             {
                 this.bookShelf.SerializeAsJson(SaveFilePath);
-            });
+            },
+            out var exception);
 
             if (saveResult)
             {
                 MessageBox.Show("保存しました", "保存", MessageBoxButton.OKCancel);
+            }
+            else
+            {
+                MessageBox.Show($"保存に失敗しました\r\n{exception.Message}", "保存", MessageBoxButton.OKCancel);
             }
         }
 
