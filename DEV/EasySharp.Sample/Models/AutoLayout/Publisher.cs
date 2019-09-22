@@ -11,6 +11,10 @@ namespace EasySharp.Sample.Models.AutoLayout
 {
     public class Publisher : RailsModel
     {
+        [DisplayName("個人/企業")]
+        [RailsDataMemberBind]
+        public PublisherType PublisherType { get; set; }
+
         [DisplayName("出版社名")]
         [Required(ErrorMessage = "出版社名は必要です")]
         [RailsDataMemberCandidatesStringBind(nameof(Names))]
@@ -23,9 +27,5 @@ namespace EasySharp.Sample.Models.AutoLayout
         private static readonly Lazy<IDictionary<string, List<string>>> lazySelectableNames
             = new Lazy<IDictionary<string, List<string>>>(() =>
                 typeof(Publisher).GetLocalResourceDependentValues(nameof(Names), ".txt"));
-
-        [DisplayName("個人/企業")]
-        [RailsDataMemberBind]
-        public PublisherType PublisherType { get; set; }
     }
 }
