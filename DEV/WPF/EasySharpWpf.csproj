@@ -100,16 +100,6 @@
     <Folder Include="Views\Extensions\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Standard\EasySharpStandardMvvm\EasySharpStandardMvvm.csproj">
-      <Project>{dd2602ca-756b-4205-b866-3268af4ec71a}</Project>
-      <Name>EasySharpStandardMvvm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Standard\EasySharpStandard\EasySharpStandard.csproj">
-      <Project>{E4DECFA5-912D-4C5A-9C69-AFAABA2B0556}</Project>
-      <Name>EasySharpStandard</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="Controls\FilePathAndButtonControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,6 +121,16 @@
     <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Standard\EasySharpStandardMvvm\EasySharpNet46Mvvm.csproj">
+      <Project>{04cea6f5-987b-4969-a81b-94e7599baa97}</Project>
+      <Name>EasySharpNet46Mvvm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Standard\EasySharpStandard\EasySharpNet46.csproj">
+      <Project>{327e6282-f344-4665-a04d-d4af5596362d}</Project>
+      <Name>EasySharpNet46</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

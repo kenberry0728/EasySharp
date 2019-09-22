@@ -118,17 +118,17 @@
       <Project>{08900573-9B9F-4078-8E9C-9651890D3859}</Project>
       <Name>AppInstaller</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EasySharp.Sample\EasySharp.Sample.csproj">
-      <Project>{42e31f7a-7244-40b9-9b36-58504e9a28c0}</Project>
-      <Name>EasySharp.Sample</Name>
+    <ProjectReference Include="..\EasySharp.Sample\EasySharpNet46.Sample.csproj">
+      <Project>{ec512e4e-314e-4113-a70a-60a354950234}</Project>
+      <Name>EasySharpNet46.Sample</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Standard\EasySharpStandardMvvm\EasySharpStandardMvvm.csproj">
-      <Project>{dd2602ca-756b-4205-b866-3268af4ec71a}</Project>
-      <Name>EasySharpStandardMvvm</Name>
+    <ProjectReference Include="..\Standard\EasySharpStandardMvvm\EasySharpNet46Mvvm.csproj">
+      <Project>{04cea6f5-987b-4969-a81b-94e7599baa97}</Project>
+      <Name>EasySharpNet46Mvvm</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Standard\EasySharpStandard\EasySharpStandard.csproj">
-      <Project>{e4decfa5-912d-4c5a-9c69-afaaba2b0556}</Project>
-      <Name>EasySharpStandard</Name>
+    <ProjectReference Include="..\Standard\EasySharpStandard\EasySharpNet46.csproj">
+      <Project>{327e6282-f344-4665-a04d-d4af5596362d}</Project>
+      <Name>EasySharpNet46</Name>
     </ProjectReference>
     <ProjectReference Include="..\WPF\EasySharpWpf.csproj">
       <Project>{753d4463-7735-4478-93fb-34d6c4804486}</Project>
