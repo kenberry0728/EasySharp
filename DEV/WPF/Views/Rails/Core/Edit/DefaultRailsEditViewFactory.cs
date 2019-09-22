@@ -58,19 +58,19 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
                 Title = "編集：" + type.GetDisplayName(),
             };
 
-            // <Grid name = "mainGrid">
+            // <Grid name="mainGrid">
             //  <Grid.RowDefinitions>
-            //     <RowDefinition>
-            //     <RowDefinition Height="*"/>
+            //     <RowDefinition Height="*">
+            //     <RowDefinition Height="Auto"/>
             //  </Grid.RowDefinitions>
             //  <EditView Grid.Row=0>
             //  <Grid name = "okCancelGrid" Grid.Row=1/>
 
-            this.GridService.AddRowDefinition(mainGrid);
+            this.GridService.AddStarRowDefinition(mainGrid);
             this.GridService.AddChild(mainGrid, this.CreateEditView(editedModel), 0, 0);
 
             var okCancelGrid = CreateOkCancelGrid(editedModel, window);
-            this.GridService.AddStarRowDefinition(mainGrid);
+            this.GridService.AddAutoRowDefinition(mainGrid);
             this.GridService.AddChild(mainGrid, okCancelGrid, 1, 0);
 
             return window.ShowDialog();

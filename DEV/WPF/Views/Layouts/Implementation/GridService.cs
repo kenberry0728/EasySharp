@@ -54,7 +54,7 @@ namespace EasySharpWpf.Views.Layouts.Implementation
 
         public void AddAutoRowDefinition(Grid grid)
         {
-            grid.RowDefinitions.Add(new RowDefinition());
+            grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
         }
 
         public void AddStarRowDefinition(Grid grid, double ratio = 1)
