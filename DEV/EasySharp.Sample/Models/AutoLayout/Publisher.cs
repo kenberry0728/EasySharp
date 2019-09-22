@@ -22,10 +22,6 @@ namespace EasySharp.Sample.Models.AutoLayout
 
         [RailsCandidatesStringSourceBind(DependentPropertyName = nameof(PublisherType))]
         [IgnoreDataMember]
-        public IDictionary<string, List<string>> Names => lazySelectableNames.Value;
-
-        private static readonly Lazy<IDictionary<string, List<string>>> lazySelectableNames
-            = new Lazy<IDictionary<string, List<string>>>(() =>
-                typeof(Publisher).GetLocalResourceDependentValues(nameof(Names), ".txt"));
+        public IDictionary<string, List<string>> Names => typeof(Publisher).GetLocalResourceDependentValues(nameof(Names), ".txt");
     }
 }
