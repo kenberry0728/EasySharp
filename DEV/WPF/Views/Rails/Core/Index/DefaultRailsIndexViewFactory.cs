@@ -56,7 +56,7 @@ namespace EasySharpWpf.Views.Rails.Core.Index
             this.gridService.AddStarRowDefinition(grid);
             this.gridService.AddChild(grid, CreateTable(viewModel), 0, 0, 0);
 
-            this.gridService.AddStarRowDefinition(grid);
+            this.gridService.AddAutoRowDefinition(grid);
             this.gridService.AddChild(grid, CreateAddButton(viewModel), 1, 0, 0);
 
             return grid;
