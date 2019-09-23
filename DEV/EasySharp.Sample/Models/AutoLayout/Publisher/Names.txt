@@ -1,6 +1,6 @@
 ﻿Company
-	Kodansha
-	Shueisha
+	耕暖社	Kodansha
+	宗瑛社	Shueisha
 Individual
-	Yamada Hanako
-	Sekaino Onabe
+	山田 花子	Yamada Hanako
+	世界のお鍋	Sekaino Onabe
