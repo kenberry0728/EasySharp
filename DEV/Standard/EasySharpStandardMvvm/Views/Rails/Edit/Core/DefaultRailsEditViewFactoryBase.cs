@@ -162,9 +162,6 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
                 case Type type when type == typeof(DateTime):
                     uiElement = CreateEditDateTimeControl(type, this.RailsBindCreator.CreateRailsBinding(property));
                     break;
-                case Type type when type.IsClass:
-                    uiElement = CreateEditClassControl(property.GetValue(model));
-                    break;
                 case Type type when type.IsEnum:
                     uiElement = CreateEditEnumControl(type, this.RailsBindCreator.CreateRailsBinding(property));
                     break;
