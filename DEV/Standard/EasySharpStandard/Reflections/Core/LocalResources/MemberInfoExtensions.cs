@@ -65,7 +65,20 @@ namespace EasySharpStandard.Reflections.Core.LocalResources
 
         private static IDictionary<string, List<StringUIValue>> ToDependentUIValues(this IDictionary<string, List<string>> localResourceDependentValues)
         {
-            return localResourceDependentValues.ToDictionary(d => d.Key, d => d.Value.Select(s => new StringUIValue(s, s)).ToList());
+            return localResourceDependentValues.ToDictionary(d => d.Key, d => d.Value.Select(s => ToUIValue(s)).ToList());
+        }
+
+        private static StringUIValue ToUIValue(string s)
+        {
+            var split = s.Split('\t');
+            if (split.Length == 2)
+            {
+                return new StringUIValue(split[0], split[1]);
+            }
+            else
+            {
+                return new StringUIValue(s, s);
+            }
         }
 
         private static IEnumerable<string> GetSelectableItems(string filePath)
