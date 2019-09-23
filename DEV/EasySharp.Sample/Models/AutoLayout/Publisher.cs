@@ -2,6 +2,7 @@
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpStandardMvvm.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -26,10 +27,16 @@ namespace EasySharp.Sample.Models.AutoLayout
             DislayMemberPath = nameof(StringUIValue.DisplayValue),
             SelectedValuePath = nameof(StringUIValue.Value))]
         [IgnoreDataMember]
-        public IDictionary<string, List<StringUIValue>> Names 
-            => typeof(Publisher).GetLocalResourceDependentMultiValues(nameof(Names), ".txt")
-                .ToDictionary(
+        public IDictionary<string, List<StringUIValue>> Names
+            => lazyNames.Value;
+
+        // TODO:if rmoving lazy stack overflow occurs when select value
+        private static readonly Lazy<IDictionary<string, List<StringUIValue>>> lazyNames
+            = new Lazy<IDictionary<string, List<StringUIValue>>>(() =>
+            typeof(Publisher).GetLocalResourceDependentMultiValues(nameof(Names), ".txt")
+            .ToDictionary(
                 d => d.Key,
-                d => d.Value.Select(values => new StringUIValue(values[0], values[1])).ToList());
+                d => d.Value.Select(values => new StringUIValue(values[0], values[1])).ToList()));
+
     }
 }

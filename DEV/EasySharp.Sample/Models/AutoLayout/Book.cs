@@ -32,12 +32,16 @@ namespace EasySharp.Sample.Models.AutoLayout
         public string Author { get; set; } = string.Empty;
 
         [RailsCandidatesStringSourceBind(
-            DislayMemberPath =  nameof(StringUIValue.DisplayValue), 
+            DislayMemberPath = nameof(StringUIValue.DisplayValue),
             SelectedValuePath = nameof(StringUIValue.Value))]
         [IgnoreDataMember]
-        public IEnumerable<StringUIValue> Authors
-            => typeof(Book).GetLocalResourceMultiValues(nameof(Authors), ".txt")
-            .Select(values => new StringUIValue(values[0], values[1]));
+        public IEnumerable<StringUIValue> Authors => lazyAuthors.Value;
+
+        // TODO:if rmoving lazy stack overflow occurs when select value
+        private static readonly Lazy<IEnumerable<StringUIValue>> lazyAuthors
+            = new Lazy<IEnumerable<StringUIValue>>(() =>
+                typeof(Book).GetLocalResourceMultiValues(nameof(Authors), ".txt")
+                            .Select(values => new StringUIValue(values[0], values[1])));
 
         [DisplayName("出版社")]
         [RailsDataMemberBind]
