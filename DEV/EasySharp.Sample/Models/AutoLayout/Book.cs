@@ -2,10 +2,12 @@
 using EasySharpStandard.Validations.Core.Attributes;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Models.Rails.Core;
+using EasySharpStandardMvvm.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace EasySharp.Sample.Models.AutoLayout
@@ -29,10 +31,13 @@ namespace EasySharp.Sample.Models.AutoLayout
         [Required(ErrorMessage = "著者名は必要です")]
         public string Author { get; set; } = string.Empty;
 
-        [RailsCandidatesStringSourceBind]
+        [RailsCandidatesStringSourceBind(
+            DislayMemberPath =  nameof(StringUIValue.DisplayValue), 
+            SelectedValuePath = nameof(StringUIValue.Value))]
         [IgnoreDataMember]
-        public IEnumerable<string> Authors 
-            => typeof(Book).GetLocalResourceValues(nameof(Authors), ".txt");
+        public IEnumerable<StringUIValue> Authors
+            => typeof(Book).GetLocalResourceMultiValues(nameof(Authors), ".txt")
+            .Select(values => new StringUIValue(values[0], values[1]));
 
         [DisplayName("出版社")]
         [RailsDataMemberBind]

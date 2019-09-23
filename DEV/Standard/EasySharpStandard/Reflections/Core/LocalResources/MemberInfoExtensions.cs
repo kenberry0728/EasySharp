@@ -54,7 +54,7 @@ namespace EasySharpStandard.Reflections.Core.LocalResources
             return type.GetProperty(propertyName).GetLocalResourceValues(fileExtension);
         }
 
-        public static IEnumerable<string[]> GetLocalResourceUIValues(this Type type, string propertyName, string fileExtension = "")
+        public static IEnumerable<string[]> GetLocalResourceMultiValues(this Type type, string propertyName, string fileExtension = "")
         {
             return type.GetProperty(propertyName).GetLocalResourceValues(fileExtension).Select(v => v.ToMultiValues());
         }

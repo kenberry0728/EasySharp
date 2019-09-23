@@ -2,7 +2,7 @@
 {
     public class StringUIValue : UIValue<string, string>
     {
-        public StringUIValue(string value, string displayValue) : base(value, displayValue)
+        public StringUIValue(string displayValue, string value) : base(displayValue, value)
         {
         }
     }

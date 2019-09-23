@@ -128,9 +128,12 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
                     {
                         var dependentProperty = model.GetType().GetProperty(
                             candidatesStringAttribute.CandidatesPropertyName);
+                        var candidateSourceAttribute = dependentProperty.GetCustomAttribute<RailsCandidatesStringSourceBindAttribute>();
                         uiElement = CreateSelectFromCandidateControl(
                             this.RailsBindCreator.CreateRailsBinding(property),
-                            this.RailsBindCreator.CreateRailsBinding(dependentProperty));
+                            this.RailsBindCreator.CreateRailsBinding(dependentProperty),
+                            candidateSourceAttribute?.SelectedValuePath,
+                            candidateSourceAttribute?.DislayMemberPath);
                     }
                     else
                     {

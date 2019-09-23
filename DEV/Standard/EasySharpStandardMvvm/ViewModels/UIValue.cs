@@ -2,14 +2,14 @@
 {
     public class UIValue<TValue, TDisplayValue>
     {
-        public UIValue(TValue value, TDisplayValue displayValue)
+        public UIValue(TDisplayValue displayValue, TValue value)
         {
-            this.Value = value;
             this.DisplayValue = displayValue;
+            this.Value = value;
         }
 
-        public TValue Value { get; }
-
         public TDisplayValue DisplayValue { get; }
+
+        public TValue Value { get; }
     }
 }
