@@ -54,9 +54,19 @@ namespace EasySharpStandard.Reflections.Core.LocalResources
             return type.GetProperty(propertyName).GetLocalResourceValues(fileExtension);
         }
 
+        public static IEnumerable<StringUIValue> GetLocalResourceUIValues(this Type type, string propertyName, string fileExtension = "")
+        {
+            return type.GetProperty(propertyName).GetLocalResourceValues(fileExtension).Select(v => v.ToUIValue());
+        }
+
         public static IEnumerable<string> GetLocalResourceValues(this MemberInfo memberInfo, string fileExtension = "")
         {
             return GetSelectableItems(memberInfo.GetRelativeMemberPath() + fileExtension);
+        }
+
+        public static IEnumerable<StringUIValue> GetLocalResourceUIValues(this MemberInfo memberInfo, string fileExtension = "")
+        {
+            return GetSelectableItems(memberInfo.GetRelativeMemberPath() + fileExtension).Select(v => v.ToUIValue());
         }
 
         #endregion
@@ -65,10 +75,10 @@ namespace EasySharpStandard.Reflections.Core.LocalResources
 
         private static IDictionary<string, List<StringUIValue>> ToDependentUIValues(this IDictionary<string, List<string>> localResourceDependentValues)
         {
-            return localResourceDependentValues.ToDictionary(d => d.Key, d => d.Value.Select(s => ToUIValue(s)).ToList());
+            return localResourceDependentValues.ToDictionary(d => d.Key, d => d.Value.Select(s => s.ToUIValue()).ToList());
         }
 
-        private static StringUIValue ToUIValue(string s)
+        private static StringUIValue ToUIValue(this string s)
         {
             var split = s.Split('\t');
             if (split.Length == 2)
