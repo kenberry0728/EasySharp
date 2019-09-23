@@ -1,4 +1,4 @@
-﻿namespace EasySharpStandard.Reflections.Core.LocalResources
+﻿namespace EasySharpStandardMvvm.ViewModels
 {
     public class StringUIValue : UIValue<string, string>
     {

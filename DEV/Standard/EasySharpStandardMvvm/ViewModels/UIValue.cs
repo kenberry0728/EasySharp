@@ -1,4 +1,4 @@
-﻿namespace EasySharpStandard.Reflections.Core.LocalResources
+﻿namespace EasySharpStandardMvvm.ViewModels
 {
     public class UIValue<TValue, TDisplayValue>
     {

@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>Net46</TargetFramework>
+    <AssemblyName>EasySharpNet46Mvvm</AssemblyName>
+    <RootNamespace>EasySharpStandardMvvm</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
