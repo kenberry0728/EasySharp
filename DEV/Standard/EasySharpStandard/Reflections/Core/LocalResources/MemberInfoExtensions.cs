@@ -28,6 +28,23 @@ namespace EasySharpStandard.Reflections.Core.LocalResources
             return GetDependentItems(memberInfo.GetRelativeMemberPath() + fileExtension);
         }
 
+        public static IDictionary<string, List<StringUIValue>> GetLocalResourceDependentUIValues(
+            this Type type,
+            string propertyName,
+            string fileExtension = "")
+        {
+            return type.GetLocalResourceDependentValues(propertyName, fileExtension)
+                .ToDependentUIValues();
+        }
+
+        public static IDictionary<string, List<StringUIValue>> GetLocalResourceDependentUIValues(
+            this MemberInfo memberInfo,
+            string fileExtension = "")
+        {
+            return memberInfo.GetLocalResourceDependentValues(fileExtension)
+                .ToDependentUIValues();
+        }
+
         #endregion
 
         #region GetLocalResourceValues
@@ -40,6 +57,15 @@ namespace EasySharpStandard.Reflections.Core.LocalResources
         public static IEnumerable<string> GetLocalResourceValues(this MemberInfo memberInfo, string fileExtension = "")
         {
             return GetSelectableItems(memberInfo.GetRelativeMemberPath() + fileExtension);
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private static IDictionary<string, List<StringUIValue>> ToDependentUIValues(this IDictionary<string, List<string>> localResourceDependentValues)
+        {
+            return localResourceDependentValues.ToDictionary(d => d.Key, d => d.Value.Select(s => new StringUIValue(s, s)).ToList());
         }
 
         private static IEnumerable<string> GetSelectableItems(string filePath)

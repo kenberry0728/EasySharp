@@ -9,6 +9,7 @@
 
   <PropertyGroup>
     <TargetFramework>Net46</TargetFramework>
+    <RootNamespace>EasySharpStandard</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
