@@ -29,14 +29,10 @@ namespace EasySharp.Sample.Models.AutoLayout
         [Required(ErrorMessage = "著者名は必要です")]
         public string Author { get; set; } = string.Empty;
 
-        #region SelectableAuthors
-
         [RailsCandidatesStringSourceBind]
         [IgnoreDataMember]
         public IEnumerable<string> Authors 
             => typeof(Book).GetLocalResourceValues(nameof(Authors), ".txt");
-
-        #endregion
 
         [DisplayName("出版社")]
         [RailsDataMemberBind]
