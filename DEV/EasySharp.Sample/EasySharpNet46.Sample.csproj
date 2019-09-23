@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Models\AutoLayout\Book\SelectableAuthors.txt">
+    <Content Include="Models\AutoLayout\Book\Authors.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Models\AutoLayout\Publisher\Names.txt">

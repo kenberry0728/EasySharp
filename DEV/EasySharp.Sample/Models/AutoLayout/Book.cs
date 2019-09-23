@@ -25,7 +25,7 @@ namespace EasySharp.Sample.Models.AutoLayout
         public int Price { get; set; } = 0;
 
         [DisplayName("著者")]
-        [RailsDataMemberCandidatesStringBind(nameof(SelectableAuthors))]
+        [RailsDataMemberCandidatesStringBind(nameof(Authors))]
         [Required(ErrorMessage = "著者名は必要です")]
         public string Author { get; set; } = string.Empty;
 
@@ -33,8 +33,8 @@ namespace EasySharp.Sample.Models.AutoLayout
 
         [RailsCandidatesStringSourceBind]
         [IgnoreDataMember]
-        public IEnumerable<string> SelectableAuthors 
-            => typeof(Book).GetLocalResourceValues(nameof(SelectableAuthors), ".txt");
+        public IEnumerable<string> Authors 
+            => typeof(Book).GetLocalResourceValues(nameof(Authors), ".txt");
 
         #endregion
 
