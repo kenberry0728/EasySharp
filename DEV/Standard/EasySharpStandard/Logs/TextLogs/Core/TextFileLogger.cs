@@ -1,6 +1,5 @@
 ﻿using EasySharpStandard.Logs.TextLogs.Core;
 using EasySharpStandard.SafeCodes.Core;
-using System;
 using System.IO;
 using System.Text;
 
@@ -9,28 +8,43 @@ namespace EasySharpStandard.Logs.TextLogs.Implementations
     public class TextFileLogger : ITextLogger
     {
         private readonly string fileName;
+        private readonly bool throwException;
 
-        public TextFileLogger(string prefix, DateTime date, string suffix)
+        public TextFileLogger(string fileName, bool throwException)
         {
-            this.fileName = $"{prefix}{date}{suffix}";
+            this.fileName = fileName;
+            this.throwException = throwException;
         }
 
-        public void Write(string message)
+        public virtual void Write(string message)
         {
-            Retry.Run(() =>
+            var result = Retry.Run(() =>
             {
                 using (var sw = new StreamWriter(this.fileName, true, Encoding.UTF8))
                 {
                     sw.Write(message);
                 }
             });
+
+            if (throwException && !result)
+            {
+                throw new IOException();
+            }
         }
 
-        public void WriteLine(params string[] messages)
+        public virtual void WriteLine(params string[] messages)
         {
-            using (var sw = new StreamWriter(this.fileName, true, Encoding.UTF8))
+            var result = Retry.Run(() =>
             {
-                sw.WriteLine(string.Join("\t", messages));
+                using (var sw = new StreamWriter(this.fileName, true, Encoding.UTF8))
+                {
+                    sw.WriteLine(string.Join("\t", messages));
+                }
+            });
+
+            if (throwException && !result)
+            {
+                throw new IOException();
             }
         }
     }
