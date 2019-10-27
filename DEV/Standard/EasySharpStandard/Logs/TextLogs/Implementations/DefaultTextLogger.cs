@@ -10,9 +10,9 @@ namespace EasySharpStandard.Logs.TextLogs.Implementations
             Debug.Write(message);
         }
 
-        public void WriteLine(string message)
+        public void WriteLine(params string[] messages)
         {
-            Debug.WriteLine(message);
+            Debug.WriteLine(string.Join("\t", messages));
         }
     }
 }

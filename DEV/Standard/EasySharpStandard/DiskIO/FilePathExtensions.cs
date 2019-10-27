@@ -49,6 +49,5 @@ namespace EasySharpStandard.DiskIO
         }
 
         #endregion
-
     }
 }

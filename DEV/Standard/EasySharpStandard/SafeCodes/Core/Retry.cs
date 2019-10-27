@@ -5,11 +5,11 @@ namespace EasySharpStandard.SafeCodes.Core
 {
     public static class Retry
     {
-        public static void Run(Action action, int maxRetry = 10, int intervalMillisecond = 200)
+        public static bool Run(Action action, int maxRetry = 10, int intervalMillisecond = 200)
         {
             if (Try.To(action))
             {
-                return;
+                return true;
             }
 
             for (int i = 1; i < maxRetry; i++)
@@ -20,6 +20,8 @@ namespace EasySharpStandard.SafeCodes.Core
                     break;
                 }
             }
+
+            return false;
         }
 
         public static T Run<T>(Func<T> func, int maxRetry = 10, int intervalMillisecond = 200)

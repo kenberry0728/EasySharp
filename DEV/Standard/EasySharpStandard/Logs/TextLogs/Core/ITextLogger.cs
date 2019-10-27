@@ -4,6 +4,6 @@
     {
         void Write(string message);
 
-        void WriteLine(string message);
+        void WriteLine(params string[] messages);
     }
 }
