@@ -11,5 +11,17 @@ namespace EasySharpStandard.Exceptions
                 throw new ArgumentException(argumentName);
             }
         }
+
+        public static string ToEmptyIfNull(this string argument)
+        {
+            if (argument == null)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return argument;
+            }
+        }
     }
 }
