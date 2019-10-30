@@ -42,5 +42,31 @@ namespace EasySharpStandard.SafeCodes.Core
 
             return default(T);
         }
+
+        public static T Until<T>(Func<T> func, Func<T, bool> endPredicate, int maxRetry = 10, int intervalMillisecond = 200)
+        {
+            if (Try.To(func, out var returnValue))
+            {
+                if (endPredicate(returnValue))
+                {
+                    return returnValue;
+                }
+            }
+
+            for (int i = 1; i < maxRetry; i++)
+            {
+                Thread.Sleep(intervalMillisecond);
+                if (Try.To(func, out returnValue))
+                {
+                    if (endPredicate(returnValue))
+                    {
+                        return returnValue;
+                    }
+                }
+            }
+
+            return default(T);
+        }
+
     }
 }

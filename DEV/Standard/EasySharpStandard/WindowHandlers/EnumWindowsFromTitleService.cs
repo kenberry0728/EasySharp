@@ -45,10 +45,10 @@ namespace EasySharpStandard.WindowHandlers
             int textLen = GetWindowTextLength(hWnd);
             if (0 < textLen)
             {
-                var tsb = new StringBuilder(textLen + 1);
-                GetWindowText(hWnd, tsb, tsb.Capacity);
+                var windowTitle = new StringBuilder(textLen + 1);
+                GetWindowText(hWnd, windowTitle, windowTitle.Capacity);
 
-                if (this.windowTitlePredicate(tsb.ToString()))
+                if (this.windowTitlePredicate(windowTitle.ToString()))
                 {
                     this.windowHandlers.Add(hWnd);
                 }
