@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasySharpStandard.SafeCodes.Core;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -70,14 +71,9 @@ namespace EasySharpStandard.DiskIO
         {
             var previousCurrentPath = Directory.GetCurrentDirectory();
             Directory.SetCurrentDirectory(directoryPath);
-            try
-            {
-                action();
-            }
-            finally
-            {
-                Directory.SetCurrentDirectory(previousCurrentPath);
-            }
+            Try.Finally(
+                action, 
+                () => { Directory.SetCurrentDirectory(previousCurrentPath); });
         }
 
         #endregion
