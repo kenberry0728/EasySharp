@@ -20,6 +20,21 @@ namespace EasySharpStandard.UIAutomations.Core
             return elements;
         }
 
+        public static bool Invoke(
+            this AutomationElement automationElement,
+            string value)
+        {
+            if (automationElement.GetCurrentPattern(ValuePattern.Pattern) is InvokePattern buttonPattern)
+            {
+                buttonPattern.Invoke();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public static bool SetValue(
             this AutomationElement automationElement,
             string value)
@@ -33,6 +48,17 @@ namespace EasySharpStandard.UIAutomations.Core
             {
                 return false;
             }
+        }
+
+        public static string GetValue(this AutomationElement automationElement)
+        {
+            if (automationElement.GetCurrentPattern(ValuePattern.Pattern) is ValuePattern valuePattern
+                && !valuePattern.Current.IsReadOnly)
+            {
+                return valuePattern.Current.Value;
+            }
+
+            return null;
         }
     }
 }
