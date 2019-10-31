@@ -14,7 +14,8 @@ namespace EasySharpStandard.UIAutomations.Core
             var elements = automationElement.FindAll(treeScope, conditions[0]).OfType<AutomationElement>();
             for (int i = 1; i < conditions.Length; i++)
             {
-                elements = elements.OfType<AutomationElement>().Where(ae => ae.FindFirst(TreeScope.Element, conditions[i]) != null);
+                elements = elements.OfType<AutomationElement>()
+                    .Where(ae => ae.FindFirst(TreeScope.Element, conditions[i]) != null).ToList();
             }
 
             return elements;

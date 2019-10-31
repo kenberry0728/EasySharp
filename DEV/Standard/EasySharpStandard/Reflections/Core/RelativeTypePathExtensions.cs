@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace EasySharpStandard.Reflections.Core
 {
-    public static class MemberInfoExtensions
+    public static class RelativeTypePathExtensions
     {
         public static string GetRelativeTypePath(this Type type)
         {
