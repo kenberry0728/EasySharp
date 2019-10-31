@@ -69,11 +69,15 @@ namespace EasySharpStandard.DiskIO
         public static void TemporarySetCurrentDirectory(this string directoryPath, Action action)
         {
             var previousCurrentPath = Directory.GetCurrentDirectory();
-            Directory.SetCurrentDirectory(directory);
-
-            action();
-
-            Directory.SetCurrentDirectory(previousCurrentPath);
+            Directory.SetCurrentDirectory(directoryPath);
+            try
+            {
+                action();
+            }
+            finally
+            {
+                Directory.SetCurrentDirectory(previousCurrentPath);
+            }
         }
 
         #endregion

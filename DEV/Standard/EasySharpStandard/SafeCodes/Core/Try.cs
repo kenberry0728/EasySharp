@@ -57,5 +57,33 @@ namespace EasySharpStandard.SafeCodes.Core
         }
 
         #endregion
+
+        #region Finally
+
+        public static T Finally<T>(Func<T> func, Action finallyAction)
+        {
+            try
+            {
+                return func();
+            }
+            finally
+            {
+                finallyAction();
+            }
+        }
+
+        public static void Finally(Action func, Action finallyAction)
+        {
+            try
+            {
+                func();
+            }
+            finally
+            {
+                finallyAction();
+            }
+        }
+
+        #endregion
     }
 }

@@ -30,7 +30,7 @@ namespace EasySharp.Sample.Models.AutoLayout
         public IDictionary<string, List<StringUIValue>> Names
             => lazyNames.Value;
 
-        // TODO:if rmoving lazy stack overflow occurs when select value
+        // TODO:if rmoving lazy, stack overflow occurs when select value
         private static readonly Lazy<IDictionary<string, List<StringUIValue>>> lazyNames
             = new Lazy<IDictionary<string, List<StringUIValue>>>(() =>
             typeof(Publisher).GetLocalResourceDependentMultiValues(nameof(Names), ".txt")
