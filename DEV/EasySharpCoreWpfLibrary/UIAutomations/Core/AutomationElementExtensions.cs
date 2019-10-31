@@ -20,13 +20,11 @@ namespace EasySharpStandard.UIAutomations.Core
             return elements;
         }
 
-        public static bool Invoke(
-            this AutomationElement automationElement,
-            string value)
+        public static bool Invoke(this AutomationElement automationElement)
         {
-            if (automationElement.GetCurrentPattern(ValuePattern.Pattern) is InvokePattern buttonPattern)
+            if (automationElement.GetCurrentPattern(ValuePattern.Pattern) is InvokePattern butotn)
             {
-                buttonPattern.Invoke();
+                butotn.Invoke();
                 return true;
             }
             else
