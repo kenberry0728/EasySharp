@@ -19,5 +19,20 @@ namespace EasySharpStandard.UIAutomations.Core
 
             return elements;
         }
+
+        public static bool SetValue(
+            this AutomationElement automationElement,
+            string value)
+        {
+            if (automationElement.GetCurrentPattern(ValuePattern.Pattern) is ValuePattern valuePattern)
+            {
+                valuePattern.SetValue(value);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
