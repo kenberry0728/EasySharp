@@ -29,7 +29,7 @@ namespace EasySharpCoreWpfLibrary.UIAutomations.Core
         {
             var elements = rootElement.FindAll(
                 TreeScope.Descendants,
-                conditions.Concat(new[] { ConditionFactory.EditControlPropertyCondition() }).ToArray())
+                conditions.Concat(new[] { ConditionFactory.EditControlProperty() }).ToArray())
                 .ToList();
             if (elements.Count != 1)
             {
