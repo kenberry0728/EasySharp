@@ -9,6 +9,11 @@ namespace EasySharpCoreWpfLibrary.UIAutomations.Core
                 AutomationElement.ControlTypeProperty,
                 ControlType.Edit);
 
+        public static Condition ButtonControlProperty()
+            => new PropertyCondition(
+                AutomationElement.ControlTypeProperty,
+                ControlType.Button);
+
         public static Condition NameProperty(string name)
             => new PropertyCondition(
                 AutomationElement.NameProperty,

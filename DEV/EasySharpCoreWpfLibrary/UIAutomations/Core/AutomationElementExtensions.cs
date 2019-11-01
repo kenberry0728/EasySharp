@@ -25,7 +25,6 @@ namespace EasySharpCoreWpfLibrary.UIAutomations.Core
             this AutomationElement rootElement,
             string setValue,
             params Condition[] conditions)
-
         {
             var elements = rootElement.FindAll(
                 TreeScope.Descendants,
@@ -37,20 +36,7 @@ namespace EasySharpCoreWpfLibrary.UIAutomations.Core
             }
 
             elements[0].SetValue(setValue);
-            return elements[0].GetValue() == setValue;
-        }
-
-        public static bool Invoke(this AutomationElement automationElement)
-        {
-            if (automationElement.GetCurrentPattern(ValuePattern.Pattern) is InvokePattern butotn)
-            {
-                butotn.Invoke();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return true;
         }
 
         public static bool SetValue(
@@ -78,5 +64,35 @@ namespace EasySharpCoreWpfLibrary.UIAutomations.Core
 
             return null;
         }
+
+        public static bool PressButtonControlWithin(
+            this AutomationElement rootElement,
+            params Condition[] conditions)
+        {
+            var elements = rootElement.FindAll(
+                TreeScope.Descendants,
+                conditions.Concat(new[] { ConditionFactory.ButtonControlProperty() }).ToArray())
+                .ToList();
+            if (elements.Count != 1)
+            {
+                return false;
+            }
+
+            return elements[0].Invoke();
+        }
+
+        public static bool Invoke(this AutomationElement automationElement)
+        {
+            if (automationElement.GetCurrentPattern(InvokePattern.Pattern) is InvokePattern butotn)
+            {
+                butotn.Invoke();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }
