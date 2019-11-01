@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using EasySharpCoreWpfLibrary.UIAutomations.Core;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Automation;
 
-namespace EasySharpStandard.UIAutomations.Core
+namespace EasySharpCoreWpfLibrary.UIAutomations.Core
 {
     public static class AutomationElementExtensions
     {
@@ -19,6 +20,25 @@ namespace EasySharpStandard.UIAutomations.Core
             }
 
             return elements;
+        }
+
+        public static bool SetValueToEditControlWithin(
+            this AutomationElement rootElement,
+            string setValue,
+            params Condition[] conditions)
+
+        {
+            var elements = rootElement.FindAll(
+                TreeScope.Descendants,
+                conditions.Concat(new[] { ConditionFactory.EditControlPropertyCondition }).ToArray())
+                .ToList();
+            if (elements.Count != 1)
+            {
+                return false;
+            }
+
+            elements[0].SetValue(setValue);
+            return elements[0].GetValue() == setValue;
         }
 
         public static bool Invoke(this AutomationElement automationElement)
