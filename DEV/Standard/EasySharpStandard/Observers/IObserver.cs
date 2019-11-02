@@ -2,8 +2,10 @@
 
 namespace EasySharpStandard.Observers
 {
-    public interface IObserver<TStateEnum> where TStateEnum : struct
+    public interface IObserver<TState>
     {
-        event EventHandler<StateChangedEventArg<TStateEnum>> StateChange;
+        event EventHandler<StateChangedEventArg<TState>> StateChange;
+
+        TState CurrentState { get; }
     }
 }

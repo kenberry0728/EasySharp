@@ -1,10 +1,9 @@
 ﻿namespace EasySharpStandard.Observers
 {
-    public class StateChangedEventArg<TStateEnum>
-        where TStateEnum : struct
+    public class StateChangedEventArg<TState>
     {
-        public TStateEnum Old { get; protected set; }
+        public TState Old { get; protected set; }
 
-        public TStateEnum New { get; protected set; }
+        public TState New { get; protected set; }
     }
 }

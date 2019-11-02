@@ -2,12 +2,13 @@
 
 namespace EasySharpStandard.Observers
 {
-    public abstract class ObserverBase<TStateEnum> : IObserver<TStateEnum> 
-        where TStateEnum : struct
+    public abstract class ObserverBase<TState> : IObserver<TState> 
     {
-        public event EventHandler<StateChangedEventArg<TStateEnum>> StateChange;
+        public event EventHandler<StateChangedEventArg<TState>> StateChange;
 
-        protected void OnStateChange(object sender, StateChangedEventArg<TStateEnum> e)
+        public TState CurrentState { get; protected set; }
+
+        protected void OnStateChange(object sender, StateChangedEventArg<TState> e)
         {
             this.StateChange?.Invoke(sender, e);
         }
