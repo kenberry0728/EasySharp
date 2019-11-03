@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 
-namespace EasySharp.Sample.Models.AutoLayout
+namespace EasySharpStandard.Sample.Models.AutoLayout
 {
     [DisplayName("本")]
     public class Book : RailsModel, IValidatableObject

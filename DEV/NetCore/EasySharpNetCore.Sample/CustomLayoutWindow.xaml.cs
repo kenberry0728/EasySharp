@@ -3,7 +3,7 @@ using EasySharpWpf.Views.Rails.Core.Edit;
 using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 using System.Windows;
 
-namespace EasySharpWpf.Sample
+namespace EasySharpNetCore.Sample
 {
     /// <summary>
     /// Interaction logic for CustomLayoutWindow.xaml

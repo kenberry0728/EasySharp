@@ -2,7 +2,7 @@
 using EasySharpStandardMvvm.Models.Rails.Core;
 using System.ComponentModel;
 
-namespace EasySharp.Sample.Models.AutoLayout
+namespace EasySharpStandard.Sample.Models.AutoLayout
 {
     public class BookShelf : RailsModel
     {

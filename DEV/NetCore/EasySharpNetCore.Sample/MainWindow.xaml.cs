@@ -1,13 +1,13 @@
 ﻿using System.IO;
 using System.Reflection;
-using EasySharp.Sample.Models.AutoLayout;
 using EasySharpStandard.DiskIO.Serializers;
 using EasySharpStandard.SafeCodes.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
 using System.Windows;
 using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
+using EasySharpStandard.Sample.Models.AutoLayout;
 
-namespace EasySharpWpf.Sample
+namespace EasySharpNetCore.Sample
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

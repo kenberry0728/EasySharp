@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 
-namespace EasySharp.Sample.Models.AutoLayout
+namespace EasySharpStandard.Sample.Models.AutoLayout
 {
     public class Publisher : RailsModel
     {
