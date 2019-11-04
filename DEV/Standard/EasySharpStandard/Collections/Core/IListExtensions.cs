@@ -17,12 +17,17 @@ namespace EasySharpStandard.Collections.Core
             return list.OfType<T>();
         }
 
-        public static void Remove<T>(this IList<T> list, Func<T, bool> predicate)
+        public static bool Contains<T>(this IList<T> list, Func<T, bool> predicate)
         {
-            var removeItems = list.Where(predicate);
-            foreach (var removeItem in removeItems)
+            return list.Any(i => predicate(i));
+        }
+
+        public static void Remove<T>(this List<T> list, Func<T, bool> predicate)
+        {
+            var index = list.FindIndex(t => predicate(t));
+            if (0 < index)
             {
-                list.Remove(removeItem);
+                list.RemoveAt(index);
             }
         }
     }
