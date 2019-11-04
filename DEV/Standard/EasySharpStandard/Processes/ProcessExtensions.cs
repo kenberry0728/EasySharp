@@ -1,9 +1,20 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace EasySharpStandard.Processes
 {
     public static class ProcessExtensions
     {
+        public static void HandleExitedEvent(this Process process, EventHandler eventHandler)
+        {
+            if (!process.EnableRaisingEvents && !process.HasExited)
+            {
+                process.EnableRaisingEvents = true;
+            }
+
+            process.Exited += eventHandler;
+        }
+
         public static string RunProcessAndGetStandardOutput(this string processPath, string arguments = "")
         {
             var process = new Process
