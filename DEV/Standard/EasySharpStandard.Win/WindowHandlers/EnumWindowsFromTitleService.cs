@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -20,7 +21,7 @@ namespace EasySharpStandard.Win.WindowHandlers
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern int GetWindowTextLength(IntPtr hWnd);
 
-        private readonly List<IntPtr> windowHandlers = new List<IntPtr>();
+        private readonly List<WindowInfo> windowInfos = new List<WindowInfo>();
         private readonly Func<string, bool> windowTitlePredicate;
 
         private EnumWindowsFromTitleService(Func<string, bool> windowTitlePredicate)
@@ -37,7 +38,14 @@ namespace EasySharpStandard.Win.WindowHandlers
         {
             var instance = new EnumWindowsFromTitleService(titlePredicate);
             EnumWindows(new EnumWindowsDelegate(instance.EnumWindowCallBack), IntPtr.Zero);
-            return instance.windowHandlers;
+            return instance.windowInfos.Select(wi => wi.Handle);
+        }
+
+        public static IEnumerable<WindowInfo> GetWindowInfos(Func<string, bool> titlePredicate)
+        {
+            var instance = new EnumWindowsFromTitleService(titlePredicate);
+            EnumWindows(new EnumWindowsDelegate(instance.EnumWindowCallBack), IntPtr.Zero);
+            return instance.windowInfos;
         }
 
         private bool EnumWindowCallBack(IntPtr hWnd, IntPtr lparam)
@@ -45,12 +53,13 @@ namespace EasySharpStandard.Win.WindowHandlers
             int textLen = GetWindowTextLength(hWnd);
             if (0 < textLen)
             {
-                var windowTitle = new StringBuilder(textLen + 1);
-                GetWindowText(hWnd, windowTitle, windowTitle.Capacity);
+                var windowTitleStringBuilder = new StringBuilder(textLen + 1);
+                GetWindowText(hWnd, windowTitleStringBuilder, windowTitleStringBuilder.Capacity);
 
-                if (this.windowTitlePredicate(windowTitle.ToString()))
+                var windowTitle = windowTitleStringBuilder.ToString();
+                if (this.windowTitlePredicate(windowTitle))
                 {
-                    this.windowHandlers.Add(hWnd);
+                    this.windowInfos.Add(new WindowInfo(hWnd, windowTitle));
                 }
             }
 
