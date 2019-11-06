@@ -1,4 +1,5 @@
-﻿using EasySharpStandard.Logs.TextLogs.Implementations;
+﻿using EasySharpStandard.DiskIO;
+using EasySharpStandard.Logs.TextLogs.Implementations;
 using System;
 using System.IO;
 using System.Linq;
@@ -8,12 +9,12 @@ namespace EasySharpStandard.Logs.TextLogs.Core
     public class DateTextFileCurrentTimeLogger : TextFileLogger
     {
         public DateTextFileCurrentTimeLogger(bool throwException)
-            : this(DateTime.Today.ToShortDateString() + ".log", throwException)
+            : this(DateTime.Today.ToShortDateFileNameString() + ".log", throwException)
         {
         }
 
         public DateTextFileCurrentTimeLogger(string directory, string prefix, string sufix, bool throwException)
-            : this(Path.Combine(directory, prefix + DateTime.Today.ToShortDateString() + sufix), throwException)
+            : this(Path.Combine(directory, prefix + DateTime.Today.ToShortDateFileNameString() + sufix), throwException)
         {
         }
 
@@ -24,7 +25,7 @@ namespace EasySharpStandard.Logs.TextLogs.Core
 
         public override void WriteLine(params string[] messages)
         {
-            base.WriteLine(new string[] { DateTime.Now.ToString() }.Concat(messages).ToArray());
+            base.WriteLine(new string[] { DateTime.Now.ToLongTimeString() }.Concat(messages).ToArray());
         }
     }
 }
