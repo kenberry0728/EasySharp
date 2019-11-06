@@ -11,14 +11,9 @@ namespace EasySharpCoreWpfLibrary.UIAutomations.Core
             TreeScope treeScope,
             params Condition[] conditions)
         {
-            var elements = automationElement.FindAll(treeScope, conditions[0]).OfType<AutomationElement>();
-            for (int i = 1; i < conditions.Length; i++)
-            {
-                elements = elements.OfType<AutomationElement>()
-                    .Where(ae => ae.FindFirst(TreeScope.Element, conditions[i]) != null).ToList();
-            }
-
-            return elements;
+            return automationElement
+                .FindAll(treeScope, new AndCondition(conditions))
+                .OfType<AutomationElement>();
         }
 
         public static bool SetValueToEditControlWithin(
