@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows.Automation;
 
-namespace EasySharpCoreWpfLibrary.UIAutomations.Core
+namespace EasySharpCoreWpfLibrary.Automations
 {
     public static class AutomationElementExtensions
     {

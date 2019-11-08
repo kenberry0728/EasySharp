@@ -1,10 +1,10 @@
 ﻿using System.Windows.Automation;
 
-namespace EasySharpCoreWpfLibrary.UIAutomations.Core
+namespace EasySharpCoreWpfLibrary.Automations
 {
     public static class ConditionFactory
     {
-        public static Condition EditControlProperty() 
+        public static Condition EditControlProperty()
             => new PropertyCondition(
                 AutomationElement.ControlTypeProperty,
                 ControlType.Edit);
