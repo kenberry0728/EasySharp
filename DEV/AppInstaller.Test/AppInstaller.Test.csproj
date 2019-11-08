@@ -120,9 +120,9 @@
       <Project>{08900573-9b9f-4078-8e9c-9651890d3859}</Project>
       <Name>AppInstaller</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Standard\EasySharpStandard\EasySharpNet46.csproj">
-      <Project>{327e6282-f344-4665-a04d-d4af5596362d}</Project>
-      <Name>EasySharpNet46</Name>
+    <ProjectReference Include="..\Standard\EasySharpStandard\EasySharpStandard.csproj">
+      <Project>{E4DECFA5-912D-4C5A-9C69-AFAABA2B0556}</Project>
+      <Name>EasySharpStandard</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
