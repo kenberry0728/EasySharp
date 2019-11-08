@@ -1,1 +1,0 @@
-dotnet publish -c Release -f netcoreapp2.1 -r win-x64
