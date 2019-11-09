@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\EasySharp.ComponentModel\EasySharp.ComponentModel.csproj" />
     <ProjectReference Include="..\EasySharpStandard\EasySharp.csproj" />
   </ItemGroup>
 
