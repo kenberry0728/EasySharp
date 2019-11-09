@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasySharp.Observers
+namespace EasySharp.Observer
 {
     public interface IStateObserver<TStateStruct>
         where TStateStruct : struct
