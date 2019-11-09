@@ -2,5 +2,5 @@
 -------
 Sysmte.Collection.XXX
 System.Linq
-------------
+--(ここまではフラット）------------
 System.IO
