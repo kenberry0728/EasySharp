@@ -1,27 +1,22 @@
-﻿using System.Runtime.Serialization;
-
-namespace EasySharp.Location
+﻿namespace EasySharp.Location
 {
-    [DataContract(Namespace = "")]
     public class LineLocation : ILocation
     {
         public LineLocation(int column, int length = 0)
         {
             this.Column = column;
-            this.Width = length;
+            this.Length = length;
         }
 
-        [DataMember]
         public int Column { get; private set; }
 
-        [DataMember]
-        public int Width { get; private set; }
+        public int Length { get; private set; }
 
         public string LocationText => this.ToString();
 
         public override string ToString()
         {
-            return $"{nameof(this.Column)}={this.Column}, {nameof(this.Width)}={this.Width}";
+            return $"{nameof(this.Column)}={this.Column}, {nameof(this.Length)}={this.Length}";
         }
     }
 }
