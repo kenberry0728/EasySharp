@@ -64,9 +64,9 @@
       <Project>{9629ACA1-D179-48B0-A9D5-E2000C1E5248}</Project>
       <Name>EasySharpStandardTestCore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EasySharpStandard\EasySharpStandard.csproj">
-      <Project>{e4decfa5-912d-4c5a-9c69-afaaba2b0556}</Project>
-      <Name>EasySharpStandard</Name>
+    <ProjectReference Include="..\EasySharpStandard\EasySharp.csproj">
+      <Project>{E1A87A13-D6A6-47D5-905D-CB6553B15AFE}</Project>
+      <Name>EasySharp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

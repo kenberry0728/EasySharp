@@ -127,9 +127,9 @@
       <Project>{DD2602CA-756B-4205-B866-3268AF4EC71A}</Project>
       <Name>EasySharpStandardMvvm</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Standard\EasySharpStandard\EasySharpStandard.csproj">
-      <Project>{E4DECFA5-912D-4C5A-9C69-AFAABA2B0556}</Project>
-      <Name>EasySharpStandard</Name>
+    <ProjectReference Include="..\Standard\EasySharpStandard\EasySharp.csproj">
+      <Project>{E1A87A13-D6A6-47D5-905D-CB6553B15AFE}</Project>
+      <Name>EasySharp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

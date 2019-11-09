@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EasySharpStandard\EasySharpStandard.csproj" />
+    <Folder Include="Views\Layouts\Implementation\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Layouts\Implementation\" />
+    <ProjectReference Include="..\EasySharpStandard\EasySharp.csproj" />
   </ItemGroup>
 
   <ItemGroup>
