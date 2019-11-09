@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace EasySharpStandard.DiskIO.Serializers
+namespace EasySharp.IO.Serializers
 {
     public static class StreamWriterExtensions
     {

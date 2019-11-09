@@ -1,4 +1,4 @@
-﻿using EasySharpStandard.DiskIO;
+﻿using EasySharp.IO;
 using EasySharpStandard.Reflections.Core;
 using System;
 using System.IO;

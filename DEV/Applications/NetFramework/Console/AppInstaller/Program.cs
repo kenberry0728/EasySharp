@@ -7,8 +7,8 @@ using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using AppInstaller.Implementation;
 using AppInstaller.RunModes;
-using EasySharpStandard.DiskIO;
-using EasySharpStandard.DiskIO.Serializers;
+using EasySharp.IO;
+using EasySharp.IO.Serializers;
 using EasySharpStandard.SafeCodes.Core;
 
 namespace AppInstaller

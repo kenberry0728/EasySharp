@@ -1,4 +1,4 @@
-﻿using EasySharpStandard.DiskIO;
+﻿using EasySharp.IO;
 using EasySharpStandard.Logs.TextLogs.Implementations;
 using System;
 using System.IO;

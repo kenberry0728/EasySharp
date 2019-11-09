@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace EasySharpStandard.DiskIO
+namespace EasySharp.IO
 {
     public static class PathExtensions
     {

@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace EasySharpStandard.DiskIO.Serializers
+namespace EasySharp.IO.Serializers
 {
     public static class XmlSerializerExtensions
     {

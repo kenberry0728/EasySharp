@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
-using EasySharpStandard.DiskIO;
-using EasySharpStandard.DiskIO.Directories.Core;
-using EasySharpStandard.DiskIO.Directories.Implementation;
+using EasySharp.IO;
+using EasySharp.IO.Directories.Core;
+using EasySharp.IO.Directories.Implementation;
 using EasySharpStandard.Processes;
 using EasySharpStandard.RegularExpressions.Core;
 

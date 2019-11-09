@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasySharpStandard.DiskIO
+namespace EasySharp.IO
 {
     public static class DateTimExtensions
     {

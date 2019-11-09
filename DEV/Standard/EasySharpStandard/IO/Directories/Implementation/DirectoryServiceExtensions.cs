@@ -1,6 +1,6 @@
-﻿using EasySharpStandard.DiskIO.Directories.Core;
+﻿using EasySharp.IO.Directories.Core;
 
-namespace EasySharpStandard.DiskIO.Directories.Implementation
+namespace EasySharp.IO.Directories.Implementation
 {
     public static class DirectoryServiceExtensions
     {

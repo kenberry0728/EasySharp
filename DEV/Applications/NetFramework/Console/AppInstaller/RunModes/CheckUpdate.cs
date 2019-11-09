@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using AppInstaller.Core.Results;
-using EasySharpStandard.DiskIO;
-using EasySharpStandard.DiskIO.Directories.Core;
-using EasySharpStandard.DiskIO.Directories.Implementation;
-using EasySharpStandard.DiskIO.Files.Core;
-using EasySharpStandard.DiskIO.Files.Implementation;
+using EasySharp.IO;
+using EasySharp.IO.Directories.Core;
+using EasySharp.IO.Directories.Implementation;
+using EasySharp.IO.Files.Core;
+using EasySharp.IO.Files.Implementation;
 using EasySharpStandard.RegularExpressions.Core;
 
 namespace AppInstaller.RunModes

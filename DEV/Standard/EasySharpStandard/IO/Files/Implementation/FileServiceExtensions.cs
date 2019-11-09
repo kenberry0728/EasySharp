@@ -1,6 +1,6 @@
-﻿using EasySharpStandard.DiskIO.Files.Core;
+﻿using EasySharp.IO.Files.Core;
 
-namespace EasySharpStandard.DiskIO.Files.Implementation
+namespace EasySharp.IO.Files.Implementation
 {
     public static class FileServiceExtensions
     {

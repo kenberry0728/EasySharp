@@ -4,8 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using EasySharpStandard.DiskIO.Serializers;
 using EasySharp.Collections.Generic;
+using EasySharp.IO.Serializers;
 
 namespace EasySharpStandard.Reflections.Core.LocalResources
 {

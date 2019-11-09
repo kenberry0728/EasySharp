@@ -1,5 +1,5 @@
 ﻿using AppInstaller.Core.Results;
-using EasySharpStandard.DiskIO.Serializers;
+using EasySharp.IO.Serializers;
 
 namespace AppInstaller.Implementation
 {

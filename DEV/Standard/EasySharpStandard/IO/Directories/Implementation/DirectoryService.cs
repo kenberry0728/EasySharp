@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using EasySharpStandard.DiskIO.Directories.Core;
+using EasySharp.IO.Directories.Core;
 
-namespace EasySharpStandard.DiskIO.Directories.Implementation
+namespace EasySharp.IO.Directories.Implementation
 {
     public class DirectoryService : IDirectoryService
     {

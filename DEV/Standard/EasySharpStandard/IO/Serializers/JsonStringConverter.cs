@@ -1,4 +1,4 @@
-﻿namespace EasySharpStandard.DiskIO.Serializers
+﻿namespace EasySharp.IO.Serializers
 {
     public class JsonStringConverter<T>
     {

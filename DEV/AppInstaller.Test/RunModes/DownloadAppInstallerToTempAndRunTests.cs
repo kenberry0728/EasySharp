@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using AppInstaller.Core.Arguments;
+﻿using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using AppInstaller.RunModes;
-using EasySharpStandard.DiskIO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AppInstaller.Test.RunModes

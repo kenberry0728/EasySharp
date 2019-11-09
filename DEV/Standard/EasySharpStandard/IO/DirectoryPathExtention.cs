@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace EasySharpStandard.DiskIO
+namespace EasySharp.IO
 {
     public static class DirectoryPathExtention
     {
@@ -53,7 +53,7 @@ namespace EasySharpStandard.DiskIO
                 foreach (var subDirectory in dirs)
                 {
                     var tempPath = Path.Combine(destDirectoryPath, subDirectory.Name);
-                    CopyDirectory(subDirectory.FullName, tempPath, overwrite, true, excludeFileRelativePaths);
+                    subDirectory.FullName.CopyDirectory(tempPath, overwrite, true, excludeFileRelativePaths);
                 }
             }
         }
@@ -66,13 +66,13 @@ namespace EasySharpStandard.DiskIO
                 File.SetLastWriteTime(file, lastWriteTimeToSet);
             }
         }
-        
+
         public static void TemporarySetCurrentDirectory(this string directoryPath, Action action)
         {
             var previousCurrentPath = Directory.GetCurrentDirectory();
             Directory.SetCurrentDirectory(directoryPath);
             Try.Finally(
-                action, 
+                action,
                 () => { Directory.SetCurrentDirectory(previousCurrentPath); });
         }
 

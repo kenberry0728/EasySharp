@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace EasySharpStandard.DiskIO.Serializers
+namespace EasySharp.IO.Serializers
 {
     public static class StreamReaderExtensions
     {
@@ -20,7 +20,7 @@ namespace EasySharpStandard.DiskIO.Serializers
             using (var sr = new StreamReader(filePath))
             {
                 string line;
-                while(null != (line = sr.ReadLine()))
+                while (null != (line = sr.ReadLine()))
                 {
                     if (removeEmptyLine)
                     {
