@@ -1,4 +1,4 @@
-﻿using EasySharp.Locations.Core;
+﻿using EasySharp.Location;
 using EasySharp.Logs.CheckLogs.Core.Models;
 using EasySharp.Logs.TextLogs.Core;
 

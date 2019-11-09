@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace EasySharp.Locations.Core.Models
+namespace EasySharp.Location
 {
     [DataContract(Namespace = "")]
     public class LineLocation : ILocation

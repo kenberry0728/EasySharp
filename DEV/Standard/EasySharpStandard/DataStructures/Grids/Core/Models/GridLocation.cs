@@ -1,4 +1,4 @@
-﻿using EasySharp.Locations.Core;
+﻿using EasySharp.Location;
 
 namespace EasySharp.DataStructures.Grids.Core.Models
 {
