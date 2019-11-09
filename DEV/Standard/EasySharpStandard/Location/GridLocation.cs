@@ -1,6 +1,4 @@
-﻿using EasySharp.Location;
-
-namespace EasySharp.DataStructures.Grids.Core.Models
+﻿namespace EasySharp.Location
 {
     public struct GridLocation : ILocation
     {
