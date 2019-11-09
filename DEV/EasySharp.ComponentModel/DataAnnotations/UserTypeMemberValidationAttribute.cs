@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace EasySharpStandard.Validations.Core.Attributes
+namespace EasySharp.ComponentModel.DataAnnotations
 {
     public class UserTypeMemberValidationAttribute : ValidationAttribute
     {

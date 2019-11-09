@@ -1,4 +1,4 @@
-﻿using EasySharpStandard.Validations.Core;
+﻿using EasySharp.ComponentModel.DataAnnotations;
 using EasySharpStandardMvvm.Commands.Core;
 using System;
 using System.Linq;

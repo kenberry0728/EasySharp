@@ -1,5 +1,5 @@
-﻿using EasySharpStandard.Reflections.Core.LocalResources;
-using EasySharpStandard.Validations.Core.Attributes;
+﻿using EasySharp.ComponentModel.DataAnnotations;
+using EasySharpStandard.Reflections.Core.LocalResources;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpStandardMvvm.ViewModels;
