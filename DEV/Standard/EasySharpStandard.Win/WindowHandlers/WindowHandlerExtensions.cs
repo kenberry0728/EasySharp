@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace EasySharpStandard.WindowHandlers
+namespace EasySharp.WindowHandlers
 {
     public static class WindowHandlerExtensions
     {

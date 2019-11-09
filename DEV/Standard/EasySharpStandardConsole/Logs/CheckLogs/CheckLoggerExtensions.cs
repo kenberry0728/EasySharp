@@ -1,4 +1,4 @@
-﻿using EasySharpStandard.Logs.CheckLogs.Core;
+﻿using EasySharp.Logs.CheckLogs.Core;
 using EasySharpStandardConsole.Logs.CheckLogs.Implementations;
 
 namespace EasySharpStandardConsole.Logs.CheckLogs

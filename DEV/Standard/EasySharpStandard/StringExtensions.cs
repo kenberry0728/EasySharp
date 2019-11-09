@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace EasySharpStandard.Exceptions
+namespace EasySharp
 {
     public static class StringExtensions
     {
         public static void ThrowArgumentNullOrEmptyException(this string argument, string argumentName)
         {
-            if (string.IsNullOrEmpty(argumentName))
+            if (string.IsNullOrEmpty(argument))
             {
                 throw new ArgumentException(argumentName);
             }

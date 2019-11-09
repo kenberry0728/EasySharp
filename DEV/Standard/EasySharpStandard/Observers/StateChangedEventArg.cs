@@ -1,4 +1,4 @@
-﻿namespace EasySharpStandard.Observers
+﻿namespace EasySharp.Observers
 {
     public class StateChangedEventArg<TStateStruct>
            where TStateStruct : struct

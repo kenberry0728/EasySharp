@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace EasySharpStandard.Observers
+namespace EasySharp.Observers
 {
     public abstract class StateObserverBase<TStateStruct> : IStateObserver<TStateStruct>
         where TStateStruct : struct

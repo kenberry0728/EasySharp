@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using AppInstaller.Core.Results;
 using EasySharp.IO;
-using EasySharpStandard.RegularExpressions.Core;
+using EasySharp.RegularExpressions.Core;
 
 namespace AppInstaller.RunModes
 {

@@ -1,4 +1,4 @@
-﻿namespace EasySharpStandard.Locations.Core
+﻿namespace EasySharp.Locations.Core
 {
     public interface ILocation
     {

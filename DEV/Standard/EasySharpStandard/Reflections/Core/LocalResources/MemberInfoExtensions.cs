@@ -1,5 +1,5 @@
-﻿using EasySharpStandard.DataStructures.Trees.Core.Models;
-using EasySharpStandard.SafeCodes.Core;
+﻿using EasySharp.DataStructures.Trees.Core.Models;
+using EasySharp.SafeCodes.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Reflection;
 using EasySharp.Collections.Generic;
 using EasySharp.IO;
 
-namespace EasySharpStandard.Reflections.Core.LocalResources
+namespace EasySharp.Reflections.Core.LocalResources
 {
     public static class MemberInfoExtensions
     {

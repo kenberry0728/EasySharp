@@ -1,9 +1,9 @@
-﻿using EasySharpStandard.Locations.Core;
-using EasySharpStandard.Logs.CheckLogs.Core;
-using EasySharpStandard.Logs.CheckLogs.Core.Models;
+﻿using EasySharp.Locations.Core;
+using EasySharp.Logs.CheckLogs.Core;
+using EasySharp.Logs.CheckLogs.Core.Models;
 using System.Diagnostics;
 
-namespace EasySharpStandard.Logs.CheckLogs.Implementations
+namespace EasySharp.Logs.CheckLogs.Implementations
 {
     internal class DefaultCheckLogger : ICheckLogger
     {

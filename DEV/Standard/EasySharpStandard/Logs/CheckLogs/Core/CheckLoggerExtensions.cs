@@ -1,6 +1,6 @@
-﻿using EasySharpStandard.Logs.CheckLogs.Implementations;
+﻿using EasySharp.Logs.CheckLogs.Implementations;
 
-namespace EasySharpStandard.Logs.CheckLogs.Core
+namespace EasySharp.Logs.CheckLogs.Core
 {
     public static class CheckLoggerExtensions
     {

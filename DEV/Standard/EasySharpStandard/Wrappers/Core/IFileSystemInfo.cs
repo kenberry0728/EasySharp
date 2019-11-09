@@ -2,7 +2,7 @@
 using System.IO;
 using System.Runtime.Serialization;
 
-namespace EasySharpStandard.Wrappers.Core
+namespace EasySharp.Wrappers.Core
 {
     public interface IFileSystemInfo
     {

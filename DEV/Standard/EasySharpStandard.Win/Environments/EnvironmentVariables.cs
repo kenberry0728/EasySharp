@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasySharpStandard.Win.Environments
+namespace EasySharp.Win.Environments
 {
     public static class EnvironmentVariables
     {

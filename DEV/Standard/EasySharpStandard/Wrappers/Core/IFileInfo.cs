@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace EasySharpStandard.Wrappers.Core
+namespace EasySharp.Wrappers.Core
 {
     public interface IFileInfo : IFileSystemInfo
     {

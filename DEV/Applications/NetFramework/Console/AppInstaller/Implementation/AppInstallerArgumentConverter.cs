@@ -1,6 +1,6 @@
 ﻿using AppInstaller.Core.Arguments;
 using EasySharp.IO.Serializers;
-using EasySharpStandard.Processes;
+using EasySharp.Processes;
 
 namespace AppInstaller.Implementation
 {

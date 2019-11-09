@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace EasySharpStandard.SafeCodes.Core
+namespace EasySharp.SafeCodes.Core
 {
     public static class Retry
     {

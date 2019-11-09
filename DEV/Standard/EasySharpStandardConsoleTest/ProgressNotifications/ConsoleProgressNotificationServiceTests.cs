@@ -1,5 +1,5 @@
-using EasySharpStandard.ProgressNotifications.Core;
-using EasySharpStandard.ProgressNotifications.Core.Models;
+using EasySharp.ProgressNotifications.Core;
+using EasySharp.ProgressNotifications.Core.Models;
 using EasySharpStandardConsole.ProgressNotifications.Core;
 using EasySharpStandardConsoleTest.ConsoleTests.Implementations;
 using System;

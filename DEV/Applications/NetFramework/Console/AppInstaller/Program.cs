@@ -7,7 +7,7 @@ using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using AppInstaller.Implementation;
 using AppInstaller.RunModes;
-using EasySharpStandard.SafeCodes.Core;
+using EasySharp.SafeCodes.Core;
 using EasySharp.IO;
 
 namespace AppInstaller

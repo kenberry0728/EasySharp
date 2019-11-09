@@ -1,7 +1,7 @@
 ﻿
-using EasySharpStandard.Logs.TextLogs.Implementations;
+using EasySharp.Logs.TextLogs.Implementations;
 
-namespace EasySharpStandard.Logs.TextLogs.Core
+namespace EasySharp.Logs.TextLogs.Core
 {
     public static class TextLoggerExtensions
     {

@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
-namespace EasySharpStandard.Reflections.Core
+namespace EasySharp.Reflections.Core
 {
     public static class RelativeTypePathExtensions
     {

@@ -1,4 +1,4 @@
-﻿using EasySharpStandard.Exceptions;
+﻿using EasySharp;
 using System;
 
 namespace EasySharpStandardMvvm.Attributes.Rails

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasySharpStandard.Win.WindowHandlers
+namespace EasySharp.Win.WindowHandlers
 {
     public class WindowInfo
     {

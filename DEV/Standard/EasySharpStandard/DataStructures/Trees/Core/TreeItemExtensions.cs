@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EasySharpStandard.DataStructures.Trees.Core
+namespace EasySharp.DataStructures.Trees.Core
 {
     public static class TreeItemExtensions
     {

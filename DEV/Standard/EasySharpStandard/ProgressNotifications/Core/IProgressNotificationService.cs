@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasySharpStandard.ProgressNotifications.Core
+namespace EasySharp.ProgressNotifications.Core
 {
     public interface IProgressNotificationService : IDisposable
     {

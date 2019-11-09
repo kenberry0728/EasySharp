@@ -1,10 +1,10 @@
 ﻿using EasySharp.IO;
-using EasySharpStandard.Logs.TextLogs.Core;
-using EasySharpStandard.SafeCodes.Core;
+using EasySharp.Logs.TextLogs.Core;
+using EasySharp.SafeCodes.Core;
 using System.IO;
 using System.Text;
 
-namespace EasySharpStandard.Logs.TextLogs.Implementations
+namespace EasySharp.Logs.TextLogs.Implementations
 {
     public class TextFileLogger : ITextLogger
     {

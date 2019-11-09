@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace EasySharpStandard.Reflections.Core
+namespace EasySharp.Reflections.Core
 {
     public static class TypeExtensions
     {

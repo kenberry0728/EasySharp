@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace EasySharpStandard.Logs.CheckLogs.Core.Models
+namespace EasySharp.Logs.CheckLogs.Core.Models
 {
     [DebuggerDisplay("{Category}\t{CheckerIdentification}{CodeNumber}")]
     public class CheckResult

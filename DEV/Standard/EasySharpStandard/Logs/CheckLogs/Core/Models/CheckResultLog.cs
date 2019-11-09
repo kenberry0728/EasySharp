@@ -1,7 +1,7 @@
-﻿using EasySharpStandard.Locations.Core;
-using EasySharpStandard.Logs.TextLogs.Core.Models;
+﻿using EasySharp.Locations.Core;
+using EasySharp.Logs.TextLogs.Core.Models;
 
-namespace EasySharpStandard.Logs.CheckLogs.Core.Models
+namespace EasySharp.Logs.CheckLogs.Core.Models
 {
     public class CheckResultLog : TextLog, ICheckLog
     {

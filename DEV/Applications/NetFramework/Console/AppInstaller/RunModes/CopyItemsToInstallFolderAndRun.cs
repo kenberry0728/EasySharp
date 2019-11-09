@@ -5,8 +5,8 @@ using System.Text.RegularExpressions;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using EasySharp.IO;
-using EasySharpStandard.Processes;
-using EasySharpStandard.RegularExpressions.Core;
+using EasySharp.Processes;
+using EasySharp.RegularExpressions.Core;
 
 namespace AppInstaller.RunModes
 {

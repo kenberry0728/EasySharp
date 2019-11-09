@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace EasySharpStandard.Processes
+namespace EasySharp.Processes
 {
     public static class ProcessExtensions
     {

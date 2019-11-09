@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
-using EasySharpStandard.Processes;
+using EasySharp.Processes;
 using EasySharp.IO;
 
 namespace AppInstaller.RunModes

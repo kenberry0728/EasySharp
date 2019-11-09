@@ -1,4 +1,4 @@
-﻿namespace EasySharpStandard.DataStructures.Trees.Core
+﻿namespace EasySharp.DataStructures.Trees.Core
 {
     public interface IIndentedItem<T>
     {

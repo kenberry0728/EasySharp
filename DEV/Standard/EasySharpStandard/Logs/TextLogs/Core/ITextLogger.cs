@@ -1,4 +1,4 @@
-﻿namespace EasySharpStandard.Logs.TextLogs.Core
+﻿namespace EasySharp.Logs.TextLogs.Core
 {
     public interface ITextLogger
     {

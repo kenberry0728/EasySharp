@@ -1,6 +1,6 @@
 ﻿using EasySharp.ComponentModel;
 
-namespace EasySharpStandard.Sample.Models.AutoLayout
+namespace EasySharp.Sample.Models.AutoLayout
 {
     public enum PublisherType
     {

@@ -1,4 +1,4 @@
-﻿using EasySharpStandard.SafeCodes.Core;
+﻿using EasySharp.SafeCodes.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;

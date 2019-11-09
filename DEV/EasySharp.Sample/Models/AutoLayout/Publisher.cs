@@ -1,4 +1,4 @@
-﻿using EasySharpStandard.Reflections.Core.LocalResources;
+﻿using EasySharp.Reflections.Core.LocalResources;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpStandardMvvm.ViewModels;
@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 
-namespace EasySharpStandard.Sample.Models.AutoLayout
+namespace EasySharp.Sample.Models.AutoLayout
 {
     public class Publisher : RailsModel
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasySharpStandard.Exceptions
+namespace EasySharp
 {
     public static class ObjectExtensions
     {

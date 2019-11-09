@@ -1,9 +1,9 @@
-﻿using EasySharpStandard.DataStructures.Trees.Core.Models;
+﻿using EasySharp.DataStructures.Trees.Core.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace EasySharpStandard.DataStructures.Trees.Core
+namespace EasySharp.DataStructures.Trees.Core
 {
     public static class IndentedItemExtensions
     {

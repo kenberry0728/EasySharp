@@ -1,10 +1,10 @@
 ﻿using EasySharp.IO;
-using EasySharpStandard.Logs.TextLogs.Implementations;
+using EasySharp.Logs.TextLogs.Implementations;
 using System;
 using System.IO;
 using System.Linq;
 
-namespace EasySharpStandard.Logs.TextLogs.Core
+namespace EasySharp.Logs.TextLogs.Core
 {
     public class DateTextFileCurrentTimeLogger : TextFileLogger
     {

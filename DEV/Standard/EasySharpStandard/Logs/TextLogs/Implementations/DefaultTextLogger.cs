@@ -1,7 +1,7 @@
-﻿using EasySharpStandard.Logs.TextLogs.Core;
+﻿using EasySharp.Logs.TextLogs.Core;
 using System.Diagnostics;
 
-namespace EasySharpStandard.Logs.TextLogs.Implementations
+namespace EasySharp.Logs.TextLogs.Implementations
 {
     internal class DefaultTextLogger : ITextLogger
     {

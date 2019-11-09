@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace EasySharpStandard.RegularExpressions.Core
+namespace EasySharp.RegularExpressions.Core
 {
     public static class RegexExtensions
     {

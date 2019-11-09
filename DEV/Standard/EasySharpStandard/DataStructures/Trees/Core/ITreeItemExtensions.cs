@@ -1,9 +1,9 @@
-﻿using EasySharpStandard.DataStructures.Grids.Core.Models;
+﻿using EasySharp.DataStructures.Grids.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EasySharpStandard.DataStructures.Trees.Core
+namespace EasySharp.DataStructures.Trees.Core
 {
     public static class TreeInterfaceItemExtensions
     {

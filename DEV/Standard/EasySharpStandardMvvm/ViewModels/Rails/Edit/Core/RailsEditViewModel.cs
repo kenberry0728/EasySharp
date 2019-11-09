@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using EasySharp.ComponentModel.DataAnnotations;
-using EasySharpStandard.SafeCodes.Core;
+using EasySharp.SafeCodes.Core;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 using EasySharpStandardMvvm.Views.Rails.Core;
