@@ -1,6 +1,4 @@
-﻿using EasySharp.IO.Files.Core;
-
-namespace EasySharp.IO.Files.Implementation
+﻿namespace EasySharp.IO
 {
     public static class FileServiceExtensions
     {

@@ -11,9 +11,4 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="IO\Directories\Core\" />
-    <Folder Include="IO\Directories\Implementation\" />
-  </ItemGroup>
-
 </Project>

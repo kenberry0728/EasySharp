@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
-using EasySharp.IO.Files.Core;
 
-namespace EasySharp.IO.Files.Implementation
+namespace EasySharp.IO
 {
     public class FileService : IFileService
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasySharp.IO.Files.Core
+namespace EasySharp.IO
 {
     public interface IFileService
     {
