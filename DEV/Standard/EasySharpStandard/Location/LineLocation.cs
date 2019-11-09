@@ -12,8 +12,6 @@
 
         public int Length { get; private set; }
 
-        public string LocationText => this.ToString();
-
         public override string ToString()
         {
             return $"{nameof(this.Column)}={this.Column}, {nameof(this.Length)}={this.Length}";

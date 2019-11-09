@@ -14,8 +14,6 @@ namespace EasySharp.DataStructures.Grids.Core.Models
 
         public int Column { get; set; }
 
-        public string LocationText => this.ToString();
-
         public override string ToString()
         {
             return $"Row={this.Row}, Column={this.Column}";
