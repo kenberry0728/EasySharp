@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using AppInstaller.Core.Results;
 using AppInstaller.RunModes;
+
 using EasySharp.IO;
-using EasySharpStandard.Reflections.Core;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AppInstaller.Test.RunModes

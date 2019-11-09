@@ -1,10 +1,9 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
-using EasySharpStandard.DiskIO;
-using EasySharpStandard.DiskIO.Serializers;
 using EasySharpStandard.Processes;
+using EasySharp.IO;
+using EasySharp.IO.Serializers;
 
 namespace AppInstaller.RunModes
 {

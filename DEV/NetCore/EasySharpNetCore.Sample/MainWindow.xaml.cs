@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Reflection;
-using EasySharpStandard.SafeCodes.Core;
+﻿using EasySharpStandard.SafeCodes.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
 using System.Windows;
 using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;

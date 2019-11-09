@@ -1,5 +1,5 @@
-﻿using EasySharp.IO;
-using EasySharpStandard.Reflections.Core;
+﻿using EasySharpStandard.Reflections.Core;
+using EasySharp.IO;
 using System;
 using System.IO;
 
