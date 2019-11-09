@@ -1,7 +1,6 @@
-﻿using EasySharp.ComponentModel;
-using System;
+﻿using System;
 
-namespace EasySharp.Reflection
+namespace EasySharp.ComponentModel.Reflection
 {
     public static class EnumTypeExtensions
     {

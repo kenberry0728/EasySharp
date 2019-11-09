@@ -18,7 +18,7 @@ using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.ViewModels.Rails.Index.Implementation;
 using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
-using EasySharp.ComponentModel;
+using EasySharp.ComponentModel.Reflection;
 
 namespace EasySharpWpf.Views.Rails.Core.Index
 {

@@ -1,9 +1,8 @@
-﻿using EasySharp.Reflection;
-using System;
+﻿using System;
 using System.Linq;
 using System.Reflection;
 
-namespace EasySharp.ComponentModel
+namespace EasySharp.ComponentModel.Reflection
 {
     public static class ObjectExtensions
     {

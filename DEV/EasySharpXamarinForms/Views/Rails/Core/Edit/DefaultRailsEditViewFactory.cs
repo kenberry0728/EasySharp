@@ -12,9 +12,9 @@ using System.Linq;
 using System.Reflection;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 using Xamarin.Forms;
-using EasySharp.ComponentModel;
 using EasySharp.Collections.Generic;
 using EasySharp.Reflection;
+using EasySharp.ComponentModel.Reflection;
 
 namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 {

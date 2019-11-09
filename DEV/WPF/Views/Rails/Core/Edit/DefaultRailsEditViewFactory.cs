@@ -15,9 +15,9 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
-using EasySharp.ComponentModel;
 using EasySharp.Collections.Generic;
 using EasySharp.Reflection;
+using EasySharp.ComponentModel.Reflection;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {
