@@ -1,4 +1,4 @@
-﻿using EasySharp.Reflections.Core;
+﻿using EasySharp.Reflection;
 using System;
 using System.Linq;
 using System.Reflection;

@@ -1,4 +1,4 @@
-﻿using EasySharp.Reflections.Core;
+﻿using EasySharp.Reflection;
 using EasySharpStandardMvvm.Attributes.Rails;
 using System;
 

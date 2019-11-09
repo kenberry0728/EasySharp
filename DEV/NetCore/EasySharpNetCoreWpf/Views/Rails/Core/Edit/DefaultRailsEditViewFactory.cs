@@ -1,5 +1,4 @@
-﻿using EasySharp.Reflections.Core;
-using EasySharpStandardMvvm.Attributes.Rails;
+﻿using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpWpf.Commands.Core.Dialogs;
@@ -18,6 +17,7 @@ using System.Windows.Data;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 using EasySharp.ComponentModel;
 using EasySharp.Collections.Generic;
+using EasySharp.Reflection;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {

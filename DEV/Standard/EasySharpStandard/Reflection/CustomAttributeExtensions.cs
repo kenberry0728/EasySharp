@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace EasySharp.Reflections.Core
+namespace EasySharp.Reflection
 {
     public static class CustomAttributeExtensions
     {

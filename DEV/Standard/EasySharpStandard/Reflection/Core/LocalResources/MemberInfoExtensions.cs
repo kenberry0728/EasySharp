@@ -7,7 +7,7 @@ using System.Reflection;
 using EasySharp.Collections.Generic;
 using EasySharp.IO;
 
-namespace EasySharp.Reflections.Core.LocalResources
+namespace EasySharp.Reflection.Core.LocalResources
 {
     public static class MemberInfoExtensions
     {

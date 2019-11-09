@@ -1,4 +1,4 @@
-﻿namespace EasySharp.Reflections.Core
+﻿namespace EasySharp.Reflection
 {
     public static class StructExtensions
     {

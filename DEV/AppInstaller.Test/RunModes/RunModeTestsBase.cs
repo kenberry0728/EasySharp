@@ -1,7 +1,7 @@
-﻿using EasySharp.Reflections.Core;
-using EasySharp.IO;
+﻿using EasySharp.IO;
 using System;
 using System.IO;
+using EasySharp.Reflection;
 
 namespace AppInstaller.Test.RunModes
 {
