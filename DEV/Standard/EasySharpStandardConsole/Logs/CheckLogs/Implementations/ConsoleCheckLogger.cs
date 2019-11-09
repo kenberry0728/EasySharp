@@ -10,7 +10,7 @@ namespace EasySharpStandardConsole.Logs.CheckLogs.Implementations
         public void Write(CheckResultCategories category, CheckResult code, ILocation location, string message)
         {
             Console.WriteLine(
-                string.Join("\t", category, code, (location as IDisplayValue).ToDisplayText(), message));
+                string.Join("\t", category, code, location.ToString(), message));
         }
     }
 }
