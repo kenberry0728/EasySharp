@@ -1,6 +1,6 @@
 ﻿using EasySharp.Location;
-using EasySharp.Log.Text;
 using EasySharp.Logs.CheckLogs.Core.Models;
+using EasySharp.Logs.Text;
 
 namespace EasySharp.Logs.CheckLogs.Core
 {

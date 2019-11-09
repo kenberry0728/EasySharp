@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace EasySharp.Log.Text
+namespace EasySharp.Logs.Text
 {
     public class DateTextFileCurrentTimeLogger : TextFileLogger
     {

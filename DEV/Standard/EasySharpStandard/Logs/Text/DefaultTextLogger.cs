@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace EasySharp.Log.Text
+namespace EasySharp.Logs.Text
 {
     internal class DefaultTextLogger : ITextLogger
     {

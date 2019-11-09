@@ -3,7 +3,7 @@ using EasySharp.Threading;
 using System.IO;
 using System.Text;
 
-namespace EasySharp.Log.Text
+namespace EasySharp.Logs.Text
 {
     public class TextFileLogger : ITextLogger
     {

@@ -1,4 +1,4 @@
-﻿namespace EasySharp.Log.Text
+﻿namespace EasySharp.Logs.Text
 {
     public static class TextLoggerExtensions
     {
