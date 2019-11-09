@@ -1,11 +1,11 @@
-﻿using EasySharpStandard.Collections.Dictionaries.Core;
-using EasySharpStandard.DataStructures.Trees.Core.Models;
+﻿using EasySharpStandard.DataStructures.Trees.Core.Models;
 using EasySharpStandard.SafeCodes.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using EasySharpStandard.DiskIO.Serializers;
+using EasySharp.Collections.Generic;
 
 namespace EasySharpStandard.Reflections.Core.LocalResources
 {

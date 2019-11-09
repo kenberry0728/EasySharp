@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace EasySharpStandard.Collections.Dictionaries.Core
+namespace EasySharp.Collections.Generic
 {
     public static class HashSetValueDictionaryExtensions
     {

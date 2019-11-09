@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EasySharpStandard.Collections.Core
+namespace EasySharp.Collections.Generic
 {
     public static class ItemExtensions
     {

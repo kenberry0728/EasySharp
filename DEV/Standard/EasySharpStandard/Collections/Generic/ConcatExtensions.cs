@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using EasySharp.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace EasySharpStandard.Collections.Core
+namespace EasySharp.Collections.Generic
 {
     public static class ConcatExtensions
     {

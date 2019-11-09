@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EasySharpStandard.Collections.Dictionaries.Core.Models
+namespace EasySharp.Collections.Generic
 {
     public class MutualDictionary<TKey, TValue>
     {

@@ -1,5 +1,4 @@
-﻿using EasySharpStandard.Collections.Core;
-using EasySharpStandard.Reflections.Core;
+﻿using EasySharpStandard.Reflections.Core;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Models.Rails.Core;
@@ -15,6 +14,7 @@ using System.Reflection;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 using Xamarin.Forms;
 using EasySharp.ComponentModel;
+using EasySharp.Collections.Generic;
 
 namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 {

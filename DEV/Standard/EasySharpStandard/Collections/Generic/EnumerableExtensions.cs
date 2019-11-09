@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EasySharpStandard.Collections.Core
+namespace EasySharp.Collections.Generic
 {
     public static class EnumerableExtensions
     {
