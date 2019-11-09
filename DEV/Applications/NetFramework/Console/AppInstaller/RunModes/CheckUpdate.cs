@@ -5,8 +5,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using AppInstaller.Core.Results;
 using EasySharp.IO;
-using EasySharp.IO.Directories.Core;
-using EasySharp.IO.Directories.Implementation;
 using EasySharp.IO.Files.Core;
 using EasySharp.IO.Files.Implementation;
 using EasySharpStandard.RegularExpressions.Core;

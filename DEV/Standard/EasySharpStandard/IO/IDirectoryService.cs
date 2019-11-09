@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace EasySharp.IO.Directories.Core
+namespace EasySharp.IO
 {
     public interface IDirectoryService
     {

@@ -1,6 +1,4 @@
-﻿using EasySharp.IO.Directories.Core;
-
-namespace EasySharp.IO.Directories.Implementation
+﻿namespace EasySharp.IO
 {
     public static class DirectoryServiceExtensions
     {
