@@ -1,4 +1,4 @@
-﻿namespace EasySharp.SafeCodes.Core
+﻿namespace EasySharp
 {
     public static class DefaultValueExtensions
     {

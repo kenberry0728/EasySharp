@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasySharp.SafeCodes.Core
+namespace EasySharp
 {
     public static class Try
     {
@@ -8,14 +8,14 @@ namespace EasySharp.SafeCodes.Core
 
         public static bool Failed<T>(out T a)
         {
-            a = default(T);
+            a = default;
             return false;
         }
 
         public static bool Failed<T1, T2>(out T1 a, out T2 b)
         {
-            a = default(T1);
-            b = default(T2);
+            a = default;
+            b = default;
             return false;
         }
 
@@ -33,10 +33,10 @@ namespace EasySharp.SafeCodes.Core
             try
             {
                 action();
-                exception = default(Exception);
+                exception = default;
                 return true;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 exception = e;
                 return false;

@@ -1,9 +1,9 @@
-﻿using EasySharp.SafeCodes.Core;
-using EasySharpWpf.Views.Rails.Core.Edit;
+﻿using EasySharpWpf.Views.Rails.Core.Edit;
 using System.Windows;
 using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
 using EasySharp.Sample.Models.AutoLayout;
 using EasySharp.Runtime.Serialization.Json;
+using EasySharp;
 
 namespace EasySharpNetCore.Sample
 {

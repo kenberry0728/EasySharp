@@ -1,6 +1,6 @@
 ﻿using EasySharp.IO;
 using EasySharp.Logs.TextLogs.Core;
-using EasySharp.SafeCodes.Core;
+using EasySharp.Threading;
 using System.IO;
 using System.Text;
 

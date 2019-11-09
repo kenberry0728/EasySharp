@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace EasySharp.SafeCodes.Core
+namespace EasySharp.Threading
 {
     public static class Retry
     {
@@ -40,7 +40,7 @@ namespace EasySharp.SafeCodes.Core
                 }
             }
 
-            return default(T);
+            return default;
         }
 
         public static bool Until(Func<bool> func, int maxRetry = 10, int intervalMillisecond = 200)
@@ -84,8 +84,7 @@ namespace EasySharp.SafeCodes.Core
                 }
             }
 
-            return default(T);
+            return default;
         }
-
     }
 }

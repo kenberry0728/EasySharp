@@ -1,4 +1,4 @@
-﻿using EasySharp.SafeCodes.Core;
+﻿using EasySharp;
 using EasySharpStandardMvvm.Commands.Core;
 using System;
 using System.Windows;
