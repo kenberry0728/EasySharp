@@ -10,3 +10,7 @@ System.Linq
 System.IO
 System.Reflection
 System.Threading
+
+独自概念
+名前空間はカテゴリである。
+ValueObjectのカテゴリで分けられる？
