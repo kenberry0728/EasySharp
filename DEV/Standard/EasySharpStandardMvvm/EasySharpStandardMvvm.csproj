@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\EasySharp.ComponentModel\EasySharp.ComponentModel.csproj" />
+    <ProjectReference Include="..\..\EasySharp.ComponentModel\EasySharp.ComponentModel.DataAnnotations.csproj" />
     <ProjectReference Include="..\EasySharpStandard\EasySharp.csproj" />
   </ItemGroup>
 

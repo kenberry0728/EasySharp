@@ -123,9 +123,9 @@
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.2\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EasySharp.ComponentModel\EasySharp.ComponentModel.csproj">
+    <ProjectReference Include="..\EasySharp.ComponentModel\EasySharp.ComponentModel.DataAnnotations.csproj">
       <Project>{EAACC27C-7FA0-47A4-9F58-BEE1D02EB45F}</Project>
-      <Name>EasySharp.ComponentModel</Name>
+      <Name>EasySharp.ComponentModel.DataAnnotations</Name>
     </ProjectReference>
     <ProjectReference Include="..\Standard\EasySharpStandardMvvm\EasySharpStandardMvvm.csproj">
       <Project>{DD2602CA-756B-4205-B866-3268AF4EC71A}</Project>
