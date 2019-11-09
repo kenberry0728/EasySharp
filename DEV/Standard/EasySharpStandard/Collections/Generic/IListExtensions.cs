@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,16 +6,6 @@ namespace EasySharp.Collections.Generic
 {
     public static class ListExtensions
     {
-        public static IEnumerable<object> ToEnumerable(this IList list)
-        {
-            return list.OfType<object>();
-        }
-
-        public static IEnumerable<T> ToEnumerable<T>(this IList list)
-        {
-            return list.OfType<T>();
-        }
-
         public static bool Contains<T>(this IList<T> list, Func<T, bool> predicate)
         {
             return list.Any(i => predicate(i));

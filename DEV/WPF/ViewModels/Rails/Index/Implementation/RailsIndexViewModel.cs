@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
+using EasySharp.Collections;
 using EasySharp.Collections.Generic;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Core;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
