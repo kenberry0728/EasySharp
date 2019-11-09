@@ -30,7 +30,7 @@ namespace EasySharp.IO
 
         public static void EnsureDirectoryForFile(this string filePath)
         {
-            var directoryPath = Path.GetDirectoryName(filePath);
+            var directoryPath = System.IO.Path.GetDirectoryName(filePath);
             if (!string.IsNullOrEmpty(directoryPath) && !Directory.Exists(directoryPath))
             {
                 directoryPath.CreateDirectoryRecursively();

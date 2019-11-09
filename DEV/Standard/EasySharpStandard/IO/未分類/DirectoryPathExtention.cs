@@ -44,14 +44,14 @@ namespace EasySharp.IO
                     continue;
                 }
 
-                file.CopyTo(Path.Combine(destDirectoryPath, file.Name), overwrite);
+                file.CopyTo(System.IO.Path.Combine(destDirectoryPath, file.Name), overwrite);
             }
 
             if (copySubDirs)
             {
                 foreach (var subDirectory in dirs)
                 {
-                    var tempPath = Path.Combine(destDirectoryPath, subDirectory.Name);
+                    var tempPath = System.IO.Path.Combine(destDirectoryPath, subDirectory.Name);
                     subDirectory.FullName.CopyDirectory(tempPath, overwrite, true, excludeFileRelativePaths);
                 }
             }

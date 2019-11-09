@@ -41,7 +41,7 @@ namespace EasySharp.Reflection
             var folderPath = string.Join(
                 @"\",
                 relativeNamespacePath.Split('.'));
-            return Path.Combine(folderPath, memberInfo.Name);
+            return System.IO.Path.Combine(folderPath, memberInfo.Name);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace EasySharp.Path
+﻿namespace EasySharp.IO
 {
     class FilePath
     {

@@ -13,7 +13,7 @@ namespace EasySharp.Logs.TextLogs.Core
         }
 
         public DateTextFileCurrentTimeLogger(string directory, string prefix, string sufix, bool throwException)
-            : this(Path.Combine(directory, prefix + DateTime.Today.ToShortDateFileNameString() + sufix), throwException)
+            : this(System.IO.Path.Combine(directory, prefix + DateTime.Today.ToShortDateFileNameString() + sufix), throwException)
         {
         }
 
