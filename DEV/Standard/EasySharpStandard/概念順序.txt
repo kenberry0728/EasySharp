@@ -3,4 +3,10 @@
 Sysmte.Collection.XXX
 System.Linq
 --(ここまではフラット）------------
+
+ここからはよりどの概念に近い機能なのか。
+クロスする技術ごとに、名前空間を切る。
+
 System.IO
+System.Reflection
+System.Threading
