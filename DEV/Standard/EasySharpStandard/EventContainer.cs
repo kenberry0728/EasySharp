@@ -2,7 +2,7 @@
 
 namespace EasySharp
 {
-    public class EventContainer<TEventArg>
+    public class EventContainer<TEventArg> : IEventContainer<TEventArg>
     {
         private readonly Action<EventHandler<TEventArg>> subscribeEvent;
         private readonly Action<EventHandler<TEventArg>> unsubscrieEvent;

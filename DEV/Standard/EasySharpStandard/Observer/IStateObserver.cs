@@ -7,6 +7,8 @@ namespace EasySharp.Observer
     {
         event EventHandler<StateChangedEventArg<TStateStruct>> StateChange;
 
+        IEventContainer<StateChangedEventArg<TStateStruct>> StateChangeEvent { get; }
+
         TStateStruct CurrentState { get; }
     }
 }

@@ -5,7 +5,7 @@ namespace EasySharp
     public static class EventContainerExtensions
     {
         public static void DoOrReserve<TEventArg>(
-            this EventContainer<TEventArg> eventContainer,
+            this IEventContainer<TEventArg> eventContainer,
             Action action,
             Func<bool> needToReserveAction)
         {

@@ -5,7 +5,16 @@ namespace EasySharp.Observer
     public abstract class StateObserverBase<TStateStruct> : IStateObserver<TStateStruct>
         where TStateStruct : struct
     {
+        protected StateObserverBase()
+        {
+            this.StateChangeEvent = new EventContainer<StateChangedEventArg<TStateStruct>>(
+                handler => this.StateChange += handler,
+                handler => this.StateChange -= handler);
+        }
+
         public event EventHandler<StateChangedEventArg<TStateStruct>> StateChange;
+
+        public IEventContainer<StateChangedEventArg<TStateStruct>> StateChangeEvent { get; }
 
         public TStateStruct CurrentState { get; private set; }
 
