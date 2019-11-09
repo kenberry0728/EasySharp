@@ -1,5 +1,4 @@
-﻿using EasySharp.Collections.Generic;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace EasySharp.Collections.Generic
