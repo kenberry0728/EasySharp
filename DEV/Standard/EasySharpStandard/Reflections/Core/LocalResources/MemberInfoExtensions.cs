@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using EasySharp.Collections.Generic;
-using EasySharp.IO.Serializers;
+using EasySharp.IO;
 
 namespace EasySharpStandard.Reflections.Core.LocalResources
 {

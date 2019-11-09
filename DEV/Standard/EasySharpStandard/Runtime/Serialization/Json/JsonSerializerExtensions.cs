@@ -1,9 +1,10 @@
-﻿using System;
+﻿using EasySharp.IO;
+using System;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 
-namespace EasySharp.IO.Serializers
+namespace EasySharp.Runtime.Serialization.Json
 {
     public static class JsonSerializerExtensions
     {

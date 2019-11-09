@@ -9,7 +9,6 @@ using AppInstaller.Implementation;
 using AppInstaller.RunModes;
 using EasySharpStandard.SafeCodes.Core;
 using EasySharp.IO;
-using EasySharp.IO.Serializers;
 
 namespace AppInstaller
 {

@@ -3,7 +3,6 @@ using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using EasySharpStandard.Processes;
 using EasySharp.IO;
-using EasySharp.IO.Serializers;
 
 namespace AppInstaller.RunModes
 {

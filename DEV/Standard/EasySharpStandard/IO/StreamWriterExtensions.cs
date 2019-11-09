@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace EasySharp.IO.Serializers
+namespace EasySharp.IO
 {
     public static class StreamWriterExtensions
     {

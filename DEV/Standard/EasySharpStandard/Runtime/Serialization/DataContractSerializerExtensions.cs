@@ -1,9 +1,10 @@
-﻿using System;
+﻿using EasySharp.IO;
+using System;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Xml;
 
-namespace EasySharp.IO.Serializers
+namespace EasySharp.Runtime.Serialization
 {
     public static class DataContractSerializerExtensions
     {
