@@ -1,4 +1,4 @@
-﻿namespace EasySharp.ElementaryTypes
+﻿namespace EasySharp
 {
     public static class BoolExtensions
     {
