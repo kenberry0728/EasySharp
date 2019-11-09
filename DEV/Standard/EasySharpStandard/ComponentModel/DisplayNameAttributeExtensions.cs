@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
 
-namespace EasySharpStandard.Attributes.Core
+namespace EasySharp.ComponentModel
 {
     public static class DisplayNameAttributeExtensions
     {

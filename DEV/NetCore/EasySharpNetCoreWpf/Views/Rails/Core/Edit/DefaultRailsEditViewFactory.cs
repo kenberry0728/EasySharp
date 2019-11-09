@@ -1,5 +1,4 @@
-﻿using EasySharpStandard.Attributes.Core;
-using EasySharpStandard.Collections.Core;
+﻿using EasySharpStandard.Collections.Core;
 using EasySharpStandard.Reflections.Core;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Commands.Core;
@@ -18,6 +17,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
+using EasySharp.ComponentModel;
 
 namespace EasySharpWpf.Views.Rails.Core.Edit
 {

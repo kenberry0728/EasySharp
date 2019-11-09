@@ -1,4 +1,4 @@
-﻿using EasySharpStandard.Attributes.Core;
+﻿using EasySharp.ComponentModel;
 using System;
 
 namespace EasySharpStandard.Reflections.Core

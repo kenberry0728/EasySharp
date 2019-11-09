@@ -1,4 +1,4 @@
-﻿using EasySharpStandard.Attributes.Core;
+﻿using EasySharp.ComponentModel;
 
 namespace EasySharpStandard.Sample.Models.AutoLayout
 {

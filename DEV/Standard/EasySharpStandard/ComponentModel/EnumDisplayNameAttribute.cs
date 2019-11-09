@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace EasySharpStandard.Attributes.Core
+namespace EasySharp.ComponentModel
 {
     [AttributeUsage(
         AttributeTargets.Enum |

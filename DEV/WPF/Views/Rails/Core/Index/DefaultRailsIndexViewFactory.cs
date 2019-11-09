@@ -1,5 +1,4 @@
-﻿using EasySharpStandard.Attributes.Core;
-using EasySharpStandardMvvm.Commands.Core;
+﻿using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Views.Rails.Core;
 using EasySharpWpf.Views.Layouts.Core;
 using EasySharpWpf.Views.Rails.Core.Edit;
@@ -19,6 +18,7 @@ using EasySharpStandardMvvm.Views.Layouts.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.ViewModels.Rails.Edit.Core;
 using EasySharpWpf.ViewModels.Rails.Index.Implementation;
 using EasySharpWpf.Views.Rails.Core.Edit.Interfaces;
+using EasySharp.ComponentModel;
 
 namespace EasySharpWpf.Views.Rails.Core.Index
 {
