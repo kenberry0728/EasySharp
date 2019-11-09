@@ -25,7 +25,7 @@ namespace EasySharp
 
         public static bool To(Action action)
         {
-            return To(action, out var exception);
+            return To(action, out _);
         }
 
         public static bool To(Action action, out Exception exception)
@@ -60,7 +60,7 @@ namespace EasySharp
 
         #region Finally
 
-        public static T Finally<T>(Func<T> func, Action finallyAction)
+        public static T Finally<T>(this Func<T> func, Action finallyAction)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace EasySharp
             }
         }
 
-        public static void Finally(Action func, Action finallyAction)
+        public static void Finally(this Action func, Action finallyAction)
         {
             try
             {
@@ -85,5 +85,47 @@ namespace EasySharp
         }
 
         #endregion
+
+
+        public static bool ToFinally(Action action, Action finallyAction)
+        {
+            return ToFinally(action, finallyAction, out _);
+        }
+
+        public static bool ToFinally(Action action, Action finallyAction, out Exception exception)
+        {
+            try
+            {
+                action();
+                exception = default;
+                return true;
+            }
+            catch (Exception e)
+            {
+                exception = e;
+                return false;
+            }
+            finally
+            {
+                finallyAction();
+            }
+        }
+
+        public static bool ToFinally<T>(Func<T> func, Action finallyAction, out T returnValue)
+        {
+            try
+            {
+                returnValue = func();
+                return true;
+            }
+            catch
+            {
+                return Failed(out returnValue);
+            }
+            finally
+            {
+                finallyAction();
+            }
+        }
     }
 }
