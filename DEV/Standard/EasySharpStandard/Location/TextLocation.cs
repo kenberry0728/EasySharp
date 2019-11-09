@@ -1,17 +1,13 @@
-﻿using System.Runtime.Serialization;
-
-namespace EasySharp.Location
+﻿namespace EasySharp.Location
 {
-    [DataContract(Namespace = "")]
     public class TextLocation : LineLocation
     {
-        public TextLocation(int column = -1, int row = -1, int length = 0)
+        public TextLocation(int row = -1, int column = -1, int length = 0)
             : base(column, length)
         {
             this.Row = row;
         }
 
-        [DataMember]
         public int Row { get; private set; }
 
         public override string ToString()
