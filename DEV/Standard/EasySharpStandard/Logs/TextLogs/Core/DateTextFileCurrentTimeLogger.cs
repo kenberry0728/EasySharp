@@ -1,5 +1,4 @@
-﻿using EasySharp.IO;
-using EasySharp.Logs.TextLogs.Implementations;
+﻿using EasySharp.Logs.TextLogs.Implementations;
 using System;
 using System.IO;
 using System.Linq;

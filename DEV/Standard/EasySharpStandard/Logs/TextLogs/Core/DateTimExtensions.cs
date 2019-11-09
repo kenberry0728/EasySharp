@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasySharp.IO
+namespace EasySharp.Logs.TextLogs.Core
 {
     public static class DateTimExtensions
     {
