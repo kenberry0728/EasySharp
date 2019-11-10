@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using EasySharp.Collections.Generic;
-using EasySharp.IO;
+using EasySharp.Reflection;
 
-namespace EasySharp.Reflection.Core.LocalResources
+namespace EasySharp.IO.Reflection
 {
     public static class MemberInfoExtensions
     {
         #region GetLocalResourceDependentValues
 
         public static IDictionary<string, List<string>> GetLocalResourceDependentValues(
-            this Type type, 
+            this Type type,
             string propertyName,
             string fileExtension = "")
         {
@@ -100,7 +100,7 @@ namespace EasySharp.Reflection.Core.LocalResources
             {
                 var content = filePath.ReadToEnd();
                 var indentedStrings =
-                    content.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries)
+                    content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                         .Select(s => new IndentedString(s));
                 var currentKey = string.Empty;
                 var dictionary = new Dictionary<string, List<string>>();

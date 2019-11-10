@@ -4,11 +4,15 @@ Sysmte.Collection.XXX
 System.Linq
 --(ここまではフラット）------------
 
+System.Reflection（横通し例外）
+
+----------
+
 ここからはよりどの概念に近い機能なのか。
 クロスする技術ごとに、名前空間を切る。
 
+
 System.IO
-System.Reflection
 System.Threading
 
 独自概念
