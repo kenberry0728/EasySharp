@@ -40,7 +40,7 @@ namespace EasySharp.Logs.Text
             {
                 using (var sw = new StreamWriter(this.filePath, true, Encoding.UTF8))
                 {
-                    sw.WriteLine(string.Join("\t", messages));
+                    sw.WriteLine(messages.ToTabSeparated());
                 }
             });
 
