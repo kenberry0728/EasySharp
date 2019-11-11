@@ -1,15 +1,19 @@
-﻿using System;
+﻿using EasySharp.Logs.Text;
+using System;
 
 namespace EasySharp.Observer
 {
     public abstract class StateObserverBase<TStateStruct> : IStateObserver<TStateStruct>
         where TStateStruct : struct
     {
-        protected StateObserverBase()
+        private readonly ITextLogger textLogger;
+
+        protected StateObserverBase(ITextLogger textLogger = null)
         {
             this.StateChangeEvent = new EventContainer<StateChangedEventArg<TStateStruct>>(
                 handler => this.StateChange += handler,
                 handler => this.StateChange -= handler);
+            this.textLogger = textLogger;
         }
 
         public event EventHandler<StateChangedEventArg<TStateStruct>> StateChange;
@@ -29,6 +33,7 @@ namespace EasySharp.Observer
         protected virtual void OnStateChange(object sender, StateChangedEventArg<TStateStruct> e)
         {
             this.StateChange?.Invoke(sender, e);
+            this.textLogger?.WriteLine(this.GetType().Name, e.NewState.ToString());
         }
     }
 }
