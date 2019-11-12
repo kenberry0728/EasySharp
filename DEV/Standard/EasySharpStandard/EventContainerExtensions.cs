@@ -29,15 +29,27 @@ namespace EasySharp
 
         public static void DoAtOnce<TEventArg>(
             this IEventContainer<TEventArg> eventContainer,
-            Action action)
+            Action<TEventArg> action)
+        {
+            eventContainer.DoAtOnce(action, a => true);
+        }
+
+        public static void DoAtOnce<TEventArg>(
+            this IEventContainer<TEventArg> eventContainer,
+            Action<TEventArg> action,
+            Func<TEventArg, bool> predicate)
         {
             eventContainer.SubscribeEvent(OnTriggered);
 
             void OnTriggered(object sender, TEventArg arg)
             {
-                eventContainer.UnsubscribeEvent(OnTriggered);
-                action?.Invoke();
+                if(predicate(arg))
+                {
+                    eventContainer.UnsubscribeEvent(OnTriggered);
+                    action?.Invoke(arg);
+                }
             }
         }
+
     }
 }

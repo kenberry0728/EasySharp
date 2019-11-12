@@ -32,8 +32,8 @@ namespace EasySharp.Observer
 
         protected virtual void OnStateChange(object sender, StateChangedEventArg<TStateStruct> e)
         {
-            this.StateChange?.Invoke(sender, e);
             this.textLogger?.WriteLine(this.GetType().Name, e.NewState.ToString());
+            this.StateChange?.Invoke(sender, e);
         }
     }
 }

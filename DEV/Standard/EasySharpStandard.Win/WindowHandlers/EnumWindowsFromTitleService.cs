@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasySharp.Threading;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -39,6 +40,25 @@ namespace EasySharp.Win.WindowHandlers
             var instance = new EnumWindowsFromTitleService(titlePredicate);
             EnumWindows(new EnumWindowsDelegate(instance.EnumWindowCallBack), IntPtr.Zero);
             return instance.windowInfos.Select(wi => wi.Handle);
+        }
+
+        public static bool TryGetWindowHandleFromTitle(
+            string windowTitle,
+            out IntPtr windowHandler, 
+            int maxRetry = 60, 
+            int intervalMilliseconds = 1000)
+        {
+            windowHandler = Retry.Until(
+                () => GetWindowHandlersFromTitle(windowTitle).FirstOrDefault(),
+                (lw) => !lw.IsDefaultStructValue(),
+                maxRetry,
+                intervalMilliseconds);
+            if (windowHandler.IsDefaultStructValue())
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public static IEnumerable<WindowInfo> GetWindowInfos(Func<string, bool> titlePredicate)

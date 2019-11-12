@@ -21,9 +21,9 @@ namespace EasySharp.Logs.Text
         {
         }
 
-        public override void WriteLine(params string[] messages)
+        public override string WriteLine(params string[] messages)
         {
-            base.WriteLine(new string[] { DateTime.Now.ToLongTimeString() }.Concat(messages).ToArray());
+            return base.WriteLine(new string[] { DateTime.Now.ToLongTimeString() }.Concat(messages).ToArray());
         }
     }
 }

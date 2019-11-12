@@ -9,9 +9,11 @@ namespace EasySharp.Logs.Text
             Debug.Write(message);
         }
 
-        public void WriteLine(params string[] messages)
+        public string WriteLine(params string[] messages)
         {
-            Debug.WriteLine(string.Join("\t", messages));
+            var lineText = messages.ToTabSeparated();
+            Debug.WriteLine(lineText);
+            return lineText;
         }
     }
 }

@@ -34,13 +34,14 @@ namespace EasySharp.Logs.Text
             }
         }
 
-        public virtual void WriteLine(params string[] messages)
+        public virtual string WriteLine(params string[] messages)
         {
+            var lineText = messages.ToTabSeparated();
             var result = Retry.Run(() =>
             {
                 using (var sw = new StreamWriter(this.filePath, true, Encoding.UTF8))
                 {
-                    sw.WriteLine(messages.ToTabSeparated());
+                    sw.WriteLine(lineText);
                 }
             });
 
@@ -48,6 +49,8 @@ namespace EasySharp.Logs.Text
             {
                 throw new IOException();
             }
+
+            return lineText;
         }
     }
 }
