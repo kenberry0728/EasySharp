@@ -1,11 +1,13 @@
-﻿using EasySharp.Threading;
+﻿using EasySharp;
+using EasySharp.Threading;
+using EasySharp.Win.WindowHandles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace EasySharp.Win.WindowHandlers
+namespace EasySharpStandard.Win.WindowHandle
 {
     public class EnumWindowsFromTitleService
     {
@@ -30,12 +32,12 @@ namespace EasySharp.Win.WindowHandlers
             this.windowTitlePredicate = windowTitlePredicate;
         }
 
-        public static IEnumerable<IntPtr> GetWindowHandlersFromTitle(string windowTitle)
+        public static IEnumerable<IntPtr> GetWindowHandlesFromTitle(string windowTitle)
         {
-            return GetWindowHandlersFromTitle((title) => title == windowTitle);
+            return GetWindowHandlesFromTitle((title) => title == windowTitle);
         }
 
-        public static IEnumerable<IntPtr> GetWindowHandlersFromTitle(Func<string, bool> titlePredicate)
+        public static IEnumerable<IntPtr> GetWindowHandlesFromTitle(Func<string, bool> titlePredicate)
         {
             var instance = new EnumWindowsFromTitleService(titlePredicate);
             EnumWindows(new EnumWindowsDelegate(instance.EnumWindowCallBack), IntPtr.Zero);
@@ -44,12 +46,12 @@ namespace EasySharp.Win.WindowHandlers
 
         public static bool TryGetWindowHandleFromTitle(
             string windowTitle,
-            out IntPtr windowHandler, 
-            int maxRetry = 60, 
+            out IntPtr windowHandler,
+            int maxRetry = 60,
             int intervalMilliseconds = 1000)
         {
             windowHandler = Retry.Until(
-                () => GetWindowHandlersFromTitle(windowTitle).FirstOrDefault(),
+                () => GetWindowHandlesFromTitle(windowTitle).FirstOrDefault(),
                 (lw) => !lw.IsDefaultStructValue(),
                 maxRetry,
                 intervalMilliseconds);
