@@ -24,5 +24,9 @@ namespace EasySharpCoreWpfLibrary.Automations
                 AutomationElement.NameProperty,
                 name);
 
+        public static Condition AutomationIdProperty(string automationId)
+            => new PropertyCondition(
+                AutomationElement.AutomationIdProperty,
+                automationId);
     }
 }
