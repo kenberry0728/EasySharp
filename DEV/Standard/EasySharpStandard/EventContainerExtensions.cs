@@ -54,5 +54,20 @@ namespace EasySharp
             }
         }
 
+        public static void Subscribe<TEventArg>(
+            this IEventContainer<TEventArg> eventContainer,
+            Action<TEventArg> action,
+            Func<TEventArg, bool> predicate)
+        {
+            eventContainer.SubscribeEvent(OnTriggered);
+
+            void OnTriggered(object sender, TEventArg arg)
+            {
+                if (predicate(arg))
+                {
+                    action?.Invoke(arg);
+                }
+            }
+        }
     }
 }
