@@ -7,17 +7,20 @@ namespace EasySharp
         public static void DoOrReserve<TEventArg>(
             this IEventContainer<TEventArg> eventContainer,
             Action action,
-            Func<bool> needToReserveAction)
+            Func<bool> predicate)
         {
             eventContainer.SubscribeEvent(OnReservedEventTriggered);
-            if (!needToReserveAction())
+            if (predicate())
             {
                 UnsubscribeAndAction();
             }
 
             void OnReservedEventTriggered(object sender, TEventArg arg)
             {
-                UnsubscribeAndAction();
+                if (predicate())
+                {
+                    UnsubscribeAndAction();
+                }
             }
 
             void UnsubscribeAndAction()
