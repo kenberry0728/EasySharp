@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace EasySharp.Wrappers.Core
+namespace EasySharp.IO
 {
     public interface IDirectoryInfo
     {

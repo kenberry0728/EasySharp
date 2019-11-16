@@ -1,14 +1,12 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.Serialization;
 
-namespace EasySharp.Wrappers.Core
+namespace EasySharp.IO
 {
     public interface IFileSystemInfo
     {
         string FullPath { get; set; }
         string OriginalPath { get; set; }
-        void GetObjectData(SerializationInfo info, StreamingContext context);
         string FullName { get; }
         string Extension { get; }
         string Name { get; }
