@@ -10,5 +10,10 @@ namespace EasySharp.Threading
         }
 
         public DateTime AlarmTime { get; }
+
+        public override string ToString()
+        {
+            return this.AlarmTime.ToLongTimeString();
+        }
     }
 }
