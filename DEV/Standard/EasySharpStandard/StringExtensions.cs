@@ -28,5 +28,10 @@ namespace EasySharp
         {
             return new string('\t', level) + target;
         }
+
+        public static bool IsNullOrEmpty(this string instance)
+        {
+            return string.IsNullOrEmpty(instance);
+        }
     }
 }

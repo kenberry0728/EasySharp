@@ -1,16 +1,23 @@
-﻿using System;
+﻿using EasySharp.Reflection;
+using System;
 
 namespace EasySharp.Win.WindowHandles
 {
-    public class WindowInfo
+    public struct WindowInfo
     {
         public WindowInfo(IntPtr handle, string title)
         {
             this.Handle = handle;
             this.Title = title;
         }
+
         public IntPtr Handle { get; }
 
         public string Title { get;  }
+
+        public override string ToString()
+        {
+            return this.ToFormattedString();
+        }
     }
 }

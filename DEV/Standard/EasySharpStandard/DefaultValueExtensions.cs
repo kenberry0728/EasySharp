@@ -16,10 +16,5 @@
         {
             return instance == null;
         }
-
-        public static bool IsNullOrEmpty(this string instance)
-        {
-            return string.IsNullOrEmpty(instance);
-        }
     }
 }

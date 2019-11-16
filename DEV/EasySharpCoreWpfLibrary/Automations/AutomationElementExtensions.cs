@@ -23,7 +23,7 @@ namespace EasySharpCoreWpfLibrary.Automations
         {
             var elements = rootElement.FindAll(
                 TreeScope.Descendants,
-                conditions.Concat(new[] { ConditionFactory.EditControlProperty() }).ToArray())
+                conditions.Concat(new[] { ControlType.Edit.ToCondition() }).ToArray())
                 .ToList();
             if (elements.Count != 1)
             {
@@ -66,7 +66,7 @@ namespace EasySharpCoreWpfLibrary.Automations
         {
             var elements = rootElement.FindAll(
                 TreeScope.Descendants,
-                conditions.Concat(new[] { ConditionFactory.ButtonControlProperty() }).ToArray())
+                conditions.Concat(new[] { ControlType.Button.ToCondition() }).ToArray())
                 .ToList();
             if (elements.Count != 1)
             {
@@ -88,6 +88,5 @@ namespace EasySharpCoreWpfLibrary.Automations
                 return false;
             }
         }
-
     }
 }
