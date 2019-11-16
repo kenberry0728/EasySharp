@@ -1,11 +1,10 @@
 ﻿using EasySharp.Observer;
-using EasySharp.Threading;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-namespace EasySharp
+namespace EasySharp.Threading
 {
     public class Alarm : StateObserverBase<AlarmState>
     {
@@ -14,7 +13,7 @@ namespace EasySharp
         private readonly int minimumPeriod;
         private readonly IDateTime dateTime;
 
-        public Alarm(params DateTime[] settingTimes): this(100, settingTimes)
+        public Alarm(params DateTime[] settingTimes) : this(100, settingTimes)
         {
         }
 
