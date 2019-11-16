@@ -10,7 +10,7 @@ namespace EasySharp.IO
 
         public static string ToFullDirectoryName(this string directoryPath)
         {
-            return string.IsNullOrEmpty(directoryPath) ? Directory.GetCurrentDirectory() : new DirectoryInfo(directoryPath).FullName;
+            return directoryPath.IsNullOrEmpty() ? Directory.GetCurrentDirectory() : new DirectoryInfo(directoryPath).FullName;
         }
 
         public static void CreateDirectoryRecursively(this string directoryPath)
@@ -81,7 +81,7 @@ namespace EasySharp.IO
 
         private static void CreateDirectoryRecursivelyInner(this string directoryPath)
         {
-            directoryPath = string.IsNullOrEmpty(directoryPath)
+            directoryPath = directoryPath.IsNullOrEmpty()
                 ? Directory.GetCurrentDirectory()
                 : directoryPath;
             var parentDirectoryInfo = Directory.GetParent(directoryPath);

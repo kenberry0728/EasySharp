@@ -12,7 +12,7 @@ namespace EasySharp.Processes
 
         public static string ToCommandLineValue(this string value)
         {
-            if (string.IsNullOrEmpty(value))
+            if (value.IsNullOrEmpty())
             {
                 return string.Empty;
             }

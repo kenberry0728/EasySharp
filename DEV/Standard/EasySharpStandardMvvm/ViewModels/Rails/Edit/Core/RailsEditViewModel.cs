@@ -22,7 +22,7 @@ namespace EasySharpStandardMvvm.ViewModels.Rails.Edit.Core
 
         IEnumerable INotifyDataErrorInfo.GetErrors(string propertyPath)
         {
-            if (string.IsNullOrEmpty(propertyPath)) { return null; }
+            if (propertyPath.IsNullOrEmpty()) { return null; }
 
             var propertyName = this.GetRailsPropertyName(propertyPath);
             var property = this.valueProperties.FirstOrDefault(p => p.Name == propertyName);

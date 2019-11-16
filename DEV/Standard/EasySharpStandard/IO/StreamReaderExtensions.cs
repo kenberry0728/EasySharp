@@ -24,7 +24,7 @@ namespace EasySharp.IO
                 {
                     if (removeEmptyLine)
                     {
-                        if (!string.IsNullOrEmpty(line))
+                        if (!line.IsNullOrEmpty())
                         {
                             yield return line;
                         }

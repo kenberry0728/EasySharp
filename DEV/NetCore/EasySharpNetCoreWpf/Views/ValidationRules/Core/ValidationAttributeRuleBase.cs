@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EasySharp;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Windows.Controls;
 
@@ -14,7 +15,7 @@ namespace EasySharpWpf.Views.ValidationRules.Core
         }
 
         public string ErrorMessage =>
-            string.IsNullOrEmpty(this.validationAttribute.ErrorMessage)
+            this.validationAttribute.ErrorMessage.IsNullOrEmpty()
                 ? this.DefaultErrorMessage
                 : this.validationAttribute.ErrorMessage;
 

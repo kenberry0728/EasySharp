@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
+using EasySharp;
 using EasySharp.IO;
 using EasySharp.Processes;
 using EasySharp.Text.RegularExpressions;
@@ -62,7 +63,7 @@ namespace AppInstaller.RunModes
 
         private void WaitForExitInInstallDir(AppInstallerArgument appInstallerArgument)
         {
-            if (!string.IsNullOrEmpty(appInstallerArgument.OriginalAppPath))
+            if (!appInstallerArgument.OriginalAppPath.IsNullOrEmpty())
             {
                 var originalApp = appInstallerArgument.OriginalAppPath.GetProcessByFileName();
                 originalApp?.WaitForExit(100000);

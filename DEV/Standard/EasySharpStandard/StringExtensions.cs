@@ -6,7 +6,7 @@ namespace EasySharp
     {
         public static void ThrowArgumentNullOrEmptyException(this string argument, string argumentName)
         {
-            if (string.IsNullOrEmpty(argument))
+            if (argument.IsNullOrEmpty())
             {
                 throw new ArgumentException(argumentName);
             }
