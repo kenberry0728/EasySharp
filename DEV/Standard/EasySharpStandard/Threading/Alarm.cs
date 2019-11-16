@@ -59,8 +59,8 @@ namespace EasySharp.Threading
 
             foreach (var pastTime in pastTimes)
             {
-                var arg = this.SetCurrentState(new AlarmState(pastTime));
-                this.OnStateChange(this, arg);
+                var arg = this.SetCurrentValue(new AlarmState(pastTime));
+                this.OnValueChange(this, arg);
             }
         }
 
