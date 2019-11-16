@@ -12,13 +12,20 @@ namespace EasySharp
         private readonly Queue<DateTime> remainingSettingTimes;
         private readonly Timer timer;
         private readonly int minimumPeriod;
+        private readonly IDateTime dateTime;
 
         public Alarm(params DateTime[] settingTimes): this(100, settingTimes)
         {
         }
 
         public Alarm(int minimumTimerPeriod, params DateTime[] settingTimes)
+            : this(new DateTimeWrapper(), minimumTimerPeriod, settingTimes)
         {
+        }
+
+        public Alarm(IDateTime dateTime, int minimumTimerPeriod, params DateTime[] settingTimes)
+        {
+            this.dateTime = dateTime;
             this.remainingSettingTimes = new Queue<DateTime>(settingTimes.OrderBy(dt => dt));
             this.minimumPeriod = minimumTimerPeriod;
 
@@ -44,7 +51,7 @@ namespace EasySharp
 
         private void NotifyTimeIfAny()
         {
-            var now = DateTime.Now;
+            var now = this.dateTime.Now;
             var pastTimes = new List<DateTime>();
             while (DateTime.Compare(remainingSettingTimes.Peek(), now) < 0)
             {
@@ -60,7 +67,9 @@ namespace EasySharp
 
         private int GetNextPeriod()
         {
-            return Math.Max(this.minimumPeriod, (int)((this.remainingSettingTimes.Peek() - DateTime.Now).TotalMilliseconds / 2.0));
+            return Math.Max(
+                this.minimumPeriod,
+                (int)((this.remainingSettingTimes.Peek() - this.dateTime.Now).TotalMilliseconds / 2.0));
         }
     }
 }
