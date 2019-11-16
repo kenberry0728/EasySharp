@@ -13,7 +13,11 @@ namespace EasySharp
         private readonly Timer timer;
         private readonly int minimumPeriod;
 
-        public Alarm(IEnumerable<DateTime> settingTimes, int minimumTimerPeriod = 100)
+        public Alarm(params DateTime[] settingTimes): this(100, settingTimes)
+        {
+        }
+
+        public Alarm(int minimumTimerPeriod, params DateTime[] settingTimes)
         {
             this.remainingSettingTimes = new Queue<DateTime>(settingTimes.OrderBy(dt => dt));
             this.minimumPeriod = minimumTimerPeriod;
