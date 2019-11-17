@@ -1,19 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFrameworks>net472;netcoreapp3.0</TargetFrameworks>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Standard\EasySharpStandardMvvm\EasySharpStandardMvvm.csproj" />
-    <ProjectReference Include="..\..\Standard\EasySharpStandard\EasySharp.csproj" />
+    <Compile Remove="ViewModels\Rails\Index\core\**" />
+    <Compile Remove="Views\behaviours\**" />
+    <EmbeddedResource Remove="ViewModels\Rails\Index\core\**" />
+    <EmbeddedResource Remove="Views\behaviours\**" />
+    <None Remove="ViewModels\Rails\Index\core\**" />
+    <None Remove="Views\behaviours\**" />
+    <Page Remove="ViewModels\Rails\Index\core\**" />
+    <Page Remove="Views\behaviours\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\Rails\Index\core\" />
-    <Folder Include="Views\behaviours\" />
-    <Folder Include="Views\Extensions\" />
+    <ProjectReference Include="..\..\Standard\EasySharpStandardMvvm\EasySharpStandardMvvm.csproj" />
+    <ProjectReference Include="..\..\Standard\EasySharpStandard\EasySharp.csproj" />
   </ItemGroup>
 
   <ItemGroup>
