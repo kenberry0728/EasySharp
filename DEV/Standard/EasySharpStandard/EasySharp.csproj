@@ -12,7 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Wrappers\" />
+    <Compile Remove="Wrappers\**" />
+    <EmbeddedResource Remove="Wrappers\**" />
+    <None Remove="Wrappers\**" />
   </ItemGroup>
 
 </Project>

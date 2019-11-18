@@ -1,54 +1,43 @@
 ﻿using EasySharp.IO;
-using EasySharp.Threading;
+using System;
 using System.IO;
 using System.Text;
 
 namespace EasySharp.Logs.Text
 {
-    public class TextFileLogger : ITextLogger
+    public class TextFileLogger : ITextLogger, IDisposable
     {
         private readonly string filePath;
-        private readonly bool throwException;
+        private readonly StreamWriter streamWriter;
+        private readonly object lockObject = new object();
 
-        public TextFileLogger(string filePath, bool throwException)
+        public TextFileLogger(string filePath)
         {
             this.filePath = filePath;
-            this.throwException = throwException;
-
             this.filePath.EnsureDirectoryForFile();
+            this.streamWriter = new StreamWriter(this.filePath, true, Encoding.UTF8);
+        }
+
+        public void Dispose()
+        {
+            this.streamWriter.Dispose();
         }
 
         public virtual void Write(string message)
         {
-            var result = Retry.Run(() =>
+            lock (this.lockObject)
             {
-                using (var sw = new StreamWriter(this.filePath, true, Encoding.UTF8))
-                {
-                    sw.Write(message);
-                }
-            });
-
-            if (throwException && !result)
-            {
-                throw new IOException();
+                this.streamWriter.Write(message);
             }
         }
 
         public virtual string WriteLine(params string[] messages)
         {
             var lineText = messages.ToTabSeparated();
-            var result = Retry.Run(() =>
+            lock(this.lockObject)
             {
-                using (var sw = new StreamWriter(this.filePath, true, Encoding.UTF8))
-                {
-                    sw.WriteLine(lineText);
-                }
-            });
-
-            if (throwException && !result)
-            {
-                throw new IOException();
-            }
+                this.streamWriter.WriteLine(lineText);
+            };
 
             return lineText;
         }
