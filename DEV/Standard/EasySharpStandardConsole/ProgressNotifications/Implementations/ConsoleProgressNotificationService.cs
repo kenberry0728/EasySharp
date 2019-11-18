@@ -7,6 +7,7 @@ namespace EasySharpStandardConsole.ProgressNotifications.Implementations
     {
         public void Dispose()
         {
+            // todo
             Console.WriteLine();
         }
 
