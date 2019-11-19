@@ -22,6 +22,7 @@ namespace EasySharp.Win.Runtime.InteropServices
             MOUSEEVENTF_RIGHTDOWN = 0x0008,
             MOUSEEVENTF_RIGHTUP = 0x0010,
             MOUSEEVENTF_WHEEL = 0x0800, // The wheel has been moved, if the mouse has a wheel. The amount of movement is specified in dwData
+                                        // The wheel button is tilted.
             MOUSEEVENTF_XDOWN = 0x0080,
             MOUSEEVENTF_XUP = 0x0100,
             MOUSEEVENTF_HWHEEL = 0x01000,
@@ -40,6 +41,5 @@ namespace EasySharp.Win.Runtime.InteropServices
             mouse_event((int)MouseEvent.MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
             mouse_event((int)MouseEvent.MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
         }
-
     }
 }
