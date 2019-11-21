@@ -33,5 +33,10 @@ namespace EasySharp
         {
             return string.IsNullOrEmpty(instance);
         }
+
+        public static bool OrdinalStartsWith(this string target, string value)
+        {
+            return target.StartsWith(value, StringComparison.Ordinal);
+        }
     }
 }
