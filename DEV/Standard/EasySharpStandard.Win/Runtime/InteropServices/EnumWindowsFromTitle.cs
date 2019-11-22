@@ -32,7 +32,7 @@ namespace EasySharp.Win.Runtime.InteropServices
                 this.windowTitlePredicate = windowTitlePredicate;
             }
 
-            public IEnumerable<WindowInfo> GetWindowInfos()
+            public IReadOnlyCollection<WindowInfo> GetWindowInfos()
             {
                 EnumWindows(new EnumWindowsDelegate(this.EnumWindowCallBack), IntPtr.Zero);
                 return this.windowInfos;
@@ -40,10 +40,10 @@ namespace EasySharp.Win.Runtime.InteropServices
 
             private bool EnumWindowCallBack(IntPtr hWnd, IntPtr lparam)
             {
-                int textLen = GetWindowTextLength(hWnd);
-                if (0 < textLen)
+                int textLength = GetWindowTextLength(hWnd);
+                if (0 < textLength)
                 {
-                    var windowTitleStringBuilder = new StringBuilder(textLen + 1);
+                    var windowTitleStringBuilder = new StringBuilder(textLength + 1);
                     GetWindowText(hWnd, windowTitleStringBuilder, windowTitleStringBuilder.Capacity);
 
                     var windowTitle = windowTitleStringBuilder.ToString();
@@ -99,9 +99,9 @@ namespace EasySharp.Win.Runtime.InteropServices
             return GetWindowInfos(titlePredicate).Select(wi => wi.Handle);
         }
 
-        public static IEnumerable<WindowInfo> GetWindowInfos(Func<string, bool> titlePredicate = null)
+        public static IReadOnlyCollection<WindowInfo> GetWindowInfos(Func<string, bool> titlePredicate = null)
         {
-            titlePredicate = titlePredicate ?? Delegates.True;
+            titlePredicate = titlePredicate.TrueIfNull();
             var service = new EnumWindowsFromTitleService(titlePredicate);
             return service.GetWindowInfos();
         }
