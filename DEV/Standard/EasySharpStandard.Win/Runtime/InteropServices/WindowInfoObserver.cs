@@ -16,7 +16,7 @@ namespace EasySharp.Win.Runtime.InteropServices
 
         protected override WindowInfo[] Observe()
         {
-            return EnumWindowsFromTitleService.GetWindowInfos().ToArray();
+            return EnumWindowsFromTitle.GetWindowInfos().ToArray();
         }
     }
 }
