@@ -101,7 +101,7 @@ namespace EasySharp.Win.Runtime.InteropServices
 
         public static IEnumerable<WindowInfo> GetWindowInfos(Func<string, bool> titlePredicate = null)
         {
-            titlePredicate = titlePredicate ?? (s => true);
+            titlePredicate = titlePredicate ?? Delegates.True;
             var service = new EnumWindowsFromTitleService(titlePredicate);
             return service.GetWindowInfos();
         }
