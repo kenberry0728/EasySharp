@@ -57,41 +57,18 @@ namespace EasySharp.Win.Runtime.InteropServices
             }
         }
 
-        public static IEnumerable<IntPtr> GetWindowHandlesFromTitle(string windowTitle)
-        {
-            return GetWindowHandlesFromTitle((title) => title == windowTitle);
-        }
-
-        public static bool TryGetWindowHandleFromTitle(
-            string windowTitle,
-            out IntPtr windowHandler,
-            int maxRetry = 60,
-            int intervalMilliseconds = 1000)
-        {
-            return TryGetWindowHandleFromTitle(
-                s => s == windowTitle,
-                out windowHandler,
-                maxRetry,
-                intervalMilliseconds);
-        }
-
         public static bool TryGetWindowHandleFromTitle(
             Func<string, bool> titlePredicate,
             out IntPtr windowHandler,
             int maxRetry = 60,
             int intervalMilliseconds = 1000)
         {
-            windowHandler = Retry.Until(
+            return Retry.Until(
                 () => GetWindowHandlesFromTitle(titlePredicate).FirstOrDefault(),
                 (lw) => !lw.IsDefaultStructValue(),
+                out windowHandler,
                 maxRetry,
                 intervalMilliseconds);
-            if (windowHandler.IsDefaultStructValue())
-            {
-                return false;
-            }
-
-            return true;
         }
 
         public static IEnumerable<IntPtr> GetWindowHandlesFromTitle(Func<string, bool> titlePredicate)

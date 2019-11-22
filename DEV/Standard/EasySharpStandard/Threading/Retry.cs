@@ -5,7 +5,10 @@ namespace EasySharp.Threading
 {
     public static class Retry
     {
-        public static bool Run(Action action, int maxRetry = 10, int intervalMillisecond = 200)
+        public static bool Run(
+            Action action,
+            int maxRetry = 10,
+            int intervalMillisecond = 200)
         {
             if (Try.To(action))
             {
@@ -24,7 +27,10 @@ namespace EasySharp.Threading
             return false;
         }
 
-        public static T Run<T>(Func<T> func, int maxRetry = 10, int intervalMillisecond = 200)
+        public static T Run<T>(
+            Func<T> func, 
+            int maxRetry = 10, 
+            int intervalMillisecond = 200)
         {
             if (Try.To(func, out var returnValue))
             {
@@ -43,9 +49,12 @@ namespace EasySharp.Threading
             return default;
         }
 
-        public static bool Until(Func<bool> func, int maxRetry = 10, int intervalMillisecond = 200)
+        public static bool Until(
+            Func<bool> endPredicate,
+            int maxRetry = 10,
+            int intervalMillisecond = 200)
         {
-            if (Try.To(func, out var returnValue) && returnValue)
+            if (Try.To(endPredicate, out var returnValue) && returnValue)
             {
                 return true;
             }
@@ -53,7 +62,7 @@ namespace EasySharp.Threading
             for (int i = 1; i < maxRetry; i++)
             {
                 Thread.Sleep(intervalMillisecond);
-                if (Try.To(func, out returnValue) && returnValue)
+                if (Try.To(endPredicate, out returnValue) && returnValue)
                 {
                     return true;
                 }
@@ -62,13 +71,18 @@ namespace EasySharp.Threading
             return false;
         }
 
-        public static T Until<T>(Func<T> func, Func<T, bool> endPredicate, int maxRetry = 10, int intervalMillisecond = 200)
+        public static bool Until<T>(
+            Func<T> func,
+            Func<T, bool> endPredicate,
+            out T returnValue,
+            int maxRetry = 10,
+            int intervalMillisecond = 200)
         {
-            if (Try.To(func, out var returnValue))
+            if (Try.To(func, out returnValue))
             {
                 if (endPredicate(returnValue))
                 {
-                    return returnValue;
+                    return true;
                 }
             }
 
@@ -79,12 +93,12 @@ namespace EasySharp.Threading
                 {
                     if (endPredicate(returnValue))
                     {
-                        return returnValue;
+                        return true;
                     }
                 }
             }
 
-            return default;
+            return Try.Failed(out returnValue);
         }
     }
 }
