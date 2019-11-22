@@ -1,7 +1,7 @@
 ﻿using EasySharp.Reflection;
 using System;
 
-namespace EasySharp.Win.WindowHandles
+namespace EasySharp.Win.Runtime.InteropServices
 {
     public struct WindowInfo
     {
@@ -13,7 +13,7 @@ namespace EasySharp.Win.WindowHandles
 
         public IntPtr Handle { get; }
 
-        public string Title { get;  }
+        public string Title { get; }
 
         public override string ToString()
         {

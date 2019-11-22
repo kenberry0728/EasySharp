@@ -38,5 +38,10 @@ namespace EasySharp
         {
             return target.StartsWith(value, StringComparison.Ordinal);
         }
+
+        public static bool OrdinalEquals(this string target, string value)
+        {
+            return target.Equals(value, StringComparison.Ordinal);
+        }
     }
 }

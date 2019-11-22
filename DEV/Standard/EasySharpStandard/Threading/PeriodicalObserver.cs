@@ -2,28 +2,31 @@
 using System;
 using System.Threading;
 
-namespace EasySharp.Win.Runtime.InteropServices
+namespace EasySharp.Threading
 {
     public abstract class PeriodicalObserver<T> : DisposableBase
     {
         private readonly Timer timer;
         private readonly ITextLogger textLogger;
 
-        public PeriodicalObserver(ITextLogger textLogger, int dueTime = 0, int periodMilliseconds = 1000)
+        protected PeriodicalObserver(
+            ITextLogger textLogger,
+            int dueTime = 0,
+            int periodMilliseconds = 1000)
         {
             this.textLogger = textLogger;
-            this.OveservedEvent = new EventContainer<T>(
-                handler => this.Ovserved += handler,
-                handler => this.Ovserved -= handler);
+            this.ObeservedEvent = new EventContainer<T>(
+                handler => this.Observed += handler,
+                handler => this.Observed -= handler);
 
-            this.timer = new Timer(ObserveWindowInfo, null, dueTime, periodMilliseconds);
+            this.timer = new Timer(Observe, null, dueTime, periodMilliseconds);
         }
 
-        public event EventHandler<T> Ovserved;
+        public event EventHandler<T> Observed;
 
-        public IEventContainer<T> OveservedEvent { get; }
+        public IEventContainer<T> ObeservedEvent { get; }
 
-        private void ObserveWindowInfo(object state)
+        private void Observe(object state)
         {
             this.OnObserved(this, Observe());
         }
@@ -43,7 +46,7 @@ namespace EasySharp.Win.Runtime.InteropServices
         private void OnObserved(object sender, T state)
         {
             this.textLogger.WriteLine(GetLoggingText(state));
-            this.Ovserved?.Invoke(sender, state);
+            this.Observed?.Invoke(sender, state);
         }
     }
 }

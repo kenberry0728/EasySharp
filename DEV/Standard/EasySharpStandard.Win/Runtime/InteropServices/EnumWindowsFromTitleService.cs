@@ -1,13 +1,11 @@
-﻿using EasySharp;
-using EasySharp.Threading;
-using EasySharp.Win.WindowHandles;
+﻿using EasySharp.Threading;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace EasySharp.Win.WindowHandle
+namespace EasySharp.Win.Runtime.InteropServices
 {
     public class EnumWindowsFromTitleService
     {
@@ -39,9 +37,20 @@ namespace EasySharp.Win.WindowHandle
 
         public static IEnumerable<IntPtr> GetWindowHandlesFromTitle(Func<string, bool> titlePredicate)
         {
-            var instance = new EnumWindowsFromTitleService(titlePredicate);
-            EnumWindows(new EnumWindowsDelegate(instance.EnumWindowCallBack), IntPtr.Zero);
-            return instance.windowInfos.Select(wi => wi.Handle);
+            return GetWindowInfos(titlePredicate).Select(wi => wi.Handle);
+        }
+
+        public static bool TryGetWindowHandleFromTitle(
+            string windowTitle,
+            out IntPtr windowHandler,
+            int maxRetry = 60,
+            int intervalMilliseconds = 1000)
+        {
+            return TryGetWindowHandleFromTitle(
+                s => s == windowTitle,
+                out windowHandler,
+                maxRetry,
+                intervalMilliseconds);
         }
 
         public static bool TryGetWindowHandleFromTitle(
@@ -63,21 +72,9 @@ namespace EasySharp.Win.WindowHandle
             return true;
         }
 
-        public static bool TryGetWindowHandleFromTitle(
-            string windowTitle,
-            out IntPtr windowHandler,
-            int maxRetry = 60,
-            int intervalMilliseconds = 1000)
+        public static IEnumerable<WindowInfo> GetWindowInfos(Func<string, bool> titlePredicate = null)
         {
-            return TryGetWindowHandleFromTitle(
-                s => s == windowTitle,
-                out windowHandler,
-                maxRetry,
-                intervalMilliseconds);
-        }
-
-        public static IEnumerable<WindowInfo> GetWindowInfos(Func<string, bool> titlePredicate)
-        {
+            titlePredicate = titlePredicate ?? (s => true);
             var instance = new EnumWindowsFromTitleService(titlePredicate);
             EnumWindows(new EnumWindowsDelegate(instance.EnumWindowCallBack), IntPtr.Zero);
             return instance.windowInfos;
