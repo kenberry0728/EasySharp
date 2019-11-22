@@ -45,13 +45,13 @@ namespace EasySharp.Win.WindowHandle
         }
 
         public static bool TryGetWindowHandleFromTitle(
-            string windowTitle,
+            Func<string, bool> titlePredicate,
             out IntPtr windowHandler,
             int maxRetry = 60,
             int intervalMilliseconds = 1000)
         {
             windowHandler = Retry.Until(
-                () => GetWindowHandlesFromTitle(windowTitle).FirstOrDefault(),
+                () => GetWindowHandlesFromTitle(titlePredicate).FirstOrDefault(),
                 (lw) => !lw.IsDefaultStructValue(),
                 maxRetry,
                 intervalMilliseconds);
@@ -61,6 +61,19 @@ namespace EasySharp.Win.WindowHandle
             }
 
             return true;
+        }
+
+        public static bool TryGetWindowHandleFromTitle(
+            string windowTitle,
+            out IntPtr windowHandler,
+            int maxRetry = 60,
+            int intervalMilliseconds = 1000)
+        {
+            return TryGetWindowHandleFromTitle(
+                s => s == windowTitle,
+                out windowHandler,
+                maxRetry,
+                intervalMilliseconds);
         }
 
         public static IEnumerable<WindowInfo> GetWindowInfos(Func<string, bool> titlePredicate)

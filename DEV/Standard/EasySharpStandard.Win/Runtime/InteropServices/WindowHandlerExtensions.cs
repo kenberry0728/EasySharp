@@ -18,7 +18,7 @@ namespace EasySharp.WindowHandles
             return result != 0;
         }
 
-        public static bool TrySetForeGroundWindow(this IntPtr hWnd)
+        public static bool SetForeGroundWindow(this IntPtr hWnd)
         {
             return SetForegroundWindow(hWnd);
         }
