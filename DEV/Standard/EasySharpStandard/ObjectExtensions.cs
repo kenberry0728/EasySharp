@@ -6,7 +6,7 @@ namespace EasySharp
 {
     public static class ObjectExtensions
     {
-        public static void ThrowArgumentNullException<T>(this T argument, string argumentName)
+        public static void ThrowExceptionIfNull<T>(this T argument, string argumentName)
             where T : class
         {
             if (argument == null)
