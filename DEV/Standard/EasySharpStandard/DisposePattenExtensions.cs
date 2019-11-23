@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 
 namespace EasySharp
 {
@@ -20,6 +22,34 @@ namespace EasySharp
         {
             // Finalizer calls Dispose(false)
             disposablePattern.Dispose(false);
+        }
+
+        public static void DisposeMembers(this IDisposable disposable)
+        {
+            var type = disposable.GetType();
+            var properties = type.GetProperties(
+                BindingFlags.Instance
+                | BindingFlags.Public
+                | BindingFlags.NonPublic);
+
+            foreach (var property in properties.Where(p => p.CanRead))
+            {
+                var disposableProperty = property.GetValue(disposable) as IDisposable;
+                if (disposableProperty != null)
+                {
+                    disposableProperty.Dispose();
+                }
+            }
+
+            var fields = type.GetFields(
+                BindingFlags.Instance
+                | BindingFlags.Public
+                | BindingFlags.NonPublic);
+            foreach (var field in fields)
+            {
+                var disposableField = field.GetValue(disposable) as IDisposable;
+                disposableField.Dispose();
+            }
         }
 
         // The bulk of the clean-up code is implemented in Dispose(bool)
