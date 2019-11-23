@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace EasySharp.Threading
 {
-    public abstract class PeriodicalObserver<T> : DisposableBase
+    public abstract class PeriodicalObserver<T> : DisposableBase, IPeriodicalObserver<T>
     {
         private readonly Timer timer;
         private readonly ITextLogger textLogger;

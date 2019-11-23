@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasySharp;
+using System;
 using System.Windows.Input;
 
 namespace EasySharpStandardMvvm.Commands.Core
@@ -14,7 +15,7 @@ namespace EasySharpStandardMvvm.Commands.Core
         }
 
         public DelegateCommand(Action<object> execute)
-            : this((param) => true, execute)
+            : this(Delegates.True, execute)
         {
         }
 

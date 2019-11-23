@@ -34,7 +34,7 @@ namespace EasySharp
             this IEventContainer<TEventArg> eventContainer,
             Action<TEventArg> action)
         {
-            eventContainer.DoAtOnce(action, a => true);
+            eventContainer.DoAtOnce(action, Delegates.True);
         }
 
         public static void DoAtOnce<TEventArg>(

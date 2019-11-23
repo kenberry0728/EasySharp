@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasySharp;
+using System;
 
 namespace EasySharpStandardMvvm.Commands.Core
 {
@@ -13,7 +14,7 @@ namespace EasySharpStandardMvvm.Commands.Core
 
         public CommandBase()
         {
-            this.CanExecuteFunc = x => true;
+            this.CanExecuteFunc = Delegates.True;;
         }
 
         protected Func<object, bool> CanExecuteFunc { get; }

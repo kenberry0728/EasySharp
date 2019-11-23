@@ -8,7 +8,7 @@ namespace EasySharp.ComponentModel.Reflection
     {
         public static string ToCommaSeparatedString(this object instance, Func<PropertyInfo, bool> filter = null)
         {
-            filter = filter ?? ((p) => true);
+            filter = filter.TrueIfNull();
             return string.Join(
                     ", ",
                     instance.GetType().GetProperties()

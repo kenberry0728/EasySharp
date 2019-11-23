@@ -36,12 +36,12 @@ namespace EasySharp
 
         public static bool OrdinalStartsWith(this string target, string value)
         {
-            return target.StartsWith(value, StringComparison.Ordinal);
+            return target?.StartsWith(value, StringComparison.Ordinal) == true; 
         }
 
         public static bool OrdinalEquals(this string target, string value)
         {
-            return target.Equals(value, StringComparison.Ordinal);
+            return string.Equals(target, value, StringComparison.Ordinal);
         }
     }
 }
