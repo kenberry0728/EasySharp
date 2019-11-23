@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace EasySharp.Win.Runtime.InteropServices
 {
-    internal sealed class WindowInfoObserver : PeriodicalObserver<WindowInfo[]>
+    public sealed class WindowInfoObserver : PeriodicalObserver<WindowInfo[]>
     {
         public WindowInfoObserver(
             ITextLogger textLogger, 

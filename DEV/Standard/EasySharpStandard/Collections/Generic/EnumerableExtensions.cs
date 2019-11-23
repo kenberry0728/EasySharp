@@ -29,5 +29,10 @@ namespace EasySharp.Collections.Generic
 
             return true;
         }
+
+        public static List<T> ToList<T>(this IEnumerable<T> items, Func<T, bool> predicate)
+        {
+            return items.Where(predicate).ToList();
+        }
     }
 }
