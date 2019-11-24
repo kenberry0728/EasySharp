@@ -9,7 +9,7 @@ namespace EasySharp
             Action action,
             Func<bool> predicate)
         {
-            eventContainer.SubscribeEvent(OnReservedEventTriggered);
+            eventContainer.Subscribe(OnReservedEventTriggered);
             if (predicate())
             {
                 UnsubscribeAndAction();
@@ -25,7 +25,7 @@ namespace EasySharp
 
             void UnsubscribeAndAction()
             {
-                eventContainer.UnsubscribeEvent(OnReservedEventTriggered);
+                eventContainer.Unsubscribe(OnReservedEventTriggered);
                 action?.Invoke();
             }
         }
@@ -42,13 +42,13 @@ namespace EasySharp
             Action<TEventArg> action,
             Func<TEventArg, bool> predicate)
         {
-            eventContainer.SubscribeEvent(OnTriggered);
+            eventContainer.Subscribe(OnTriggered);
 
             void OnTriggered(object sender, TEventArg arg)
             {
                 if(predicate(arg))
                 {
-                    eventContainer.UnsubscribeEvent(OnTriggered);
+                    eventContainer.Unsubscribe(OnTriggered);
                     action?.Invoke(arg);
                 }
             }
@@ -56,10 +56,19 @@ namespace EasySharp
 
         public static void Subscribe<TEventArg>(
             this IEventContainer<TEventArg> eventContainer,
+            Action<TEventArg> action)
+        {
+            eventContainer.Subscribe(
+                action,
+                Delegates.True);
+        }
+        
+        public static void Subscribe<TEventArg>(
+            this IEventContainer<TEventArg> eventContainer,
             Action<TEventArg> action,
             Func<TEventArg, bool> predicate)
         {
-            eventContainer.SubscribeEvent(OnTriggered);
+            eventContainer.Subscribe(OnTriggered);
 
             void OnTriggered(object sender, TEventArg arg)
             {
@@ -69,5 +78,6 @@ namespace EasySharp
                 }
             }
         }
+
     }
 }

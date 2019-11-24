@@ -15,12 +15,12 @@ namespace EasySharp
             this.unsubscrieEvent = unsubscrieEvent;
         }
 
-        public void SubscribeEvent(EventHandler<TEventArg> action)
+        public void Subscribe(EventHandler<TEventArg> action)
         {
             this.subscribeEvent(action);
         }
 
-        public void UnsubscribeEvent(EventHandler<TEventArg> action)
+        public void Unsubscribe(EventHandler<TEventArg> action)
         {
             this.unsubscrieEvent(action);
         }

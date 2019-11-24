@@ -4,7 +4,7 @@ namespace EasySharp
 {
     public interface IEventContainer<TEventArg>
     {
-        void SubscribeEvent(EventHandler<TEventArg> action);
-        void UnsubscribeEvent(EventHandler<TEventArg> action);
+        void Subscribe(EventHandler<TEventArg> action);
+        void Unsubscribe(EventHandler<TEventArg> action);
     }
 }

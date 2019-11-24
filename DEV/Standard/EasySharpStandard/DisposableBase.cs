@@ -19,7 +19,6 @@ namespace EasySharp
 
         public virtual void DisposeNativeResources()
         {
-
         }
 
         public abstract void DisposeManagedResources();
