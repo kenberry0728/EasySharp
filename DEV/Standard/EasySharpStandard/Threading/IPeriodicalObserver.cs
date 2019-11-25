@@ -7,7 +7,5 @@ namespace EasySharp.Threading
         IEventContainer<T> ObeservedEvent { get; }
 
         event EventHandler<T> Observed;
-
-        void DisposeManagedResources();
     }
 }

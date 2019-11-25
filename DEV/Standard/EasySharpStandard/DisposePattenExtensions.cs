@@ -9,7 +9,14 @@ namespace EasySharp
     {
         public static void OnDispose(this IDisposablePattern disposablePattern)
         {
-            disposablePattern.Dispose(true);
+            foreach (var disposeAction in disposablePattern.DisposeActions)
+            {
+                disposeAction();
+            }
+
+            disposablePattern.DisposeActions.Clear();
+
+            disposablePattern.DisposeNativeResources();
             GC.SuppressFinalize(disposablePattern);
         }
 
@@ -19,19 +26,6 @@ namespace EasySharp
         public static void OnDestruct(this IDisposablePattern disposablePattern)
         {
             // Finalizer calls Dispose(false)
-            disposablePattern.Dispose(false);
-        }
-
-        // The bulk of the clean-up code is implemented in Dispose(bool)
-        private static void Dispose(this IDisposablePattern disposablePattern, bool disposing)
-        {
-            if (disposing)
-            {
-                // free managed resources
-                disposablePattern.DisposeManagedResources();
-            }
-
-            // free native resources if there are any.
             disposablePattern.DisposeNativeResources();
         }
     }

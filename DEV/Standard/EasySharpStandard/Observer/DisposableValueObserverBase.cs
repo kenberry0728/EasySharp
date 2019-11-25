@@ -1,4 +1,6 @@
-﻿using EasySharp.Logs.Text;
+﻿using System;
+using System.Collections.Generic;
+using EasySharp.Logs.Text;
 
 namespace EasySharp.Observer
 {
@@ -6,6 +8,8 @@ namespace EasySharp.Observer
         : ValueObserverBase<TStateStruct>, IDisposableValueObserver<TStateStruct>, IDisposablePattern
         where TStateStruct : struct
     {
+        public IList<Action> DisposeActions { get; } = new List<Action>();
+
         protected DisposableValueObserverBase(ITextLogger textLogger = null)
             : base(textLogger)
         {
@@ -22,7 +26,5 @@ namespace EasySharp.Observer
         }
 
         public abstract void DisposeNativeResources();
-
-        public abstract void DisposeManagedResources();
     }
 }

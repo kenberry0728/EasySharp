@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EasySharp
 {
@@ -7,6 +8,8 @@ namespace EasySharp
     /// </summary>
     public abstract class DisposableBase : IDisposable, IDisposablePattern
     {
+        public IList<Action> DisposeActions { get; } = new List<Action>();
+
         ~DisposableBase()
         {
             this.OnDestruct();
@@ -20,7 +23,5 @@ namespace EasySharp
         public virtual void DisposeNativeResources()
         {
         }
-
-        public abstract void DisposeManagedResources();
     }
 }

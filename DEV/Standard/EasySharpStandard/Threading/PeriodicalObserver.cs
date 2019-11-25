@@ -20,6 +20,10 @@ namespace EasySharp.Threading
                 handler => this.Observed -= handler);
 
             this.timer = new Timer(Observe, null, dueTime, periodMilliseconds);
+            this.DisposeActions.Add(() =>
+            {
+                this.timer.Dispose();
+            });
         }
 
         public event EventHandler<T> Observed;
@@ -32,11 +36,6 @@ namespace EasySharp.Threading
         }
 
         protected abstract T Observe();
-
-        public override void DisposeManagedResources()
-        {
-            this.timer.Dispose();
-        }
 
         protected virtual string GetLoggingText(T state)
         {
