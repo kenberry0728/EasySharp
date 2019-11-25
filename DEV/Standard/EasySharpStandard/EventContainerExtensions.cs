@@ -4,7 +4,7 @@ namespace EasySharp
 {
     public static class EventContainerExtensions
     {
-        public static void DoOrReserve<TEventArg>(
+        public static Action DoOrReserve<TEventArg>(
             this IEventContainer<TEventArg> eventContainer,
             Action action,
             Func<bool> predicate)
@@ -14,6 +14,8 @@ namespace EasySharp
             {
                 UnsubscribeAndAction();
             }
+
+            return () => eventContainer.Unsubscribe(OnReservedEventTriggered);
 
             void OnReservedEventTriggered(object sender, TEventArg arg)
             {
@@ -26,20 +28,20 @@ namespace EasySharp
             void UnsubscribeAndAction()
             {
                 eventContainer.Unsubscribe(OnReservedEventTriggered);
-                action?.Invoke();
+                action();
             }
         }
 
         public static void DoAtOnce<TEventArg>(
             this IEventContainer<TEventArg> eventContainer,
-            Action<TEventArg> action)
+            Action<object, TEventArg> action)
         {
             eventContainer.DoAtOnce(action, Delegates.True);
         }
 
         public static void DoAtOnce<TEventArg>(
             this IEventContainer<TEventArg> eventContainer,
-            Action<TEventArg> action,
+            Action<object, TEventArg> action,
             Func<TEventArg, bool> predicate)
         {
             eventContainer.Subscribe(OnTriggered);
@@ -49,7 +51,7 @@ namespace EasySharp
                 if(predicate(arg))
                 {
                     eventContainer.Unsubscribe(OnTriggered);
-                    action?.Invoke(arg);
+                    action(sender, arg);
                 }
             }
         }

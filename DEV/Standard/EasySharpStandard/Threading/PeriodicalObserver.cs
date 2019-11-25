@@ -30,9 +30,11 @@ namespace EasySharp.Threading
 
         public IEventContainer<T> ObeservedEvent { get; }
 
-        private void Observe(object state)
+        private void Observe(object timerContext /* null */)
         {
-            this.OnObserved(this, Observe());
+            var state = Observe();
+            this.textLogger.WriteLine(GetLoggingText(state));
+            this.Observed?.Invoke(this, state);
         }
 
         protected abstract T Observe();
@@ -40,12 +42,6 @@ namespace EasySharp.Threading
         protected virtual string GetLoggingText(T state)
         {
             return state.ToString();
-        }
-
-        private void OnObserved(object sender, T state)
-        {
-            this.textLogger.WriteLine(GetLoggingText(state));
-            this.Observed?.Invoke(sender, state);
         }
     }
 }
