@@ -25,6 +25,8 @@ namespace EasySharp.Observer
             this.OnDispose();
         }
 
-        public abstract void DisposeNativeResources();
+        public virtual void DisposeNativeResources()
+        {
+        }
     }
 }

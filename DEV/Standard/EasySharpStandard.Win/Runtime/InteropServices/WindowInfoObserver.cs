@@ -18,5 +18,10 @@ namespace EasySharp.Win.Runtime.InteropServices
         {
             return EnumWindowsFromTitle.GetWindowInfos().ToArray();
         }
+
+        protected override string GetLoggingText(WindowInfo[] state)
+        {
+            return state.Select(s => s.ToString()).JoinWithTab();
+        }
     }
 }

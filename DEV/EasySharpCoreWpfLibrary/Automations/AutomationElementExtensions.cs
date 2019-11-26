@@ -78,6 +78,7 @@ namespace EasySharpCoreWpfLibrary.Automations
 
         public static bool Invoke(this AutomationElement automationElement)
         {
+            // todo: press = invoke?
             if (automationElement.GetCurrentPattern(InvokePattern.Pattern) is InvokePattern butotn)
             {
                 butotn.Invoke();
@@ -87,6 +88,18 @@ namespace EasySharpCoreWpfLibrary.Automations
             {
                 return false;
             }
+        }
+
+        public static bool Contains(
+            this AutomationElement rootElement,
+            params Condition[] conditions)
+        {
+            var condition = conditions.Length == 1 
+                ? conditions[0] 
+                : new AndCondition(conditions);
+            return rootElement.FindFirst(
+                TreeScope.Descendants,
+                condition) != null;
         }
     }
 }
