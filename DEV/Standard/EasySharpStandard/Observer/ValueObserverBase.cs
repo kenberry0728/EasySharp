@@ -1,5 +1,9 @@
-﻿using EasySharp.Logs.Text;
+﻿using EasySharp.Collections.Generic;
+using EasySharp.Logs.Text;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace EasySharp.Observer
 {
@@ -32,7 +36,19 @@ namespace EasySharp.Observer
 
         protected virtual void OnValueChange(object sender, ValueChangedEventArg<TStateStruct> e)
         {
-            this.textLogger?.WriteLine(this.GetType().Name, e.NewValue.ToString());
+            if (this.textLogger != null)
+            {
+                if (e.NewValue is IEnumerable enumerable)
+                {
+                    var text = enumerable.OfType<object>().Select(s => s.ToString()).JoinWithTab();
+                    this.textLogger.WriteLine(this.GetType().Name, text);
+                }
+                else
+                {
+                    this.textLogger.WriteLine(this.GetType().Name, e.NewValue.ToString());
+                }
+            }
+
             this.ValueChange?.Invoke(sender, e);
         }
     }

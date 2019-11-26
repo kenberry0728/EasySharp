@@ -15,5 +15,10 @@ namespace EasySharp.Collections.Generic
         {
             return array.OfType<T>();
         }
+
+        public static IEnumerable<T> ToEnumerable<T>(this T[] array)
+        {
+            return array.OfType<T>();
+        }
     }
 }

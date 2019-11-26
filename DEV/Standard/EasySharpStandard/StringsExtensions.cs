@@ -5,7 +5,7 @@ namespace EasySharp
 {
     public static class StringsExtensions
     {
-        public static string ToTabSeparated(this IEnumerable<string> strings)
+        public static string JoinWithTab(this IEnumerable<string> strings)
         {
             return string.Join("\t", strings.ToArray());
         }

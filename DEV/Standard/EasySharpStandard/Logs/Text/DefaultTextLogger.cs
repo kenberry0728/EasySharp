@@ -11,7 +11,7 @@ namespace EasySharp.Logs.Text
 
         public string WriteLine(params string[] messages)
         {
-            var lineText = messages.ToTabSeparated();
+            var lineText = messages.JoinWithTab();
             Debug.WriteLine(lineText);
             return lineText;
         }
