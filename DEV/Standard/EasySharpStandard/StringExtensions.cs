@@ -43,5 +43,10 @@ namespace EasySharp
         {
             return string.Equals(target, value, StringComparison.Ordinal);
         }
+
+        public static bool OrdinalIgnoreCaseEquals(this string target, string value)
+        {
+            return string.Equals(target, value, StringComparison.Ordinal);
+        }
     }
 }
