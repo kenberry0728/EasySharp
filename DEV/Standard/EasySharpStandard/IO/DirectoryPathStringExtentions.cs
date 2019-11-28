@@ -8,6 +8,7 @@ namespace EasySharp.IO
     {
         #region Public Methods
 
+        [Obsolete]
         public static string ToFullDirectoryName(this string directoryPath)
         {
             if (directoryPath.IsNullOrEmpty())
@@ -24,11 +25,13 @@ namespace EasySharp.IO
             }
         }
 
+        [Obsolete]
         public static void CreateDirectoryRecursively(this string directoryPath)
         {
             directoryPath.CreateDirectoryRecursivelyInner();
         }
 
+        [Obsolete]
         public static void DeleteDirectoryRecursively(this string directoryPath)
         {
             if (Directory.Exists(directoryPath))
@@ -37,6 +40,7 @@ namespace EasySharp.IO
             }
         }
 
+        [Obsolete]
         public static void CopyDirectory(
             this string sourceDirectoryPath,
             string destDirectoryPath,
@@ -55,19 +59,20 @@ namespace EasySharp.IO
                     continue;
                 }
 
-                file.CopyTo(System.IO.Path.Combine(destDirectoryPath, file.Name), overwrite);
+                file.CopyTo(Path.Combine(destDirectoryPath, file.Name), overwrite);
             }
 
             if (copySubDirs)
             {
                 foreach (var subDirectory in dirs)
                 {
-                    var tempPath = System.IO.Path.Combine(destDirectoryPath, subDirectory.Name);
+                    var tempPath = Path.Combine(destDirectoryPath, subDirectory.Name);
                     subDirectory.FullName.CopyDirectory(tempPath, overwrite, true, excludeFileRelativePaths);
                 }
             }
         }
 
+        [Obsolete]
         public static void SetLastWriteTimeToAllFiles(this string directoryPath, DateTime lastWriteTimeToSet)
         {
             var allfiles = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
@@ -77,6 +82,7 @@ namespace EasySharp.IO
             }
         }
 
+        [Obsolete]
         public static void TemporarySetCurrentDirectory(this string directoryPath, Action action)
         {
             var previousCurrentPath = Directory.GetCurrentDirectory();

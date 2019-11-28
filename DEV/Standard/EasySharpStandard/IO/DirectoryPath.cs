@@ -49,5 +49,33 @@ namespace EasySharp.IO
         {
             return new DirectoryPath(this.Value.ToFullDirectoryName());
         }
+
+        public void CreateDirectoryRecursively()
+        {
+            this.Value.CreateDirectoryRecursively();
+        }
+
+        public void DeleteDirectoryRecursively()
+        {
+            this.Value.DeleteDirectoryRecursively();
+        }
+
+        public void CopyDirectory(
+            DirectoryPath directoryPath,
+            bool overwrite = true,
+            bool copySubDirs = true)
+        {
+            this.Value.CopyDirectory(directoryPath.Value, overwrite, copySubDirs);
+        }
+
+        public void SetLastWriteTimeToAllFiles(DateTime lastWriteTime)
+        {
+            this.Value.SetLastWriteTimeToAllFiles(lastWriteTime);
+        }
+
+        public void  ScopedSetCurrentDirectory(Action action)
+        {
+            this.Value.TemporarySetCurrentDirectory(action);
+        }
     }
 }
