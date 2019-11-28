@@ -8,7 +8,6 @@ namespace EasySharp.IO
         public static DirectoryPath Create(string value)
         {
             value.ThrowExceptionIfNull(nameof(value));
-
             var invalidChars = Path.GetInvalidFileNameChars();
             if (0 <= value.IndexOfAny(invalidChars))
             {

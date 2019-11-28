@@ -4,7 +4,7 @@ using System.IO;
 
 namespace EasySharp.IO
 {
-    public static class DirectoryPathExtention
+    public static class DirectoryPathStringExtentions
     {
         #region Public Methods
 
