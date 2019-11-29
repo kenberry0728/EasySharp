@@ -25,8 +25,8 @@ namespace AppInstaller.RunModes
 
         public AppInstallerResult Run(string sourceDir, string installDir, List<string> excludeRegex)
         {
-            sourceDir = sourceDir.ToFullDirectoryPath();
-            installDir = installDir.ToFullDirectoryPath();
+            sourceDir = sourceDir.ToDirectoryPath().ToFullDirectoryPath().Value;
+            installDir = installDir.ToDirectoryPath().ToFullDirectoryPath().Value;
             var excludeRegexList = excludeRegex.Select(ex => new Regex(ex, RegexOptions.IgnoreCase)).ToList();
             var sourceLastUpdateDate = GetLastWriteTimeUtc(sourceDir, excludeRegexList);
             var installLastUpdateDate = GetLastWriteTimeUtc(installDir, excludeRegexList);

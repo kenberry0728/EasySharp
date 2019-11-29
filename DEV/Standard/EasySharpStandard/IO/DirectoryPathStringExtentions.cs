@@ -67,7 +67,7 @@ namespace EasySharp.IO
                 foreach (var subDirectory in dirs)
                 {
                     var tempPath = Path.Combine(destDirectoryPath, subDirectory.Name);
-                    subDirectory.FullName.CopyDirectory(tempPath, overwrite, true, excludeFileRelativePaths);
+                    subDirectory.FullName.ToDirectoryPath().CopyDirectory(tempPath.ToDirectoryPath(), overwrite, true, excludeFileRelativePaths);
                 }
             }
         }

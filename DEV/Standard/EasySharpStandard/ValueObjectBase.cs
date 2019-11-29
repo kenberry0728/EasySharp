@@ -1,6 +1,6 @@
 ﻿namespace EasySharp
 {
-    public abstract class ValueObjectBase<T>
+    public abstract class ValueObjectBase<T> : IValueObjectBase<T>
     {
         public ValueObjectBase(T value)
         {

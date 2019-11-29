@@ -48,11 +48,12 @@ namespace EasySharp.IO
         }
 
         public void CopyDirectory(
-            DirectoryPath directoryPath,
+            IDirectoryPath directoryPath,
             bool overwrite = true,
-            bool copySubDirs = true)
+            bool copySubDirs = true,
+            ICollection<string> excludeFileRelativePaths = null)
         {
-            this.Value.CopyDirectory(directoryPath.Value, overwrite, copySubDirs);
+            this.Value.CopyDirectory(directoryPath.Value, overwrite, copySubDirs, excludeFileRelativePaths);
         }
 
         public void SetLastWriteTimeToAllFiles(DateTime lastWriteTime)

@@ -42,8 +42,8 @@ namespace AppInstaller.RunModes
                 .Where(f => excludeRelativePathRegex.AnyIsMatch(f))
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-            appInstallerArgument.SourceDir.CopyDirectory(
-                appInstallerArgument.InstallDir,
+            appInstallerArgument.SourceDir.ToDirectoryPath().CopyDirectory(
+                appInstallerArgument.InstallDir.ToDirectoryPath(),
                 true,
                 true, 
                 excludeRelativePaths);
