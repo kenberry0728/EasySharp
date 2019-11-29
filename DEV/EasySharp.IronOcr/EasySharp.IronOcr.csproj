@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="IronOcr" Version="4.4.0" />
+    <PackageReference Include="IronOcr.Languages.Japanese" Version="4.4.4.1" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
