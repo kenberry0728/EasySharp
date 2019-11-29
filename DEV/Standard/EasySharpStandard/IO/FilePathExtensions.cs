@@ -7,6 +7,7 @@ namespace EasySharp.IO
     {
         #region Public Methods
 
+        [Obsolete]
         public static string GetRelativePath(this string fullPath, string relativeDirectoryPath)
         {
             if (!relativeDirectoryPath.EndsWith(@"\"))
@@ -23,11 +24,13 @@ namespace EasySharp.IO
             return relativeUri.ToString().Replace(@"/", @"\");
         }
 
+        [Obsolete]
         public static string ToFullFileName(this string filePath)
         {
             return new FileInfo(filePath).FullName;
         }
 
+        [Obsolete]
         public static void EnsureDirectoryForFile(this string filePath)
         {
             var directoryPath = Path.GetDirectoryName(filePath);
@@ -37,6 +40,7 @@ namespace EasySharp.IO
             }
         }
 
+        [Obsolete]
         public static void CopyFile(this string filePath, string targetFilePath, bool overwrite = true, bool ensureDirectoryForFile = true)
         {
             if (ensureDirectoryForFile)
