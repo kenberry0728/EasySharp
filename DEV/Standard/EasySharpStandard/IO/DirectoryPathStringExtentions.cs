@@ -9,7 +9,7 @@ namespace EasySharp.IO
         #region Public Methods
 
         [Obsolete]
-        public static string ToFullDirectoryName(this string directoryPath)
+        public static string ToFullDirectoryPath(this string directoryPath)
         {
             if (directoryPath.IsNullOrEmpty())
             {

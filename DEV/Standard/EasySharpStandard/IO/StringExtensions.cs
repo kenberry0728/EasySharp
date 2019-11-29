@@ -17,5 +17,10 @@ namespace EasySharp.IO
                 throw new ArgumentException(parameterName);
             }
         }
+
+        public static IDirectoryPath ToDirectoryPath(this string directoryPath)
+        {
+            return DirectoryPath.Create(directoryPath);
+        }
     }
 }

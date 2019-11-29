@@ -34,7 +34,7 @@ namespace EasySharp.IO
 
         public DirectoryPath ToFullDirectoryPath()
         {
-            return new DirectoryPath(this.Value.ToFullDirectoryName());
+            return new DirectoryPath(this.Value.ToFullDirectoryPath());
         }
 
         public void CreateDirectoryRecursively()

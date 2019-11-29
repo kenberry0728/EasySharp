@@ -65,9 +65,9 @@ namespace AppInstaller
                 throw new InvalidEnumArgumentException();
             }
 
-            argument.TempFolder = argument.TempFolder.ToFullDirectoryName();
-            argument.SourceDir = argument.SourceDir.ToFullDirectoryName();
-            argument.InstallDir = argument.InstallDir.ToFullDirectoryName();
+            argument.TempFolder = argument.TempFolder.ToDirectoryPath().ToFullDirectoryPath().Value;
+            argument.SourceDir = argument.SourceDir.ToDirectoryPath().ToFullDirectoryPath().Value;
+            argument.InstallDir = argument.InstallDir.ToDirectoryPath().ToFullDirectoryPath().Value;
             argument.OriginalAppPath = argument.OriginalAppPath.ToFullFileName();
 
             switch (argument.RunMode)

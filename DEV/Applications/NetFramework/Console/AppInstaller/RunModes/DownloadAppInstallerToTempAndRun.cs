@@ -18,9 +18,9 @@ namespace AppInstaller.RunModes
         
         public AppInstallerResult Run(AppInstallerArgument argument)
         {
-            var installDir = argument.InstallDir.ToFullDirectoryName();
+            var installDir = argument.InstallDir.ToFullDirectoryPath();
             var sourceDir = new DirectoryInfo(argument.SourceDir).FullName;
-            var tempDirectoryPath = Path.Combine(installDir, "..", "AppInstaller_Temp").ToFullDirectoryName();
+            var tempDirectoryPath = Path.Combine(installDir, "..", "AppInstaller_Temp").ToFullDirectoryPath();
 
             CopyAppInstallerFiles(sourceDir, tempDirectoryPath);
 
