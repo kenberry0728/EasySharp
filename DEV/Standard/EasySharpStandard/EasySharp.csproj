@@ -11,10 +11,4 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Wrappers\**" />
-    <EmbeddedResource Remove="Wrappers\**" />
-    <None Remove="Wrappers\**" />
-  </ItemGroup>
-
 </Project>
