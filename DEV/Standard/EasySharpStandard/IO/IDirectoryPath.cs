@@ -16,6 +16,6 @@ namespace EasySharp.IO
         IEnumerable<string> GetFiles(string searchPattern, SearchOption searchOption);
         void ScopedSetCurrentDirectory(Action action);
         void SetLastWriteTimeToAllFiles(DateTime lastWriteTime);
-        DirectoryPath ToFullDirectoryPath();
+        IDirectoryPath ToFullDirectoryPath();
     }
 }

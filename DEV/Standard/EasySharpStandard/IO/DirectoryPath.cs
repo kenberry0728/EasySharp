@@ -32,9 +32,20 @@ namespace EasySharp.IO
             return base.GetHashCode();
         }
 
-        public DirectoryPath ToFullDirectoryPath()
+        public IDirectoryPath ToFullDirectoryPath()
         {
-            return new DirectoryPath(this.Value.ToFullDirectoryPath());
+            if (this.Value.IsNullOrEmpty())
+            {
+                return Directory.GetCurrentDirectory().ToDirectoryPath();
+            }
+            else if (this.IsAbolutePath)
+            {
+                return this;
+            }
+            else
+            {
+                return new DirectoryInfo(this.Value).FullName.ToDirectoryPath();
+            }
         }
 
         public void CreateDirectoryRecursively()
