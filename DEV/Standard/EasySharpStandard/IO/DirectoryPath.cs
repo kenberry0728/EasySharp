@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace EasySharp.IO
 {
-    public class DirectoryPath : ValueObjectBase<string>
+    public class DirectoryPath : ValueObjectBase<string>, IDirectoryPath
     {
-        public static DirectoryPath Create(string value)
+        public delegate IDirectoryPath CreateDirectoryPath(string value);
+
+        public static IDirectoryPath Create(string value)
         {
             value.ThrowExceptionIfNull(nameof(value));
             var invalidChars = Path.GetInvalidFileNameChars();
@@ -73,9 +77,15 @@ namespace EasySharp.IO
             this.Value.SetLastWriteTimeToAllFiles(lastWriteTime);
         }
 
-        public void  ScopedSetCurrentDirectory(Action action)
+        public void ScopedSetCurrentDirectory(Action action)
         {
             this.Value.TemporarySetCurrentDirectory(action);
+        }
+
+        public IEnumerable<string> GetFiles(string searchPattern, SearchOption searchOption)
+        {
+            var directoryInfo = new DirectoryInfo(this.Value);
+            return directoryInfo.GetFiles(searchPattern, searchOption).Select(f => f.FullName);
         }
     }
 }

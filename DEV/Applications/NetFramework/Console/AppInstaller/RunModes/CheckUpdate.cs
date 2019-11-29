@@ -6,20 +6,20 @@ using System.Text.RegularExpressions;
 using AppInstaller.Core.Results;
 using EasySharp.IO;
 using EasySharp.Text.RegularExpressions;
+using static EasySharp.IO.DirectoryPath;
 
 namespace AppInstaller.RunModes
 {
     public class CheckUpdate
     {
-        private readonly IDirectoryService directoryService;
         private readonly IFileService fileService;
+        private readonly CreateDirectoryPath createDirectoryPath;
 
         public CheckUpdate(
-            IDirectoryService directoryService = null, 
-            IFileService fileService = null)
+            CreateDirectoryPath createDirectoryPath = null)
         {
-            this.directoryService = directoryService.Resolve();
             this.fileService = fileService.Resolve();
+            this.createDirectoryPath = createDirectoryPath ?? Create;
         }
 
         public AppInstallerResult Run(string sourceDir, string installDir, List<string> excludeRegex)
@@ -38,7 +38,8 @@ namespace AppInstaller.RunModes
 
         private DateTime GetLastWriteTimeUtc(string targetDirectoryPath, IEnumerable<Regex> regularExpressions)
         {
-            var files = this.directoryService.GetFiles(targetDirectoryPath, "*", SearchOption.AllDirectories).ToList();
+            var directoryPath = this.createDirectoryPath(targetDirectoryPath);
+            var files = directoryPath.GetFiles("*", SearchOption.AllDirectories).ToList();
             var fileAndRelativePaths = files.Select(f => new { f, Relativepath = f.GetRelativePath(targetDirectoryPath) }).ToList();
             var filteredFileAndRelativepaths = fileAndRelativePaths.Where(f => !regularExpressions.AnyIsMatch(f.Relativepath)).ToList();
             var result = filteredFileAndRelativepaths.Max(f => this.fileService.GetLastWriteTimeUtc(f.f));

@@ -8,20 +8,21 @@ using EasySharp;
 using EasySharp.IO;
 using EasySharp.Processes;
 using EasySharp.Text.RegularExpressions;
+using static EasySharp.IO.DirectoryPath;
 
 namespace AppInstaller.RunModes
 {
     public class CopyItemsToInstallFolderAndRun
     {
         private readonly string appInstallerAssemblyName;
-        private readonly IDirectoryService directoryService;
+        private readonly CreateDirectoryPath createDirectoryPath;
 
         public CopyItemsToInstallFolderAndRun(
             string appInstallerAssemblyName,
-            IDirectoryService directoryService = null)
+            CreateDirectoryPath createDirectoryPath  = null)
         {
             this.appInstallerAssemblyName = appInstallerAssemblyName;
-            this.directoryService = directoryService.Resolve();
+            this.createDirectoryPath = createDirectoryPath ?? Create;
         }
 
         public AppInstallerResult Run(AppInstallerArgument appInstallerArgument)
@@ -32,8 +33,8 @@ namespace AppInstaller.RunModes
                 .ExcludeRelativePathRegex
                 .Select(reg => new Regex(reg, RegexOptions.IgnoreCase))
                 .ToList();
-            var allFiles = this.directoryService.GetFiles(
-                appInstallerArgument.SourceDir,
+            var directoryPath = this.createDirectoryPath(appInstallerArgument.SourceDir);
+            var allFiles = directoryPath.GetFiles(
                 "*",
                 SearchOption.AllDirectories);
             var excludeRelativePaths = allFiles
