@@ -7,18 +7,19 @@ using AppInstaller.Core.Results;
 using EasySharp.IO;
 using EasySharp.Text.RegularExpressions;
 using static EasySharp.IO.DirectoryPath;
+using static EasySharp.IO.FilePath;
 
 namespace AppInstaller.RunModes
 {
     public class CheckUpdate
     {
-        private readonly IFileService fileService;
+        private readonly CreateFilePath createFilePath;
         private readonly CreateDirectoryPath createDirectoryPath;
 
         public CheckUpdate(
             CreateDirectoryPath createDirectoryPath = null)
         {
-            this.fileService = fileService.Resolve();
+            this.createFilePath = FilePath.Create;
             this.createDirectoryPath = createDirectoryPath ?? Create;
         }
 
@@ -42,7 +43,7 @@ namespace AppInstaller.RunModes
             var files = directoryPath.GetFiles("*", SearchOption.AllDirectories).ToList();
             var fileAndRelativePaths = files.Select(f => new { f, Relativepath = f.GetRelativePath(targetDirectoryPath) }).ToList();
             var filteredFileAndRelativepaths = fileAndRelativePaths.Where(f => !regularExpressions.AnyIsMatch(f.Relativepath)).ToList();
-            var result = filteredFileAndRelativepaths.Max(f => this.fileService.GetLastWriteTimeUtc(f.f));
+            var result = filteredFileAndRelativepaths.Max(f => this.createFilePath(f.f).GetLastWriteTimeUtc());
             return result;
         }
     }

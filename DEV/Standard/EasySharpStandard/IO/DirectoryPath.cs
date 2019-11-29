@@ -5,18 +5,14 @@ using System.Linq;
 
 namespace EasySharp.IO
 {
-    public class DirectoryPath : ValueObjectBase<string>, IDirectoryPath
+    public class DirectoryPath : PathObjectBase, IDirectoryPath
     {
         public delegate IDirectoryPath CreateDirectoryPath(string value);
 
         public static IDirectoryPath Create(string value)
         {
             value.ThrowExceptionIfNull(nameof(value));
-            var invalidChars = Path.GetInvalidFileNameChars();
-            if (0 <= value.IndexOfAny(invalidChars))
-            {
-                throw new ArgumentException(nameof(value));
-            }
+            value.ThrowArgumentExceptionIfContainsInvalidFileNameChars(nameof(value));
 
             return new DirectoryPath(value);
         }
@@ -28,26 +24,13 @@ namespace EasySharp.IO
 
         public override bool Equals(object obj)
         {
-            if (!(obj is DirectoryPath directoryPath))
-            {
-                return false;
-            }
-
-            // TODO: どこまで高機能にするかは考え物
-            return this.Value.OrdinalEquals(directoryPath.Value);
+            return obj is DirectoryPath && base.Equals(obj);
         }
 
         public override int GetHashCode()
         {
-            return this.Value.ToUpperInvariant().GetHashCode();
+            return base.GetHashCode();
         }
-
-        public override string ToString()
-        {
-            return this.Value;
-        }
-
-        public bool IsAbolutePath => Path.IsPathRooted(this.Value);
 
         public DirectoryPath ToFullDirectoryPath()
         {

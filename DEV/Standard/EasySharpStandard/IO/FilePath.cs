@@ -1,7 +1,38 @@
-﻿namespace EasySharp.IO
+﻿using System;
+using System.IO;
+
+namespace EasySharp.IO
 {
-    class FilePath
+    public class FilePath : PathObjectBase, IFilePath
     {
-        // TODO
+        public delegate FilePath CreateFilePath(string value);
+
+        public static FilePath Create(string value)
+        {
+            value.ThrowExceptionIfNull(nameof(value));
+            value.ThrowArgumentExceptionIfContainsInvalidFileNameChars(nameof(value));
+
+            return new FilePath(value);
+        }
+
+        private FilePath(string value)
+            : base(value)
+        {
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is FilePath && base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public DateTime GetLastWriteTimeUtc()
+        {
+            return new FileInfo(this.Value).LastWriteTimeUtc;
+        }
     }
 }
