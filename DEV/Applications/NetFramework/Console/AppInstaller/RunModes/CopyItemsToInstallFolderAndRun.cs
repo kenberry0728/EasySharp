@@ -38,7 +38,7 @@ namespace AppInstaller.RunModes
                 "*",
                 SearchOption.AllDirectories);
             var excludeRelativePaths = allFiles
-                .Select(f => f.GetRelativePath(appInstallerArgument.SourceDir))
+                .Select(f => f.ToFilePath().GetRelativePath(appInstallerArgument.SourceDir.ToDirectoryPath()).Value)
                 .Where(f => excludeRelativePathRegex.AnyIsMatch(f))
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
 

@@ -68,7 +68,7 @@ namespace AppInstaller
             argument.TempFolder = argument.TempFolder.ToDirectoryPath().ToFullDirectoryPath().Value;
             argument.SourceDir = argument.SourceDir.ToDirectoryPath().ToFullDirectoryPath().Value;
             argument.InstallDir = argument.InstallDir.ToDirectoryPath().ToFullDirectoryPath().Value;
-            argument.OriginalAppPath = argument.OriginalAppPath.ToFullFileName();
+            argument.OriginalAppPath = argument.OriginalAppPath.ToFilePath().ToFullPath().Value;
 
             switch (argument.RunMode)
             {

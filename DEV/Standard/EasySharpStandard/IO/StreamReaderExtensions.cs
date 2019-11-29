@@ -14,10 +14,10 @@ namespace EasySharp.IO
         }
 
         public static IEnumerable<string> ReadLines(
-            this string filePath,
+            this IFilePath filePath,
             bool removeEmptyLine = false)
         {
-            using (var sr = new StreamReader(filePath))
+            using (var sr = new StreamReader(filePath.Value))
             {
                 string line;
                 while (null != (line = sr.ReadLine()))

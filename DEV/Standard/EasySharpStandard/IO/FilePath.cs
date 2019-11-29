@@ -34,5 +34,50 @@ namespace EasySharp.IO
         {
             return new FileInfo(this.Value).LastWriteTimeUtc;
         }
+
+        public IFilePath GetRelativePath(IDirectoryPath relativeDirectoryPath)
+        {
+            if (!this.IsAbolutePath)
+            {
+                return this;
+            }
+
+            if (!relativeDirectoryPath.Value.EndsWith(@"\"))
+            {
+                relativeDirectoryPath = (relativeDirectoryPath.Value + @"\").ToDirectoryPath();
+            }
+
+            var relativeDirectoryUri = new Uri(relativeDirectoryPath.Value);
+            var fullUri = new Uri(this.Value);
+
+            //絶対Uriから相対Uriを取得する
+            var relativeUri = relativeDirectoryUri.MakeRelativeUri(fullUri);
+            //文字列に変換する
+            return relativeUri.ToString().Replace(@"/", @"\").ToFilePath();
+        }
+
+        public IFilePath ToFullPath()
+        {
+            return new FileInfo(this.Value).FullName.ToFilePath();
+        }
+
+        public void EnsureDirectory()
+        {
+            var directoryPath = Path.GetDirectoryName(this.Value);
+            if (!directoryPath.IsNullOrEmpty() && !Directory.Exists(directoryPath))
+            {
+                directoryPath.ToDirectoryPath().CreateDirectoryRecursively();
+            }
+        }
+
+        public void Copy(IFilePath targetFilePath, bool overwrite = true, bool ensureDirectoryForFile = true)
+        {
+            if (ensureDirectoryForFile)
+            {
+                targetFilePath.EnsureDirectory();
+            }
+
+            File.Copy(this.Value, targetFilePath.Value, overwrite);
+        }
     }
 }

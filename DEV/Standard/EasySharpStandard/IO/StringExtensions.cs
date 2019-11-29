@@ -22,5 +22,10 @@ namespace EasySharp.IO
         {
             return DirectoryPath.Create(directoryPath);
         }
+
+        public static IFilePath ToFilePath(this string filePath)
+        {
+            return FilePath.Create(filePath);
+        }
     }
 }

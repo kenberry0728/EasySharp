@@ -44,15 +44,15 @@ namespace AppInstaller.RunModes
         private static void CopyAppInstallerFiles(string sourceDir, string tempDirectoryPath)
         {
             const string appFilesTxt = "AppInstallerFiles.txt";
-            var sourceFileName = Path.Combine(sourceDir, appFilesTxt);
-            var destFileName = Path.Combine(tempDirectoryPath, appFilesTxt);
-            sourceFileName.CopyFile(destFileName);
+            var sourceFileName = Path.Combine(sourceDir, appFilesTxt).ToFilePath();
+            var destFileName = Path.Combine(tempDirectoryPath, appFilesTxt).ToFilePath();
+            sourceFileName.Copy(destFileName);
             var fileNames = destFileName.ReadLines(true);
             foreach (var fileName in fileNames)
             {
-                var sourceFile = Path.Combine(sourceDir, fileName);
-                var destFile = Path.Combine(tempDirectoryPath, fileName);
-                sourceFile.CopyFile(destFile);
+                var sourceFile = Path.Combine(sourceDir, fileName).ToFilePath();
+                var destFile = Path.Combine(tempDirectoryPath, fileName).ToFilePath();
+                sourceFile.Copy(destFile);
             }
         }
     }
