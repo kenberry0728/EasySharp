@@ -42,7 +42,8 @@ namespace EasySharp.IO
                 return this;
             }
 
-            if (!relativeDirectoryPath.Value.EndsWith(@"\"))
+            relativeDirectoryPath.ThrowArgumentExceptionIfNull(nameof(relativeDirectoryPath));
+            if (!relativeDirectoryPath.Value.OrdinalEndsWith(@"\"))
             {
                 relativeDirectoryPath = (relativeDirectoryPath.Value + @"\").ToDirectoryPath();
             }
@@ -72,6 +73,8 @@ namespace EasySharp.IO
 
         public void Copy(IFilePath targetFilePath, bool overwrite = true, bool ensureDirectoryForFile = true)
         {
+            targetFilePath.ThrowArgumentExceptionIfNull(nameof(targetFilePath));
+
             if (ensureDirectoryForFile)
             {
                 targetFilePath.EnsureDirectory();
