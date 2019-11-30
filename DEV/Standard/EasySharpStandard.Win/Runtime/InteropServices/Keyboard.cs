@@ -5,6 +5,15 @@ namespace EasySharp.Win.Runtime.InteropServices
 {
     public static class Keyboard
     {
+        private static class NativeMethods
+        {
+            [DllImport("user32.dll", EntryPoint = "MapVirtualKeyA")]
+            public extern static int MapVirtualKey(int wCode, int wMapType);
+
+            [DllImport("user32.dll")]
+            public extern static void SendInput(int nInputs, Input[] pInputs, int cbsize);
+        }
+
         private enum EventType
         {
             INPUT_MOUSE = 0,                 // マウスイベント
@@ -12,16 +21,13 @@ namespace EasySharp.Win.Runtime.InteropServices
             INPUT_HARDWARE = 2,               // ハードウェアイベント
         }
 
-        [DllImport("user32.dll", EntryPoint = "MapVirtualKeyA")]
-        private extern static int MapVirtualKey(int wCode, int wMapType);
-
-        [DllImport("user32.dll")]
-        private extern static void SendInput(int nInputs, Input[] pInputs, int cbsize);
-
         /// <summary>
         /// シミュレートされたマウスイベントの構造体
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         public struct MouseInput
         {
             public int X;
@@ -36,6 +42,9 @@ namespace EasySharp.Win.Runtime.InteropServices
         /// シミュレートされたキーボードイベントの構造体
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         public struct KeyboardInput
         {
             public short VirtualKey;
@@ -49,6 +58,9 @@ namespace EasySharp.Win.Runtime.InteropServices
         /// キーボードやマウス以外の入力デバイスによって生成されたシミュレートされたメッセージの構造体
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         public struct HardwareInput
         {
             public int uMsg;
@@ -60,6 +72,9 @@ namespace EasySharp.Win.Runtime.InteropServices
         /// キーストローク、マウスの動き、マウスクリックなどの入力イベントの構造体
         /// </summary>
         [StructLayout(LayoutKind.Explicit)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         public struct Input
         {
             [FieldOffset(0)]
@@ -138,7 +153,7 @@ namespace EasySharp.Win.Runtime.InteropServices
 
         public static void SendInputs(params Input[] inputs)
         {
-            SendInput(inputs.Length, inputs, Marshal.SizeOf(inputs[0]));
+            NativeMethods.SendInput(inputs.Length, inputs, Marshal.SizeOf(inputs[0]));
         }
     }
 }

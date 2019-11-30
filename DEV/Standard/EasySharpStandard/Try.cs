@@ -2,6 +2,7 @@
 
 namespace EasySharp
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "<Pending>")]
     public static class Try
     {
         #region Failed

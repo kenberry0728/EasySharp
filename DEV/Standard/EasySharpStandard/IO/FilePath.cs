@@ -9,7 +9,7 @@ namespace EasySharp.IO
 
         public static FilePath Create(string value)
         {
-            value.ThrowExceptionIfNull(nameof(value));
+            value.ThrowArgumentExceptionIfNull(nameof(value));
             value.ThrowArgumentExceptionIfContainsInvalidFileNameChars(nameof(value));
 
             return new FilePath(value);

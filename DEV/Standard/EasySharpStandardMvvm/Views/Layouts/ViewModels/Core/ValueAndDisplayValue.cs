@@ -12,8 +12,9 @@
 
         public string DisplayValue { get; set; }
 
+#pragma warning disable CA1000 // Do not declare static members on generic types
         public static string ValuePath => nameof(Value);
-
         public static string DisplayValuePath => nameof(DisplayValue);
+#pragma warning restore CA1000 // Do not declare static members on generic types
     }
 }

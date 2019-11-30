@@ -4,11 +4,14 @@ namespace EasySharp.Win.Runtime.InteropServices
 {
     public static class Mouse
     {
-        [DllImport("USER32.dll", CallingConvention = CallingConvention.StdCall)]
-        static extern void SetCursorPos(int X, int Y);
+        private static class NativeMethods
+        {
+            [DllImport("USER32.dll", CallingConvention = CallingConvention.StdCall)]
+            public static extern void SetCursorPos(int X, int Y);
 
-        [DllImport("USER32.dll", CallingConvention = CallingConvention.StdCall)]
-        static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+            [DllImport("USER32.dll", CallingConvention = CallingConvention.StdCall)]
+            public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+        }
 
         // https://docs.microsoft.com/ja-jp/windows/win32/api/winuser/nf-winuser-mouse_event?redirectedfrom=MSDN
         private enum MouseEvent
@@ -30,16 +33,16 @@ namespace EasySharp.Win.Runtime.InteropServices
 
         public static void LeftClick(int x, int y)
         {
-            SetCursorPos(x, y);
-            mouse_event((int)MouseEvent.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-            mouse_event((int)MouseEvent.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+            NativeMethods.SetCursorPos(x, y);
+            NativeMethods.mouse_event((int)MouseEvent.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+            NativeMethods.mouse_event((int)MouseEvent.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
         }
 
         public static void RightClick(int x, int y)
         {
-            SetCursorPos(x, y);
-            mouse_event((int)MouseEvent.MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
-            mouse_event((int)MouseEvent.MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+            NativeMethods.SetCursorPos(x, y);
+            NativeMethods.mouse_event((int)MouseEvent.MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
+            NativeMethods.mouse_event((int)MouseEvent.MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
         }
     }
 }

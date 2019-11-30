@@ -12,7 +12,7 @@ using EasySharpStandardMvvm.Views.Rails.Core;
 
 namespace EasySharpStandardMvvm.ViewModels.Rails.Edit.Core
 {
-    public class RailsEditViewModel : RailsEditViewModelPathDefinition, IRailsEditViewModel, INotifyDataErrorInfo
+    public sealed class RailsEditViewModel : RailsEditViewModelPathDefinition, IRailsEditViewModel, INotifyDataErrorInfo
     {
         #region INotifyDataErrorInfo
 

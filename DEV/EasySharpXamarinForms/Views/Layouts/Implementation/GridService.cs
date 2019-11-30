@@ -1,4 +1,5 @@
-﻿using EasySharpXamarinForms.Views.Layouts.Core;
+﻿using EasySharp;
+using EasySharpXamarinForms.Views.Layouts.Core;
 using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Views.Layouts.Implementation
@@ -12,8 +13,13 @@ namespace EasySharpXamarinForms.Views.Layouts.Implementation
             int column = 0,
             double thickness = 10)
         {
+            #pragma warning disable CA1062 // Validate arguments of public methods
+            grid.ThrowArgumentExceptionIfNull(nameof(grid));
+            view.ThrowArgumentExceptionIfNull(nameof(view));
             grid.Children.Add(view);
             view.SetValue(Grid.RowProperty, row);
+            #pragma warning restore CA1062 // Validate arguments of public methods
+
             view.SetValue(Grid.ColumnProperty, column);
             view.SetValue(View.MarginProperty, new Thickness(thickness));
         }

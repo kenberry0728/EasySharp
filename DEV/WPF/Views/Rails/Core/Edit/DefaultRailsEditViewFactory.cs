@@ -1,4 +1,5 @@
-﻿using EasySharpStandardMvvm.Attributes.Rails;
+﻿using EasySharp;
+using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpWpf.Commands.Core.Dialogs;
@@ -120,6 +121,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         protected override UIElement CreateEditDoubleControl(Binding valueBinding)
         {
+            valueBinding.ThrowArgumentExceptionIfNull(nameof(valueBinding));
             valueBinding.Converter = new DoubleToStringConverter();
             var textBox = new TextBox();
             textBox.SetBinding(TextBox.TextProperty, valueBinding);
@@ -128,6 +130,7 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         protected override UIElement CreateEditIntegerControl(Binding valueBinding)
         {
+            valueBinding.ThrowArgumentExceptionIfNull(nameof(valueBinding));
             valueBinding.Converter = new IntToStringConverter();
             var textBox = new TextBox();
             textBox.SetBinding(TextBox.TextProperty, valueBinding);

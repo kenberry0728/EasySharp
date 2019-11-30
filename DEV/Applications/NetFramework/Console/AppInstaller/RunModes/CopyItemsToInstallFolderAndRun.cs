@@ -27,6 +27,7 @@ namespace AppInstaller.RunModes
 
         public AppInstallerResult Run(AppInstallerArgument appInstallerArgument)
         {
+            appInstallerArgument.ThrowArgumentExceptionIfNull(nameof(appInstallerArgument));
             WaitForExitInInstallDir(appInstallerArgument);
 
             var excludeRelativePathRegex = appInstallerArgument

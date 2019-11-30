@@ -13,16 +13,18 @@ namespace EasySharp.Win.Runtime.InteropServices
         {
             private delegate bool EnumWindowsDelegate(IntPtr hWnd, IntPtr lparam);
 
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            private extern static bool EnumWindows(EnumWindowsDelegate lpEnumFunc, IntPtr lparam);
+            private static class NativeMethods
+            {
+                [DllImport("user32.dll")]
+                [return: MarshalAs(UnmanagedType.Bool)]
+                public extern static bool EnumWindows(EnumWindowsDelegate lpEnumFunc, IntPtr lparam);
 
-            [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-            private static extern int GetWindowText(IntPtr hWnd,
-                StringBuilder lpString, int nMaxCount);
+                [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+                public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
 
-            [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-            private static extern int GetWindowTextLength(IntPtr hWnd);
+                [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+                public static extern int GetWindowTextLength(IntPtr hWnd);
+            }
 
             private readonly List<WindowInfo> windowInfos = new List<WindowInfo>();
             private readonly Func<string, bool> windowTitlePredicate;
@@ -34,17 +36,17 @@ namespace EasySharp.Win.Runtime.InteropServices
 
             public IReadOnlyCollection<WindowInfo> GetWindowInfos()
             {
-                EnumWindows(new EnumWindowsDelegate(this.EnumWindowCallBack), IntPtr.Zero);
+                NativeMethods.EnumWindows(new EnumWindowsDelegate(this.EnumWindowCallBack), IntPtr.Zero);
                 return this.windowInfos;
             }
 
             private bool EnumWindowCallBack(IntPtr hWnd, IntPtr lparam)
             {
-                int textLength = GetWindowTextLength(hWnd);
+                int textLength = NativeMethods.GetWindowTextLength(hWnd);
                 if (0 < textLength)
                 {
                     var windowTitleStringBuilder = new StringBuilder(textLength + 1);
-                    GetWindowText(hWnd, windowTitleStringBuilder, windowTitleStringBuilder.Capacity);
+                    NativeMethods.GetWindowText(hWnd, windowTitleStringBuilder, windowTitleStringBuilder.Capacity);
 
                     var windowTitle = windowTitleStringBuilder.ToString();
                     if (this.windowTitlePredicate(windowTitle))

@@ -19,9 +19,11 @@ namespace AppInstaller.RunModes
         
         public AppInstallerResult Run(AppInstallerArgument argument)
         {
-            argument.ThrowExceptionIfNull(nameof(argument));
-
+            #pragma warning disable CA1062 // Validate arguments of public methods
+            argument.ThrowArgumentExceptionIfNull(nameof(argument));
             var installDir = argument.InstallDir.ToDirectoryPath().ToFullDirectoryPath().Value;
+            #pragma warning restore CA1062 // Validate arguments of public methods
+
             var sourceDir = new DirectoryInfo(argument.SourceDir).FullName;
             var tempDirectoryPath = Path.Combine(installDir, "..", "AppInstaller_Temp").ToDirectoryPath().ToFullDirectoryPath().Value;
 

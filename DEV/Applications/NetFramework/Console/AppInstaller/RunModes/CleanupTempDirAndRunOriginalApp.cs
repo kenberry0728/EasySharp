@@ -18,7 +18,7 @@ namespace AppInstaller.RunModes
         public AppInstallerResult Run(AppInstallerArgument argument)
         {
             #pragma warning disable CA1062 // Validate arguments of public methods
-            argument.ThrowExceptionIfNull(nameof(argument));
+            argument.ThrowArgumentExceptionIfNull(nameof(argument));
             var appInstallerPathInTempDir = Path.Combine(argument.TempFolder, this.appInstallerAssemblyName);
             #pragma warning restore CA1062 // Validate arguments of public methods
 
