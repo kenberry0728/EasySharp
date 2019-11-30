@@ -27,6 +27,7 @@ namespace AppInstaller.RunModes
 
             Try.To(() => Directory.Delete(argument.TempFolder, true));
             argument.OriginalAppPath?.RunProcess();
+            appInstallerInInstallDir.Dispose();
             return new AppInstallerResult { ResultCode = ResultCode.Success, Updated = true };
         }
     }

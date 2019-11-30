@@ -63,7 +63,7 @@ namespace AppInstaller
             var result = Try.To(() => new AppInstallerArgumentConverter().FromString(arg), out var argument);
             if (!result)
             {
-                throw new InvalidEnumArgumentException();
+                throw new InvalidEnumArgumentException("Invalid for enum");
             }
 
             argument.TempFolder = argument.TempFolder.ToDirectoryPath().ToFullDirectoryPath().Value;
@@ -89,7 +89,7 @@ namespace AppInstaller
                     Console.WriteLine("Cleaning up the temp folder.");
                     return new CleanupTempDirAndRunOriginalApp(appInstallerAssemblyName).Run(argument);
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new NotImplementedException();
             }
         }
     }

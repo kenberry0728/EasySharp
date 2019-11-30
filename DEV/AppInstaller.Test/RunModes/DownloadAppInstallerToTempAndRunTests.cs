@@ -13,13 +13,13 @@ namespace AppInstaller.Test.RunModes
         [TestInitialize]
         public void TestInitialize()
         {
-            base.TestInitializeBase();
+            TestInitializeBase();
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
-            base.TestCleanupBase();
+            TestCleanupBase();
         }
 
         [TestMethod]

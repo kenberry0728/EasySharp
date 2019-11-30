@@ -19,7 +19,7 @@ namespace AppInstaller.Test.RunModes
         protected static readonly DateTime UpdateDateTime2 = StandardDateTime + TimeSpan.FromDays(2);
 
 
-        protected void TestInitializeBase()
+        protected static void TestInitializeBase()
         {
             SourceDirPath.ToDirectoryPath().DeleteDirectoryRecursively();
             InstallDirPath.ToDirectoryPath().DeleteDirectoryRecursively();

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using EasySharp;
 using System.Diagnostics;
 
 namespace AppInstaller
@@ -10,16 +10,13 @@ namespace AppInstaller
             // TODO: Can be standard?
             foreach (var proc in Process.GetProcesses())
             {
-                try
+                if (Try.To<Process>(() =>
                 {
-                    if (string.Equals(proc.MainModule.FileName, filePath, StringComparison.OrdinalIgnoreCase))
-                    {
-                        return proc;
-                    }
-                }
-                catch
+                    return proc.MainModule.FileName.OrdinalIgnoreCaseEquals(filePath) ? proc : null;
+                },
+                out var process))
                 {
-                    // ignored
+                    return process;
                 }
             }
 
