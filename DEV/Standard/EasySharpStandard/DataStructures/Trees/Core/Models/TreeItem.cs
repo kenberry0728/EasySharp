@@ -22,12 +22,19 @@ namespace EasySharp.DataStructures.Trees.Core.Models
 
         public virtual void AddChild(TreeItem<T> child)
         {
+            child.ThrowArgumentExceptionIfNull(nameof(child));
+
             child.Parent = this;
             this.children.Add(child);
         }
 
         public void AddChildren(IEnumerable<TreeItem<T>> childrenToAdd)
         {
+            if (childrenToAdd.IsNullOrEmpty())
+            {
+                return;
+            }
+
             foreach (var child in childrenToAdd)
             {
                 this.AddChild(child);

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EasySharp.Logs.Text
 {
-    public class TextFileLogger : ITextLogger, IDisposable
+    public class TextFileLogger :　DisposableBase, ITextLogger
     {
         private readonly string filePath;
         private readonly StreamWriter streamWriter;
@@ -16,11 +16,10 @@ namespace EasySharp.Logs.Text
             this.filePath = filePath;
             this.filePath.ToFilePath().EnsureDirectory();
             this.streamWriter = new StreamWriter(this.filePath, true, Encoding.UTF8);
-        }
-
-        public void Dispose()
-        {
-            this.streamWriter.Dispose();
+            this.DisposeActions.Add(() =>
+            {
+                this.streamWriter.Dispose();
+            });
         }
 
         public virtual void Write(string message)

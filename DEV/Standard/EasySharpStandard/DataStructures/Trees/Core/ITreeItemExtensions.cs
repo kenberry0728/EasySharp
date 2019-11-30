@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace EasySharp.DataStructures.Trees.Core
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extension")]
     public static class TreeInterfaceItemExtensions
     {
         #region Public Methods

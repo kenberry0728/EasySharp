@@ -4,6 +4,7 @@ using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Views.Layouts.Implementation
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "TODO: ValueObjectにしたほうがうまくいくかも。")]
     public class GridService : IGridService
     {
         public void AddChild(

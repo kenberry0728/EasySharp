@@ -8,6 +8,7 @@ using EasySharp.Reflection;
 
 namespace EasySharp.IO.Reflection
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>")]
     public static class MemberInfoExtensions
     {
         #region GetLocalResourceDependentValues

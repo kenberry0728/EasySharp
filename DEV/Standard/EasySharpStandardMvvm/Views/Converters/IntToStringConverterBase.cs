@@ -7,7 +7,7 @@ namespace EasySharpStandardMvvm.Views.Converters
     {
         public virtual object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value.ToString();
+            return value?.ToString();
         }
 
         public virtual object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -7,6 +7,7 @@ using System.Text;
 
 namespace EasySharp.Runtime.Serialization.Json
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class LineJsonSerializerExtensions
     {
         public static void SerializeAsLinedJson<T>(this IEnumerable<T> instances, string filePath, params Type[] knownTypes)

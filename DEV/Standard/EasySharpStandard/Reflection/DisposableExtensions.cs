@@ -6,6 +6,7 @@ using System.Reflection;
 
 namespace EasySharp.Reflection
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class DisposableExtensions
     {
         public static void DisposeMembers(this IDisposable disposable)

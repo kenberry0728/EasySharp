@@ -4,6 +4,8 @@
     {
         public IndentedString(string tabbedString)
         {
+            tabbedString.ThrowArgumentExceptionIfNull(nameof(tabbedString));
+
             this.Content = tabbedString.TrimStart('\t');
             this.Depth = tabbedString.Length - this.Content.Length;
         }

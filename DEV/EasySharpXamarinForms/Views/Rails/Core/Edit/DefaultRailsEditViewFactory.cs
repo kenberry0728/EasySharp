@@ -18,6 +18,7 @@ using EasySharp.ComponentModel.Reflection;
 
 namespace EasySharpXamarinForms.Views.Rails.Core.Edit
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "TODO: ValueObjectにしたほうがうまくいくかも。")]
     public class DefaultRailsEditViewFactory
         : DefaultRailsEditViewFactoryBase
     {

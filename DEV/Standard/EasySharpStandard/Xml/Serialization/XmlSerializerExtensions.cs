@@ -4,6 +4,7 @@ using System.Xml.Serialization;
 
 namespace EasySharp.Xml.Serialization
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class XmlSerializerExtensions
     {
         public static void SerializeAsXml(this object instance, string filePath)

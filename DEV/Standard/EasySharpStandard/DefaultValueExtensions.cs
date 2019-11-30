@@ -1,4 +1,7 @@
-﻿namespace EasySharp
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace EasySharp
 {
     public static class DefaultValueExtensions
     {
@@ -15,6 +18,11 @@
         public static bool IsNull<T>(this T instance) where T : class
         {
             return instance == null;
+        }
+
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> items)
+        {
+            return items == null || !items.Any();
         }
     }
 }

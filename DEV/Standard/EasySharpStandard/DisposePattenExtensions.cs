@@ -5,6 +5,7 @@ namespace EasySharp
     /// <summary>
     /// https://docs.microsoft.com/ja-jp/visualstudio/code-quality/ca1063
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class DisposePattenExtensions
     {
         public static void OnDispose(this IDisposablePattern disposablePattern)

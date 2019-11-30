@@ -25,6 +25,7 @@ namespace AppInstaller.RunModes
             this.createDirectoryPath = createDirectoryPath ?? Create;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Checked")]
         public AppInstallerResult Run(AppInstallerArgument appInstallerArgument)
         {
             appInstallerArgument.ThrowArgumentExceptionIfNull(nameof(appInstallerArgument));

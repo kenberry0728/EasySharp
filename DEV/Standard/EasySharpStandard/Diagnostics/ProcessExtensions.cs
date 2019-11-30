@@ -3,6 +3,7 @@ using System.Diagnostics;
 
 namespace EasySharp.Processes
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class ProcessExtensions
     {
         public static void HandleExitedEvent(this Process process, EventHandler eventHandler)

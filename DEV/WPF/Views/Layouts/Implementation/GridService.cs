@@ -5,6 +5,7 @@ using System.Windows.Controls;
 
 namespace EasySharpWpf.Views.Layouts.Implementation
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "TODO: GridObjectにしたほうがスマートにまとまりそう")]
     public class GridService : IGridService
     {
         public void AddChild(
@@ -28,15 +29,12 @@ namespace EasySharpWpf.Views.Layouts.Implementation
 
         public void AddColumnDefinition(Grid grid, double width)
         {
-#pragma warning disable CA1062 // Validate arguments of public methods
             grid.ThrowArgumentExceptionIfNull(nameof(grid));
             grid.ColumnDefinitions.Add(
                 new ColumnDefinition
                 {
                     Width = new GridLength(width)
                 });
-#pragma warning restore CA1062 // Validate arguments of public methods
-
         }
 
         public void AddAutoColumnDefinition(Grid grid)

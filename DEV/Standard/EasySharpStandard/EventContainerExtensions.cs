@@ -2,6 +2,7 @@
 
 namespace EasySharp
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class EventContainerExtensions
     {
         public static Action DoOrReserve<TEventArg>(

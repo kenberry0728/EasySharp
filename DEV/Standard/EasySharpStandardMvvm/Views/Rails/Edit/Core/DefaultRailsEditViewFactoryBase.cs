@@ -13,6 +13,7 @@ using EasySharpStandardMvvm.Views.Rails.Edit.Core.Interfaces;
 
 namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "TODO: GridObjectにしたほうがスマートにまとまりそう")]
     public abstract class DefaultRailsEditViewFactoryBase<TBinding, TViewControl, TGrid>
         : IRailsEditViewFactory<TBinding, TViewControl>
         where TGrid : TViewControl

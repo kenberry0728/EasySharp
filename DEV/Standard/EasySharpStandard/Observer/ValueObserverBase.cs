@@ -1,8 +1,6 @@
-﻿using EasySharp.Collections.Generic;
-using EasySharp.Logs.Text;
+﻿using EasySharp.Logs.Text;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace EasySharp.Observer
@@ -36,6 +34,8 @@ namespace EasySharp.Observer
 
         protected virtual void OnValueChange(object sender, ValueChangedEventArg<TStateStruct> e)
         {
+            e.ThrowArgumentExceptionIfNull(nameof(e));
+
             if (this.textLogger != null)
             {
                 if (e.NewValue is IEnumerable enumerable)

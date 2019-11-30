@@ -12,6 +12,7 @@ using EasySharpStandardMvvm.Views.Rails.Core;
 
 namespace EasySharpStandardMvvm.ViewModels.Rails.Edit.Core
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extension")]
     public sealed class RailsEditViewModel : RailsEditViewModelPathDefinition, IRailsEditViewModel, INotifyDataErrorInfo
     {
         #region INotifyDataErrorInfo

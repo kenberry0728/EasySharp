@@ -4,7 +4,7 @@ namespace EasySharp
 {
     public static class StringExtensions
     {
-        public static void ThrowArgumentNullOrEmptyException(this string argument, string argumentName)
+        public static void ThrowArgumentExceptionIfNullOrEmpty(this string argument, string argumentName)
         {
             if (argument.IsNullOrEmpty())
             {
