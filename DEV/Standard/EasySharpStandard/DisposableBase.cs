@@ -18,6 +18,7 @@ namespace EasySharp
         public void Dispose()
         {
             this.OnDispose();
+            GC.SuppressFinalize(this);
         }
 
         public virtual void DisposeNativeResources()

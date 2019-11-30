@@ -18,7 +18,6 @@ namespace EasySharp
             disposablePattern.DisposeActions.Clear();
 
             disposablePattern.DisposeNativeResources();
-            GC.SuppressFinalize(disposablePattern);
         }
 
         // NOTE: Leave out the finalizer altogether if this class doesn't

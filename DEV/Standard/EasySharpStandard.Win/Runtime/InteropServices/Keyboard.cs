@@ -95,8 +95,8 @@ namespace EasySharp.Win.Runtime.InteropServices
         /// </summary>
         public enum KeyboardStroke
         {
-            KEY_DOWN = 0x0000,
-            KEY_UP = 0x0002
+            KeyDown = 0x0000,
+            KeyUp = 0x0002
         }
 
         /// <summary>
@@ -118,15 +118,15 @@ namespace EasySharp.Win.Runtime.InteropServices
                 var isUpper = char.IsUpper(s);
                 if (isUpper)
                 {
-                    yield return CreateKeyboardInput(KeyboardStroke.KEY_DOWN, (short)VK_SHIFT, (short)s, 0, 0);
+                    yield return CreateKeyboardInput(KeyboardStroke.KeyDown, (short)VK_SHIFT, (short)s, 0, 0);
                 }
 
-                yield return CreateKeyboardInput(KeyboardStroke.KEY_DOWN, 0, (short)s, 0, 0);
-                yield return CreateKeyboardInput(KeyboardStroke.KEY_UP, 0, (short)s, 0, 0);
+                yield return CreateKeyboardInput(KeyboardStroke.KeyDown, 0, (short)s, 0, 0);
+                yield return CreateKeyboardInput(KeyboardStroke.KeyUp, 0, (short)s, 0, 0);
 
                 if (isUpper)
                 {
-                    yield return CreateKeyboardInput(KeyboardStroke.KEY_UP, (short)VK_SHIFT, (short)s, 0, 0);
+                    yield return CreateKeyboardInput(KeyboardStroke.KeyUp, (short)VK_SHIFT, (short)s, 0, 0);
                 }
             }
         }
