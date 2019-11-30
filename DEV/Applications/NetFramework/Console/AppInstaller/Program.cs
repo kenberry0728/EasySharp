@@ -27,8 +27,9 @@ namespace AppInstaller
                     InstallDir = @"..\Old",
                     OriginalAppPath = @"Updated.txt",
                     TempFolder = @"..\AppInstaller_Temp",
-                    ExcludeRelativePathRegex = new List<string> { @".*\.log" }
                 };
+
+                appArg.ExcludeRelativePathRegex.Add(@".*\.log");
 
                 args = new[] { appArg.ToCommandLineString(false) };
 #else

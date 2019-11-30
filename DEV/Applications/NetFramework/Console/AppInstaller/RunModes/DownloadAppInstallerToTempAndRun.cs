@@ -3,6 +3,7 @@ using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using EasySharp.Processes;
 using EasySharp.IO;
+using EasySharp;
 
 namespace AppInstaller.RunModes
 {
@@ -18,6 +19,8 @@ namespace AppInstaller.RunModes
         
         public AppInstallerResult Run(AppInstallerArgument argument)
         {
+            argument.ThrowExceptionIfNull(nameof(argument));
+
             var installDir = argument.InstallDir.ToDirectoryPath().ToFullDirectoryPath().Value;
             var sourceDir = new DirectoryInfo(argument.SourceDir).FullName;
             var tempDirectoryPath = Path.Combine(installDir, "..", "AppInstaller_Temp").ToDirectoryPath().ToFullDirectoryPath().Value;

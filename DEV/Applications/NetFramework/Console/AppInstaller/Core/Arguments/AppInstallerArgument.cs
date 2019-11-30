@@ -24,18 +24,19 @@ namespace AppInstaller.Core.Arguments
 
         public string TempFolder { get; set; }
 
-        public List<string> ExcludeRelativePathRegex { get; set; } = new List<string>();
+        public List<string> ExcludeRelativePathRegex { get; } = new List<string>();
 
         public AppInstallerArgument Clone()
         {
-            return new AppInstallerArgument(this.RunMode)
+            var arg = new AppInstallerArgument(this.RunMode)
             {
-                ExcludeRelativePathRegex = this.ExcludeRelativePathRegex.ToList(),
                 InstallDir = this.InstallDir,
                 OriginalAppPath =  this.OriginalAppPath,
                 SourceDir = this.SourceDir,
                 TempFolder =  this.TempFolder
             };
+            arg.ExcludeRelativePathRegex.AddRange(this.ExcludeRelativePathRegex);
+            return arg;
         }
     }
 }

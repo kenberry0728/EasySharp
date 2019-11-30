@@ -34,7 +34,7 @@ namespace AppInstaller.Test.RunModes
             InstallDirPath.ToDirectoryPath().SetLastWriteTimeToAllFiles(StandardDateTime);
         }
 
-        protected void TestCleanupBase()
+        protected static void TestCleanupBase()
         {
             SourceDirPath.ToDirectoryPath().DeleteDirectoryRecursively();
             InstallDirPath.ToDirectoryPath().DeleteDirectoryRecursively();
