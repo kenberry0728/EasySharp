@@ -14,7 +14,7 @@ namespace EasySharp.Logs.Text
         public TextFileLogger(string filePath)
         {
             this.filePath = filePath;
-            this.filePath.EnsureDirectoryForFile();
+            this.filePath.ToFilePath().EnsureDirectory();
             this.streamWriter = new StreamWriter(this.filePath, true, Encoding.UTF8);
         }
 

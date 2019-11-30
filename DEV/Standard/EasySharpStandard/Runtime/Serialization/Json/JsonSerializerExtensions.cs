@@ -10,7 +10,7 @@ namespace EasySharp.Runtime.Serialization.Json
     {
         public static void SerializeAsJson(this object instance, string filePath, params Type[] knownTypes)
         {
-            filePath.EnsureDirectoryForFile();
+            filePath.ToFilePath().EnsureDirectory();
             var serializer = new DataContractJsonSerializer(instance.GetType(), knownTypes);
             using (var writer = new FileStream(filePath, FileMode.Create))
             {

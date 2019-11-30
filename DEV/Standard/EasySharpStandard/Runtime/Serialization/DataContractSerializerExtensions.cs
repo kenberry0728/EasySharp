@@ -10,7 +10,7 @@ namespace EasySharp.Runtime.Serialization
     {
         public static void SerializeWithDataContract(this object instance, string filePath, DataContractSerializerSettings settings)
         {
-            filePath.EnsureDirectoryForFile();
+            filePath.ToFilePath().EnsureDirectory();
             var serializer = new DataContractSerializer(instance.GetType(), settings);
             var xmlSettings = new XmlWriterSettings
             {

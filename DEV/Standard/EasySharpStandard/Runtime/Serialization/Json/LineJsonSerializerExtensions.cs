@@ -12,7 +12,7 @@ namespace EasySharp.Runtime.Serialization.Json
         public static void SerializeAsLinedJson<T>(this IEnumerable<T> instances, string filePath, params Type[] knownTypes)
         {
             var serializer = new DataContractJsonSerializer(typeof(T), knownTypes);
-            filePath.EnsureDirectoryForFile();
+            filePath.ToFilePath().EnsureDirectory();
             using (var streamWriter = new StreamWriter(filePath, false, Encoding.UTF8, 1024))
             {
                 foreach (var instance in instances)
