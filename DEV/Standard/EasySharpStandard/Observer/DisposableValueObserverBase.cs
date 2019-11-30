@@ -20,6 +20,7 @@ namespace EasySharp.Observer
             this.OnDestruct();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1063:Implement IDisposable Correctly", Justification = "<Pending>")]
         public void Dispose()
         {
             this.OnDispose();

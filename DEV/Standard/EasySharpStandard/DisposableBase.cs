@@ -6,6 +6,7 @@ namespace EasySharp
     /// <summary>
     /// https://docs.microsoft.com/ja-jp/visualstudio/code-quality/ca1063
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1063:Implement IDisposable Correctly", Justification = "Considered")]
     public abstract class DisposableBase : IDisposable, IDisposablePattern
     {
         public IList<Action> DisposeActions { get; } = new List<Action>();
