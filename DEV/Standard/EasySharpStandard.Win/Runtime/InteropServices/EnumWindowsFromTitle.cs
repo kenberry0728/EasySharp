@@ -7,7 +7,7 @@ using System.Text;
 
 namespace EasySharp.Win.Runtime.InteropServices
 {
-    public class EnumWindowsFromTitle
+    public sealed class EnumWindowsFromTitle
     {
         private class EnumWindowsFromTitleService
         {
