@@ -4,6 +4,7 @@ using System.Windows.Automation;
 
 namespace EasySharpCoreWpfLibrary.Automations
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class AutomationElementExtensions
     {
         public static IEnumerable<AutomationElement> FindAll(
