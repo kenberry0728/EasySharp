@@ -24,7 +24,7 @@ namespace EasySharp.Observer
 
         public TStateStruct CurrentValue { get; private set; }
 
-        public ValueChangedEventArg<TStateStruct> SetCurrentValue(TStateStruct value)
+        protected ValueChangedEventArg<TStateStruct> SetCurrentValue(TStateStruct value)
         {
             var oldState = this.CurrentValue;
             this.CurrentValue = value;

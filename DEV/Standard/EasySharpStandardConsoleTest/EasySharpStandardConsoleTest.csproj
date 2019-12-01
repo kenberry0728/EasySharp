@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventContainerTests.cs" />
     <Compile Include="ConsoleTests\Implementations\ConsoleTestBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgressNotifications\ConsoleProgressNotificationServiceTests.cs" />

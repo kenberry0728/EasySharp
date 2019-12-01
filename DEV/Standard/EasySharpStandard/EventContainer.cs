@@ -5,25 +5,21 @@ namespace EasySharp
     public class EventContainer<TEventArg> : IEventContainer<TEventArg>
     {
         private readonly Action<EventHandler<TEventArg>> subscribeEvent;
-        private readonly Action<EventHandler<TEventArg>> unsubscrieEvent;
 
         public EventContainer(
             Action<EventHandler<TEventArg>> subscribeEvent,
-            Action<EventHandler<TEventArg>> unsubscrieEvent)
+            Action<EventHandler<TEventArg>> unsubscribeEvent)
         {
             this.subscribeEvent = subscribeEvent;
-            this.unsubscrieEvent = unsubscrieEvent;
+            this.Unsubscribe = unsubscribeEvent;
         }
 
-        // TODO:基本これを呼ぶのはExtensionだけにしたい
-        public void Subscribe(EventHandler<TEventArg> action)
+        public Action<EventHandler<TEventArg>> Unsubscribe { get; }
+
+        public Action Subscribe(EventHandler<TEventArg> action)
         {
             this.subscribeEvent(action);
-        }
-
-        public void Unsubscribe(EventHandler<TEventArg> action)
-        {
-            this.unsubscrieEvent(action);
+            return () => this.Unsubscribe(action);
         }
     }
 }
