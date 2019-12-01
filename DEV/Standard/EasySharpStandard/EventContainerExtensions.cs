@@ -18,6 +18,8 @@ namespace EasySharp
 
             return () => eventContainer.Unsubscribe(OnReservedEventTriggered);
 
+            #region Local Methods
+
             void OnReservedEventTriggered(object sender, TEventArg arg)
             {
                 if (predicate())
@@ -31,25 +33,22 @@ namespace EasySharp
                 eventContainer.Unsubscribe(OnReservedEventTriggered);
                 action();
             }
+
+            #endregion
         }
 
-        public static void DoAtOnce<TEventArg>(
-            this IEventContainer<TEventArg> eventContainer,
-            Action<object, TEventArg> action)
-        {
-            eventContainer.DoAtOnce(action, Delegates.True);
-        }
-
-        public static void DoAtOnce<TEventArg>(
+        public static Action DoAtOnce<TEventArg>(
             this IEventContainer<TEventArg> eventContainer,
             Action<object, TEventArg> action,
-            Func<TEventArg, bool> predicate)
+            Func<object, TEventArg, bool> predicate = null)
         {
+            predicate = predicate ?? Predicates.True;
             eventContainer.Subscribe(OnTriggered);
+            return () => { eventContainer.Unsubscribe(OnTriggered); };
 
             void OnTriggered(object sender, TEventArg arg)
             {
-                if(predicate(arg))
+                if(predicate(sender, arg))
                 {
                     eventContainer.Unsubscribe(OnTriggered);
                     action(sender, arg);
@@ -57,30 +56,43 @@ namespace EasySharp
             }
         }
 
-        public static void Subscribe<TEventArg>(
+        public static Action Subscribe<TEventArg>(
             this IEventContainer<TEventArg> eventContainer,
-            Action<TEventArg> action)
+            Action<object, TEventArg> action,
+            Func<object, TEventArg, bool> predicate = null)
         {
-            eventContainer.Subscribe(
-                action,
-                Delegates.True);
-        }
-        
-        public static void Subscribe<TEventArg>(
-            this IEventContainer<TEventArg> eventContainer,
-            Action<TEventArg> action,
-            Func<TEventArg, bool> predicate)
-        {
+            predicate = predicate ?? Predicates.True;
             eventContainer.Subscribe(OnTriggered);
+            return () => { eventContainer.Unsubscribe(OnTriggered); };
 
             void OnTriggered(object sender, TEventArg arg)
             {
-                if (predicate(arg))
+                if (predicate(sender, arg))
                 {
-                    action?.Invoke(arg);
+                    action?.Invoke(sender, arg);
                 }
             }
         }
 
+        public static Action PendingSubscribeWhileActing<TEventArg>(
+            this IEventContainer<TEventArg> eventContainer,
+            Action<object, TEventArg> action,
+            Func<object, TEventArg, bool> predicate = null)
+        {
+            predicate = predicate ?? Predicates.True;
+            eventContainer.Subscribe(OnTriggered);
+
+            return () => eventContainer.Unsubscribe(OnTriggered);
+
+            void OnTriggered(object sender, TEventArg arg)
+            {
+                if (predicate(sender, arg))
+                {
+                    eventContainer.Unsubscribe(OnTriggered);
+                    action(sender, arg);
+                    eventContainer.Subscribe(OnTriggered);
+                }
+            }
+        }
     }
 }

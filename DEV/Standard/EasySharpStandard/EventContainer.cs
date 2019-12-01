@@ -15,6 +15,7 @@ namespace EasySharp
             this.unsubscrieEvent = unsubscrieEvent;
         }
 
+        // TODO:基本これを呼ぶのはExtensionだけにしたい
         public void Subscribe(EventHandler<TEventArg> action)
         {
             this.subscribeEvent(action);
