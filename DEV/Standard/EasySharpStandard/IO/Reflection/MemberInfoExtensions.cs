@@ -92,7 +92,7 @@ namespace EasySharp.IO.Reflection
                 },
                 out var selectableItems);
 
-            return selectableItems ?? new string[0];
+            return selectableItems ?? Enumerable.Empty<string>();
         }
 
         private static IDictionary<string, List<string>> GetDependentItems(string filePath)

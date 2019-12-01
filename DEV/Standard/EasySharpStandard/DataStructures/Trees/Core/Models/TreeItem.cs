@@ -5,6 +5,7 @@ namespace EasySharp.DataStructures.Trees.Core.Models
 {
     public class TreeItem<T> : ITreeItem<TreeItem<T>>
     {
+        private TreeItem<T> parent;
         private readonly List<TreeItem<T>> children = new List<TreeItem<T>>();
 
         public TreeItem(T item)
@@ -14,9 +15,8 @@ namespace EasySharp.DataStructures.Trees.Core.Models
 
         public T Item { get; }
 
-        public TreeItem<T> Parent { get; private set; }
 
-        public bool IsRoot => this.Parent == null;
+        public bool IsRoot => this.parent == null;
 
         public bool IsLeaf => !this.children.Any();
 
@@ -24,7 +24,7 @@ namespace EasySharp.DataStructures.Trees.Core.Models
         {
             child.ThrowArgumentExceptionIfNull(nameof(child));
 
-            child.Parent = this;
+            child.parent = this;
             this.children.Add(child);
         }
 
@@ -43,7 +43,7 @@ namespace EasySharp.DataStructures.Trees.Core.Models
 
         public TreeItem<T> GetParent()
         {
-            return this.Parent;
+            return this.parent;
         }
 
         public IEnumerable<TreeItem<T>> GetChildren()
@@ -61,7 +61,7 @@ namespace EasySharp.DataStructures.Trees.Core.Models
                 }
                 else
                 {
-                    return this.Parent.Depth + 1;
+                    return this.parent.Depth + 1;
                 }
             }
         }

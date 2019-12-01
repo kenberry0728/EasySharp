@@ -25,18 +25,13 @@ namespace EasySharpXamarinForms.Views.Layouts.Implementation
             view.SetValue(View.MarginProperty, new Thickness(thickness));
         }
 
-        public void AddColumnDefinition(Grid grid, GridLength width)
+        public void AddColumnDefinition(Grid grid, double width)
         {
             grid.ColumnDefinitions.Add(
                 new ColumnDefinition
                 {
-                    Width = width
+                    Width = new GridLength(width)
                 });
-        }
-
-        public void AddColumnDefinition(Grid grid, double width)
-        {
-            throw new System.NotImplementedException();
         }
 
         public void AddRowDefinition(Grid grid)

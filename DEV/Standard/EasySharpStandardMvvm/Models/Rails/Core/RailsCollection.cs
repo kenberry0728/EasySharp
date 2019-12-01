@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace EasySharpStandardMvvm.Models.Rails.Core
 {
-    public class RailsList<T> : List<T>
+    public class RailsCollection<T> : List<T>
         where T : class
     {
         public override string ToString()

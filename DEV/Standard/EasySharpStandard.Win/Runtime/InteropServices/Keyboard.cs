@@ -11,7 +11,7 @@ namespace EasySharp.Win.Runtime.InteropServices
             public extern static int MapVirtualKey(int wCode, int wMapType);
 
             [DllImport("user32.dll")]
-            public extern static void SendInput(int nInputs, Input[] pInputs, int cbsize);
+            public extern static void SendInput(int nInputs, UserInput[] pInputs, int cbsize);
         }
 
         private enum EventType
@@ -75,7 +75,7 @@ namespace EasySharp.Win.Runtime.InteropServices
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
-        public struct Input
+        public struct UserInput
         {
             [FieldOffset(0)]
             public int Type;
@@ -104,7 +104,7 @@ namespace EasySharp.Win.Runtime.InteropServices
         /// </summary>
         private const int KBD_UNICODE = 0x0004;
             
-        public static IEnumerable<Input> CreateKeyboardInputs(string srcStr)
+        public static IEnumerable<UserInput> CreateKeyboardInputs(string srcStr)
         {
             // TODO: Caps lock / IME
             if (srcStr.IsNullOrEmpty())
@@ -131,14 +131,14 @@ namespace EasySharp.Win.Runtime.InteropServices
             }
         }
 
-        public static Input CreateKeyboardInput(
+        public static UserInput CreateKeyboardInput(
             KeyboardStroke flags,
             short virtualKey,
             short scanCode,
             int time,
             int extraInfo)
         {
-            var input = new Input
+            var input = new UserInput
             {
                 Type = (int)EventType.INPUT_KEYBOARD
             };
@@ -151,7 +151,7 @@ namespace EasySharp.Win.Runtime.InteropServices
             return input;
         }
 
-        public static void SendInputs(params Input[] inputs)
+        public static void SendInputs(params UserInput[] inputs)
         {
             NativeMethods.SendInput(inputs.Length, inputs, Marshal.SizeOf(inputs[0]));
         }

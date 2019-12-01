@@ -4,6 +4,7 @@ using EasySharp.Logs.Text;
 
 namespace EasySharp.Observer
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1063:Implement IDisposable Correctly", Justification = "<Pending>")]
     public abstract class DisposableValueObserverBase<TStateStruct> 
         : ValueObserverBase<TStateStruct>, IDisposableValueObserver<TStateStruct>, IDisposablePattern
         where TStateStruct : struct
@@ -20,7 +21,6 @@ namespace EasySharp.Observer
             this.OnDestruct();
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1063:Implement IDisposable Correctly", Justification = "<Pending>")]
         public void Dispose()
         {
             this.OnDispose();

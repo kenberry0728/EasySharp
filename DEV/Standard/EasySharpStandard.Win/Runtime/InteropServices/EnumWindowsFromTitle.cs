@@ -46,12 +46,14 @@ namespace EasySharp.Win.Runtime.InteropServices
                 if (0 < textLength)
                 {
                     var windowTitleStringBuilder = new StringBuilder(textLength + 1);
-                    NativeMethods.GetWindowText(hWnd, windowTitleStringBuilder, windowTitleStringBuilder.Capacity);
-
-                    var windowTitle = windowTitleStringBuilder.ToString();
-                    if (this.windowTitlePredicate(windowTitle))
+                    var result = NativeMethods.GetWindowText(hWnd, windowTitleStringBuilder, windowTitleStringBuilder.Capacity);
+                    if (result != 0)
                     {
-                        this.windowInfos.Add(new WindowInfo(hWnd, windowTitle));
+                        var windowTitle = windowTitleStringBuilder.ToString();
+                        if (this.windowTitlePredicate(windowTitle))
+                        {
+                            this.windowInfos.Add(new WindowInfo(hWnd, windowTitle));
+                        }
                     }
                 }
 

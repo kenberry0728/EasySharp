@@ -1,6 +1,6 @@
 ﻿namespace EasySharp.Logs.CheckLogs.Core.Models
 {
-    public enum CheckResultCategories
+    public enum CheckResultCategory
     {
         None,
         Error,

@@ -36,7 +36,7 @@ namespace EasySharp.Runtime.Serialization.Json
                 string line;
                 while (null != (line = streamReader.ReadLine()))
                 {
-                    if (line == string.Empty)
+                    if (line.Length == 0)
                     {
                         continue;
                     }

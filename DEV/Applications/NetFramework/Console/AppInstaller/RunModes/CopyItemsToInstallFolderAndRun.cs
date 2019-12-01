@@ -70,11 +70,13 @@ namespace AppInstaller.RunModes
             {
                 var originalApp = appInstallerArgument.OriginalAppPath.GetProcessByFileName();
                 originalApp?.WaitForExit(100000);
+                originalApp.Dispose();
             }
 
             var appInstallerPathInInstallDir = Path.Combine(appInstallerArgument.InstallDir, appInstallerAssemblyName);
             var appInstallerInInstallDir = appInstallerPathInInstallDir.GetProcessByFileName();
             appInstallerInInstallDir?.WaitForExit(100000);
+            appInstallerInInstallDir.Dispose();
         }
     }
 }
