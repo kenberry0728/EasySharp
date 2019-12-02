@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EasySharp
+﻿namespace EasySharp
 {
     /// <summary>
     /// https://docs.microsoft.com/ja-jp/visualstudio/code-quality/ca1063
