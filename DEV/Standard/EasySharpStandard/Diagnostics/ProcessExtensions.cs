@@ -57,5 +57,22 @@ namespace EasySharp.Processes
             process.Start();
             return process;
         }
+
+        public static Process GetProcessByFileName(this IFilePath filePath)
+        {
+            foreach (var proc in Process.GetProcesses())
+            {
+                if (Try.To(() =>
+                {
+                    return proc.MainModule.FileName.ToFilePath().Equals(filePath) ? proc : null;
+                },
+                out var process))
+                {
+                    return process;
+                }
+            }
+
+            return null;
+        }
     }
 }

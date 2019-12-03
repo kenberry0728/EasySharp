@@ -2,6 +2,7 @@
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using EasySharp;
+using EasySharp.IO;
 using EasySharp.Processes;
 
 namespace AppInstaller.RunModes
@@ -22,7 +23,7 @@ namespace AppInstaller.RunModes
             var appInstallerPathInTempDir = Path.Combine(argument.TempFolder, this.appInstallerAssemblyName);
             #pragma warning restore CA1062 // Validate arguments of public methods
 
-            var appInstallerInInstallDir = appInstallerPathInTempDir.GetProcessByFileName();
+            var appInstallerInInstallDir = appInstallerPathInTempDir.ToFilePath().GetProcessByFileName();
             appInstallerInInstallDir?.WaitForExit(5000);
 
             Try.To(() => Directory.Delete(argument.TempFolder, true));
