@@ -8,4 +8,12 @@ namespace EasySharp
 
         Action<EventHandler<TEventArg>> Unsubscribe { get; }
     }
+
+    public interface IEventContainer
+    {
+        Action Subscribe(EventHandler action);
+
+        Action<EventHandler> Unsubscribe { get; }
+    }
+
 }

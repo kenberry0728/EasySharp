@@ -10,6 +10,43 @@ namespace EasySharp
             Action action,
             Func<bool> predicate)
         {
+            return NewMethod(eventContainer, action, predicate);
+
+        }
+
+        private static Action NewMethod<TEventArg>(IEventContainer<TEventArg> eventContainer, Action action, Func<bool> predicate)
+        {
+            eventContainer.Subscribe(OnReservedEventTriggered);
+            if (predicate())
+            {
+                UnsubscribeAndAction();
+            }
+
+            return () => eventContainer.Unsubscribe(OnReservedEventTriggered);
+            #region Local Methods
+
+            void OnReservedEventTriggered(object sender, TEventArg arg)
+            {
+                if (predicate())
+                {
+                    UnsubscribeAndAction();
+                }
+            }
+
+            void UnsubscribeAndAction()
+            {
+                eventContainer.Unsubscribe(OnReservedEventTriggered);
+                action();
+            }
+
+            #endregion
+        }
+
+        public static Action DoOrReserve(
+            this IEventContainer eventContainer,
+            Action action,
+            Func<bool> predicate)
+        {
             eventContainer.Subscribe(OnReservedEventTriggered);
             if (predicate())
             {
@@ -20,7 +57,7 @@ namespace EasySharp
 
             #region Local Methods
 
-            void OnReservedEventTriggered(object sender, TEventArg arg)
+            void OnReservedEventTriggered(object sender, EventArgs arg)
             {
                 if (predicate())
                 {

@@ -22,4 +22,25 @@ namespace EasySharp
             return () => this.Unsubscribe(action);
         }
     }
+
+    public class EventContainer : IEventContainer
+    {
+        private readonly Action<EventHandler> subscribeEvent;
+
+        public EventContainer(
+            Action<EventHandler> subscribeEvent,
+            Action<EventHandler> unsubscribeEvent)
+        {
+            this.subscribeEvent = subscribeEvent;
+            this.Unsubscribe = unsubscribeEvent;
+        }
+
+        public Action<EventHandler> Unsubscribe { get; }
+
+        public Action Subscribe(EventHandler action)
+        {
+            this.subscribeEvent(action);
+            return () => this.Unsubscribe(action);
+        }
+    }
 }
