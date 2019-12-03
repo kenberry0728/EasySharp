@@ -102,5 +102,24 @@ namespace EasySharpCoreWpfLibrary.Automations
                 TreeScope.Descendants,
                 condition) != null;
         }
+
+        public static bool ContainsChild(
+            this AutomationElement rootElement,
+            params Condition[] conditions)
+        {
+            return GetFirstChild(rootElement, conditions) != null;
+        }
+
+        public static AutomationElement GetFirstChild(
+            this AutomationElement parent,
+            params Condition[] conditions)
+        {
+            var condition = conditions.Length == 1
+                ? conditions[0]
+                : new AndCondition(conditions);
+            return parent.FindFirst(
+                TreeScope.Children,
+                condition);
+        }
     }
 }

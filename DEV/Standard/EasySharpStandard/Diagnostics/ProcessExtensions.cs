@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasySharp.IO;
+using System;
 using System.Diagnostics;
 
 namespace EasySharp.Processes
@@ -16,13 +17,13 @@ namespace EasySharp.Processes
             process.Exited += eventHandler;
         }
 
-        public static string RunProcessAndGetStandardOutput(this string processPath, string arguments = "")
+        public static string RunProcessAndGetStandardOutput(this FilePath processFilePath, string arguments = "")
         {
             var process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = processPath,
+                    FileName = processFilePath.Value,
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     RedirectStandardInput = false,
