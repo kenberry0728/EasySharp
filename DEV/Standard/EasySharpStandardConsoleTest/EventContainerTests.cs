@@ -8,7 +8,7 @@ namespace EasySharpStandardConsoleTest.ProgressNotifications
 {
     internal class EventContainerTests : ConsoleTestBase
     {
-        private class EventClass : ValueObserverBase<bool>
+        private class EventClass : StructObserverBase<bool>
         {
             public void SetAndRaiseEvent(bool value)
             {

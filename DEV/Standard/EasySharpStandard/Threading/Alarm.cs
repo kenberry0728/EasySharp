@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace EasySharp.Threading
 {
-    public class Alarm : ValueObserverBase<AlarmState>
+    public class Alarm : StructObserverBase<AlarmState>
     {
         private readonly Queue<DateTime> remainingSettingTimes;
         private readonly Timer timer;

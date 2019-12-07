@@ -2,10 +2,11 @@
 
 namespace EasySharp.Observer
 {
-    public abstract class ClassObserverBase<TValue> : ValueObserverBase<TValue>
-        where TValue : class, ICloneable<TValue>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1063:Implement IDisposable Correctly", Justification = "<Pending>")]
+    public abstract class StructObserverBase<TValue> : ValueObserverBase<TValue>
+        where TValue : struct
     {
-        protected ClassObserverBase(ITextLogger textLogger = null)
+        protected StructObserverBase(ITextLogger textLogger = null)
             : base(textLogger)
         {
         }
@@ -14,7 +15,7 @@ namespace EasySharp.Observer
         {
             var oldValue = this.CurrentValue;
             this.CurrentValue = value;
-            var newValue = this.CurrentValue?.Clone();
+            var newValue = this.CurrentValue;
             return new ValueChangedEventArg<TValue>(oldValue, newValue);
         }
     }

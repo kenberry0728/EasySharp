@@ -3,7 +3,7 @@ using System.Net.NetworkInformation;
 
 namespace EasySharp.Net.NetworkInformation
 {
-    public class NetworkStateObserver : ValueObserverBase<NetworkState>
+    public class NetworkStateObserver : StructObserverBase<NetworkState>
     {
         public NetworkStateObserver()
         {

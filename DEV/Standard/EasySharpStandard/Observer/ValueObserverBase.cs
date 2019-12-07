@@ -1,22 +1,48 @@
 ﻿using EasySharp.Logs.Text;
+using System;
+using System.Collections;
+using System.Linq;
 
 namespace EasySharp.Observer
 {
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1063:Implement IDisposable Correctly", Justification = "<Pending>")]
-    public abstract class ValueObserverBase<TStateStruct> 
-        : StateObserverBase<TStateStruct>, IStateObserver<TStateStruct>, IDisposablePattern
+    public abstract class ValueObserverBase<TState> : DisposableBase , IValueObserver<TState>
     {
+        private readonly ITextLogger textLogger;
+
         protected ValueObserverBase(ITextLogger textLogger = null)
-            : base(textLogger)
         {
+            this.ValueChangeEvent = new EventContainer<ValueChangedEventArg<TState>>(
+                handler => this.ValueChange += handler,
+                handler => this.ValueChange -= handler);
+            this.textLogger = textLogger;
         }
 
-        protected override ValueChangedEventArg<TStateStruct> SetCurrentValue(TStateStruct value)
+        public event EventHandler<ValueChangedEventArg<TState>> ValueChange;
+
+        public IEventContainer<ValueChangedEventArg<TState>> ValueChangeEvent { get; }
+
+        public TState CurrentValue { get; protected set; }
+
+        protected abstract ValueChangedEventArg<TState> SetCurrentValue(TState value);
+
+        protected virtual void OnValueChange(object sender, ValueChangedEventArg<TState> e)
         {
-            var oldValue = this.CurrentValue;
-            this.CurrentValue = value;
-            var newValue = this.CurrentValue;
-            return new ValueChangedEventArg<TStateStruct>(oldValue, newValue);
+            e.ThrowArgumentExceptionIfNull(nameof(e));
+
+            if (this.textLogger != null)
+            {
+                if (e.NewValue is IEnumerable enumerable)
+                {
+                    var text = enumerable.OfType<object>().Select(s => s.ToString()).JoinWithTab();
+                    this.textLogger.WriteLine(this.GetType().Name, text);
+                }
+                else
+                {
+                    this.textLogger.WriteLine(this.GetType().Name, e.NewValue.ToString());
+                }
+            }
+
+            this.ValueChange?.Invoke(sender, e);
         }
     }
 }
