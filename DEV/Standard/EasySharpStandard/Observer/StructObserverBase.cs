@@ -10,13 +10,10 @@ namespace EasySharp.Observer
             : base(textLogger)
         {
         }
-
-        protected override ValueChangedEventArg<TValue> SetCurrentValue(TValue value)
+        
+        protected override TValue CreateCurrentValueClone()
         {
-            var oldValue = this.CurrentValue;
-            this.CurrentValue = value;
-            var newValue = this.CurrentValue;
-            return new ValueChangedEventArg<TValue>(oldValue, newValue);
+            return this.CurrentValue;
         }
     }
 }

@@ -23,7 +23,15 @@ namespace EasySharp.Observer
 
         public TState CurrentValue { get; protected set; }
 
-        protected abstract ValueChangedEventArg<TState> SetCurrentValue(TState value);
+        protected ValueChangedEventArg<TState> SetCurrentValue(TState value)
+        {
+            var oldValue = this.CurrentValue;
+            this.CurrentValue = value;
+            TState newValue = CreateCurrentValueClone();
+            return new ValueChangedEventArg<TState>(oldValue, newValue);
+        }
+
+        protected abstract TState CreateCurrentValueClone();
 
         protected virtual void OnValueChange(object sender, ValueChangedEventArg<TState> e)
         {
