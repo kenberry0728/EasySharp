@@ -5,35 +5,35 @@ using System.Linq;
 
 namespace EasySharp.Observer
 {
-    public abstract class ValueObserverBase<TState> : DisposableBase , IValueObserver<TState>
+    public abstract class ValueObserverBase<TValue> : DisposableBase , IValueObserver<TValue>
     {
         private readonly ITextLogger textLogger;
 
         protected ValueObserverBase(ITextLogger textLogger = null)
         {
-            this.ValueChangeEvent = new EventContainer<ValueChangedEventArg<TState>>(
+            this.ValueChangeEvent = new EventContainer<ValueChangedEventArg<TValue>>(
                 handler => this.ValueChange += handler,
                 handler => this.ValueChange -= handler);
             this.textLogger = textLogger;
         }
 
-        public event EventHandler<ValueChangedEventArg<TState>> ValueChange;
+        public event EventHandler<ValueChangedEventArg<TValue>> ValueChange;
 
-        public IEventContainer<ValueChangedEventArg<TState>> ValueChangeEvent { get; }
+        public IEventContainer<ValueChangedEventArg<TValue>> ValueChangeEvent { get; }
 
-        public TState CurrentValue { get; protected set; }
+        public TValue CurrentValue { get; protected set; }
 
-        protected ValueChangedEventArg<TState> SetCurrentValue(TState value)
+        protected ValueChangedEventArg<TValue> SetCurrentValue(TValue value)
         {
             var oldValue = this.CurrentValue;
             this.CurrentValue = value;
-            TState newValue = CreateCurrentValueClone();
-            return new ValueChangedEventArg<TState>(oldValue, newValue);
+            TValue newValue = CreateCurrentValueClone();
+            return new ValueChangedEventArg<TValue>(oldValue, newValue);
         }
 
-        protected abstract TState CreateCurrentValueClone();
+        protected abstract TValue CreateCurrentValueClone();
 
-        protected virtual void OnValueChange(object sender, ValueChangedEventArg<TState> e)
+        protected virtual void OnValueChange(object sender, ValueChangedEventArg<TValue> e)
         {
             e.ThrowArgumentExceptionIfNull(nameof(e));
 
