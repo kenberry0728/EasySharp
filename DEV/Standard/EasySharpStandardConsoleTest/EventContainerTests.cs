@@ -1,8 +1,5 @@
 using EasySharp;
 using EasySharp.Observer;
-using EasySharp.ProgressNotifications.Core;
-using EasySharp.ProgressNotifications.Core.Models;
-using EasySharpStandardConsole.ProgressNotifications.Core;
 using EasySharpStandardConsoleTest.ConsoleTests.Implementations;
 using System;
 using System.Diagnostics;

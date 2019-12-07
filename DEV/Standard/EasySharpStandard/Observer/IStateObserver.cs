@@ -2,8 +2,7 @@
 
 namespace EasySharp.Observer
 {
-    public interface IValueObserver<TValue>
-        where TValue : struct
+    public interface IStateObserver<TValue> : IDisposable, IDisposablePattern
     {
         event EventHandler<ValueChangedEventArg<TValue>> ValueChange;
 
