@@ -1,19 +1,23 @@
-﻿using EasySharp.Reflection;
+﻿using EasySharp.IO;
+using EasySharp.Reflection;
 using System;
 
 namespace EasySharp.Win.Runtime.InteropServices
 {
     public struct WindowInfo : IEquatable<WindowInfo>
     {
-        public WindowInfo(IntPtr handle, string title)
+        public WindowInfo(IntPtr handle, string title, int processId, int threadId)
         {
             this.Handle = handle;
             this.Title = title;
+            this.ProcessId = processId;
+            this.ThreadId = threadId;
         }
 
         public IntPtr Handle { get; }
-
         public string Title { get; }
+        public int ProcessId { get; }
+        public int ThreadId { get; }
 
         public override string ToString()
         {
@@ -44,7 +48,9 @@ namespace EasySharp.Win.Runtime.InteropServices
         {
             return other != null
                 && this.Handle == other.Handle
-                && this.Title.OrdinalEquals(other.Title);
+                && this.Title.OrdinalEquals(other.Title)
+                && this.ProcessId == other.ProcessId
+                && this.ThreadId == other.ThreadId;
         }
     }
 }

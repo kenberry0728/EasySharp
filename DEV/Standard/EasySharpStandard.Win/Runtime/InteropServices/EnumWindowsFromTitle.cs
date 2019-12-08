@@ -24,6 +24,9 @@ namespace EasySharp.Win.Runtime.InteropServices
 
                 [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
                 public static extern int GetWindowTextLength(IntPtr hWnd);
+
+                [DllImport("user32.dll", SetLastError = true)]
+                public static extern int GetWindowThreadProcessId(IntPtr hWnd, out int lpdwProcessId);
             }
 
             private readonly List<WindowInfo> windowInfos = new List<WindowInfo>();
@@ -50,9 +53,10 @@ namespace EasySharp.Win.Runtime.InteropServices
                     if (result != 0)
                     {
                         var windowTitle = windowTitleStringBuilder.ToString();
+                        var threadId = NativeMethods.GetWindowThreadProcessId(hWnd, out var processId);
                         if (this.windowTitlePredicate(windowTitle))
                         {
-                            this.windowInfos.Add(new WindowInfo(hWnd, windowTitle));
+                            this.windowInfos.Add(new WindowInfo(hWnd, windowTitle, processId, threadId));
                         }
                     }
                 }
