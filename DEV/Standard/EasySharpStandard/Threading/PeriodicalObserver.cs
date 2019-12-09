@@ -15,7 +15,7 @@ namespace EasySharp.Threading
             int periodMilliseconds = 1000)
         {
             this.textLogger = textLogger;
-            this.ObeservedEvent = new EventContainer<T>(
+            this.ObeservedEvent = new ReferenceCountableEventContainer<T>(
                 handler => this.Observed += handler,
                 handler => this.Observed -= handler);
 
@@ -28,7 +28,7 @@ namespace EasySharp.Threading
 
         private event EventHandler<T> Observed;
 
-        public IEventContainer<T> ObeservedEvent { get; }
+        public IReferenceCountableEventContainer<T> ObeservedEvent { get; }
 
         private void Observe(object timerContext /* null */)
         {
