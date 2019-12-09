@@ -5,15 +5,13 @@ namespace EasySharp
     public interface IEventContainer<TEventArg>
     {
         Action Subscribe(EventHandler<TEventArg> action);
-
-        Action<EventHandler<TEventArg>> Unsubscribe { get; }
+        void Unsubscribe(EventHandler<TEventArg> action);    
     }
 
     public interface IEventContainer
     {
         Action Subscribe(EventHandler action);
 
-        Action<EventHandler> Unsubscribe { get; }
+        void Unsubscribe(EventHandler action);
     }
-
 }

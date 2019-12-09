@@ -26,7 +26,7 @@ namespace EasySharp.Threading
             });
         }
 
-        public event EventHandler<T> Observed;
+        private event EventHandler<T> Observed;
 
         public IEventContainer<T> ObeservedEvent { get; }
 

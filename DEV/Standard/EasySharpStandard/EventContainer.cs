@@ -5,18 +5,22 @@ namespace EasySharp
     public class EventContainer<TEventArg> : IEventContainer<TEventArg>
     {
         private readonly Action<EventHandler<TEventArg>> subscribeEvent;
+        private readonly Action<EventHandler<TEventArg>> unsubscribeEvent;
 
         public EventContainer(
             Action<EventHandler<TEventArg>> subscribeEvent,
             Action<EventHandler<TEventArg>> unsubscribeEvent)
         {
             this.subscribeEvent = subscribeEvent;
-            this.Unsubscribe = unsubscribeEvent;
+            this.unsubscribeEvent = unsubscribeEvent;
         }
 
-        public Action<EventHandler<TEventArg>> Unsubscribe { get; }
+        public virtual void Unsubscribe(EventHandler<TEventArg> action)
+        {
+            this.unsubscribeEvent(action);
+        }
 
-        public Action Subscribe(EventHandler<TEventArg> action)
+        public virtual Action Subscribe(EventHandler<TEventArg> action)
         {
             this.subscribeEvent(action);
             return () => this.Unsubscribe(action);
@@ -26,18 +30,22 @@ namespace EasySharp
     public class EventContainer : IEventContainer
     {
         private readonly Action<EventHandler> subscribeEvent;
+        private readonly Action<EventHandler> unsubscribeEvent;
 
         public EventContainer(
             Action<EventHandler> subscribeEvent,
             Action<EventHandler> unsubscribeEvent)
         {
             this.subscribeEvent = subscribeEvent;
-            this.Unsubscribe = unsubscribeEvent;
+            this.unsubscribeEvent = unsubscribeEvent;
         }
 
-        public Action<EventHandler> Unsubscribe { get; }
+        public virtual void Unsubscribe(EventHandler action)
+        {
+            this.unsubscribeEvent(action);
+        }
 
-        public Action Subscribe(EventHandler action)
+        public virtual Action Subscribe(EventHandler action)
         {
             this.subscribeEvent(action);
             return () => this.Unsubscribe(action);
