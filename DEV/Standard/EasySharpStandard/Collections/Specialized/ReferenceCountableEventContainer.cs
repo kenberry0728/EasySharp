@@ -1,8 +1,6 @@
 ﻿using EasySharp.Collections.Specialized;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace EasySharp
 {
@@ -10,8 +8,6 @@ namespace EasySharp
         : EventContainer<TEventArg>, IReferenceCountableEventContainer<TEventArg>
     {
         private readonly ObservableCollection<EventHandler<TEventArg>> handlers = new ObservableCollection<EventHandler<TEventArg>>();
-
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         public ReferenceCountableEventContainer(
             Action<EventHandler<TEventArg>> subscribeEvent,
@@ -57,8 +53,6 @@ namespace EasySharp
         public int ReferenceCount => this.handlers.Count;
 
         public INotifyCollectionChangedEventContainer NotifyCollectionChanged { get; }
-
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         public override Action Subscribe(EventHandler action)
         {

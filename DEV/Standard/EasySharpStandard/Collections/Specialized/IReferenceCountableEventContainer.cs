@@ -5,7 +5,7 @@ using System.Collections.Specialized;
 namespace EasySharp
 {
     public interface IReferenceCountableEventContainer<TEventArg> 
-        : IEventContainer<TEventArg>, INotifyCollectionChanged
+        : IEventContainer<TEventArg>
     {
         int ReferenceCount { get; }
 
@@ -13,7 +13,7 @@ namespace EasySharp
     }
 
     public interface IReferenceCountableEventContainer 
-        : IEventContainer, INotifyCollectionChanged
+        : IEventContainer
     {
         int ReferenceCount { get; }
 
