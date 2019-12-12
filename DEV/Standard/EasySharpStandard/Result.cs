@@ -14,23 +14,4 @@ namespace EasySharp
 
         public T Value { get; }
     }
-
-    public class Ok<T> : Result<T> 
-    {
-        public Ok(T value)
-            : base(true, value)
-        {
-        }
-    }
-
-    public class Err<T> : Result<T>
-    {
-        public Err(T value, Exception exception)
-            : base(false, value)
-        {
-            this.Exception = exception;
-        }
-
-        public Exception Exception { get; }
-    }
 }
