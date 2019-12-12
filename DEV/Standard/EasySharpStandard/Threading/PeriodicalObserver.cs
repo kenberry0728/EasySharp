@@ -13,7 +13,7 @@ namespace EasySharp.Threading
         private readonly int periodMilliseconds;
 
         protected PeriodicalObserver(
-            ITextLogger textLogger,
+            ITextLogger textLogger = null,
             int dueTime = 0,
             int periodMilliseconds = 1000)
         {
@@ -64,7 +64,7 @@ namespace EasySharp.Threading
         private void Observe(object timerContext /* null */)
         {
             var state = Observe();
-            this.textLogger.WriteLine(GetLoggingText(state));
+            this.textLogger?.WriteLine(GetLoggingText(state));
             this.Observed?.Invoke(this, state);
         }
 

@@ -8,7 +8,7 @@ namespace EasySharp.Diagnostics
     public sealed class ProcessInfoObserver : PeriodicalObserver<ProcessInfo[]>
     {
         public ProcessInfoObserver(
-            ITextLogger textLogger,
+            ITextLogger textLogger = null,
             int dueTime = 0,
             int periodMilliseconds = 1000)
             : base(textLogger, dueTime, periodMilliseconds)

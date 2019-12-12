@@ -1,4 +1,5 @@
-﻿using EasySharp.Collections.Specialized;
+﻿using EasySharp.Collections.Generic;
+using EasySharp.Collections.Specialized;
 using System;
 using System.Collections.ObjectModel;
 
@@ -7,7 +8,8 @@ namespace EasySharp
     public class ReferenceCountableEventContainer<TEventArg> 
         : EventContainer<TEventArg>, IReferenceCountableEventContainer<TEventArg>
     {
-        private readonly ObservableCollection<EventHandler<TEventArg>> handlers = new ObservableCollection<EventHandler<TEventArg>>();
+        private readonly ObservableCollection<EventHandler<TEventArg>> handlers 
+            = new ObservableCollection<EventHandler<TEventArg>>();
 
         public ReferenceCountableEventContainer(
             Action<EventHandler<TEventArg>> subscribeEvent,
@@ -25,13 +27,21 @@ namespace EasySharp
 
         public override Action Subscribe(EventHandler<TEventArg> action)
         {
-            this.handlers.Add(action);
+            lock (this.handlers.SyncRoot())
+            {
+                this.handlers.Add(action);
+            }
+
             return base.Subscribe(action);
         }
 
         public override void Unsubscribe(EventHandler<TEventArg> action)
         {
-            this.handlers.Remove(action);
+            lock (this.handlers.SyncRoot())
+            {
+                this.handlers.Remove(action);
+            }
+
             base.Unsubscribe(action);
         }
     }
@@ -56,13 +66,21 @@ namespace EasySharp
 
         public override Action Subscribe(EventHandler action)
         {
-            this.handlers.Add(action);
+            lock (this.handlers.SyncRoot())
+            {
+                this.handlers.Add(action);
+            }
+
             return base.Subscribe(action);
         }
 
         public override void Unsubscribe(EventHandler action)
         {
-            this.handlers.Remove(action);
+            lock (this.handlers.SyncRoot())
+            {
+                this.handlers.Remove(action);
+            }
+
             base.Unsubscribe(action);
         }
     }
