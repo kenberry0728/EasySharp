@@ -26,36 +26,28 @@ namespace EasySharp
 
         #region To
 
-        public static bool To(Action action)
-        {
-            return To(action, out _);
-        }
-
-        public static bool To(Action action, out Exception exception)
+        public static Result To(Action action)
         {
             try
             {
                 action();
-                exception = default;
-                return true;
+                return new Ok();
             }
             catch (Exception e)
             {
-                exception = e;
-                return false;
+                return new Err(e);
             }
         }
 
-        public static bool To<T>(Func<T> func, out T returnValue)
+        public static Result<T> To<T>(Func<T> func)
         {
             try
             {
-                returnValue = func();
-                return true;
+                return new Ok<T>(func());
             }
-            catch
+            catch (Exception exception)
             {
-                return Failed(out returnValue);
+                return new Err<T>(exception);
             }
         }
 

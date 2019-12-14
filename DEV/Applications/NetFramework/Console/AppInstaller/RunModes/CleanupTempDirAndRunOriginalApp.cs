@@ -24,11 +24,11 @@ namespace AppInstaller.RunModes
             #pragma warning restore CA1062 // Validate arguments of public methods
 
             var appInstallerInInstallDir = appInstallerPathInTempDir.ToFilePath().GetProcessByFileName();
-            appInstallerInInstallDir?.WaitForExit(5000);
+            appInstallerInInstallDir.Value?.WaitForExit(5000);
 
             Try.To(() => Directory.Delete(argument.TempFolder, true));
             argument.OriginalAppPath?.RunProcess();
-            appInstallerInInstallDir.Dispose();
+            appInstallerInInstallDir.Value.Dispose();
             return new AppInstallerResult { ResultCode = ResultCode.Success, Updated = true };
         }
     }

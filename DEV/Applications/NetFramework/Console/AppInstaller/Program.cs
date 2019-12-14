@@ -62,12 +62,13 @@ namespace AppInstaller
 
         private static AppInstallerResult InternalMain(string arg)
         {
-            var result = Try.To(() => new AppInstallerArgumentConverter().FromString(arg), out var argument);
-            if (!result)
+            var result = Try.To(() => new AppInstallerArgumentConverter().FromString(arg));
+            if (!result.Ok)
             {
                 throw new InvalidEnumArgumentException("Invalid for enum");
             }
 
+            var argument = result.Value;
             argument.TempFolder = argument.TempFolder.ToDirectoryPath().ToFullDirectoryPath().Value;
             argument.SourceDir = argument.SourceDir.ToDirectoryPath().ToFullDirectoryPath().Value;
             argument.InstallDir = argument.InstallDir.ToDirectoryPath().ToFullDirectoryPath().Value;

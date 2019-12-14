@@ -27,7 +27,12 @@ namespace EasySharpNetCore.Sample
 
             InitializeComponent();
 
-            if (!Try.To(() => SaveFilePath.DeserializeFromJson<BookShelf>(), out this.bookShelf))
+            var result = Try.To(() => SaveFilePath.DeserializeFromJson<BookShelf>());
+            if (result.Ok)
+            {
+                this.bookShelf = result.Value;
+            }
+            else
             {
                 CreateSampleData();
             }
@@ -70,16 +75,15 @@ namespace EasySharpNetCore.Sample
             var saveResult = Try.To(() =>
             {
                 this.bookShelf.SerializeAsJson(SaveFilePath);
-            },
-            out var exception);
+            });
 
-            if (saveResult)
+            if (saveResult.Ok)
             {
                 MessageBox.Show("保存しました", "保存", MessageBoxButton.OKCancel);
             }
             else
             {
-                MessageBox.Show($"保存に失敗しました\r\n{exception.Message}", "保存", MessageBoxButton.OKCancel);
+                MessageBox.Show($"保存に失敗しました\r\n{saveResult.Exception.Message}", "保存", MessageBoxButton.OKCancel);
             }
         }
 

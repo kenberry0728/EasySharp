@@ -2,16 +2,47 @@
 
 namespace EasySharp
 {
-    public class Result<T>
+    public abstract class Result<T>
     {
-        public Result(bool ok, T value)
+        protected Result(T value)
         {
-            this.Ok = ok;
+            this.Ok = true;
             this.Value = value;
+        }
+
+        protected Result()
+        {
+            this.Ok = false;
+        }
+
+        protected Result(Exception exception)
+        {
+            this.Ok = false;
+            this.Exception = exception;
         }
 
         public bool Ok { get; }
 
         public T Value { get; }
+
+        public Exception Exception { get; }
+    }
+
+    public abstract class Result
+    {
+        protected Result(bool ok)
+        {
+            this.Ok = ok;
+        }
+
+        protected Result(Exception exception)
+        {
+            this.Ok = false;
+            this.Exception = exception;
+        }
+
+        public bool Ok { get; }
+
+        public Exception Exception { get; }
     }
 }

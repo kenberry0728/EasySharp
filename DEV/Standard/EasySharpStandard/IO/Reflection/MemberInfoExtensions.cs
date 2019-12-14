@@ -85,19 +85,20 @@ namespace EasySharp.IO.Reflection
 
         private static IEnumerable<string> GetSelectableItems(string filePath)
         {
-            Try.To(() =>
+            var result = Try.To(() =>
                 {
                     var content = filePath.ReadToEnd();
                     return content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-                },
-                out var selectableItems);
+                });
 
-            return selectableItems ?? Enumerable.Empty<string>();
+            return result.Ok 
+                ? result.Value 
+                : Enumerable.Empty<string>();
         }
 
         private static IDictionary<string, List<string>> GetDependentItems(string filePath)
         {
-            Try.To(() =>
+            var result = Try.To(() =>
             {
                 var content = filePath.ReadToEnd();
                 var indentedStrings =
@@ -118,9 +119,11 @@ namespace EasySharp.IO.Reflection
                 }
 
                 return dictionary;
-            }, out var result);
+            });
 
-            return result;
+            return result.Ok
+                ? result.Value
+                : new Dictionary<string, List<string>>();
         }
 
         #endregion
