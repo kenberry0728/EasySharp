@@ -7,14 +7,12 @@ namespace EasySharp.Observer
 {
     public abstract class ValueObserverBase<TValue> : DisposableBase , IValueObserver<TValue>
     {
-        private readonly ITextLogger textLogger;
-
         protected ValueObserverBase(ITextLogger textLogger = null)
         {
             this.ValueChangeEvent = new EventContainer<ValueChangedEventArg<TValue>>(
                 handler => this.ValueChange += handler,
                 handler => this.ValueChange -= handler);
-            this.textLogger = textLogger;
+            this.TextLogger = textLogger;
         }
 
         public event EventHandler<ValueChangedEventArg<TValue>> ValueChange;
@@ -22,6 +20,8 @@ namespace EasySharp.Observer
         public IEventContainer<ValueChangedEventArg<TValue>> ValueChangeEvent { get; }
 
         public TValue CurrentValue { get; protected set; }
+
+        protected ITextLogger TextLogger { get; }
 
         protected ValueChangedEventArg<TValue> SetCurrentValue(TValue value)
         {
@@ -37,16 +37,16 @@ namespace EasySharp.Observer
         {
             e.ThrowArgumentExceptionIfNull(nameof(e));
 
-            if (this.textLogger != null)
+            if (this.TextLogger != null)
             {
                 if (e.NewValue is IEnumerable enumerable)
                 {
                     var text = enumerable.OfType<object>().Select(s => s.ToString()).JoinWithTab();
-                    this.textLogger.WriteLine(this.GetType().Name, text);
+                    this.TextLogger.WriteLine(this.GetType().Name, text);
                 }
                 else
                 {
-                    this.textLogger.WriteLine(this.GetType().Name, e.NewValue.ToString());
+                    this.TextLogger.WriteLine(this.GetType().Name, e.NewValue.ToString());
                 }
             }
 
