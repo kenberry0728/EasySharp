@@ -85,12 +85,9 @@ namespace EasySharp.Threading
             int intervalMillisecond = 200)
         {
             var result = Try.To(func);
-            if (result.Ok)
+            if (result.Ok && endPredicate(result.Value))
             {
-                if (endPredicate(result.Value))
-                {
-                    return result;
-                }
+                return result;
             }
 
             for (int i = 1; i < maxRetry; i++)
@@ -98,12 +95,9 @@ namespace EasySharp.Threading
                 Thread.Sleep(intervalMillisecond);
                 result = Try.To(func);
 
-                if (result.Ok)
+                if (result.Ok && endPredicate(result.Value))
                 {
-                    if (endPredicate(result.Value))
-                    {
-                        return result;
-                    }
+                    return result;
                 }
             }
 
