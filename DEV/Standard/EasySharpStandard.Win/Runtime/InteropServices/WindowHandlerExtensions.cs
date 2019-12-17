@@ -14,6 +14,9 @@ namespace EasySharp.WindowHandles
             [return: MarshalAs(UnmanagedType.Bool)]
             public static extern bool SetForegroundWindow(IntPtr hWnd);
 
+
+            [DllImport("user32.dll", CharSet = CharSet.Auto)]
+            public static extern int CloseWindow(IntPtr hwnd);
         }
 
         public static bool TryGetWindowThreadProcessIdFromWindowHandle(this IntPtr hWnd, out int lpdwProcessId)
@@ -25,6 +28,11 @@ namespace EasySharp.WindowHandles
         public static bool SetForegroundWindow(this IntPtr hWnd)
         {
             return NativeMethods.SetForegroundWindow(hWnd);
+        }
+
+        public static int MinimizeWindow(this IntPtr hWnd)
+        {
+            return NativeMethods.CloseWindow(hWnd);
         }
     }
 }

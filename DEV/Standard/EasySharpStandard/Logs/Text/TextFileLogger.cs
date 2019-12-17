@@ -15,6 +15,7 @@ namespace EasySharp.Logs.Text
             this.filePath = filePath;
             this.filePath.ToFilePath().EnsureDirectory();
             this.streamWriter = new StreamWriter(this.filePath, true, Encoding.UTF8);
+            this.streamWriter.AutoFlush = true;
             this.DisposeActions.Add(() =>
             {
                 this.streamWriter.Dispose();
