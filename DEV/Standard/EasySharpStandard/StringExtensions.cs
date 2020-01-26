@@ -54,7 +54,6 @@ namespace EasySharp
             return string.Equals(target, value, StringComparison.Ordinal);
         }
 
-
         public static T EnumParse<T>(this string enumValue)
             where T : struct
         {

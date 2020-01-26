@@ -7,7 +7,7 @@ namespace EasySharp.Win.Runtime.InteropServices
     public sealed class WindowInfoObserver : PeriodicalObserver<WindowInfo[]>
     {
         public WindowInfoObserver(
-            ITextLogger textLogger, 
+            ITextLogger textLogger = null, 
             int dueTime = 0,
             int periodMilliseconds = 1000) 
             : base(textLogger, dueTime, periodMilliseconds)
