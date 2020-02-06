@@ -2,7 +2,7 @@
 
 namespace EasySharp.CQRS.Sample.Domain
 {
-    public class ACompletedEvent : IEvent
+    public class ACompletedEvent : IIdEvent
     {
         public ACompletedEvent(Guid id)
         {

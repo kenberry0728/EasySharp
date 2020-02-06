@@ -2,7 +2,7 @@
 
 namespace EasySharp.CQRS.Sample.Application
 {
-    public class AandBCompletedEvent : IEvent
+    public class AandBCompletedEvent : IIdEvent
     {
         public AandBCompletedEvent(Guid id)
         {

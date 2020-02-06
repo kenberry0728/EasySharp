@@ -2,7 +2,7 @@
 
 namespace EasySharp.CQRS.Sample
 {
-    public class BCommand : ICommand
+    public class BCommand : IIdCommand
     {
         public BCommand(Guid id)
         {

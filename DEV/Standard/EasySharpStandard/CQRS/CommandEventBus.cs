@@ -6,6 +6,7 @@ namespace EasySharp.CQRS
 {
     public class CommandEventBus : ICommandEventBus
     {
+        #region Fields
         private readonly Dictionary<Guid, ICommandSaga> idToCommandSagas
             = new Dictionary<Guid, ICommandSaga>();
 
@@ -15,36 +16,9 @@ namespace EasySharp.CQRS
         private readonly List<IEventListner> globalEventListeners
             = new List<IEventListner>();
 
-        public void Execute<TCommandType>(TCommandType command)
-            where TCommandType : ICommand
-        {
-            var sagaStarter = command as ISagaStartCommand;
-            if (sagaStarter != null)
-            {
-                var saga = sagaStarter.Create(sagaStarter.Id);
-                this.idToCommandSagas.Add(saga.Id, saga);
-                var commandHandler = saga as ICommandHandler<TCommandType>;
-                commandHandler.Execute(command);
-                return;
-            }
+        #endregion
 
-            if (this.idToCommandSagas is IIdCommand idCommand)
-            {
-                if (this.idToCommandSagas.TryGetValue(idCommand.Id, out var runningSaga))
-                {
-                    if (runningSaga is ICommandHandler<TCommandType> commandHandler
-                        && commandHandler.CanExecute(command))
-                    {
-                        commandHandler.Execute(command);
-                    }
-
-                    if (runningSaga.IsComplete)
-                    {
-                        this.idToCommandSagas.Remove(idCommand.Id);
-                    }
-                }
-            }
-        }
+        #region Public Methods
 
         public void RegisterGlobalEventLister(IEventListner eventListner)
         {
@@ -66,6 +40,35 @@ namespace EasySharp.CQRS
             this.idToIdEventListeners.Remove(idEventListner.Id, idEventListner);
         }
 
+        public void Execute<TCommandType>(TCommandType command)
+            where TCommandType : IIdCommand
+        {
+            var sagaStarter = command as ISagaStartCommand;
+            if (sagaStarter != null)
+            {
+                var saga = sagaStarter.Create(this);
+                this.idToCommandSagas.Add(saga.Id, saga);
+                var commandHandler = saga as IIdCommandHandler<TCommandType>;
+                commandHandler.Execute(command);
+            }
+            else if (command is IIdCommand idCommand)
+            {
+                if (this.idToCommandSagas.TryGetValue(idCommand.Id, out var runningSaga))
+                {
+                    if (runningSaga is IIdCommandHandler<TCommandType> commandHandler
+                        && commandHandler.CanExecute(command))
+                    {
+                        commandHandler.Execute(command);
+                    }
+
+                    if (runningSaga.IsComplete)
+                    {
+                        this.idToCommandSagas.Remove(idCommand.Id);
+                    }
+                }
+            }
+        }
+
         public void Publish<TEventType>(TEventType @event)
             where TEventType : IEvent
         {
@@ -79,19 +82,19 @@ namespace EasySharp.CQRS
                 Handle(globalEventLister, @event);
             }
 
-            if (@event is IIdEventType idEvent)
+            if (@event is IIdEvent idEvent)
             {
                 if (this.idToIdEventListeners.TryGetValue(idEvent.Id, out var idEventListeners))
                 {
                     foreach (var idEventListner in idEventListeners)
                     {
-                        Handle(idEventListner, idEvent);
+                        HandleIdEvent(idEventListner, idEvent);
                     }
                 }
 
                 if (this.idToCommandSagas.TryGetValue(idEvent.Id, out var runningSaga))
                 {
-                    Handle(runningSaga, idEvent);
+                    HandleIdEvent(runningSaga, idEvent);
                     if (runningSaga.IsComplete)
                     {
                         this.idToCommandSagas.Remove(idEvent.Id);
@@ -100,9 +103,13 @@ namespace EasySharp.CQRS
             }
         }
 
-        private static void Handle(object idEventHandler, IIdEventType idEvent)
+        #endregion
+
+        #region Private Methods
+
+        private static void HandleIdEvent(object idEventHandler, IIdEvent idEvent)
         {
-            if (idEventHandler is IIdEventHandler<IIdEventType> eventHandler
+            if (idEventHandler is IIdEventHandler<IIdEvent> eventHandler
                 && eventHandler.CanHandle(idEvent))
             {
                 eventHandler.Handle(idEvent);
@@ -118,5 +125,7 @@ namespace EasySharp.CQRS
                 eventHandler.Handle(@event);
             }
         }
+
+        #endregion
     }
 }

@@ -9,7 +9,6 @@ namespace EasySharp.CQRS.Sample
         public void Run()
         {
             var commandEventBus = new CommandEventBus();
-            commandEventBus.RegisterSagaFactory(new DoAandBSagaFactory());
         }
     }
 }

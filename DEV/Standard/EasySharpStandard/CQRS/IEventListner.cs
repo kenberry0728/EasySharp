@@ -1,6 +1,6 @@
 ﻿namespace EasySharp.CQRS
 {
-    public interface IEventListner : IEvent
+    public interface IEventListner
     {
         bool CanHandle(IEvent idEvent);
     }

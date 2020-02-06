@@ -1,7 +1,7 @@
 ﻿namespace EasySharp.CQRS
 {
-    public interface IIdEventListner : IIdEventType
+    public interface IIdEventListner : IIdEvent
     {
-        bool CanHandle(IIdEventType idEvent);
+        bool CanHandle(IIdEvent idEvent);
     }
 }

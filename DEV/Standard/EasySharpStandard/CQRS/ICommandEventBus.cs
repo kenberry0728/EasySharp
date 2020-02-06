@@ -6,7 +6,7 @@
 
     public interface ICommandBus
     {
-        void Execute<TCommandType>(TCommandType command) where TCommandType : ICommand;
+        void Execute<TCommandType>(TCommandType command) where TCommandType : IIdCommand;
     }
 
     public interface IEventBus

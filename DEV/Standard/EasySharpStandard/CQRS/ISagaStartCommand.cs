@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace EasySharp.CQRS
+﻿namespace EasySharp.CQRS
 {
     public interface ISagaStartCommand : IIdCommand
     {
-        ICommandSaga Create(Guid id);
+        ICommandSaga Create(ICommandEventBus commandEventBus);
     }
 }

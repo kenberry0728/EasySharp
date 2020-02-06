@@ -2,8 +2,8 @@
 
 namespace EasySharp.CQRS.Sample.Application
 {
-    public class DoAandBCommand : ICommand
+    public class DoAandBCommand : IIdCommand
     {
-        public Guid Id => throw new NotImplementedException();
+        public Guid Id => Guid.NewGuid();
     }
 }

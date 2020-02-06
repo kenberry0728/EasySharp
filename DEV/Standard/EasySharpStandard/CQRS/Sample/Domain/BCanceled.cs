@@ -2,7 +2,7 @@
 
 namespace EasySharp.CQRS.Sample.Domain
 {
-    public class BCanceledEvent : IEvent
+    public class BCanceledEvent : IIdEvent
     {
         public BCanceledEvent(Guid id)
         {

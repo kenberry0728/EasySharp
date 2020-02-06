@@ -1,6 +1,6 @@
 ﻿namespace EasySharp.CQRS
 {
-    public interface IIdEventType : IMessage, IId
+    public interface IIdEvent : IMessage, IId
     {
     }
 }
