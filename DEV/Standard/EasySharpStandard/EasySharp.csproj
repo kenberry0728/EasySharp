@@ -25,6 +25,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Archtecture\DomainModel\" />
+    <Folder Include="Archtecture\CQRS\" />
+    <Folder Include="Archtecture\DependencyInjection\" />
+    <Folder Include="Archtecture\Layerd\Clean\" />
+    <Folder Include="Archtecture\Layerd\Onion\" />
+    <Folder Include="Archtecture\AOP\" />
+    <Folder Include="Archtecture\ServiceLocator\" />
+    <Folder Include="DataStructures\Graph\" />
+    <Folder Include="DesignPatterns\FactoryPattern\" />
+    <Folder Include="DesignPatterns\BuilderPattern\" />
+    <Folder Include="DesignPatterns\DecolaterPattern\" />
+    <Folder Include="DesignPatterns\AdapterPattern\" />
+    <Folder Include="DesignPatterns\StrategyPattern\" />
     <Folder Include="Diagnostics\CodeAnalysis\" />
   </ItemGroup>
 
