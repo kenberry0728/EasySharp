@@ -1,9 +1,11 @@
-﻿using EasySharpWpf.Views.Layouts.Core;
+﻿using EasySharp;
+using EasySharpWpf.Views.Layouts.Core;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace EasySharpWpf.Views.Layouts.Implementation
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "TODO: GridObjectにしたほうがスマートにまとまりそう")]
     public class GridService : IGridService
     {
         public void AddChild(
@@ -13,6 +15,9 @@ namespace EasySharpWpf.Views.Layouts.Implementation
             int column = 0,
             double thickness = 10)
         {
+            grid.ThrowArgumentExceptionIfNull(nameof(grid));
+            uiElement.ThrowArgumentExceptionIfNull(nameof(uiElement));
+
             grid.Children.Add(uiElement);
             uiElement.SetValue(Grid.RowProperty, row);
             uiElement.SetValue(Grid.ColumnProperty, column);

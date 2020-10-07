@@ -15,7 +15,7 @@ namespace EasySharpStandardMvvm.Commands.Core
         }
 
         public DelegateCommand(Action<object> execute)
-            : this(Delegates.True, execute)
+            : this(Predicates.True, execute)
         {
         }
 

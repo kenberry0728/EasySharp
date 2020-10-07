@@ -14,7 +14,7 @@ namespace EasySharpStandardMvvm.Commands.Core
 
         public CommandBase()
         {
-            this.CanExecuteFunc = Delegates.True;;
+            this.CanExecuteFunc = Predicates.True;;
         }
 
         protected Func<object, bool> CanExecuteFunc { get; }

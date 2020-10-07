@@ -1,51 +1,52 @@
-﻿using EasySharp.Collections.Generic;
-using EasySharp.Logs.Text;
+﻿using EasySharp.Logs.Text;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace EasySharp.Observer
 {
-    public abstract class ValueObserverBase<TStateStruct> : IValueObserver<TStateStruct>
-        where TStateStruct : struct
+    public abstract class ValueObserverBase<TValue> : DisposableBase , IValueObserver<TValue>
     {
-        private readonly ITextLogger textLogger;
-
         protected ValueObserverBase(ITextLogger textLogger = null)
         {
-            this.ValueChangeEvent = new EventContainer<ValueChangedEventArg<TStateStruct>>(
+            this.ValueChangeEvent = new EventContainer<ValueChangedEventArg<TValue>>(
                 handler => this.ValueChange += handler,
                 handler => this.ValueChange -= handler);
-            this.textLogger = textLogger;
+            this.TextLogger = textLogger;
         }
 
-        public event EventHandler<ValueChangedEventArg<TStateStruct>> ValueChange;
+        public event EventHandler<ValueChangedEventArg<TValue>> ValueChange;
 
-        public IEventContainer<ValueChangedEventArg<TStateStruct>> ValueChangeEvent { get; }
+        public IEventContainer<ValueChangedEventArg<TValue>> ValueChangeEvent { get; }
 
-        public TStateStruct CurrentValue { get; private set; }
+        public TValue CurrentValue { get; protected set; }
 
-        public ValueChangedEventArg<TStateStruct> SetCurrentValue(TStateStruct value)
+        protected ITextLogger TextLogger { get; }
+
+        protected ValueChangedEventArg<TValue> SetCurrentValue(TValue value)
         {
-            var oldState = this.CurrentValue;
+            var oldValue = this.CurrentValue;
             this.CurrentValue = value;
-            var newState = this.CurrentValue;
-            return new ValueChangedEventArg<TStateStruct>(oldState, newState);
+            TValue newValue = CreateCurrentValueClone();
+            return new ValueChangedEventArg<TValue>(oldValue, newValue);
         }
 
-        protected virtual void OnValueChange(object sender, ValueChangedEventArg<TStateStruct> e)
+        protected abstract TValue CreateCurrentValueClone();
+
+        protected virtual void OnValueChange(object sender, ValueChangedEventArg<TValue> e)
         {
-            if (this.textLogger != null)
+            e.ThrowArgumentExceptionIfNull(nameof(e));
+
+            if (this.TextLogger != null)
             {
                 if (e.NewValue is IEnumerable enumerable)
                 {
                     var text = enumerable.OfType<object>().Select(s => s.ToString()).JoinWithTab();
-                    this.textLogger.WriteLine(this.GetType().Name, text);
+                    this.TextLogger.WriteLine(this.GetType().Name, text);
                 }
                 else
                 {
-                    this.textLogger.WriteLine(this.GetType().Name, e.NewValue.ToString());
+                    this.TextLogger.WriteLine(this.GetType().Name, e.NewValue.ToString());
                 }
             }
 

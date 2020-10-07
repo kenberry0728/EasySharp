@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace EasySharp.Collections.Generic
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class HashSetValueDictionaryExtensions
     {
         public static void Add<TKey, TValue>(this IDictionary<TKey, HashSet<TValue>> dictionary, TKey key, TValue value)

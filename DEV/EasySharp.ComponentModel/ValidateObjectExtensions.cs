@@ -4,6 +4,7 @@ using System.Reflection;
 
 namespace EasySharp.ComponentModel.DataAnnotations
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class ValidateObjectExtensions
     {
         public static IEnumerable<ValidationResult> Validate(this object model)

@@ -21,13 +21,13 @@ namespace AppInstaller.Test.RunModes
         [TestInitialize]
         public void TestInitialize()
         {
-            base.TestInitializeBase();
+            TestInitializeBase();
         }
 
         [TestCleanup]
         public void TestCleanup()
         {
-            base.TestCleanupBase();
+            TestCleanupBase();
         }
 
         #endregion
@@ -50,7 +50,7 @@ namespace AppInstaller.Test.RunModes
         public void AllFilesAreDifferentLastWriteTime()
         {
             // Arrange
-            SourceDirPath.SetLastWriteTimeToAllFiles(UpdateDateTime2);
+            SourceDirPath.ToDirectoryPath().SetLastWriteTimeToAllFiles(UpdateDateTime2);
             var target = new CheckUpdate();
 
             // Act

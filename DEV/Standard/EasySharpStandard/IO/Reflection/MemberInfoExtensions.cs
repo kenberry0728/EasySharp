@@ -8,6 +8,7 @@ using EasySharp.Reflection;
 
 namespace EasySharp.IO.Reflection
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>")]
     public static class MemberInfoExtensions
     {
         #region GetLocalResourceDependentValues
@@ -84,19 +85,20 @@ namespace EasySharp.IO.Reflection
 
         private static IEnumerable<string> GetSelectableItems(string filePath)
         {
-            Try.To(() =>
+            var result = Try.To(() =>
                 {
                     var content = filePath.ReadToEnd();
                     return content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-                },
-                out var selectableItems);
+                });
 
-            return selectableItems ?? new string[0];
+            return result.Ok 
+                ? result.Value 
+                : Enumerable.Empty<string>();
         }
 
         private static IDictionary<string, List<string>> GetDependentItems(string filePath)
         {
-            Try.To(() =>
+            var result = Try.To(() =>
             {
                 var content = filePath.ReadToEnd();
                 var indentedStrings =
@@ -117,9 +119,11 @@ namespace EasySharp.IO.Reflection
                 }
 
                 return dictionary;
-            }, out var result);
+            });
 
-            return result;
+            return result.Ok
+                ? result.Value
+                : new Dictionary<string, List<string>>();
         }
 
         #endregion

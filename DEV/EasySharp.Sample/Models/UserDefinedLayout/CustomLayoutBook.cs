@@ -2,6 +2,7 @@
 using EasySharpStandardMvvm.Models.Rails.Core;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace EasySharp.Sample.Models.UserDefinedLayout
 {
@@ -27,7 +28,7 @@ namespace EasySharp.Sample.Models.UserDefinedLayout
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            return new ValidationResult[0];
+            return Enumerable.Empty<ValidationResult>();
         }
     }
 }

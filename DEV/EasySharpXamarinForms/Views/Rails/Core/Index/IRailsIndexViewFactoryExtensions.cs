@@ -5,7 +5,9 @@ namespace EasySharpXamarinForms.Views.Rails.Core.Index
 {
     public static class RailsIndexViewFactoryExtensions
     {
-        public static IRailsIndexViewFactory Resolve(this IRailsIndexViewFactory factory, IRailsEditViewFactory editViewFactory = null)
+        public static IRailsIndexViewFactory Resolve(
+            this IRailsIndexViewFactory factory,
+            IRailsEditViewFactory editViewFactory = null)
         {
             return factory;// ?? new DefaultRailsIndexViewFactory(editViewFactory);
         }

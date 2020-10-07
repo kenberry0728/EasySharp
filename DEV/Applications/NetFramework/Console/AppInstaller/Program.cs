@@ -27,8 +27,9 @@ namespace AppInstaller
                     InstallDir = @"..\Old",
                     OriginalAppPath = @"Updated.txt",
                     TempFolder = @"..\AppInstaller_Temp",
-                    ExcludeRelativePathRegex = new List<string> { @".*\.log" }
                 };
+
+                appArg.ExcludeRelativePathRegex.Add(@".*\.log");
 
                 args = new[] { appArg.ToCommandLineString(false) };
 #else
@@ -41,7 +42,9 @@ namespace AppInstaller
             {
                 modeAppInstallerResult = InternalMain(args[0]);
             }
+            #pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
+            #pragma warning restore CA1031 // Do not catch general exception types
             {
                 modeAppInstallerResult = new AppInstallerResult
                 {
@@ -59,16 +62,17 @@ namespace AppInstaller
 
         private static AppInstallerResult InternalMain(string arg)
         {
-            var result = Try.To(() => new AppInstallerArgumentConverter().FromString(arg), out var argument);
-            if (!result)
+            var result = Try.To(() => new AppInstallerArgumentConverter().FromString(arg));
+            if (!result.Ok)
             {
-                throw new InvalidEnumArgumentException();
+                throw new InvalidEnumArgumentException("Invalid for enum");
             }
 
-            argument.TempFolder = argument.TempFolder.ToFullDirectoryName();
-            argument.SourceDir = argument.SourceDir.ToFullDirectoryName();
-            argument.InstallDir = argument.InstallDir.ToFullDirectoryName();
-            argument.OriginalAppPath = argument.OriginalAppPath.ToFullFileName();
+            var argument = result.Value;
+            argument.TempFolder = argument.TempFolder.ToDirectoryPath().ToFullDirectoryPath().Value;
+            argument.SourceDir = argument.SourceDir.ToDirectoryPath().ToFullDirectoryPath().Value;
+            argument.InstallDir = argument.InstallDir.ToDirectoryPath().ToFullDirectoryPath().Value;
+            argument.OriginalAppPath = argument.OriginalAppPath.ToFilePath().ToFullPath().Value;
 
             switch (argument.RunMode)
             {
@@ -88,7 +92,7 @@ namespace AppInstaller
                     Console.WriteLine("Cleaning up the temp folder.");
                     return new CleanupTempDirAndRunOriginalApp(appInstallerAssemblyName).Run(argument);
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new NotImplementedException();
             }
         }
     }

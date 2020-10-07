@@ -50,9 +50,10 @@ namespace EasySharpStandardConsoleTest.ConsoleTests.Implementations
         {
             this.streamWriter.Flush();
             this.streamWriter.BaseStream.Seek(0, SeekOrigin.Begin);
-            var sr = new StreamReader(outputMemoryStream);
-            var result = sr.ReadToEnd();
-            return result;
+            using (var sr = new StreamReader(outputMemoryStream))
+            {
+                return sr.ReadToEnd();
+            }
         }
     }
 }

@@ -4,6 +4,10 @@ namespace EasySharp.Logs.Text
 {
     internal class DefaultTextLogger : ITextLogger
     {
+        public void Dispose()
+        {
+        }
+
         public void Write(string message)
         {
             Debug.Write(message);

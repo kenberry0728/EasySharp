@@ -6,7 +6,8 @@ namespace EasySharp
     /// <summary>
     /// https://docs.microsoft.com/ja-jp/visualstudio/code-quality/ca1063
     /// </summary>
-    public abstract class DisposableBase : IDisposable, IDisposablePattern
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1063:Implement IDisposable Correctly", Justification = "Considered")]
+    public abstract class DisposableBase : IDisposablePattern
     {
         public IList<Action> DisposeActions { get; } = new List<Action>();
 
@@ -18,6 +19,7 @@ namespace EasySharp
         public void Dispose()
         {
             this.OnDispose();
+            GC.SuppressFinalize(this);
         }
 
         public virtual void DisposeNativeResources()

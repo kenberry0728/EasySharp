@@ -7,12 +7,13 @@ using System.Text;
 
 namespace EasySharp.Runtime.Serialization.Json
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class LineJsonSerializerExtensions
     {
         public static void SerializeAsLinedJson<T>(this IEnumerable<T> instances, string filePath, params Type[] knownTypes)
         {
             var serializer = new DataContractJsonSerializer(typeof(T), knownTypes);
-            filePath.EnsureDirectoryForFile();
+            filePath.ToFilePath().EnsureDirectory();
             using (var streamWriter = new StreamWriter(filePath, false, Encoding.UTF8, 1024))
             {
                 foreach (var instance in instances)
@@ -35,7 +36,7 @@ namespace EasySharp.Runtime.Serialization.Json
                 string line;
                 while (null != (line = streamReader.ReadLine()))
                 {
-                    if (line == string.Empty)
+                    if (line.Length == 0)
                     {
                         continue;
                     }

@@ -2,6 +2,9 @@
 
 namespace EasySharp
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "<Pending>")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>")]
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Ignore VB.")]
     public static class Try
     {
         #region Failed
@@ -23,36 +26,28 @@ namespace EasySharp
 
         #region To
 
-        public static bool To(Action action)
-        {
-            return To(action, out _);
-        }
-
-        public static bool To(Action action, out Exception exception)
+        public static Result To(Action action)
         {
             try
             {
                 action();
-                exception = default;
-                return true;
+                return new Ok();
             }
             catch (Exception e)
             {
-                exception = e;
-                return false;
+                return new Err(e);
             }
         }
 
-        public static bool To<T>(Func<T> func, out T returnValue)
+        public static Result<T> To<T>(Func<T> func)
         {
             try
             {
-                returnValue = func();
-                return true;
+                return new Ok<T>(func());
             }
-            catch
+            catch (Exception exception)
             {
-                return Failed(out returnValue);
+                return new Err<T>(exception);
             }
         }
 
@@ -86,24 +81,16 @@ namespace EasySharp
 
         #endregion
 
-
-        public static bool ToFinally(Action action, Action finallyAction)
-        {
-            return ToFinally(action, finallyAction, out _);
-        }
-
-        public static bool ToFinally(Action action, Action finallyAction, out Exception exception)
+        public static Result ToFinally(Action action, Action finallyAction)
         {
             try
             {
                 action();
-                exception = default;
-                return true;
+                return new Ok();
             }
             catch (Exception e)
             {
-                exception = e;
-                return false;
+                return new Err(e);
             }
             finally
             {
@@ -111,16 +98,15 @@ namespace EasySharp
             }
         }
 
-        public static bool ToFinally<T>(Func<T> func, Action finallyAction, out T returnValue)
+        public static Result<T> ToFinally<T>(Func<T> func, Action finallyAction)
         {
             try
             {
-                returnValue = func();
-                return true;
+                return new Ok<T>(func());
             }
-            catch
+            catch (Exception exception)
             {
-                return Failed(out returnValue);
+                return new Err<T>(exception);
             }
             finally
             {

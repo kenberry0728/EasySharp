@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace EasySharp.Collections.Generic
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class ListExtensions
     {
         public static bool Contains<T>(this IList<T> list, Func<T, bool> predicate)

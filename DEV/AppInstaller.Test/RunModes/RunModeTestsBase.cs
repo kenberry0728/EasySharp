@@ -19,25 +19,25 @@ namespace AppInstaller.Test.RunModes
         protected static readonly DateTime UpdateDateTime2 = StandardDateTime + TimeSpan.FromDays(2);
 
 
-        protected void TestInitializeBase()
+        protected static void TestInitializeBase()
         {
-            SourceDirPath.DeleteDirectoryRecursively();
-            InstallDirPath.DeleteDirectoryRecursively();
+            SourceDirPath.ToDirectoryPath().DeleteDirectoryRecursively();
+            InstallDirPath.ToDirectoryPath().DeleteDirectoryRecursively();
 
             var sourceInitialDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDir");
             var installInitialDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDir");
 
-            sourceInitialDirPath.CopyDirectory(SourceDirPath);
-            installInitialDirPath.CopyDirectory(InstallDirPath);
+            sourceInitialDirPath.ToDirectoryPath().CopyDirectory(SourceDirPath.ToDirectoryPath());
+            installInitialDirPath.ToDirectoryPath().CopyDirectory(InstallDirPath.ToDirectoryPath());
 
-            SourceDirPath.SetLastWriteTimeToAllFiles(StandardDateTime);
-            InstallDirPath.SetLastWriteTimeToAllFiles(StandardDateTime);
+            SourceDirPath.ToDirectoryPath().SetLastWriteTimeToAllFiles(StandardDateTime);
+            InstallDirPath.ToDirectoryPath().SetLastWriteTimeToAllFiles(StandardDateTime);
         }
 
-        protected void TestCleanupBase()
+        protected static void TestCleanupBase()
         {
-            SourceDirPath.DeleteDirectoryRecursively();
-            InstallDirPath.DeleteDirectoryRecursively();
+            SourceDirPath.ToDirectoryPath().DeleteDirectoryRecursively();
+            InstallDirPath.ToDirectoryPath().DeleteDirectoryRecursively();
         }
     }
 }

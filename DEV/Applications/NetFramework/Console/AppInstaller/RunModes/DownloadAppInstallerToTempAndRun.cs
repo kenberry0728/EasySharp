@@ -3,6 +3,7 @@ using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using EasySharp.Processes;
 using EasySharp.IO;
+using EasySharp;
 
 namespace AppInstaller.RunModes
 {
@@ -18,9 +19,13 @@ namespace AppInstaller.RunModes
         
         public AppInstallerResult Run(AppInstallerArgument argument)
         {
-            var installDir = argument.InstallDir.ToFullDirectoryName();
+            #pragma warning disable CA1062 // Validate arguments of public methods
+            argument.ThrowArgumentExceptionIfNull(nameof(argument));
+            var installDir = argument.InstallDir.ToDirectoryPath().ToFullDirectoryPath().Value;
+            #pragma warning restore CA1062 // Validate arguments of public methods
+
             var sourceDir = new DirectoryInfo(argument.SourceDir).FullName;
-            var tempDirectoryPath = Path.Combine(installDir, "..", "AppInstaller_Temp").ToFullDirectoryName();
+            var tempDirectoryPath = Path.Combine(installDir, "..", "AppInstaller_Temp").ToDirectoryPath().ToFullDirectoryPath().Value;
 
             CopyAppInstallerFiles(sourceDir, tempDirectoryPath);
 
@@ -44,15 +49,15 @@ namespace AppInstaller.RunModes
         private static void CopyAppInstallerFiles(string sourceDir, string tempDirectoryPath)
         {
             const string appFilesTxt = "AppInstallerFiles.txt";
-            var sourceFileName = Path.Combine(sourceDir, appFilesTxt);
-            var destFileName = Path.Combine(tempDirectoryPath, appFilesTxt);
-            sourceFileName.CopyFile(destFileName);
+            var sourceFileName = Path.Combine(sourceDir, appFilesTxt).ToFilePath();
+            var destFileName = Path.Combine(tempDirectoryPath, appFilesTxt).ToFilePath();
+            sourceFileName.Copy(destFileName);
             var fileNames = destFileName.ReadLines(true);
             foreach (var fileName in fileNames)
             {
-                var sourceFile = Path.Combine(sourceDir, fileName);
-                var destFile = Path.Combine(tempDirectoryPath, fileName);
-                sourceFile.CopyFile(destFile);
+                var sourceFile = Path.Combine(sourceDir, fileName).ToFilePath();
+                var destFile = Path.Combine(tempDirectoryPath, fileName).ToFilePath();
+                sourceFile.Copy(destFile);
             }
         }
     }

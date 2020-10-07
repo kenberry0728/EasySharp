@@ -6,9 +6,10 @@ namespace EasySharp.Reflection
 {
     public static class RelativeTypePathExtensions
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1307:Specify StringComparison", Justification = "Extensions")]
         public static string GetRelativeTypePath(this Type type)
         {
-            var assemblyName = type.Assembly.GetName().Name;
+            var assemblyName = type?.Assembly.GetName().Name;
             var relativeNamespacePath = type.FullName;
             if (relativeNamespacePath != null && relativeNamespacePath.StartsWith(assemblyName))
             {
@@ -26,9 +27,11 @@ namespace EasySharp.Reflection
 
         public static string GetRelativeMemberPath(this MemberInfo memberInfo)
         {
+            memberInfo.ThrowArgumentExceptionIfNull(nameof(memberInfo));
+
             var assemblyName = memberInfo.DeclaringType.Assembly.GetName().Name;
             var relativeNamespacePath = memberInfo.DeclaringType.FullName;
-            if (relativeNamespacePath != null && relativeNamespacePath.StartsWith(assemblyName))
+            if (relativeNamespacePath != null && relativeNamespacePath.OrdinalStartsWith(assemblyName))
             {
                 relativeNamespacePath = relativeNamespacePath.Substring(assemblyName.Length + 1);
             }

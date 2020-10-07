@@ -10,6 +10,8 @@ namespace EasySharpStandardConsoleTest
         public static void Main(string[] args)
         {
             new Test(new ConsoleProgressNotificationServiceTests()).Run();
+
+            new Test(new EventContainerTests()).Run();
         }
     }
 }

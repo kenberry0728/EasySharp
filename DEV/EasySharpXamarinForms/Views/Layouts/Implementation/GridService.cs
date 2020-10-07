@@ -1,8 +1,10 @@
-﻿using EasySharpXamarinForms.Views.Layouts.Core;
+﻿using EasySharp;
+using EasySharpXamarinForms.Views.Layouts.Core;
 using Xamarin.Forms;
 
 namespace EasySharpXamarinForms.Views.Layouts.Implementation
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "TODO: ValueObjectにしたほうがうまくいくかも。")]
     public class GridService : IGridService
     {
         public void AddChild(
@@ -12,24 +14,24 @@ namespace EasySharpXamarinForms.Views.Layouts.Implementation
             int column = 0,
             double thickness = 10)
         {
+            #pragma warning disable CA1062 // Validate arguments of public methods
+            grid.ThrowArgumentExceptionIfNull(nameof(grid));
+            view.ThrowArgumentExceptionIfNull(nameof(view));
             grid.Children.Add(view);
             view.SetValue(Grid.RowProperty, row);
+            #pragma warning restore CA1062 // Validate arguments of public methods
+
             view.SetValue(Grid.ColumnProperty, column);
             view.SetValue(View.MarginProperty, new Thickness(thickness));
         }
 
-        public void AddColumnDefinition(Grid grid, GridLength width)
+        public void AddColumnDefinition(Grid grid, double width)
         {
             grid.ColumnDefinitions.Add(
                 new ColumnDefinition
                 {
-                    Width = width
+                    Width = new GridLength(width)
                 });
-        }
-
-        public void AddColumnDefinition(Grid grid, double width)
-        {
-            throw new System.NotImplementedException();
         }
 
         public void AddRowDefinition(Grid grid)

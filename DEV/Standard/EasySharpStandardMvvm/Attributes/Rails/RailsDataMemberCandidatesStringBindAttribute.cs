@@ -19,14 +19,14 @@ namespace EasySharpStandardMvvm.Attributes.Rails
         public RailsDataMemberCandidatesStringBindAttribute(bool userVisible, string candidatesPropertyName)
             : base(userVisible)
         {
-            candidatesPropertyName.ThrowArgumentNullOrEmptyException(nameof(candidatesPropertyName));
+            candidatesPropertyName.ThrowArgumentExceptionIfNullOrEmpty(nameof(candidatesPropertyName));
             this.CandidatesPropertyName = candidatesPropertyName;
         }
 
         public RailsDataMemberCandidatesStringBindAttribute(string elementName, string candidatesPropertyName)
             : base(elementName)
         {
-            candidatesPropertyName.ThrowArgumentNullOrEmptyException(nameof(candidatesPropertyName));
+            candidatesPropertyName.ThrowArgumentExceptionIfNullOrEmpty(nameof(candidatesPropertyName));
             this.CandidatesPropertyName = candidatesPropertyName;
         }
 

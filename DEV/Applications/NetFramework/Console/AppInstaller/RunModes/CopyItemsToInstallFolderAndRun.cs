@@ -25,8 +25,10 @@ namespace AppInstaller.RunModes
             this.createDirectoryPath = createDirectoryPath ?? Create;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Checked")]
         public AppInstallerResult Run(AppInstallerArgument appInstallerArgument)
         {
+            appInstallerArgument.ThrowArgumentExceptionIfNull(nameof(appInstallerArgument));
             WaitForExitInInstallDir(appInstallerArgument);
 
             var excludeRelativePathRegex = appInstallerArgument
@@ -38,12 +40,12 @@ namespace AppInstaller.RunModes
                 "*",
                 SearchOption.AllDirectories);
             var excludeRelativePaths = allFiles
-                .Select(f => f.GetRelativePath(appInstallerArgument.SourceDir))
+                .Select(f => f.ToFilePath().GetRelativePath(appInstallerArgument.SourceDir.ToDirectoryPath()).Value)
                 .Where(f => excludeRelativePathRegex.AnyIsMatch(f))
                 .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-            appInstallerArgument.SourceDir.CopyDirectory(
-                appInstallerArgument.InstallDir,
+            appInstallerArgument.SourceDir.ToDirectoryPath().CopyDirectory(
+                appInstallerArgument.InstallDir.ToDirectoryPath(),
                 true,
                 true, 
                 excludeRelativePaths);
@@ -66,13 +68,15 @@ namespace AppInstaller.RunModes
         {
             if (!appInstallerArgument.OriginalAppPath.IsNullOrEmpty())
             {
-                var originalApp = appInstallerArgument.OriginalAppPath.GetProcessByFileName();
-                originalApp?.WaitForExit(100000);
+                var originalApp = appInstallerArgument.OriginalAppPath.ToFilePath().GetProcessByFileName();
+                originalApp.Value?.WaitForExit(100000);
+                originalApp.Value?.Dispose();
             }
 
             var appInstallerPathInInstallDir = Path.Combine(appInstallerArgument.InstallDir, appInstallerAssemblyName);
-            var appInstallerInInstallDir = appInstallerPathInInstallDir.GetProcessByFileName();
-            appInstallerInInstallDir?.WaitForExit(100000);
+            var appInstallerInInstallDir = appInstallerPathInInstallDir.ToFilePath().GetProcessByFileName();
+            appInstallerInInstallDir.Value?.WaitForExit(100000);
+            appInstallerInInstallDir.Value?.Dispose();
         }
     }
 }

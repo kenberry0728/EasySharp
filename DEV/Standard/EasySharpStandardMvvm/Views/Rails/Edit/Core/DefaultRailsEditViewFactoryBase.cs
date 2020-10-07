@@ -13,6 +13,7 @@ using EasySharpStandardMvvm.Views.Rails.Edit.Core.Interfaces;
 
 namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "TODO: GridObjectにしたほうがスマートにまとまりそう")]
     public abstract class DefaultRailsEditViewFactoryBase<TBinding, TViewControl, TGrid>
         : IRailsEditViewFactory<TBinding, TViewControl>
         where TGrid : TViewControl
@@ -117,11 +118,11 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
 
         protected virtual TViewControl CreatePropertyEditControl(
             object model,
-            PropertyInfo property,
+            PropertyInfo propertyInfo,
             RailsDataMemberBindAttribute railsDataMemberBindAttribute)
         {
             TViewControl uiElement = default(TViewControl);
-            switch (property.PropertyType)
+            switch (propertyInfo.PropertyType)
             {
                 case Type type when type == typeof(string):
                     if (railsDataMemberBindAttribute is RailsDataMemberCandidatesStringBindAttribute candidatesStringAttribute)
@@ -130,43 +131,43 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
                             candidatesStringAttribute.CandidatesPropertyName);
                         var candidateSourceAttribute = dependentProperty.GetCustomAttribute<RailsCandidatesStringSourceBindAttribute>();
                         uiElement = CreateSelectFromCandidateControl(
-                            this.RailsBindCreator.CreateRailsBinding(property),
+                            this.RailsBindCreator.CreateRailsBinding(propertyInfo),
                             this.RailsBindCreator.CreateRailsBinding(dependentProperty),
                             candidateSourceAttribute?.SelectedValuePath,
                             candidateSourceAttribute?.DislayMemberPath);
                     }
                     else
                     {
-                        uiElement = CreateEditStringControl(this.RailsBindCreator.CreateRailsBinding(property));
+                        uiElement = CreateEditStringControl(this.RailsBindCreator.CreateRailsBinding(propertyInfo));
                     }
 
                     break;
                 case Type type when type == typeof(int):
-                    uiElement = CreateEditIntegerControl(this.RailsBindCreator.CreateRailsBinding(property));
+                    uiElement = CreateEditIntegerControl(this.RailsBindCreator.CreateRailsBinding(propertyInfo));
                     break;
                 case Type type when type == typeof(double):
-                    uiElement = CreateEditDoubleControl(this.RailsBindCreator.CreateRailsBinding(property));
+                    uiElement = CreateEditDoubleControl(this.RailsBindCreator.CreateRailsBinding(propertyInfo));
                     break;
                 case Type type when type == typeof(bool):
-                    uiElement = CreateEditBooleanControl(this.RailsBindCreator.CreateRailsBinding(property));
+                    uiElement = CreateEditBooleanControl(this.RailsBindCreator.CreateRailsBinding(propertyInfo));
                     break;
                 case Type type when type.IsClass:
                     if (railsDataMemberBindAttribute is RailsDataMemberListBindAttribute railsListBindAttribute)
                     {
-                        uiElement = CreateEditListClassControl(property.GetValue(model), railsListBindAttribute);
+                        uiElement = CreateEditListClassControl(propertyInfo.GetValue(model), railsListBindAttribute);
                         break;
                     }
                     else
                     {
-                        uiElement = CreateEditClassControl(property.GetValue(model));
+                        uiElement = CreateEditClassControl(propertyInfo.GetValue(model));
                         break;
                     }
 
                 case Type type when type == typeof(DateTime):
-                    uiElement = CreateEditDateTimeControl(type, this.RailsBindCreator.CreateRailsBinding(property));
+                    uiElement = CreateEditDateTimeControl(type, this.RailsBindCreator.CreateRailsBinding(propertyInfo));
                     break;
                 case Type type when type.IsEnum:
-                    uiElement = CreateEditEnumControl(type, this.RailsBindCreator.CreateRailsBinding(property));
+                    uiElement = CreateEditEnumControl(type, this.RailsBindCreator.CreateRailsBinding(propertyInfo));
                     break;
                 default:
                     Debug.Assert(false, "Not supported primitive types.");
@@ -176,7 +177,7 @@ namespace EasySharpStandardMvvm.Views.Rails.Edit.Core
             return uiElement;
         }
 
-        protected abstract TViewControl CreateLabelControl(PropertyInfo property);
+        protected abstract TViewControl CreateLabelControl(PropertyInfo propertyInfo);
 
         protected abstract TViewControl CreateEditDoubleControl(TBinding valueBinding);
 

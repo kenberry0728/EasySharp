@@ -5,6 +5,15 @@ namespace EasySharp.Win.Runtime.InteropServices
 {
     public static class Keyboard
     {
+        private static class NativeMethods
+        {
+            [DllImport("user32.dll", EntryPoint = "MapVirtualKeyA")]
+            public extern static int MapVirtualKey(int wCode, int wMapType);
+
+            [DllImport("user32.dll")]
+            public extern static void SendInput(int nInputs, UserInput[] pInputs, int cbsize);
+        }
+
         private enum EventType
         {
             INPUT_MOUSE = 0,                 // マウスイベント
@@ -12,16 +21,13 @@ namespace EasySharp.Win.Runtime.InteropServices
             INPUT_HARDWARE = 2,               // ハードウェアイベント
         }
 
-        [DllImport("user32.dll", EntryPoint = "MapVirtualKeyA")]
-        private extern static int MapVirtualKey(int wCode, int wMapType);
-
-        [DllImport("user32.dll")]
-        private extern static void SendInput(int nInputs, Input[] pInputs, int cbsize);
-
         /// <summary>
         /// シミュレートされたマウスイベントの構造体
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         public struct MouseInput
         {
             public int X;
@@ -36,6 +42,9 @@ namespace EasySharp.Win.Runtime.InteropServices
         /// シミュレートされたキーボードイベントの構造体
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         public struct KeyboardInput
         {
             public short VirtualKey;
@@ -49,6 +58,9 @@ namespace EasySharp.Win.Runtime.InteropServices
         /// キーボードやマウス以外の入力デバイスによって生成されたシミュレートされたメッセージの構造体
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         public struct HardwareInput
         {
             public int uMsg;
@@ -60,7 +72,10 @@ namespace EasySharp.Win.Runtime.InteropServices
         /// キーストローク、マウスの動き、マウスクリックなどの入力イベントの構造体
         /// </summary>
         [StructLayout(LayoutKind.Explicit)]
-        public struct Input
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
+        public struct UserInput
         {
             [FieldOffset(0)]
             public int Type;
@@ -80,8 +95,8 @@ namespace EasySharp.Win.Runtime.InteropServices
         /// </summary>
         public enum KeyboardStroke
         {
-            KEY_DOWN = 0x0000,
-            KEY_UP = 0x0002
+            KeyDown = 0x0000,
+            KeyUp = 0x0002
         }
 
         /// <summary>
@@ -89,7 +104,7 @@ namespace EasySharp.Win.Runtime.InteropServices
         /// </summary>
         private const int KBD_UNICODE = 0x0004;
             
-        public static IEnumerable<Input> CreateKeyboardInputs(string srcStr)
+        public static IEnumerable<UserInput> CreateKeyboardInputs(string srcStr)
         {
             // TODO: Caps lock / IME
             if (srcStr.IsNullOrEmpty())
@@ -103,27 +118,27 @@ namespace EasySharp.Win.Runtime.InteropServices
                 var isUpper = char.IsUpper(s);
                 if (isUpper)
                 {
-                    yield return CreateKeyboardInput(KeyboardStroke.KEY_DOWN, (short)VK_SHIFT, (short)s, 0, 0);
+                    yield return CreateKeyboardInput(KeyboardStroke.KeyDown, (short)VK_SHIFT, (short)s, 0, 0);
                 }
 
-                yield return CreateKeyboardInput(KeyboardStroke.KEY_DOWN, 0, (short)s, 0, 0);
-                yield return CreateKeyboardInput(KeyboardStroke.KEY_UP, 0, (short)s, 0, 0);
+                yield return CreateKeyboardInput(KeyboardStroke.KeyDown, 0, (short)s, 0, 0);
+                yield return CreateKeyboardInput(KeyboardStroke.KeyUp, 0, (short)s, 0, 0);
 
                 if (isUpper)
                 {
-                    yield return CreateKeyboardInput(KeyboardStroke.KEY_UP, (short)VK_SHIFT, (short)s, 0, 0);
+                    yield return CreateKeyboardInput(KeyboardStroke.KeyUp, (short)VK_SHIFT, (short)s, 0, 0);
                 }
             }
         }
 
-        public static Input CreateKeyboardInput(
+        public static UserInput CreateKeyboardInput(
             KeyboardStroke flags,
             short virtualKey,
             short scanCode,
             int time,
             int extraInfo)
         {
-            var input = new Input
+            var input = new UserInput
             {
                 Type = (int)EventType.INPUT_KEYBOARD
             };
@@ -136,9 +151,9 @@ namespace EasySharp.Win.Runtime.InteropServices
             return input;
         }
 
-        public static void SendInputs(params Input[] inputs)
+        public static void SendInputs(params UserInput[] inputs)
         {
-            SendInput(inputs.Length, inputs, Marshal.SizeOf(inputs[0]));
+            NativeMethods.SendInput(inputs.Length, inputs, Marshal.SizeOf(inputs[0]));
         }
     }
 }

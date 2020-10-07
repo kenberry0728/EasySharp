@@ -1,8 +1,10 @@
-﻿using System;
+﻿using EasySharp.IO;
+using System;
 using System.Diagnostics;
 
 namespace EasySharp.Processes
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class ProcessExtensions
     {
         public static void HandleExitedEvent(this Process process, EventHandler eventHandler)
@@ -15,13 +17,13 @@ namespace EasySharp.Processes
             process.Exited += eventHandler;
         }
 
-        public static string RunProcessAndGetStandardOutput(this string processPath, string arguments = "")
+        public static string RunProcessAndGetStandardOutput(this FilePath processFilePath, string arguments = "")
         {
             var process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = processPath,
+                    FileName = processFilePath.Value,
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     RedirectStandardInput = false,
@@ -54,6 +56,24 @@ namespace EasySharp.Processes
 
             process.Start();
             return process;
+        }
+
+        public static Result<Process> GetProcessByFileName(this IFilePath filePath)
+        {
+            Result<Process> result = new Err<Process>();
+            foreach (var proc in Process.GetProcesses())
+            {
+                result = Try.To(() =>
+                {
+                    return proc.MainModule.FileName.ToFilePath().Equals(filePath) ? proc : null;
+                });
+                if (result.Ok)
+                {
+                    return result;
+                }
+            }
+
+            return result;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using EasySharpStandardMvvm.Attributes.Rails;
+﻿using EasySharp;
+using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Commands.Core;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpWpf.Commands.Core.Dialogs;
@@ -118,16 +119,20 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
 
         #region Protected Methods
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Checked")]
         protected override UIElement CreateEditDoubleControl(Binding valueBinding)
         {
+            valueBinding.ThrowArgumentExceptionIfNull(nameof(valueBinding));
             valueBinding.Converter = new DoubleToStringConverter();
             var textBox = new TextBox();
             textBox.SetBinding(TextBox.TextProperty, valueBinding);
             return textBox;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Checked")]
         protected override UIElement CreateEditIntegerControl(Binding valueBinding)
         {
+            valueBinding.ThrowArgumentExceptionIfNull(nameof(valueBinding));
             valueBinding.Converter = new IntToStringConverter();
             var textBox = new TextBox();
             textBox.SetBinding(TextBox.TextProperty, valueBinding);
@@ -141,8 +146,10 @@ namespace EasySharpWpf.Views.Rails.Core.Edit
             return checkBox;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Checked")]
         protected override UIElement CreateEditStringControl(Binding valueBinding)
         {
+            valueBinding.ThrowArgumentExceptionIfNull(nameof(valueBinding));
             valueBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
             var textBox = new TextBox();
             textBox.SetBinding(TextBox.TextProperty, valueBinding);

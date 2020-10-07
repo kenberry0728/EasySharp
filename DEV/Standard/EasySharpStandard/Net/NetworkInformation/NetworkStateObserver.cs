@@ -3,11 +3,16 @@ using System.Net.NetworkInformation;
 
 namespace EasySharp.Net.NetworkInformation
 {
-    public class NetworkStateObserver : ValueObserverBase<NetworkState>
+    public class NetworkStateObserver : StructObserverBase<NetworkState>
     {
         public NetworkStateObserver()
         {
             NetworkChange.NetworkAvailabilityChanged += OnNetworkAvailabilityChanged;
+            this.DisposeActions.Add(() =>
+            {
+                NetworkChange.NetworkAvailabilityChanged -= OnNetworkAvailabilityChanged;
+            });
+
             this.SetCurrentValue(ToNetworkState(NetworkInterface.GetIsNetworkAvailable()));
         }
 

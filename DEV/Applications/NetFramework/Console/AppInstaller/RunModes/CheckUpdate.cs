@@ -25,8 +25,8 @@ namespace AppInstaller.RunModes
 
         public AppInstallerResult Run(string sourceDir, string installDir, List<string> excludeRegex)
         {
-            sourceDir = sourceDir.ToFullDirectoryName();
-            installDir = installDir.ToFullDirectoryName();
+            sourceDir = sourceDir.ToDirectoryPath().ToFullDirectoryPath().Value;
+            installDir = installDir.ToDirectoryPath().ToFullDirectoryPath().Value;
             var excludeRegexList = excludeRegex.Select(ex => new Regex(ex, RegexOptions.IgnoreCase)).ToList();
             var sourceLastUpdateDate = GetLastWriteTimeUtc(sourceDir, excludeRegexList);
             var installLastUpdateDate = GetLastWriteTimeUtc(installDir, excludeRegexList);
@@ -41,7 +41,7 @@ namespace AppInstaller.RunModes
         {
             var directoryPath = this.createDirectoryPath(targetDirectoryPath);
             var files = directoryPath.GetFiles("*", SearchOption.AllDirectories).ToList();
-            var fileAndRelativePaths = files.Select(f => new { f, Relativepath = f.GetRelativePath(targetDirectoryPath) }).ToList();
+            var fileAndRelativePaths = files.Select(f => new { f, Relativepath = f.ToFilePath().GetRelativePath(targetDirectoryPath.ToDirectoryPath()).Value }).ToList();
             var filteredFileAndRelativepaths = fileAndRelativePaths.Where(f => !regularExpressions.AnyIsMatch(f.Relativepath)).ToList();
             var result = filteredFileAndRelativepaths.Max(f => this.createFilePath(f.f).GetLastWriteTimeUtc());
             return result;

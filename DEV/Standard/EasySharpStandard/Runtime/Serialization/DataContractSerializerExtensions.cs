@@ -6,11 +6,12 @@ using System.Xml;
 
 namespace EasySharp.Runtime.Serialization
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class DataContractSerializerExtensions
     {
         public static void SerializeWithDataContract(this object instance, string filePath, DataContractSerializerSettings settings)
         {
-            filePath.EnsureDirectoryForFile();
+            filePath.ToFilePath().EnsureDirectory();
             var serializer = new DataContractSerializer(instance.GetType(), settings);
             var xmlSettings = new XmlWriterSettings
             {

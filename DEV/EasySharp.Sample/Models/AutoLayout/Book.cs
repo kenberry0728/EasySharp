@@ -60,7 +60,7 @@ namespace EasySharp.Sample.Models.AutoLayout
         {
             // TODO
             // RailsCandidatesStringのValidation
-            return new ValidationResult[0];
+            return Enumerable.Empty<ValidationResult>();
         }
     }
 }

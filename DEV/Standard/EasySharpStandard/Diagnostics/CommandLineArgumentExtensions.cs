@@ -32,7 +32,7 @@ namespace EasySharp.Processes
         {
             if (values == null)
             {
-                throw new ArgumentNullException("values");
+                throw new ArgumentNullException(nameof(values));
             }
 
             return string.Join(" ", values.Select(ToCommandLineValue));

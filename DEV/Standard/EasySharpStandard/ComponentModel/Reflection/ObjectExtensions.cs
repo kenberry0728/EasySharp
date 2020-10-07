@@ -4,6 +4,7 @@ using System.Reflection;
 
 namespace EasySharp.ComponentModel.Reflection
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class ObjectExtensions
     {
         public static string ToCommaSeparatedString(this object instance, Func<PropertyInfo, bool> filter = null)

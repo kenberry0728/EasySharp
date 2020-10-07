@@ -1,12 +1,11 @@
 ﻿namespace EasySharp.Observer
 {
     public class ValueChangedEventArg<TValue>
-           where TValue : struct
     {
-        public ValueChangedEventArg(TValue old, TValue newState)
+        public ValueChangedEventArg(TValue oldValue, TValue newValue)
         {
-            this.OldValue = old;
-            this.NewValue = newState;
+            this.OldValue = oldValue;
+            this.NewValue = newValue;
         }
 
         public TValue OldValue { get; protected set; }

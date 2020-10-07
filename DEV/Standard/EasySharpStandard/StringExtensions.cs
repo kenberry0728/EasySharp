@@ -4,7 +4,7 @@ namespace EasySharp
 {
     public static class StringExtensions
     {
-        public static void ThrowArgumentNullOrEmptyException(this string argument, string argumentName)
+        public static void ThrowArgumentExceptionIfNullOrEmpty(this string argument, string argumentName)
         {
             if (argument.IsNullOrEmpty())
             {
@@ -39,6 +39,11 @@ namespace EasySharp
             return target?.StartsWith(value, StringComparison.Ordinal) == true; 
         }
 
+        public static bool OrdinalEndsWith(this string target, string value)
+        {
+            return target?.EndsWith(value, StringComparison.Ordinal) == true;
+        }
+
         public static bool OrdinalEquals(this string target, string value)
         {
             return string.Equals(target, value, StringComparison.Ordinal);
@@ -47,6 +52,12 @@ namespace EasySharp
         public static bool OrdinalIgnoreCaseEquals(this string target, string value)
         {
             return string.Equals(target, value, StringComparison.Ordinal);
+        }
+
+        public static T EnumParse<T>(this string enumValue)
+            where T : struct
+        {
+            return (T)Enum.Parse(typeof(T), enumValue, true);
         }
     }
 }

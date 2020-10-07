@@ -1,6 +1,8 @@
-﻿namespace EasySharp.Logs.Text
+﻿using System;
+
+namespace EasySharp.Logs.Text
 {
-    public interface ITextLogger
+    public interface ITextLogger : IDisposable
     {
         void Write(string message);
 

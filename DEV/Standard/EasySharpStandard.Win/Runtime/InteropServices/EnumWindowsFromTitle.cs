@@ -7,22 +7,27 @@ using System.Text;
 
 namespace EasySharp.Win.Runtime.InteropServices
 {
-    public class EnumWindowsFromTitle
+    public sealed class EnumWindowsFromTitle
     {
         private class EnumWindowsFromTitleService
         {
             private delegate bool EnumWindowsDelegate(IntPtr hWnd, IntPtr lparam);
 
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            private extern static bool EnumWindows(EnumWindowsDelegate lpEnumFunc, IntPtr lparam);
+            private static class NativeMethods
+            {
+                [DllImport("user32.dll")]
+                [return: MarshalAs(UnmanagedType.Bool)]
+                public extern static bool EnumWindows(EnumWindowsDelegate lpEnumFunc, IntPtr lparam);
 
-            [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-            private static extern int GetWindowText(IntPtr hWnd,
-                StringBuilder lpString, int nMaxCount);
+                [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+                public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
 
-            [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-            private static extern int GetWindowTextLength(IntPtr hWnd);
+                [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+                public static extern int GetWindowTextLength(IntPtr hWnd);
+
+                [DllImport("user32.dll", SetLastError = true)]
+                public static extern int GetWindowThreadProcessId(IntPtr hWnd, out int lpdwProcessId);
+            }
 
             private readonly List<WindowInfo> windowInfos = new List<WindowInfo>();
             private readonly Func<string, bool> windowTitlePredicate;
@@ -34,22 +39,25 @@ namespace EasySharp.Win.Runtime.InteropServices
 
             public IReadOnlyCollection<WindowInfo> GetWindowInfos()
             {
-                EnumWindows(new EnumWindowsDelegate(this.EnumWindowCallBack), IntPtr.Zero);
+                NativeMethods.EnumWindows(new EnumWindowsDelegate(this.EnumWindowCallBack), IntPtr.Zero);
                 return this.windowInfos;
             }
 
             private bool EnumWindowCallBack(IntPtr hWnd, IntPtr lparam)
             {
-                int textLength = GetWindowTextLength(hWnd);
+                int textLength = NativeMethods.GetWindowTextLength(hWnd);
                 if (0 < textLength)
                 {
                     var windowTitleStringBuilder = new StringBuilder(textLength + 1);
-                    GetWindowText(hWnd, windowTitleStringBuilder, windowTitleStringBuilder.Capacity);
-
-                    var windowTitle = windowTitleStringBuilder.ToString();
-                    if (this.windowTitlePredicate(windowTitle))
+                    var result = NativeMethods.GetWindowText(hWnd, windowTitleStringBuilder, windowTitleStringBuilder.Capacity);
+                    if (result != 0)
                     {
-                        this.windowInfos.Add(new WindowInfo(hWnd, windowTitle));
+                        var windowTitle = windowTitleStringBuilder.ToString();
+                        var threadId = NativeMethods.GetWindowThreadProcessId(hWnd, out var processId);
+                        if (this.windowTitlePredicate(windowTitle))
+                        {
+                            this.windowInfos.Add(new WindowInfo(hWnd, windowTitle, processId, threadId));
+                        }
                     }
                 }
 
@@ -57,16 +65,14 @@ namespace EasySharp.Win.Runtime.InteropServices
             }
         }
 
-        public static bool TryGetWindowHandleFromTitle(
+        public static Result<IntPtr> TryGetWindowHandleFromTitle(
             Func<string, bool> titlePredicate,
-            out IntPtr windowHandler,
             int maxRetry = 60,
             int intervalMilliseconds = 1000)
         {
             return Retry.Until(
                 () => GetWindowHandlesFromTitle(titlePredicate).FirstOrDefault(),
                 (lw) => !lw.IsDefaultStructValue(),
-                out windowHandler,
                 maxRetry,
                 intervalMilliseconds);
         }

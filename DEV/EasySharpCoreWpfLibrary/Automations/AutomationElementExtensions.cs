@@ -4,6 +4,7 @@ using System.Windows.Automation;
 
 namespace EasySharpCoreWpfLibrary.Automations
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class AutomationElementExtensions
     {
         public static IEnumerable<AutomationElement> FindAll(
@@ -100,6 +101,25 @@ namespace EasySharpCoreWpfLibrary.Automations
             return rootElement.FindFirst(
                 TreeScope.Descendants,
                 condition) != null;
+        }
+
+        public static bool ContainsChild(
+            this AutomationElement rootElement,
+            params Condition[] conditions)
+        {
+            return GetFirstChild(rootElement, conditions) != null;
+        }
+
+        public static AutomationElement GetFirstChild(
+            this AutomationElement parent,
+            params Condition[] conditions)
+        {
+            var condition = conditions.Length == 1
+                ? conditions[0]
+                : new AndCondition(conditions);
+            return parent.FindFirst(
+                TreeScope.Children,
+                condition);
         }
     }
 }
