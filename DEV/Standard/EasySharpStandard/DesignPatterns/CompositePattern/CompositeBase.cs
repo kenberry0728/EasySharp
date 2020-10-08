@@ -37,19 +37,13 @@ namespace EasySharp.DesignPatterns.CompositePattern
         }
     }
 
-    class CompositeConsumer
+    class SampleComponentConsumer
     {
         private readonly ISampleComponent component;
 
-        public CompositeConsumer(ISampleComponent component)
+        public SampleComponentConsumer(ISampleComponent component)
         {
             this.component = component;
-        }
-
-        public CompositeConsumer() 
-            //: this(new ExistedComponent())
-        : this(new SampleCompositeComponents { new ExistedComponent(), new AddingBehaviourComponent()})
-        {
         }
 
         public void Run()
@@ -58,8 +52,21 @@ namespace EasySharp.DesignPatterns.CompositePattern
         }
     }
 
-    class CompositeConsumerFactory
+    class SampleCompositeConsumerFactory
     {
+        public SampleComponentConsumer Create()
+        {
+            // From
+            // return new SampleComponentConsumer(new ExistedComponent());
+
+            // To
+            return new SampleComponentConsumer(
+                new SampleCompositeComponents
+                {
+                    new ExistedComponent(), 
+                    new AddingBehaviourComponent()
+                });
+        }
     }
 
     #endregion
