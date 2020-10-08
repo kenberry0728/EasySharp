@@ -8,7 +8,7 @@ namespace EasySharp.DesignPatterns.CompositePattern
     }
 
     #region Sample
-#if EnableSample
+
     interface ISampleComponent
     {
         void DoSomething();
@@ -21,14 +21,14 @@ namespace EasySharp.DesignPatterns.CompositePattern
         }
     }
 
-    class AddedBehaviourComponent : ISampleComponent
+    class AddingBehaviourComponent : ISampleComponent
     {
         public void DoSomething()
         {
         }
     }
 
-    class SampleComponents 
+    class SampleCompositeComponents 
         : CompositeBase<ISampleComponent>, ISampleComponent
     {
         public void DoSomething()
@@ -48,7 +48,7 @@ namespace EasySharp.DesignPatterns.CompositePattern
 
         public CompositeConsumer() 
             //: this(new ExistedComponent())
-        : this(new SampleComponents { new ExistedComponent(), new AddedBehaviourComponent()})
+        : this(new SampleCompositeComponents { new ExistedComponent(), new AddingBehaviourComponent()})
         {
         }
 
@@ -57,6 +57,10 @@ namespace EasySharp.DesignPatterns.CompositePattern
             this.component.DoSomething();
         }
     }
-#endif
+
+    class CompositeConsumerFactory
+    {
+    }
+
     #endregion
 }
