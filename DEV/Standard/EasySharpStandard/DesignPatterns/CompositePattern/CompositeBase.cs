@@ -9,7 +9,7 @@ namespace EasySharp.DesignPatterns.CompositePattern
 
     #region Sample
 
-    #region Don't wanna change or can't change existing.
+    #region Keep existing behaviour region
 
     interface IComponent
     {

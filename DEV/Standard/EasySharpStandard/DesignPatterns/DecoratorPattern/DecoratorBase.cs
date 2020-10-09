@@ -12,25 +12,26 @@
 
     #region Sample
 
-    interface IDecoratorSampleComponent
+    #region Keep existing behaviour region
+
+    interface IComponent
     {
         void DoSomething();
     }
 
-    class ExistedComponent : IDecoratorSampleComponent
+    class ExistingComponent : IComponent
     {
-        public void DoSomething()
-        {
-        }
+        public void DoSomething() { }
     }
 
-    class DecoratorSampleComponents 
-        : DecoratorBase<IDecoratorSampleComponent>, IDecoratorSampleComponent
+    #endregion
+
+    class AddingBehaviourComponent 
+        : DecoratorBase<IComponent>, IComponent
     {
-        public DecoratorSampleComponents(IDecoratorSampleComponent component) 
+        public AddingBehaviourComponent(IComponent component) 
             : base(component)
-        {
-        }
+        { }
 
         public void DoSomething()
         {
@@ -39,33 +40,21 @@
             this.PostDoSomething();
         }
 
-        private void PreDoSomething()
-        {
-        }
-
-        private void PostDoSomething()
-        {
-        }
+        private void PreDoSomething() { }
+        private void PostDoSomething() { }
     }
 
-    class DecoratorComponentConsumer
+    class ComponentFactory
     {
-        private readonly IDecoratorSampleComponent component;
-
-        public DecoratorComponentConsumer(IDecoratorSampleComponent component)
+        public IComponent Create()
         {
-            this.component = component;
-        }
+            // Adding behaviour Point.
 
-        public DecoratorComponentConsumer() 
-        // : this(new ExistingComponent())
-        :this(new DecoratorSampleComponents(new ExistedComponent()))
-        {
-        }
+            // From
+            // return new ExistingComponent();
 
-        public void Run()
-        {
-            this.component.DoSomething();
+            // To
+            return new AddingBehaviourComponent(new ExistingComponent());
         }
     }
 
