@@ -58,7 +58,7 @@
         }
 
         public DecoratorComponentConsumer() 
-        // : this(new ExistedComponent())
+        // : this(new ExistingComponent())
         :this(new DecoratorSampleComponents(new ExistedComponent()))
         {
         }

@@ -9,39 +9,23 @@ namespace EasySharp.DesignPatterns.CompositePattern
 
     #region Sample
 
-    interface ISampleComponent
+    #region Don't wanna change or can't change existing.
+
+    interface IComponent
     {
         void DoSomething();
     }
 
-    class ExistedComponent : ISampleComponent
+    class ExistingComponent : IComponent
     {
-        public void DoSomething()
-        {
-        }
+        public void DoSomething() { }
     }
-
-    class AddingBehaviourComponent : ISampleComponent
+    
+    class ExistingComponentComponentUser
     {
-        public void DoSomething()
-        {
-        }
-    }
+        private readonly IComponent component;
 
-    class SampleCompositeComponents 
-        : CompositeBase<ISampleComponent>, ISampleComponent
-    {
-        public void DoSomething()
-        {
-            this.ForEach(c => c.DoSomething());
-        }
-    }
-
-    class SampleComponentConsumer
-    {
-        private readonly ISampleComponent component;
-
-        public SampleComponentConsumer(ISampleComponent component)
+        public ExistingComponentComponentUser(IComponent component)
         {
             this.component = component;
         }
@@ -52,18 +36,36 @@ namespace EasySharp.DesignPatterns.CompositePattern
         }
     }
 
-    class SampleCompositeConsumerFactory
+    #endregion
+
+    class AddingBehaviourComponent : IComponent
     {
-        public SampleComponentConsumer Create()
+        public void DoSomething() { }
+    }
+
+    class CompositeComponents
+        : CompositeBase<IComponent>, IComponent
+    {
+        public void DoSomething()
         {
+            this.ForEach(c => c.DoSomething());
+        }
+    }
+
+    class ComponentFactory
+    {
+        public ExistingComponentComponentUser Create()
+        {
+            // Adding behaviour Point.
+
             // From
-            // return new SampleComponentConsumer(new ExistedComponent());
+            // return new ExistingComponentComponentUser(new ExistingComponent());
 
             // To
-            return new SampleComponentConsumer(
-                new SampleCompositeComponents
+            return new ExistingComponentComponentUser(
+                new CompositeComponents
                 {
-                    new ExistedComponent(), 
+                    new ExistingComponent(), 
                     new AddingBehaviourComponent()
                 });
         }
