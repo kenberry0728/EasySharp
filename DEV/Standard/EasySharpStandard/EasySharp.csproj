@@ -35,7 +35,6 @@
     <Folder Include="DataStructures\Graph\" />
     <Folder Include="DesignPatterns\FactoryPattern\" />
     <Folder Include="DesignPatterns\BuilderPattern\" />
-    <Folder Include="DesignPatterns\AdapterPattern\" />
     <Folder Include="DesignPatterns\StrategyPattern\" />
     <Folder Include="Diagnostics\CodeAnalysis\" />
   </ItemGroup>

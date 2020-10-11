@@ -10,53 +10,60 @@
         protected TComponent Component { get; }
     }
 
-    #region Sample
-
-    #region Keep existing behaviour region
-
-    interface IComponent
+    class Sample
     {
-        void DoSomething();
-    }
+        #region Keep existing behaviour region
 
-    class ExistingComponent : IComponent
-    {
-        public void DoSomething() { }
-    }
-
-    #endregion
-
-    class AddingBehaviourComponent 
-        : DecoratorBase<IComponent>, IComponent
-    {
-        public AddingBehaviourComponent(IComponent component) 
-            : base(component)
-        { }
-
-        public void DoSomething()
+        interface IComponent
         {
-            this.PreDoSomething();
-            this.Component.DoSomething();
-            this.PostDoSomething();
+            void DoSomething();
         }
 
-        private void PreDoSomething() { }
-        private void PostDoSomething() { }
-    }
-
-    class ComponentFactory
-    {
-        public IComponent Create()
+        class ExistingComponent : IComponent
         {
-            // Adding behaviour Point.
+            public void DoSomething()
+            {
+            }
+        }
 
-            // From
-            // return new ExistingComponent();
+        #endregion
 
-            // To
-            return new AddingBehaviourComponent(new ExistingComponent());
+        class AddingBehaviourComponent
+            : DecoratorBase<IComponent>, IComponent
+        {
+            public AddingBehaviourComponent(IComponent component)
+                : base(component)
+            {
+            }
+
+            public void DoSomething()
+            {
+                this.PreDoSomething();
+                this.Component.DoSomething();
+                this.PostDoSomething();
+            }
+
+            private void PreDoSomething()
+            {
+            }
+
+            private void PostDoSomething()
+            {
+            }
+        }
+
+        class ComponentFactory
+        {
+            public IComponent Create()
+            {
+                // Adding behaviour Point.
+
+                // From
+                // return new ExistingComponent();
+
+                // To
+                return new AddingBehaviourComponent(new ExistingComponent());
+            }
         }
     }
-
-    #endregion
 }
