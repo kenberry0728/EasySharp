@@ -27,7 +27,7 @@ namespace EasySharp.Win.Runtime.InteropServices
         [StructLayout(LayoutKind.Sequential)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible Instance fields", Justification = "<Pending>")]
         public struct MouseInput
         {
             public int X;
@@ -44,7 +44,7 @@ namespace EasySharp.Win.Runtime.InteropServices
         [StructLayout(LayoutKind.Sequential)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible Instance fields", Justification = "<Pending>")]
         public struct KeyboardInput
         {
             public short VirtualKey;
@@ -60,7 +60,7 @@ namespace EasySharp.Win.Runtime.InteropServices
         [StructLayout(LayoutKind.Sequential)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible Instance fields", Justification = "<Pending>")]
         public struct HardwareInput
         {
             public int uMsg;
@@ -74,7 +74,7 @@ namespace EasySharp.Win.Runtime.InteropServices
         [StructLayout(LayoutKind.Explicit)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1815:Override equals and operator equals on value types", Justification = "<Pending>")]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible Instance fields", Justification = "<Pending>")]
         public struct UserInput
         {
             [FieldOffset(0)]

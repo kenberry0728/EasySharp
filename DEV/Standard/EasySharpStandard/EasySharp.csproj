@@ -33,7 +33,6 @@
     <Folder Include="Archtecture\AOP\" />
     <Folder Include="Archtecture\ServiceLocator\" />
     <Folder Include="DataStructures\Graph\" />
-    <Folder Include="DesignPatterns\BuilderPattern\" />
     <Folder Include="DesignPatterns\StrategyPattern\" />
     <Folder Include="Diagnostics\CodeAnalysis\" />
   </ItemGroup>
