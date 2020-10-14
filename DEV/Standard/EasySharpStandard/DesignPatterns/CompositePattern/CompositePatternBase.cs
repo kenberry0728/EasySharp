@@ -2,7 +2,7 @@
 
 namespace EasySharp.DesignPatterns.CompositePattern
 {
-    public class CompositeBase<TComponent> 
+    public class CompositePatternBase<TComponent> 
         : List<TComponent>
     {
     }
@@ -47,8 +47,8 @@ namespace EasySharp.DesignPatterns.CompositePattern
             }
         }
 
-        class CompositeComponents
-            : CompositeBase<IComponent>, IComponent
+        class CompositePatternComponents
+            : CompositePatternBase<IComponent>, IComponent
         {
             public void DoSomething()
             {
@@ -67,7 +67,7 @@ namespace EasySharp.DesignPatterns.CompositePattern
 
                 // To
                 return new ExistingComponentComponentUser(
-                    new CompositeComponents
+                    new CompositePatternComponents
                     {
                         new ExistingComponent(),
                         new AddingBehaviourComponent()

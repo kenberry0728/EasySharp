@@ -1,8 +1,8 @@
 ﻿namespace EasySharp.DesignPatterns.DecoratorPattern
 {
-    public class DecoratorBase<TComponent>
+    public class DecoratorPatternBase<TComponent>
     {
-        public DecoratorBase(TComponent component)
+        public DecoratorPatternBase(TComponent component)
         {
             this.Component = component;
         }
@@ -29,7 +29,7 @@
         #endregion
 
         class AddingBehaviourComponent
-            : DecoratorBase<IComponent>, IComponent
+            : DecoratorPatternBase<IComponent>, IComponent
         {
             public AddingBehaviourComponent(IComponent component)
                 : base(component)
