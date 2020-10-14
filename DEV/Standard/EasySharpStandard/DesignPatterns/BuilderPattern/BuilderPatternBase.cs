@@ -1,7 +1,7 @@
 ﻿namespace EasySharp.DesignPatterns.BuilderPattern
 {
     public abstract class BuilderPatternBase<TInstance>
-    where TInstance : new()
+        where TInstance : new()
     {
         private readonly TInstance instance;
 
@@ -10,12 +10,12 @@
             this.instance = new TInstance();
         }
 
-        public abstract BuilderPatternBase<TInstance> BuildUpInstance(TInstance instance);
-
         public TInstance Build()
         {
-            this.BuildUpInstance(this.instance);
+            this.BuildUp(this.instance);
             return this.instance;
         }
+
+        protected abstract BuilderPatternBase<TInstance> BuildUp(TInstance instance);
     }
 }
