@@ -25,13 +25,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Archtecture\DomainModel\" />
-    <Folder Include="Archtecture\CQRS\" />
-    <Folder Include="Archtecture\DependencyInjection\" />
-    <Folder Include="Archtecture\Layerd\Clean\" />
-    <Folder Include="Archtecture\Layerd\Onion\" />
-    <Folder Include="Archtecture\AOP\" />
-    <Folder Include="Archtecture\ServiceLocator\" />
+    <Folder Include="Architecture\DomainModel\" />
+    <Folder Include="Architecture\CQRS\" />
+    <Folder Include="Architecture\DependencyInjection\" />
+    <Folder Include="Architecture\Layerd\Clean\" />
+    <Folder Include="Architecture\Layerd\Onion\" />
+    <Folder Include="Architecture\AOP\" />
+    <Folder Include="Architecture\ServiceLocator\" />
     <Folder Include="DataStructures\Graph\" />
     <Folder Include="Diagnostics\CodeAnalysis\" />
   </ItemGroup>
