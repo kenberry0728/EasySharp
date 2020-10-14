@@ -1,14 +1,13 @@
 ﻿namespace EasySharp.DesignPatterns.AdapterPattern
 {
-    public class AdapterBase<TComponent>
+    public class AdapterPatternBase<TComponent>
     {
-        public AdapterBase(TComponent component)
+        public AdapterPatternBase(TComponent component)
         {
             this.Component = component;
         }
 
         protected TComponent Component { get; }
-
     }
 
     class Sample
@@ -27,7 +26,7 @@
         }
 
         class ExpectingInterfacedClass
-            : AdapterBase<ExistingComponent>, IExpectingInterface
+            : AdapterPatternBase<ExistingComponent>, IExpectingInterface
         {
             public ExpectingInterfacedClass(ExistingComponent component)
                 : base(component)
