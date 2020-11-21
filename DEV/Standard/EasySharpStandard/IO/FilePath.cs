@@ -12,7 +12,6 @@ namespace EasySharp.IO
         {
         }
 
-
         #endregion
 
         #region Factory Method
