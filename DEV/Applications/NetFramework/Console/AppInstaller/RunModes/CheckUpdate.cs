@@ -31,7 +31,7 @@ namespace AppInstaller.RunModes
             };
         }
 
-        private DateTime GetLastWriteTimeUtc(string targetDirectoryPath, IEnumerable<Regex> regularExpressions)
+        private static DateTime GetLastWriteTimeUtc(string targetDirectoryPath, IEnumerable<Regex> regularExpressions)
         {
             var directoryPath = targetDirectoryPath.ToDirectoryPath();
             var files = directoryPath.GetFiles("*", SearchOption.AllDirectories).ToList();
