@@ -13,11 +13,8 @@ namespace AppInstaller.RunModes
 {
     public class CheckUpdate
     {
-        private readonly CreateFilePath createFilePath;
-
         public CheckUpdate()
         {
-            this.createFilePath = FilePath.Create;
         }
 
         public AppInstallerResult Run(string sourceDir, string installDir, List<string> excludeRegex)
@@ -40,7 +37,7 @@ namespace AppInstaller.RunModes
             var files = directoryPath.GetFiles("*", SearchOption.AllDirectories).ToList();
             var fileAndRelativePaths = files.Select(f => new { f, Relativepath = f.ToFilePath().GetRelativePath(targetDirectoryPath.ToDirectoryPath()).Value }).ToList();
             var filteredFileAndRelativepaths = fileAndRelativePaths.Where(f => !regularExpressions.AnyIsMatch(f.Relativepath)).ToList();
-            var result = filteredFileAndRelativepaths.Max(f => this.createFilePath(f.f).GetLastWriteTimeUtc());
+            var result = filteredFileAndRelativepaths.Max(f => f.f.ToFilePath().GetLastWriteTimeUtc());
             return result;
         }
     }

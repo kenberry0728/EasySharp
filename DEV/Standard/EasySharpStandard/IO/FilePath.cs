@@ -5,8 +5,6 @@ namespace EasySharp.IO
 {
     public class FilePath : PathObjectBase, IFilePath
     {
-        public delegate FilePath CreateFilePath(string value);
-
         public static FilePath Create(string value)
         {
             value.ThrowArgumentExceptionIfNull(nameof(value));
