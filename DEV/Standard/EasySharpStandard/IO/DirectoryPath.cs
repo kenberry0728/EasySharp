@@ -7,6 +7,17 @@ namespace EasySharp.IO
 {
     public class DirectoryPath : PathObjectBase, IDirectoryPath
     {
+        #region Constructor
+
+        private DirectoryPath(string value)
+            : base(value)
+        {
+        }
+
+        #endregion
+
+        #region Factory Method
+
         public static IDirectoryPath Create(string value)
         {
             value.ThrowArgumentExceptionIfNull(nameof(value));
@@ -15,10 +26,9 @@ namespace EasySharp.IO
             return new DirectoryPath(value);
         }
 
-        private DirectoryPath(string value)
-            : base(value)
-        {
-        }
+        #endregion
+
+        #region Public Methods
 
         public override bool Equals(object obj)
         {
@@ -131,5 +141,7 @@ namespace EasySharp.IO
             var directoryInfo = new DirectoryInfo(this.Value);
             return directoryInfo.GetFiles(searchPattern, searchOption).Select(f => f.FullName);
         }
+
+        #endregion
     }
 }
