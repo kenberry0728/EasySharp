@@ -41,7 +41,7 @@ namespace EasySharp.Observer
             {
                 if (e.NewValue is IEnumerable enumerable)
                 {
-                    var text = enumerable.OfType<object>().Select(s => s.ToString()).JoinWithTab();
+                    var text = enumerable.OfType<object>().Select(s => s.ToString()).Join("\t");
                     this.TextLogger.WriteLine(this.GetType().Name, text);
                 }
                 else

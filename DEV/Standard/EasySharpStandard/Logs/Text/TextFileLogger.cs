@@ -32,7 +32,7 @@ namespace EasySharp.Logs.Text
 
         public virtual string WriteLine(params string[] messages)
         {
-            var lineText = messages.JoinWithTab();
+            var lineText = messages.Join("\t");
             lock(this.lockObject)
             {
                 this.streamWriter.WriteLine(lineText);

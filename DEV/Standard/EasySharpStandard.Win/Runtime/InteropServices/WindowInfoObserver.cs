@@ -21,7 +21,7 @@ namespace EasySharp.Win.Runtime.InteropServices
 
         protected override string GetLoggingText(WindowInfo[] state)
         {
-            return state.Select(s => s.ToString()).JoinWithTab();
+            return state.Select(s => s.ToString()).Join("\t");
         }
     }
 }

@@ -22,7 +22,7 @@ namespace EasySharp.Diagnostics
 
         protected override string GetLoggingText(ProcessInfo[] state)
         {
-            return state.Select(s => s.ToString()).JoinWithTab();
+            return state.Select(s => s.ToString()).Join("\t");
         }
     }
 }
