@@ -51,9 +51,9 @@ namespace EasySharp.IO
             var relativeDirectoryUri = new Uri(relativeDirectoryPath.Value);
             var fullUri = new Uri(this.Value);
 
-            //絶対Uriから相対Uriを取得する
+            // 絶対Uriから相対Uriを取得する
             var relativeUri = relativeDirectoryUri.MakeRelativeUri(fullUri);
-            //文字列に変換する
+            // 文字列に変換する
             return relativeUri.ToString().Replace(@"/", @"\").ToFilePath();
         }
 
