@@ -21,8 +21,8 @@ namespace AppInstaller.Test.RunModes
 
         protected static void TestInitializeBase()
         {
-            SourceDirPath.ToDirectoryPath().DeleteDirectoryRecursively();
-            InstallDirPath.ToDirectoryPath().DeleteDirectoryRecursively();
+            SourceDirPath.ToDirectoryPath().DeleteDirectory();
+            InstallDirPath.ToDirectoryPath().DeleteDirectory();
 
             var sourceInitialDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "SourceDir");
             var installInitialDirPath = Path.Combine(TestClassRootFolder, TestRootDir, "InstallDir");
@@ -36,8 +36,8 @@ namespace AppInstaller.Test.RunModes
 
         protected static void TestCleanupBase()
         {
-            SourceDirPath.ToDirectoryPath().DeleteDirectoryRecursively();
-            InstallDirPath.ToDirectoryPath().DeleteDirectoryRecursively();
+            SourceDirPath.ToDirectoryPath().DeleteDirectory();
+            InstallDirPath.ToDirectoryPath().DeleteDirectory();
         }
     }
 }

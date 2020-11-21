@@ -12,7 +12,7 @@ namespace EasySharp.IO
             bool copySubDirs = true, 
             ICollection<string> excludeFileRelativePaths = null);
         void CreateDirectoryRecursively();
-        void DeleteDirectoryRecursively();
+        void DeleteDirectory(bool recursivve = true);
         IEnumerable<string> GetFiles(string searchPattern, SearchOption searchOption);
         void ScopedSetCurrentDirectory(Action action);
         void SetLastWriteTimeToAllFiles(DateTime lastWriteTime);
