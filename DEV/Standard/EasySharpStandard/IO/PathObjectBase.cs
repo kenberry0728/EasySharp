@@ -11,8 +11,8 @@ namespace EasySharp.IO
 
         public override bool Equals(object obj)
         {
-            return (obj is PathObjectBase directoryPath)
-                && this.Value.OrdinalEquals(directoryPath.Value);
+            return (obj is PathObjectBase pathObject)
+                && this.Value.OrdinalEquals(pathObject.Value);
         }
 
         public override string ToString()
