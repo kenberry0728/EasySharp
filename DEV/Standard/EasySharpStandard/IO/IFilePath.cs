@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EasySharp.IO
 {
@@ -10,5 +11,6 @@ namespace EasySharp.IO
         IFilePath GetRelativePath(IDirectoryPath relativeDirectoryPath);
         IFilePath ToFullPath();
         string ReadAllText();
+        IEnumerable<string> ReadLines(bool removeEmptyLine = false);
     }
 }

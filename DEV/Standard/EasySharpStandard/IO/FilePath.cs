@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace EasySharp.IO
@@ -100,6 +101,29 @@ namespace EasySharp.IO
         {
             return File.ReadAllText(this.Value);
         }
+
+        public IEnumerable<string> ReadLines(bool removeEmptyLine = false)
+        {
+            using (var sr = new StreamReader(this.Value))
+            {
+                string line;
+                while (null != (line = sr.ReadLine()))
+                {
+                    if (removeEmptyLine)
+                    {
+                        if (!line.IsNullOrEmpty())
+                        {
+                            yield return line;
+                        }
+                    }
+                    else
+                    {
+                        yield return line;
+                    }
+                }
+            }
+        }
+
 
         #endregion
     }
