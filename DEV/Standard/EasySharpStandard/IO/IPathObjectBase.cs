@@ -3,5 +3,7 @@
     public interface IPathObjectBase : IValueObjectBase<string>
     {
         bool IsAbolutePath { get; }
+
+        bool Exists();
     }
 }

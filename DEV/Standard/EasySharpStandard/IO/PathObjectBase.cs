@@ -28,5 +28,6 @@ namespace EasySharp.IO
             return this.Value.ToUpperInvariant().GetHashCode();
         }
 
+        public abstract bool Exists();
     }
 }

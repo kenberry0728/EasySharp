@@ -142,7 +142,7 @@ namespace EasySharp.IO
             return directoryInfo.GetFiles(searchPattern, searchOption).Select(f => f.FullName);
         }
 
-        public bool Exists()
+        public override bool Exists()
         {
             return Directory.Exists(this.Value);
         }

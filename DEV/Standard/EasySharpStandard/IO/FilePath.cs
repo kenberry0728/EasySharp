@@ -5,6 +5,18 @@ namespace EasySharp.IO
 {
     public class FilePath : PathObjectBase, IFilePath
     {
+        #region Constructor
+
+        private FilePath(string value)
+        : base(value)
+        {
+        }
+
+
+        #endregion
+
+        #region Factory Method
+
         public static FilePath Create(string value)
         {
             value.ThrowArgumentExceptionIfNull(nameof(value));
@@ -13,10 +25,9 @@ namespace EasySharp.IO
             return new FilePath(value);
         }
 
-        private FilePath(string value)
-            : base(value)
-        {
-        }
+        #endregion
+
+        #region Public Methods
 
         public override bool Equals(object obj)
         {
@@ -80,5 +91,12 @@ namespace EasySharp.IO
 
             File.Copy(this.Value, targetFilePath.Value, overwrite);
         }
+
+        public override bool Exists()
+        {
+            return File.Exists(this.Value);
+        }
+
+        #endregion
     }
 }

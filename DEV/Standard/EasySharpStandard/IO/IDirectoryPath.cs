@@ -17,6 +17,5 @@ namespace EasySharp.IO
         void ScopedSetCurrentDirectory(Action action);
         void SetLastWriteTimeToAllFiles(DateTime lastWriteTime);
         IDirectoryPath ToFullDirectoryPath();
-        bool Exists();
     }
 }
