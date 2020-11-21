@@ -46,6 +46,14 @@ namespace EasySharp.IO
             }
         }
 
+        public IEnumerable<IFilePath> GetFilePaths(string searchPattern, SearchOption searchOption)
+        {
+            var directoryInfo = new DirectoryInfo(this.Value);
+            return directoryInfo
+                .GetFiles(searchPattern, searchOption)
+                .Select(fi => fi.FullName.ToFilePath());
+        }
+
         public void CreateDirectoryRecursively()
         {
             var directoryPath = this.Value.IsNullOrEmpty()
