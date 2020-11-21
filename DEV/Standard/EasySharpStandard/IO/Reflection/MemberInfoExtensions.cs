@@ -87,7 +87,7 @@ namespace EasySharp.IO.Reflection
         {
             var result = Try.To(() =>
                 {
-                    var content = filePath.ReadToEnd();
+                    var content = filePath.ToFilePath().ReadAllText();
                     return content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                 });
 
@@ -100,7 +100,7 @@ namespace EasySharp.IO.Reflection
         {
             var result = Try.To(() =>
             {
-                var content = filePath.ReadToEnd();
+                var content = filePath.ToFilePath().ReadAllText();
                 var indentedStrings =
                     content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
                         .Select(s => new IndentedString(s));

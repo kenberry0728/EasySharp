@@ -6,14 +6,6 @@ namespace EasySharp.IO
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class StreamReaderExtensions
     {
-        public static string ReadToEnd(this string filePath)
-        {
-            using (var sr = new StreamReader(filePath))
-            {
-                return sr.ReadToEnd();
-            }
-        }
-
         public static IEnumerable<string> ReadLines(
             this IFilePath filePath,
             bool removeEmptyLine = false)

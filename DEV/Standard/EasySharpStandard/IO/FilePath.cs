@@ -96,6 +96,11 @@ namespace EasySharp.IO
             return File.Exists(this.Value);
         }
 
+        public string ReadAllText()
+        {
+            return File.ReadAllText(this.Value);
+        }
+
         #endregion
     }
 }

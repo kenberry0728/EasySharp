@@ -9,5 +9,6 @@ namespace EasySharp.IO
         DateTime GetLastWriteTimeUtc();
         IFilePath GetRelativePath(IDirectoryPath relativeDirectoryPath);
         IFilePath ToFullPath();
+        string ReadAllText();
     }
 }
