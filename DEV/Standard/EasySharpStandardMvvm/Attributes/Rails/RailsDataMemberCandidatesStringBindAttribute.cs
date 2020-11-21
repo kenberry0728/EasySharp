@@ -1,4 +1,5 @@
 ﻿using EasySharp;
+using EasySharp.Runtime.CompilerServices;
 using System;
 
 namespace EasySharpStandardMvvm.Attributes.Rails

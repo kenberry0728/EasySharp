@@ -1,23 +1,9 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 
 namespace EasySharp
 {
     public static class StringExtensions
     {
-        public static void ThrowArgumentExceptionIfNullOrEmpty(
-            this string argument,
-            string argumentName,
-            [CallerMemberName] string callerMemberName = "",
-            [CallerFilePath] string filePath = "",
-            [CallerLineNumber] int lineNumber = -1)
-        {
-            if (argument.IsNullOrEmpty())
-            {
-                throw new ArgumentException(argumentName);
-            }
-        }
-
         public static string ToEmptyIfNull(this string argument)
         {
             if (argument == null)
