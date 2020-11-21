@@ -17,7 +17,8 @@ namespace EasySharp.Runtime.CompilerServices
             if (argument.IsNullOrEmpty())
             {
                 var location = new TextFileLocation(callerFilePath.ToFilePath(), callerLineNumber, 0);
-                throw new ArgumentException($"{argument},{location}");
+                var message = new string[] { argumentName, location.ToString(), callerMemberName }.Join("\t");
+                throw new ArgumentException(message);
             }
         }
     }
