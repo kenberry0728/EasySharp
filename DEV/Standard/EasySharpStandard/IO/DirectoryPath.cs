@@ -68,8 +68,6 @@ namespace EasySharp.IO
             {
                 Directory.Delete(this.Value, true);
             }
-
-            this.DeleteDirectoryRecursively();
         }
 
         public void CopyDirectory(
