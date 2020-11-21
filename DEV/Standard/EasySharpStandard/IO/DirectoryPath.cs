@@ -78,11 +78,11 @@ namespace EasySharp.IO
             Directory.CreateDirectory(directoryPath);
         }
 
-        public void DeleteDirectory(bool recursive = true)
+        public void DeleteDirectory()
         {
             if (Directory.Exists(this.Value))
             {
-                Directory.Delete(this.Value, recursive);
+                Directory.Delete(this.Value, true);
             }
         }
 
