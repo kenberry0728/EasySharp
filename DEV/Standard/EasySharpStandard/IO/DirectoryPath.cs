@@ -7,8 +7,6 @@ namespace EasySharp.IO
 {
     public class DirectoryPath : PathObjectBase, IDirectoryPath
     {
-        public delegate IDirectoryPath CreateDirectoryPath(string value);
-
         public static IDirectoryPath Create(string value)
         {
             value.ThrowArgumentExceptionIfNull(nameof(value));

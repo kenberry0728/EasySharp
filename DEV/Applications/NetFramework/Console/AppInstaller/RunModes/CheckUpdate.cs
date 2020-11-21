@@ -14,13 +14,10 @@ namespace AppInstaller.RunModes
     public class CheckUpdate
     {
         private readonly CreateFilePath createFilePath;
-        private readonly CreateDirectoryPath createDirectoryPath;
 
-        public CheckUpdate(
-            CreateDirectoryPath createDirectoryPath = null)
+        public CheckUpdate()
         {
             this.createFilePath = FilePath.Create;
-            this.createDirectoryPath = createDirectoryPath ?? Create;
         }
 
         public AppInstallerResult Run(string sourceDir, string installDir, List<string> excludeRegex)
@@ -39,7 +36,7 @@ namespace AppInstaller.RunModes
 
         private DateTime GetLastWriteTimeUtc(string targetDirectoryPath, IEnumerable<Regex> regularExpressions)
         {
-            var directoryPath = this.createDirectoryPath(targetDirectoryPath);
+            var directoryPath = targetDirectoryPath.ToDirectoryPath();
             var files = directoryPath.GetFiles("*", SearchOption.AllDirectories).ToList();
             var fileAndRelativePaths = files.Select(f => new { f, Relativepath = f.ToFilePath().GetRelativePath(targetDirectoryPath.ToDirectoryPath()).Value }).ToList();
             var filteredFileAndRelativepaths = fileAndRelativePaths.Where(f => !regularExpressions.AnyIsMatch(f.Relativepath)).ToList();

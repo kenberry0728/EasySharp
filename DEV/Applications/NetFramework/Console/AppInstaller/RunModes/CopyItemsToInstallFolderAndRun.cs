@@ -15,14 +15,11 @@ namespace AppInstaller.RunModes
     public class CopyItemsToInstallFolderAndRun
     {
         private readonly string appInstallerAssemblyName;
-        private readonly CreateDirectoryPath createDirectoryPath;
 
         public CopyItemsToInstallFolderAndRun(
-            string appInstallerAssemblyName,
-            CreateDirectoryPath createDirectoryPath  = null)
+            string appInstallerAssemblyName)
         {
             this.appInstallerAssemblyName = appInstallerAssemblyName;
-            this.createDirectoryPath = createDirectoryPath ?? Create;
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Checked")]
@@ -35,7 +32,7 @@ namespace AppInstaller.RunModes
                 .ExcludeRelativePathRegex
                 .Select(reg => new Regex(reg, RegexOptions.IgnoreCase))
                 .ToList();
-            var directoryPath = this.createDirectoryPath(appInstallerArgument.SourceDir);
+            var directoryPath = appInstallerArgument.SourceDir.ToDirectoryPath();
             var allFiles = directoryPath.GetFiles(
                 "*",
                 SearchOption.AllDirectories);
