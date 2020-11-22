@@ -1,4 +1,4 @@
-﻿using EasySharp.IO.Reflection;
+﻿using EasySharp.Reflection.IO;
 using EasySharpStandardMvvm.Attributes.Rails;
 using EasySharpStandardMvvm.Models.Rails.Core;
 using EasySharpStandardMvvm.ViewModels;

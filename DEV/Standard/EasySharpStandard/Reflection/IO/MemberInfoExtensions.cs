@@ -5,8 +5,9 @@ using System.Linq;
 using System.Reflection;
 using EasySharp.Collections.Generic;
 using EasySharp.Reflection;
+using EasySharp.IO;
 
-namespace EasySharp.IO.Reflection
+namespace EasySharp.Reflection.IO
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>")]
     public static class MemberInfoExtensions
@@ -91,8 +92,8 @@ namespace EasySharp.IO.Reflection
                     return content.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                 });
 
-            return result.Ok 
-                ? result.Value 
+            return result.Ok
+                ? result.Value
                 : Enumerable.Empty<string>();
         }
 
