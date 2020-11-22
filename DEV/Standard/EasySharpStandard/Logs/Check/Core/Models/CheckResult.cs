@@ -23,7 +23,8 @@ namespace EasySharp.Logs.CheckLogs.Core.Models
 
         public override string ToString()
         {
-            return $"{Category}\t{ErrorCode}";
+            var text = new[] { this.Category.ToString(), this.ErrorCode.ToString(), this.Location.ToString(), this.DetailInfo.Join("\t") }.Join("\t");
+            return text;
         }
     }
 }
