@@ -4,9 +4,9 @@ using EasySharp.Logs.Text;
 
 namespace EasySharp.Logs.CheckLogs.Core
 {
-    public interface ICheckLog : ITextLog
+    public interface ICheckLog<TErrorCode> : ITextLog
     {
-        CheckResult CheckResult { get; }
+        TErrorCode CheckResult { get; }
 
         ILocation Location { get; }
     }

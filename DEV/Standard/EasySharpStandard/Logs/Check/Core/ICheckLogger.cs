@@ -3,8 +3,8 @@ using EasySharp.Logs.CheckLogs.Core.Models;
 
 namespace EasySharp.Logs.CheckLogs.Core
 {
-    public interface ICheckLogger
+    public interface ICheckLogger<TErrorCode>
     {
-        void Write(CheckResultCategory category, CheckResult code, ILocation location, string message);
+        void Write(CheckResultCategory category, CheckResult<TErrorCode> code, ILocation location, string message);
     }
 }

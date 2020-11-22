@@ -5,9 +5,9 @@ namespace EasySharpStandardConsole.Logs.CheckLogs
 {
     public static class CheckLoggerExtensions
     {
-        public static ICheckLogger Resolve(this ICheckLogger checkLogger)
+        public static ICheckLogger<TErrorCode> Resolve<TErrorCode>(this ICheckLogger<TErrorCode> checkLogger)
         {
-            return checkLogger ?? new ConsoleCheckLogger();
+            return checkLogger ?? new ConsoleCheckLogger<TErrorCode>();
         }
     }
 }

@@ -1,26 +1,20 @@
-﻿using System.Diagnostics;
-
-namespace EasySharp.Logs.CheckLogs.Core.Models
+﻿namespace EasySharp.Logs.CheckLogs.Core.Models
 {
-    [DebuggerDisplay("{Category}\t{CheckerIdentification}{CodeNumber}")]
-    public class CheckResult
+    public class CheckResult<TErrorCode>
     {
-        public CheckResult(CheckResultCategory category, string identification, int resultCode)
+        public CheckResult(CheckResultCategory category, TErrorCode errorCode)
         {
             this.Category = category;
-            this.CheckerIdentification = identification;
-            this.CodeNumber = resultCode;
+            this.ErrorCode = errorCode;
         }
 
         CheckResultCategory Category { get; }
 
-        public string CheckerIdentification { get; }
-
-        int CodeNumber { get; }
+        public TErrorCode ErrorCode { get; }
 
         public override string ToString()
         {
-            return $"{Category}\t{CheckerIdentification}{CodeNumber}";
+            return $"{Category}\t{ErrorCode}";
         }
     }
 }

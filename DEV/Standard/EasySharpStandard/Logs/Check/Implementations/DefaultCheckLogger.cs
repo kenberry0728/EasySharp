@@ -5,9 +5,9 @@ using System.Diagnostics;
 
 namespace EasySharp.Logs.CheckLogs.Implementations
 {
-    internal class DefaultCheckLogger : ICheckLogger
+    internal class DefaultCheckLogger<TErrorCode> : ICheckLogger<TErrorCode>
     {
-        public void Write(CheckResultCategory category, CheckResult code, ILocation location, string message)
+        public void Write(CheckResultCategory category, CheckResult<TErrorCode> code, ILocation location, string message)
         {
             Debug.Write($"{category}\t{code}\t{location}\t{message}");
         }
