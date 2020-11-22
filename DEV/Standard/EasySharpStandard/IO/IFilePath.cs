@@ -12,5 +12,6 @@ namespace EasySharp.IO
         IFilePath ToFullPath();
         string ReadAllText();
         IEnumerable<string> ReadLines(bool removeEmptyLine = false);
+        void WriteAllText(string contents);
     }
 }

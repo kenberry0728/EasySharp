@@ -52,9 +52,10 @@ namespace AppInstaller
                     Message = e.Message
                 };
 
-                string.Join(Environment.NewLine,
+                var message = string.Join(Environment.NewLine,
                     e.Message,
-                    args[0]).WriteToFile("Error.log");
+                    args[0]);
+                "Error.log".ToFilePath().WriteAllText(message);
             }
 
             Console.WriteLine(new AppInstallerResultConverter().ToString(modeAppInstallerResult));
