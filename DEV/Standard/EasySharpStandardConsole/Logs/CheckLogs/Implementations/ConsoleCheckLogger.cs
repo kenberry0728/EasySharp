@@ -5,12 +5,12 @@ using System;
 
 namespace EasySharpStandardConsole.Logs.CheckLogs.Implementations
 {
-    internal class ConsoleCheckLogger<TErrorCode> : ICheckLogger<TErrorCode>
+    internal class ConsoleCheckLogger<TErrorCode, TLocation> : ICheckLogger<TErrorCode, TLocation>
     {
-        public void Write(CheckResultCategory category, CheckResult<TErrorCode> code, ILocation location, string message)
+        public void Write(CheckResultCategory category, CheckResult<TErrorCode, TLocation> result, ILocation location, string message)
         {
             Console.WriteLine(
-                string.Join("\t", category, code, location.ToString(), message));
+                string.Join("\t", category, result, location.ToString(), message));
         }
     }
 }
