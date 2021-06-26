@@ -107,6 +107,11 @@ namespace EasySharp.IO
             File.WriteAllText(this.Value, contents);
         }
 
+        public void WriteAllLines(IEnumerable<string> contents)
+        {
+            File.WriteAllLines(this.Value, contents);
+        }
+
         public IEnumerable<string> ReadLines(bool removeEmptyLine = false)
         {
             using (var sr = new StreamReader(this.Value))
