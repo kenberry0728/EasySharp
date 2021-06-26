@@ -2,7 +2,7 @@
 {
     public interface IPathObjectBase : IValueObjectBase<string>
     {
-        bool IsAbolutePath { get; }
+        bool IsAbsolutePath { get; }
 
         bool Exists();
     }

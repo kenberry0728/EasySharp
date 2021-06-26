@@ -20,8 +20,7 @@ namespace EasySharp.IO
             return this.Value;
         }
 
-        public bool IsAbolutePath => Path.IsPathRooted(this.Value);
-
+        public bool IsAbsolutePath => Path.IsPathRooted(this.Value);
 
         public override int GetHashCode()
         {

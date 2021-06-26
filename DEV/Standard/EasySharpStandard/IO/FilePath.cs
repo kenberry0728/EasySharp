@@ -46,7 +46,7 @@ namespace EasySharp.IO
 
         public IFilePath GetRelativePath(IDirectoryPath relativeDirectoryPath)
         {
-            if (!this.IsAbolutePath)
+            if (!this.IsAbsolutePath)
             {
                 return this;
             }

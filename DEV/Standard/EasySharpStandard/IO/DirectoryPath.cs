@@ -46,7 +46,7 @@ namespace EasySharp.IO
             {
                 return Directory.GetCurrentDirectory().ToDirectoryPath();
             }
-            else if (this.IsAbolutePath)
+            else if (this.IsAbsolutePath)
             {
                 return this;
             }
