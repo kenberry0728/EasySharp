@@ -1,6 +1,6 @@
-﻿using EasySharp.Logs.CheckLogs.Core;
-using EasySharp.Logs.CheckLogs.Core.Models;
-using System;
+﻿using System;
+using EasySharp.Logs.Check.Core;
+using EasySharp.Logs.Check.Core.Models;
 
 namespace EasySharpStandardConsole.Logs.CheckLogs.Implementations
 {

@@ -1,9 +1,8 @@
-﻿using EasySharp.DataStructures.Trees.Core.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace EasySharp.DataStructures.Trees.Core
+namespace EasySharp.DataStructures.Trees
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class IndentedItemExtensions

@@ -1,4 +1,4 @@
-﻿namespace EasySharp.Logs.CheckLogs.Core.Models
+﻿namespace EasySharp.Logs.Check.Core.Models
 {
     public enum CheckResultCategory
     {

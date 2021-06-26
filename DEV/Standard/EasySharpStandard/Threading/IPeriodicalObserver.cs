@@ -1,4 +1,5 @@
 ﻿using System;
+using EasySharp.Collections.Specialized;
 
 namespace EasySharp.Threading
 {

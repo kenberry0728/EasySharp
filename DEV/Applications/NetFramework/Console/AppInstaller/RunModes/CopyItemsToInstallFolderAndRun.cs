@@ -5,8 +5,8 @@ using System.Text.RegularExpressions;
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using EasySharp;
+using EasySharp.Diagnostics;
 using EasySharp.IO;
-using EasySharp.Processes;
 using EasySharp.Text.RegularExpressions;
 using static EasySharp.IO.DirectoryPath;
 

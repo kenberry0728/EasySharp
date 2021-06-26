@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EasySharp.DataStructures.Trees.Core
+namespace EasySharp.DataStructures.Trees
 {
     public interface ITreeItem<T>
     {

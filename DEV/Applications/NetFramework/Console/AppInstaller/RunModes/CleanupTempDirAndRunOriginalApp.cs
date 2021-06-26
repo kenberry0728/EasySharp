@@ -2,8 +2,8 @@
 using AppInstaller.Core.Arguments;
 using AppInstaller.Core.Results;
 using EasySharp;
+using EasySharp.Diagnostics;
 using EasySharp.IO;
-using EasySharp.Processes;
 
 namespace AppInstaller.RunModes
 {

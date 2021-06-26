@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace EasySharp.DataStructures.Trees.Core.Models
+namespace EasySharp.DataStructures.Trees
 {
     public class TreeItem<T> : ITreeItem<TreeItem<T>>
     {

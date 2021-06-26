@@ -1,9 +1,8 @@
-﻿using EasySharp.Collections.Generic;
-using EasySharp.Collections.Specialized;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
+using EasySharp.Collections.Generic;
 
-namespace EasySharp
+namespace EasySharp.Collections.Specialized
 {
     public class ReferenceCountableEventContainer<TEventArg> 
         : EventContainer<TEventArg>, IReferenceCountableEventContainer<TEventArg>

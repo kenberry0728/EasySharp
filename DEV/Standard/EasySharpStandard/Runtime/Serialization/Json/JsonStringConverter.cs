@@ -1,6 +1,4 @@
-﻿using EasySharp.Runtime.Serialization.Json;
-
-namespace EasySharp.IO.Serializers
+﻿namespace EasySharp.Runtime.Serialization.Json
 {
     public class JsonStringConverter<T>
     {

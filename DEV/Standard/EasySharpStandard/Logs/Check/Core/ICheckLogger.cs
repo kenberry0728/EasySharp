@@ -1,7 +1,6 @@
-﻿using EasySharp.Location;
-using EasySharp.Logs.CheckLogs.Core.Models;
+﻿using EasySharp.Logs.Check.Core.Models;
 
-namespace EasySharp.Logs.CheckLogs.Core
+namespace EasySharp.Logs.Check.Core
 {
     public interface ICheckLogger<TErrorCode, TLocation>
     {

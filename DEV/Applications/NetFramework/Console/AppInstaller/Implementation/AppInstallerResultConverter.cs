@@ -1,5 +1,5 @@
 ﻿using AppInstaller.Core.Results;
-using EasySharp.IO.Serializers;
+using EasySharp.Runtime.Serialization.Json;
 
 namespace AppInstaller.Implementation
 {

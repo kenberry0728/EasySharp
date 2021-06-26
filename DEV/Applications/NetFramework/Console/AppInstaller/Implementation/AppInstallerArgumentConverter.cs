@@ -1,6 +1,6 @@
 ﻿using AppInstaller.Core.Arguments;
-using EasySharp.IO.Serializers;
-using EasySharp.Processes;
+using EasySharp.Diagnostics;
+using EasySharp.Runtime.Serialization.Json;
 
 namespace AppInstaller.Implementation
 {

@@ -1,9 +1,9 @@
-﻿using EasySharp.DataStructures.Trees.Core.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using EasySharp.Collections.Generic;
+using EasySharp.DataStructures.Trees;
 using EasySharp.Reflection;
 using EasySharp.IO;
 

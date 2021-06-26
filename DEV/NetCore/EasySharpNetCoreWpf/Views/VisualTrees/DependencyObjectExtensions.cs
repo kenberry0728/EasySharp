@@ -1,7 +1,7 @@
-﻿using EasySharp.DataStructures.Trees.Core;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
+using EasySharp.DataStructures.Trees;
 
 namespace EasySharpWpf.Views.VisualTrees
 {

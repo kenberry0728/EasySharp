@@ -1,8 +1,4 @@
-﻿
-using EasySharp.Collections.Specialized;
-using System.Collections.Specialized;
-
-namespace EasySharp
+﻿namespace EasySharp.Collections.Specialized
 {
     public interface IReferenceCountableEventContainer<TEventArg> 
         : IEventContainer<TEventArg>

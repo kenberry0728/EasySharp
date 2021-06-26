@@ -1,8 +1,8 @@
-﻿using EasySharp.IO;
-using System;
+﻿using System;
 using System.Diagnostics;
+using EasySharp.IO;
 
-namespace EasySharp.Processes
+namespace EasySharp.Diagnostics
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class ProcessExtensions

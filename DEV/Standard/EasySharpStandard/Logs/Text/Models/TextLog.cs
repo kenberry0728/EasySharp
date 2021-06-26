@@ -1,6 +1,4 @@
-﻿using EasySharp.Logs.Text;
-
-namespace EasySharp.Log.Text.Models
+﻿namespace EasySharp.Logs.Text.Models
 {
     public class TextLog : ITextLog
     {

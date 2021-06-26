@@ -1,8 +1,8 @@
-﻿using EasySharp.Logs.CheckLogs.Core;
-using EasySharp.Logs.CheckLogs.Core.Models;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using EasySharp.Logs.Check.Core;
+using EasySharp.Logs.Check.Core.Models;
 
-namespace EasySharp.Logs.CheckLogs.Implementations
+namespace EasySharp.Logs.Check.Implementations
 {
     internal class DebugCheckLogger<TErrorCode, TLocation> : ICheckLogger<TErrorCode, TLocation>
     {

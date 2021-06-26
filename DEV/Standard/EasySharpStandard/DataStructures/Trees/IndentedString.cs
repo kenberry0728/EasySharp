@@ -1,4 +1,4 @@
-﻿namespace EasySharp.DataStructures.Trees.Core.Models
+﻿namespace EasySharp.DataStructures.Trees
 {
     public class IndentedString : IIndentedItem<string>
     {

@@ -1,9 +1,9 @@
-﻿using EasySharp.Location;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EasySharp.Location;
 
-namespace EasySharp.DataStructures.Trees.Core
+namespace EasySharp.DataStructures.Trees
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extension")]
     public static class TreeInterfaceItemExtensions

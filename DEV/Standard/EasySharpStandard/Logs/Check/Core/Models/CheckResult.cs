@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace EasySharp.Logs.CheckLogs.Core.Models
+namespace EasySharp.Logs.Check.Core.Models
 {
     public class CheckResult<TErrorCode, TLocation>
     {
