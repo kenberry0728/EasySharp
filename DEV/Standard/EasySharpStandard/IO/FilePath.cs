@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace EasySharp.IO
 {
@@ -114,7 +115,12 @@ namespace EasySharp.IO
 
         public IEnumerable<string> ReadLines(bool removeEmptyLine = false)
         {
-            using (var sr = new StreamReader(this.Value))
+            return ReadLines(null, removeEmptyLine);
+        }
+
+        public IEnumerable<string> ReadLines(Encoding encoding = null, bool removeEmptyLine = false)
+        {
+            using (var sr = new StreamReader(this.Value, encoding))
             {
                 string line;
                 while (null != (line = sr.ReadLine()))
@@ -133,7 +139,6 @@ namespace EasySharp.IO
                 }
             }
         }
-
 
         #endregion
     }
