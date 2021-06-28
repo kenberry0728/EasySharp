@@ -140,6 +140,11 @@ namespace EasySharp.IO
             }
         }
 
+        public void Delete()
+        {
+            File.Delete(this.Value);
+        }
+
         #endregion
     }
 }
