@@ -40,7 +40,7 @@ namespace EasySharp.Diagnostics
         }
 
         public static Process RunProcess(
-            this string processPath,
+            this IFilePath processPath,
             string arguments = "",
             bool createNoWindow = false)
         {
@@ -48,7 +48,7 @@ namespace EasySharp.Diagnostics
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = processPath,
+                    FileName = processPath.Value,
                     Arguments = arguments,
                     CreateNoWindow = createNoWindow
                 }

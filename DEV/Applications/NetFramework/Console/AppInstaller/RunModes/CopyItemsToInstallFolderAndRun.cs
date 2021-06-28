@@ -49,7 +49,7 @@ namespace AppInstaller.RunModes
 
             var newInstallerPath = Path.Combine(appInstallerArgument.InstallDir, appInstallerAssemblyName);
             var newArgument = CreateRunNewAppInstallerInAppFolderArgument(appInstallerArgument);
-            newInstallerPath.RunProcess(newArgument.ToCommandLineString(), true);
+            newInstallerPath.ToFilePath().RunProcess(newArgument.ToCommandLineString(), true);
 
             return new AppInstallerResult { ResultCode = ResultCode.Success, Updated = true };
         }
