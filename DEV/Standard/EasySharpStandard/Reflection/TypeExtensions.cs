@@ -7,9 +7,9 @@ namespace EasySharp.Reflection
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Extensions")]
     public static class TypeExtensions
     {
-        public static object New(this Type type)
+        public static object New(this Type type, params object[] args)
         {
-            return Activator.CreateInstance(type);
+            return Activator.CreateInstance(type, args);
         }
 
         public static void CopyPropertyValues(this Type type, object from, object to, Func<PropertyInfo, bool> filter)
